@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-04-15T20:50:23+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">Inside The Rabbit Holes</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Interesting Resources</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html" rel="alternate" type="text/html" title="Interesting Resources" /><published>2024-04-15T20:00:00+08:00</published><updated>2024-04-15T20:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html"><![CDATA[<p>Some interesting papers:</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-04-15T21:00:00+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">Inside The Rabbit Holes</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Interesting Resources</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html" rel="alternate" type="text/html" title="Interesting Resources" /><published>2024-04-15T20:00:00+08:00</published><updated>2024-04-15T20:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html"><![CDATA[<p>Some interesting papers:</p>
 
 <ul>
   <li><a href="https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf">Dynamo: Amazon’s Highly Available Key-value Store</a></li>
@@ -7,8 +7,14 @@
 <p>Some interesting websites:</p>
 
 <ul>
+  <li><a href="https://go.dev/ref/spec">The Go Programming Language Specification</a></li>
+  <li><a href="https://go.dev/doc/effective_go">Effective Go</a></li>
+  <li><a href="https://go.dev/ref/mem">Go Memory Model</a></li>
+  <li><a href="https://netflixtechblog.com/linux-performance-analysis-in-60-000-milliseconds-accc10403c55">Linux Performance Analysis in 60,000 milliseconds</a></li>
   <li><a href="https://www.redhat.com/sysadmin/cgroups-part-one">A Linux sysadmin’s introduction to cgroups</a></li>
   <li><a href="https://www.cs.unh.edu/cnrg/people/gherrin/linux-net.html">Glenn Herrin (2000) Linux IP Networking</a></li>
+  <li><a href="https://www.cloudcentric.dev/implementing-a-skip-list-in-go/">Implementing a skip list in go</a></li>
+  <li><a href="https://github.com/redis/redis/blob/unstable/src/ziplist.c">ziplist.c source code in github.com/redis</a></li>
 </ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Some interesting papers:]]></summary></entry><entry><title type="html">Random Ideas</title><link href="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html" rel="alternate" type="text/html" title="Random Ideas" /><published>2024-04-15T19:00:00+08:00</published><updated>2024-04-15T19:00:00+08:00</updated><id>https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas</id><content type="html" xml:base="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html"><![CDATA[<p>List of random ideas:</p>
 
 <ul>
