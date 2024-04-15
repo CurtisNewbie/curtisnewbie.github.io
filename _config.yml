@@ -22,7 +22,9 @@ sass:
   quiet_deps: true
 
 domain: curtisnewbie.github.io
-title: yongjie.zhuang
+title: Inside The Rabbit Holes
+author: Yongjie Zhuang
+
 # email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   Til the end
