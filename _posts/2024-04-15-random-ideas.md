@@ -9,3 +9,5 @@ List of random ideas:
 
 - Implement a mini version of Git to understand how it works.
 - Implement a simple B+ tree based database.
+- Implement a mini-redis using java like the [curtisnewbie/mini-redis](https://github.com/curtisnewbie/mini-redis) in golang.
+    - Call it mini-jredis maybe, just try to be more familiar with socket programming in java.
