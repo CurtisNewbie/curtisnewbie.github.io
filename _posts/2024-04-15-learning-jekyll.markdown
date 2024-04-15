@@ -148,3 +148,15 @@ I am the first blog!
 ```
 
 That's it. This should be enough to get started :D
+
+## Host Jekyll Project Using Github Page
+
+Follow guidelines in https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll.
+
+Before you push all the changes to upstream, build the jekyll project as follows:
+
+```
+bundle exec jekyll build
+```
+
+Go to github page, in repo's Settings > Pages, select your branch and root directory, and then save. The github page for your jekyll project will be deployed automatically using github action.
