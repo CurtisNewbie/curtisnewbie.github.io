@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-04-16T11:44:46+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Interesting Resources</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html" rel="alternate" type="text/html" title="Interesting Resources" /><published>2024-04-15T20:00:00+08:00</published><updated>2024-04-15T20:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html"><![CDATA[<p>Interesting papers, books and websites are listed here.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-04-16T14:37:01+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Interesting Resources</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html" rel="alternate" type="text/html" title="Interesting Resources" /><published>2024-04-15T20:00:00+08:00</published><updated>2024-04-15T20:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html"><![CDATA[<p>Interesting papers, books and websites are listed here.</p>
 
 <p>Some interesting papers:</p>
 
@@ -9,6 +9,14 @@
 <p>Some interesting websites:</p>
 
 <ul>
+  <li><a href="https://gist.github.com/JBlond/2fea43a3049b38287e5e9cefc87b2124">JBlond Gist - Bash Colors</a></li>
+  <li><a href="https://k3s.io/">k3s</a></li>
+  <li><a href="https://blog.ragozin.info/2011/06/understanding-gc-pauses-in-jvm-hotspots.html">Understanding GC pauses in JVM, HotSpot’s minor GC (2011)</a></li>
+  <li><a href="https://oceanbase.github.io/miniob/miniob-introduction.html">MiniOB Github Page - zh-cn</a></li>
+  <li><a href="https://github.com/oceanbase/miniob?tab=readme-ov-file">MiniOB Github - zh-cn</a></li>
+  <li><a href="https://github.com/oceanbase/oceanbase">Oceanbase Github</a></li>
+  <li><a href="https://en.oceanbase.com/docs/oceanbase-database">Oceanbase Doc</a></li>
+  <li><a href="https://netflix.github.io/dgs/">Netflix DGS Framework</a></li>
   <li><a href="https://github.com/Netflix/conductor">Netflix Conductor</a></li>
   <li><a href="https://github.com/conductor-sdk/conductor-examples/tree/main">Conductor-sdk</a></li>
   <li><a href="https://orkes.io/content/">Orkes - Conductor</a></li>
@@ -23,6 +31,17 @@
   <li><a href="https://www.cs.unh.edu/cnrg/people/gherrin/linux-net.html">Glenn Herrin (2000) Linux IP Networking</a></li>
   <li><a href="https://www.cloudcentric.dev/implementing-a-skip-list-in-go/">Implementing a skip list in go</a></li>
   <li><a href="https://github.com/redis/redis/blob/unstable/src/ziplist.c">ziplist.c source code in github.com/redis</a></li>
+  <li><a href="https://eclipsesource.com/blogs/2013/01/21/10-tips-for-using-the-eclipse-memory-analyzer/">10 Tips for using the Eclipse Memory Analyzer</a></li>
+  <li><a href="https://tikv.org/deep-dive/key-value-engine/b-tree-vs-lsm/">tikv - B-Tree vs LSM-Tree</a></li>
+  <li><a href="https://medium.com/eureka-engineering/understanding-allocations-in-go-stack-heap-memory-9a2631b5035d">Understanding Allocations in Go</a></li>
+  <li><a href="https://pkg.go.dev/cmd/trace">golang - cmd/trace</a></li>
+  <li><a href="https://medium.com/@ankur_anand/a-visual-guide-to-golang-memory-allocator-from-ground-up-e132258453ed">A visual guide to Go Memory Allocator from scratch</a></li>
+  <li><a href="https://java-decompiler.github.io/">Java Decompiler</a></li>
+  <li><a href="https://catonmat.net/bash-one-liners-explained-part-one">Bash One-Liners Explained</a></li>
+  <li><a href="https://tldp.org/HOWTO/IP-Masquerade-HOWTO/index.html">Linux IP Masquerade HOWTO, David A. Ranch</a></li>
+  <li><a href="https://mysql.rjweb.org/doc.php/deletebig">MySQL Big DELETEs</a></li>
+  <li><a href="https://research.swtch.com/interfaces">Go Data Structures: Interfaces</a></li>
+  <li><a href="https://morsmachine.dk/go-scheduler">The Go Scheduler</a></li>
 </ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Interesting papers, books and websites are listed here.]]></summary></entry><entry><title type="html">Random Ideas</title><link href="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html" rel="alternate" type="text/html" title="Random Ideas" /><published>2024-04-15T19:00:00+08:00</published><updated>2024-04-15T19:00:00+08:00</updated><id>https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas</id><content type="html" xml:base="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html"><![CDATA[<p>List of random ideas:</p>
 
 <ul>
@@ -41,6 +60,8 @@
       <li>https://orkes.io/content/</li>
     </ul>
   </li>
+  <li>Document how to use pprof in golang.</li>
+  <li>Write something about jvm performance evaluation. Document all the means to identify performance issue, e.g., CPU/IO/GC and so on.</li>
 </ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Ideas" /><summary type="html"><![CDATA[List of random ideas:]]></summary></entry><entry><title type="html">Learning Jekyll</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/learning-jekyll.html" rel="alternate" type="text/html" title="Learning Jekyll" /><published>2024-04-15T13:00:00+08:00</published><updated>2024-04-15T13:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/learning-jekyll</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/learning-jekyll.html"><![CDATA[<p><strong><em>This is my first blog. We are learning Jekyll today, documenting jekyll stuff inside a static site generated by jekyll!</em></strong></p>
 
 <p>The following are useful websites for learning jekyll:</p>

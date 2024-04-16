@@ -16,3 +16,5 @@ List of random ideas:
     - https://github.com/Netflix/conductor
     - https://github.com/conductor-sdk/conductor-examples/tree/main
     - https://orkes.io/content/
+- Document how to use pprof in golang.
+- Write something about jvm performance evaluation. Document all the means to identify performance issue, e.g., CPU/IO/GC and so on.
