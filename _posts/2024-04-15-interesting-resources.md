@@ -13,6 +13,16 @@ Some interesting papers:
 
 Some interesting websites:
 
+- [Dave Cheney - Why is a Goroutine’s stack infinite?](https://dave.cheney.net/2013/06/02/why-is-a-goroutines-stack-infinite)
+- [Go channels on steroids](https://docs.google.com/document/u/0/d/1yIAYmbvL3JxOKOjuCyon7JhW4cSv1wy5hC0ApeGMV9s/pub?pli=1)
+- [jdk20 - HotSpot Virtual Machine Garbage Collection Tuning Guide](https://docs.oracle.com/en/java/javase/20/gctuning/index.html#GUID-0394E76A-1A8F-425E-A0D0-B48A3DC82B42)
+- [jdk8 - Java Platform, Standard Edition Troubleshooting Guide](https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/toc.html)
+- [Concurrent Marking in G1](https://tschatzl.github.io/2022/08/04/concurrent-marking.html)
+- [Analyzing Go Heap Escapes](https://landontclipp.github.io/blog/2023/07/15/analyzing-go-heap-escapes/#use-of-reflection)
+- [Reducing Memory Allocations in Golang](https://chris124567.github.io/2021-06-21-go-performance/)
+- [Github - RESP2 Protocol Specification](https://github.com/redis/redis-specifications/blob/master/protocol/RESP2.md)
+- [Diving into Golang: How does it effectively wrap the functionality of epoll?](https://medium.com/@chenymj23/diving-into-golang-how-does-it-effectively-wrap-the-functionality-of-epoll-26065f0654ba)
+- [Unlocking Go Slice Performance: Navigating sync.Pool for Enhanced Efficiency](https://blog.mike.norgate.xyz/unlocking-go-slice-performance-navigating-sync-pool-for-enhanced-efficiency-7cb63b0b453e)
 - [JBlond Gist - Bash Colors](https://gist.github.com/JBlond/2fea43a3049b38287e5e9cefc87b2124)
 - [k3s](https://k3s.io/)
 - [Understanding GC pauses in JVM, HotSpot's minor GC (2011)](https://blog.ragozin.info/2011/06/understanding-gc-pauses-in-jvm-hotspots.html)
@@ -46,3 +56,4 @@ Some interesting websites:
 - [MySQL Big DELETEs](https://mysql.rjweb.org/doc.php/deletebig)
 - [Go Data Structures: Interfaces](https://research.swtch.com/interfaces)
 - [The Go Scheduler](https://morsmachine.dk/go-scheduler)
+- [Linux Kernel Documentation](https://www.kernel.org/doc/html/latest/index.html)
