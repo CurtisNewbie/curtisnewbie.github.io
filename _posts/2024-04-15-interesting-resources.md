@@ -57,3 +57,4 @@ Some interesting websites:
 - [Go Data Structures: Interfaces](https://research.swtch.com/interfaces)
 - [The Go Scheduler](https://morsmachine.dk/go-scheduler)
 - [Linux Kernel Documentation](https://www.kernel.org/doc/html/latest/index.html)
+- [Use the index, Luke - A Guide to Database Performance for Developers](https://use-the-index-luke.com/sql/preface)
