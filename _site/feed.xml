@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-04-16T11:27:21+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">Inside The Rabbit Holes</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Interesting Resources</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html" rel="alternate" type="text/html" title="Interesting Resources" /><published>2024-04-15T20:00:00+08:00</published><updated>2024-04-15T20:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html"><![CDATA[<p>Interesting papers, book and websites are listed here.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-04-16T11:44:46+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Interesting Resources</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html" rel="alternate" type="text/html" title="Interesting Resources" /><published>2024-04-15T20:00:00+08:00</published><updated>2024-04-15T20:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html"><![CDATA[<p>Interesting papers, books and websites are listed here.</p>
 
 <p>Some interesting papers:</p>
 
@@ -9,6 +9,9 @@
 <p>Some interesting websites:</p>
 
 <ul>
+  <li><a href="https://github.com/Netflix/conductor">Netflix Conductor</a></li>
+  <li><a href="https://github.com/conductor-sdk/conductor-examples/tree/main">Conductor-sdk</a></li>
+  <li><a href="https://orkes.io/content/">Orkes - Conductor</a></li>
   <li><a href="https://shipilev.net/jvm/anatomy-quarks/">JVM Anatomy Quarks</a></li>
   <li><a href="https://netflixtechblog.com/bending-pause-times-to-your-will-with-generational-zgc-256629c9386b">Netflix Technology Blog - Bending pause times to your will with Generational ZGC</a></li>
   <li><a href="https://www.infoq.com/presentations/netflix-java/">InfoQ - How Netflix Really Uses Java</a></li>
@@ -20,18 +23,19 @@
   <li><a href="https://www.cs.unh.edu/cnrg/people/gherrin/linux-net.html">Glenn Herrin (2000) Linux IP Networking</a></li>
   <li><a href="https://www.cloudcentric.dev/implementing-a-skip-list-in-go/">Implementing a skip list in go</a></li>
   <li><a href="https://github.com/redis/redis/blob/unstable/src/ziplist.c">ziplist.c source code in github.com/redis</a></li>
-</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Interesting papers, book and websites are listed here.]]></summary></entry><entry><title type="html">Random Ideas</title><link href="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html" rel="alternate" type="text/html" title="Random Ideas" /><published>2024-04-15T19:00:00+08:00</published><updated>2024-04-15T19:00:00+08:00</updated><id>https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas</id><content type="html" xml:base="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html"><![CDATA[<p>List of random ideas:</p>
+</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Interesting papers, books and websites are listed here.]]></summary></entry><entry><title type="html">Random Ideas</title><link href="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html" rel="alternate" type="text/html" title="Random Ideas" /><published>2024-04-15T19:00:00+08:00</published><updated>2024-04-15T19:00:00+08:00</updated><id>https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas</id><content type="html" xml:base="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html"><![CDATA[<p>List of random ideas:</p>
 
 <ul>
   <li>Implement a mini version of Git to understand how it works.</li>
   <li>Implement a simple B+ tree based database.</li>
-  <li>Implement a mini-redis using java like the <a href="https://github.com/curtisnewbie/mini-redis">curtisnewbie/mini-redis</a> in golang.
+  <li>Implement a mini-redis using java like the <a href="https://github.com/curtisnewbie/mini-redis">curtisnewbie/mini-redis</a> one in golang.
     <ul>
       <li>Call it mini-jredis maybe, just try to be more familiar with socket programming in java.</li>
     </ul>
   </li>
-  <li>Have a look at netflix/conductor, understands roughly how it works and implement a mini workflow engine.
+  <li>Have a look at netflix/conductor, understand roughly how it works and implement a mini workflow engine.
     <ul>
+      <li>It does seem like a workflow engine is roughly a distributed queue + an orchestrator service + some definitions of worker.</li>
       <li>https://github.com/Netflix/conductor</li>
       <li>https://github.com/conductor-sdk/conductor-examples/tree/main</li>
       <li>https://orkes.io/content/</li>

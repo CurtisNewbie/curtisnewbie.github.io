@@ -5,7 +5,7 @@ date:   2024-04-15 20:00:00 +0800
 categories: Learning
 ---
 
-Interesting papers, book and websites are listed here.
+Interesting papers, books and websites are listed here.
 
 Some interesting papers:
 
@@ -13,6 +13,9 @@ Some interesting papers:
 
 Some interesting websites:
 
+- [Netflix Conductor](https://github.com/Netflix/conductor)
+- [Conductor-sdk](https://github.com/conductor-sdk/conductor-examples/tree/main)
+- [Orkes - Conductor](https://orkes.io/content/)
 - [JVM Anatomy Quarks](https://shipilev.net/jvm/anatomy-quarks/)
 - [Netflix Technology Blog - Bending pause times to your will with Generational ZGC](https://netflixtechblog.com/bending-pause-times-to-your-will-with-generational-zgc-256629c9386b)
 - [InfoQ - How Netflix Really Uses Java](https://www.infoq.com/presentations/netflix-java/)
