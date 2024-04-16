@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-04-16T09:15:52+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">Inside The Rabbit Holes</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Interesting Resources</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html" rel="alternate" type="text/html" title="Interesting Resources" /><published>2024-04-15T20:00:00+08:00</published><updated>2024-04-15T20:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html"><![CDATA[<p>Some interesting papers:</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-04-16T11:27:21+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">Inside The Rabbit Holes</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Interesting Resources</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html" rel="alternate" type="text/html" title="Interesting Resources" /><published>2024-04-15T20:00:00+08:00</published><updated>2024-04-15T20:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html"><![CDATA[<p>Interesting papers, book and websites are listed here.</p>
+
+<p>Some interesting papers:</p>
 
 <ul>
   <li><a href="https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf">Dynamo: Amazon’s Highly Available Key-value Store</a></li>
@@ -7,15 +9,18 @@
 <p>Some interesting websites:</p>
 
 <ul>
+  <li><a href="https://shipilev.net/jvm/anatomy-quarks/">JVM Anatomy Quarks</a></li>
+  <li><a href="https://netflixtechblog.com/bending-pause-times-to-your-will-with-generational-zgc-256629c9386b">Netflix Technology Blog - Bending pause times to your will with Generational ZGC</a></li>
+  <li><a href="https://www.infoq.com/presentations/netflix-java/">InfoQ - How Netflix Really Uses Java</a></li>
   <li><a href="https://go.dev/ref/spec">The Go Programming Language Specification</a></li>
   <li><a href="https://go.dev/doc/effective_go">Effective Go</a></li>
   <li><a href="https://go.dev/ref/mem">Go Memory Model</a></li>
-  <li><a href="https://netflixtechblog.com/linux-performance-analysis-in-60-000-milliseconds-accc10403c55">Linux Performance Analysis in 60,000 milliseconds</a></li>
+  <li><a href="https://netflixtechblog.com/linux-performance-analysis-in-60-000-milliseconds-accc10403c55">Netflix Technology Blog - Linux Performance Analysis in 60,000 milliseconds</a></li>
   <li><a href="https://www.redhat.com/sysadmin/cgroups-part-one">A Linux sysadmin’s introduction to cgroups</a></li>
   <li><a href="https://www.cs.unh.edu/cnrg/people/gherrin/linux-net.html">Glenn Herrin (2000) Linux IP Networking</a></li>
   <li><a href="https://www.cloudcentric.dev/implementing-a-skip-list-in-go/">Implementing a skip list in go</a></li>
   <li><a href="https://github.com/redis/redis/blob/unstable/src/ziplist.c">ziplist.c source code in github.com/redis</a></li>
-</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Some interesting papers:]]></summary></entry><entry><title type="html">Random Ideas</title><link href="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html" rel="alternate" type="text/html" title="Random Ideas" /><published>2024-04-15T19:00:00+08:00</published><updated>2024-04-15T19:00:00+08:00</updated><id>https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas</id><content type="html" xml:base="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html"><![CDATA[<p>List of random ideas:</p>
+</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Interesting papers, book and websites are listed here.]]></summary></entry><entry><title type="html">Random Ideas</title><link href="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html" rel="alternate" type="text/html" title="Random Ideas" /><published>2024-04-15T19:00:00+08:00</published><updated>2024-04-15T19:00:00+08:00</updated><id>https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas</id><content type="html" xml:base="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html"><![CDATA[<p>List of random ideas:</p>
 
 <ul>
   <li>Implement a mini version of Git to understand how it works.</li>
@@ -23,6 +28,13 @@
   <li>Implement a mini-redis using java like the <a href="https://github.com/curtisnewbie/mini-redis">curtisnewbie/mini-redis</a> in golang.
     <ul>
       <li>Call it mini-jredis maybe, just try to be more familiar with socket programming in java.</li>
+    </ul>
+  </li>
+  <li>Have a look at netflix/conductor, understands roughly how it works and implement a mini workflow engine.
+    <ul>
+      <li>https://github.com/Netflix/conductor</li>
+      <li>https://github.com/conductor-sdk/conductor-examples/tree/main</li>
+      <li>https://orkes.io/content/</li>
     </ul>
   </li>
 </ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Ideas" /><summary type="html"><![CDATA[List of random ideas:]]></summary></entry><entry><title type="html">Learning Jekyll</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/learning-jekyll.html" rel="alternate" type="text/html" title="Learning Jekyll" /><published>2024-04-15T13:00:00+08:00</published><updated>2024-04-15T13:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/learning-jekyll</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/learning-jekyll.html"><![CDATA[<p><strong><em>This is my first blog. We are learning Jekyll today, documenting jekyll stuff inside a static site generated by jekyll!</em></strong></p>

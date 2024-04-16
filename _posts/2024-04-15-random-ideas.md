@@ -11,3 +11,7 @@ List of random ideas:
 - Implement a simple B+ tree based database.
 - Implement a mini-redis using java like the [curtisnewbie/mini-redis](https://github.com/curtisnewbie/mini-redis) in golang.
     - Call it mini-jredis maybe, just try to be more familiar with socket programming in java.
+- Have a look at netflix/conductor, understands roughly how it works and implement a mini workflow engine.
+    - https://github.com/Netflix/conductor
+    - https://github.com/conductor-sdk/conductor-examples/tree/main
+    - https://orkes.io/content/
