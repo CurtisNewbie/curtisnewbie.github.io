@@ -13,6 +13,9 @@ Some interesting papers:
 
 Some interesting websites:
 
+- [The Computer Language Benchmark Game](https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html)
+- [Martin Fowler - The LMAX Architecture](https://martinfowler.com/articles/lmax.html)
+- [Github Page - LMAX Disruptor](https://lmax-exchange.github.io/disruptor/)
 - [Dave Cheney - Why is a Goroutine’s stack infinite?](https://dave.cheney.net/2013/06/02/why-is-a-goroutines-stack-infinite)
 - [Go channels on steroids](https://docs.google.com/document/u/0/d/1yIAYmbvL3JxOKOjuCyon7JhW4cSv1wy5hC0ApeGMV9s/pub?pli=1)
 - [jdk20 - HotSpot Virtual Machine Garbage Collection Tuning Guide](https://docs.oracle.com/en/java/javase/20/gctuning/index.html#GUID-0394E76A-1A8F-425E-A0D0-B48A3DC82B42)
