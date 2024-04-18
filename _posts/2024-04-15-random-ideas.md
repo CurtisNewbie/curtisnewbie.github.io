@@ -18,3 +18,5 @@ List of random ideas:
     - https://orkes.io/content/
 - Document how to use pprof in golang.
 - Write something about jvm performance evaluation. Document all the means to identify performance issue, e.g., CPU/IO/GC and so on.
+- Implement a simple CI/CD application.
+- Implement a rule engine.
