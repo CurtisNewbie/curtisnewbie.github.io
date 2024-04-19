@@ -13,6 +13,7 @@ Some interesting papers:
 
 Some interesting websites:
 
+- [Hash join in MySQL 8](https://dev.mysql.com/blog-archive/hash-join-in-mysql-8/)
 - [The Computer Language Benchmark Game](https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html)
 - [Martin Fowler - The LMAX Architecture](https://martinfowler.com/articles/lmax.html)
 - [Github Page - LMAX Disruptor](https://lmax-exchange.github.io/disruptor/)
