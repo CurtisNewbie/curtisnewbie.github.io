@@ -13,6 +13,7 @@ Some interesting papers:
 
 Some interesting websites:
 
+- [Shopify’s Architecture to Handle the World’s Biggest Flash Sales](https://www.infoq.com/presentations/shopify-architecture-flash-sale/)
 - [Hash join in MySQL 8](https://dev.mysql.com/blog-archive/hash-join-in-mysql-8/)
 - [The Computer Language Benchmark Game](https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html)
 - [Martin Fowler - The LMAX Architecture](https://martinfowler.com/articles/lmax.html)
