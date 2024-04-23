@@ -13,6 +13,8 @@ Some interesting papers:
 
 Some interesting websites:
 
+- [github vadv/gopher-lua-libs](https://github.com/vadv/gopher-lua-libs)
+- [github yuin/gopher-lua](https://github.com/yuin/gopher-lua)
 - [Shopify’s Architecture to Handle the World’s Biggest Flash Sales](https://www.infoq.com/presentations/shopify-architecture-flash-sale/)
 - [Hash join in MySQL 8](https://dev.mysql.com/blog-archive/hash-join-in-mysql-8/)
 - [The Computer Language Benchmark Game](https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html)
