@@ -7,24 +7,18 @@ categories: Learning
 
 Interesting papers, books and websites are listed here.
 
-Some interesting papers:
+### Papers
 
 - [Dynamo: Amazon's Highly Available Key-value Store](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
 
-Some interesting websites:
+### Blogs, Presentations and Docs
 
-- [Github Blog - MySQL High Availability at Github](https://github.blog/2018-06-20-mysql-high-availability-at-github/#:~:text=GitHub%20uses%20MySQL%20as%20its,is%20critical%20to%20GitHub's%20operation.)
-- [MySQL Server Index Archive](https://dev.mysql.com/doc/index-archive.html)
-- [MySQL Server Source Code Documentation](https://dev.mysql.com/doc/dev/mysql-server/latest/)
-- [github vadv/gopher-lua-libs](https://github.com/vadv/gopher-lua-libs)
-- [github yuin/gopher-lua](https://github.com/yuin/gopher-lua)
 - [Shopify’s Architecture to Handle the World’s Biggest Flash Sales](https://www.infoq.com/presentations/shopify-architecture-flash-sale/)
-- [Hash join in MySQL 8](https://dev.mysql.com/blog-archive/hash-join-in-mysql-8/)
-- [The Computer Language Benchmark Game](https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html)
 - [Martin Fowler - The LMAX Architecture](https://martinfowler.com/articles/lmax.html)
 - [Github Page - LMAX Disruptor](https://lmax-exchange.github.io/disruptor/)
 - [Dave Cheney - Why is a Goroutine’s stack infinite?](https://dave.cheney.net/2013/06/02/why-is-a-goroutines-stack-infinite)
 - [Go channels on steroids](https://docs.google.com/document/u/0/d/1yIAYmbvL3JxOKOjuCyon7JhW4cSv1wy5hC0ApeGMV9s/pub?pli=1)
+- [The Computer Language Benchmark Game](https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html)
 - [jdk20 - HotSpot Virtual Machine Garbage Collection Tuning Guide](https://docs.oracle.com/en/java/javase/20/gctuning/index.html#GUID-0394E76A-1A8F-425E-A0D0-B48A3DC82B42)
 - [jdk8 - Java Platform, Standard Edition Troubleshooting Guide](https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/toc.html)
 - [Concurrent Marking in G1](https://tschatzl.github.io/2022/08/04/concurrent-marking.html)
@@ -36,10 +30,6 @@ Some interesting websites:
 - [JBlond Gist - Bash Colors](https://gist.github.com/JBlond/2fea43a3049b38287e5e9cefc87b2124)
 - [k3s](https://k3s.io/)
 - [Understanding GC pauses in JVM, HotSpot's minor GC (2011)](https://blog.ragozin.info/2011/06/understanding-gc-pauses-in-jvm-hotspots.html)
-- [MiniOB Github Page - zh-cn](https://oceanbase.github.io/miniob/miniob-introduction.html)
-- [MiniOB Github - zh-cn](https://github.com/oceanbase/miniob?tab=readme-ov-file)
-- [Oceanbase Github](https://github.com/oceanbase/oceanbase)
-- [Oceanbase Doc](https://en.oceanbase.com/docs/oceanbase-database)
 - [Netflix DGS Framework](https://netflix.github.io/dgs/)
 - [Netflix Conductor](https://github.com/Netflix/conductor)
 - [Conductor-sdk](https://github.com/conductor-sdk/conductor-examples/tree/main)
@@ -67,4 +57,26 @@ Some interesting websites:
 - [Go Data Structures: Interfaces](https://research.swtch.com/interfaces)
 - [The Go Scheduler](https://morsmachine.dk/go-scheduler)
 - [Linux Kernel Documentation](https://www.kernel.org/doc/html/latest/index.html)
+
+### Database Related
+
+- [github dolthub/dolt](https://github.com/dolthub/dolt)
+- [github dolthub/go-mysql-server](https://github.com/dolthub/go-mysql-server)
+- [Github Blog - MySQL High Availability at Github](https://github.blog/2018-06-20-mysql-high-availability-at-github/#:~:text=GitHub%20uses%20MySQL%20as%20its,is%20critical%20to%20GitHub's%20operation.)
+- [MySQL Server Index Archive](https://dev.mysql.com/doc/index-archive.html)
+- [MySQL Server Source Code Documentation](https://dev.mysql.com/doc/dev/mysql-server/latest/)
+- [Hash join in MySQL 8](https://dev.mysql.com/blog-archive/hash-join-in-mysql-8/)
+- [MiniOB Github Page - zh-cn](https://oceanbase.github.io/miniob/miniob-introduction.html)
+- [MiniOB Github - zh-cn](https://github.com/oceanbase/miniob?tab=readme-ov-file)
+- [Oceanbase Github](https://github.com/oceanbase/oceanbase)
+- [Oceanbase Doc](https://en.oceanbase.com/docs/oceanbase-database)
 - [Use the index, Luke - A Guide to Database Performance for Developers](https://use-the-index-luke.com/sql/preface)
+
+<!-- ### Languages -->
+
+### Other Github Repos
+
+- [vadv/gopher-lua-libs](https://github.com/vadv/gopher-lua-libs)
+- [yuin/gopher-lua](https://github.com/yuin/gopher-lua)
+- [jamiebuilds/the-super-tiny-compiler](https://github.com/jamiebuilds/the-super-tiny-compiler)
+- [kjpgit/SmallestCSVParser](https://github.com/kjpgit/smallestcsvparser)

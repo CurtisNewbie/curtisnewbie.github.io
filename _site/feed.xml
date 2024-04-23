@@ -1,26 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-04-23T14:05:22+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Interesting Resources</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html" rel="alternate" type="text/html" title="Interesting Resources" /><published>2024-04-15T20:00:00+08:00</published><updated>2024-04-15T20:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html"><![CDATA[<p>Interesting papers, books and websites are listed here.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-04-23T14:31:06+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Interesting Resources</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html" rel="alternate" type="text/html" title="Interesting Resources" /><published>2024-04-15T20:00:00+08:00</published><updated>2024-04-15T20:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html"><![CDATA[<p>Interesting papers, books and websites are listed here.</p>
 
-<p>Some interesting papers:</p>
+<h3 id="papers">Papers</h3>
 
 <ul>
   <li><a href="https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf">Dynamo: Amazon’s Highly Available Key-value Store</a></li>
 </ul>
 
-<p>Some interesting websites:</p>
+<h3 id="blogs-presentations-and-docs">Blogs, Presentations and Docs</h3>
 
 <ul>
-  <li><a href="https://github.blog/2018-06-20-mysql-high-availability-at-github/#:~:text=GitHub%20uses%20MySQL%20as%20its,is%20critical%20to%20GitHub's%20operation.">Github Blog - MySQL High Availability at Github</a></li>
-  <li><a href="https://dev.mysql.com/doc/index-archive.html">MySQL Server Index Archive</a></li>
-  <li><a href="https://dev.mysql.com/doc/dev/mysql-server/latest/">MySQL Server Source Code Documentation</a></li>
-  <li><a href="https://github.com/vadv/gopher-lua-libs">github vadv/gopher-lua-libs</a></li>
-  <li><a href="https://github.com/yuin/gopher-lua">github yuin/gopher-lua</a></li>
   <li><a href="https://www.infoq.com/presentations/shopify-architecture-flash-sale/">Shopify’s Architecture to Handle the World’s Biggest Flash Sales</a></li>
-  <li><a href="https://dev.mysql.com/blog-archive/hash-join-in-mysql-8/">Hash join in MySQL 8</a></li>
-  <li><a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html">The Computer Language Benchmark Game</a></li>
   <li><a href="https://martinfowler.com/articles/lmax.html">Martin Fowler - The LMAX Architecture</a></li>
   <li><a href="https://lmax-exchange.github.io/disruptor/">Github Page - LMAX Disruptor</a></li>
   <li><a href="https://dave.cheney.net/2013/06/02/why-is-a-goroutines-stack-infinite">Dave Cheney - Why is a Goroutine’s stack infinite?</a></li>
   <li><a href="https://docs.google.com/document/u/0/d/1yIAYmbvL3JxOKOjuCyon7JhW4cSv1wy5hC0ApeGMV9s/pub?pli=1">Go channels on steroids</a></li>
+  <li><a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html">The Computer Language Benchmark Game</a></li>
   <li><a href="https://docs.oracle.com/en/java/javase/20/gctuning/index.html#GUID-0394E76A-1A8F-425E-A0D0-B48A3DC82B42">jdk20 - HotSpot Virtual Machine Garbage Collection Tuning Guide</a></li>
   <li><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/toc.html">jdk8 - Java Platform, Standard Edition Troubleshooting Guide</a></li>
   <li><a href="https://tschatzl.github.io/2022/08/04/concurrent-marking.html">Concurrent Marking in G1</a></li>
@@ -32,10 +26,6 @@
   <li><a href="https://gist.github.com/JBlond/2fea43a3049b38287e5e9cefc87b2124">JBlond Gist - Bash Colors</a></li>
   <li><a href="https://k3s.io/">k3s</a></li>
   <li><a href="https://blog.ragozin.info/2011/06/understanding-gc-pauses-in-jvm-hotspots.html">Understanding GC pauses in JVM, HotSpot’s minor GC (2011)</a></li>
-  <li><a href="https://oceanbase.github.io/miniob/miniob-introduction.html">MiniOB Github Page - zh-cn</a></li>
-  <li><a href="https://github.com/oceanbase/miniob?tab=readme-ov-file">MiniOB Github - zh-cn</a></li>
-  <li><a href="https://github.com/oceanbase/oceanbase">Oceanbase Github</a></li>
-  <li><a href="https://en.oceanbase.com/docs/oceanbase-database">Oceanbase Doc</a></li>
   <li><a href="https://netflix.github.io/dgs/">Netflix DGS Framework</a></li>
   <li><a href="https://github.com/Netflix/conductor">Netflix Conductor</a></li>
   <li><a href="https://github.com/conductor-sdk/conductor-examples/tree/main">Conductor-sdk</a></li>
@@ -63,7 +53,33 @@
   <li><a href="https://research.swtch.com/interfaces">Go Data Structures: Interfaces</a></li>
   <li><a href="https://morsmachine.dk/go-scheduler">The Go Scheduler</a></li>
   <li><a href="https://www.kernel.org/doc/html/latest/index.html">Linux Kernel Documentation</a></li>
+</ul>
+
+<h3 id="database-related">Database Related</h3>
+
+<ul>
+  <li><a href="https://github.com/dolthub/dolt">github dolthub/dolt</a></li>
+  <li><a href="https://github.com/dolthub/go-mysql-server">github dolthub/go-mysql-server</a></li>
+  <li><a href="https://github.blog/2018-06-20-mysql-high-availability-at-github/#:~:text=GitHub%20uses%20MySQL%20as%20its,is%20critical%20to%20GitHub's%20operation.">Github Blog - MySQL High Availability at Github</a></li>
+  <li><a href="https://dev.mysql.com/doc/index-archive.html">MySQL Server Index Archive</a></li>
+  <li><a href="https://dev.mysql.com/doc/dev/mysql-server/latest/">MySQL Server Source Code Documentation</a></li>
+  <li><a href="https://dev.mysql.com/blog-archive/hash-join-in-mysql-8/">Hash join in MySQL 8</a></li>
+  <li><a href="https://oceanbase.github.io/miniob/miniob-introduction.html">MiniOB Github Page - zh-cn</a></li>
+  <li><a href="https://github.com/oceanbase/miniob?tab=readme-ov-file">MiniOB Github - zh-cn</a></li>
+  <li><a href="https://github.com/oceanbase/oceanbase">Oceanbase Github</a></li>
+  <li><a href="https://en.oceanbase.com/docs/oceanbase-database">Oceanbase Doc</a></li>
   <li><a href="https://use-the-index-luke.com/sql/preface">Use the index, Luke - A Guide to Database Performance for Developers</a></li>
+</ul>
+
+<!-- ### Languages -->
+
+<h3 id="other-github-repos">Other Github Repos</h3>
+
+<ul>
+  <li><a href="https://github.com/vadv/gopher-lua-libs">vadv/gopher-lua-libs</a></li>
+  <li><a href="https://github.com/yuin/gopher-lua">yuin/gopher-lua</a></li>
+  <li><a href="https://github.com/jamiebuilds/the-super-tiny-compiler">jamiebuilds/the-super-tiny-compiler</a></li>
+  <li><a href="https://github.com/kjpgit/smallestcsvparser">kjpgit/SmallestCSVParser</a></li>
 </ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Interesting papers, books and websites are listed here.]]></summary></entry><entry><title type="html">Random Ideas</title><link href="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html" rel="alternate" type="text/html" title="Random Ideas" /><published>2024-04-15T19:00:00+08:00</published><updated>2024-04-15T19:00:00+08:00</updated><id>https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas</id><content type="html" xml:base="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html"><![CDATA[<p>List of random ideas:</p>
 
 <ul>
