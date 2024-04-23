@@ -13,6 +13,7 @@ Some interesting papers:
 
 Some interesting websites:
 
+- [MySQL Server Source Code Documentation](https://dev.mysql.com/doc/dev/mysql-server/latest/)
 - [github vadv/gopher-lua-libs](https://github.com/vadv/gopher-lua-libs)
 - [github yuin/gopher-lua](https://github.com/yuin/gopher-lua)
 - [Shopify’s Architecture to Handle the World’s Biggest Flash Sales](https://www.infoq.com/presentations/shopify-architecture-flash-sale/)
