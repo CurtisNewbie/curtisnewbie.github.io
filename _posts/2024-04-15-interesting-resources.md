@@ -13,6 +13,7 @@ Interesting papers, books and websites are listed here.
 
 ### Blogs, Presentations and Docs
 
+- [What is eBPF](https://ebpf.io/what-is-ebpf/#why-ebpf)
 - [Shopify’s Architecture to Handle the World’s Biggest Flash Sales](https://www.infoq.com/presentations/shopify-architecture-flash-sale/)
 - [Martin Fowler - The LMAX Architecture](https://martinfowler.com/articles/lmax.html)
 - [Github Page - LMAX Disruptor](https://lmax-exchange.github.io/disruptor/)
@@ -76,6 +77,7 @@ Interesting papers, books and websites are listed here.
 
 ### Other Github Repos
 
+- [elastic/otel-profiling-agent](https://github.com/elastic/otel-profiling-agent)
 - [vadv/gopher-lua-libs](https://github.com/vadv/gopher-lua-libs)
 - [yuin/gopher-lua](https://github.com/yuin/gopher-lua)
 - [jamiebuilds/the-super-tiny-compiler](https://github.com/jamiebuilds/the-super-tiny-compiler)

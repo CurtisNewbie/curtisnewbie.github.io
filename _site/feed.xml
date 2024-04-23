@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-04-23T14:31:06+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Interesting Resources</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html" rel="alternate" type="text/html" title="Interesting Resources" /><published>2024-04-15T20:00:00+08:00</published><updated>2024-04-15T20:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html"><![CDATA[<p>Interesting papers, books and websites are listed here.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-04-23T16:03:03+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Interesting Resources</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html" rel="alternate" type="text/html" title="Interesting Resources" /><published>2024-04-15T20:00:00+08:00</published><updated>2024-04-15T20:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html"><![CDATA[<p>Interesting papers, books and websites are listed here.</p>
 
 <h3 id="papers">Papers</h3>
 
@@ -9,6 +9,7 @@
 <h3 id="blogs-presentations-and-docs">Blogs, Presentations and Docs</h3>
 
 <ul>
+  <li><a href="https://ebpf.io/what-is-ebpf/#why-ebpf">What is eBPF</a></li>
   <li><a href="https://www.infoq.com/presentations/shopify-architecture-flash-sale/">Shopify’s Architecture to Handle the World’s Biggest Flash Sales</a></li>
   <li><a href="https://martinfowler.com/articles/lmax.html">Martin Fowler - The LMAX Architecture</a></li>
   <li><a href="https://lmax-exchange.github.io/disruptor/">Github Page - LMAX Disruptor</a></li>
@@ -76,6 +77,7 @@
 <h3 id="other-github-repos">Other Github Repos</h3>
 
 <ul>
+  <li><a href="https://github.com/elastic/otel-profiling-agent">elastic/otel-profiling-agent</a></li>
   <li><a href="https://github.com/vadv/gopher-lua-libs">vadv/gopher-lua-libs</a></li>
   <li><a href="https://github.com/yuin/gopher-lua">yuin/gopher-lua</a></li>
   <li><a href="https://github.com/jamiebuilds/the-super-tiny-compiler">jamiebuilds/the-super-tiny-compiler</a></li>
