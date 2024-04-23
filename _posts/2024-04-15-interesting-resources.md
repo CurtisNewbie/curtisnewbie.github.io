@@ -13,6 +13,8 @@ Some interesting papers:
 
 Some interesting websites:
 
+- [Github Blog - MySQL High Availability at Github](https://github.blog/2018-06-20-mysql-high-availability-at-github/#:~:text=GitHub%20uses%20MySQL%20as%20its,is%20critical%20to%20GitHub's%20operation.)
+- [MySQL Server Index Archive](https://dev.mysql.com/doc/index-archive.html)
 - [MySQL Server Source Code Documentation](https://dev.mysql.com/doc/dev/mysql-server/latest/)
 - [github vadv/gopher-lua-libs](https://github.com/vadv/gopher-lua-libs)
 - [github yuin/gopher-lua](https://github.com/yuin/gopher-lua)
