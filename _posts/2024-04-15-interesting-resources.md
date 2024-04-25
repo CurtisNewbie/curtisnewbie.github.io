@@ -62,6 +62,7 @@ Interesting papers, books and websites are listed here.
 
 ### Database Related
 
+- [mysql_upgrade tool for MySQL < 8.0.16](https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html)
 - [Inplace Upgrade MySQL 5.7 to 8.0](https://dev.mysql.com/blog-archive/inplace-upgrade-from-mysql-5-7-to-mysql-8-0/)
 - [MySQL Shell Upgrade Checker](https://dev.mysql.com/doc/mysql-shell/8.0/en/mysql-shell-utilities-upgrade.html)
 - [github dolthub/dolt](https://github.com/dolthub/dolt)
