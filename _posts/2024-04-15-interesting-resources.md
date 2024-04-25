@@ -62,6 +62,8 @@ Interesting papers, books and websites are listed here.
 
 ### Database Related
 
+- [Inplace Upgrade MySQL 5.7 to 8.0](https://dev.mysql.com/blog-archive/inplace-upgrade-from-mysql-5-7-to-mysql-8-0/)
+- [MySQL Shell Upgrade Checker](https://dev.mysql.com/doc/mysql-shell/8.0/en/mysql-shell-utilities-upgrade.html)
 - [github dolthub/dolt](https://github.com/dolthub/dolt)
 - [github dolthub/go-mysql-server](https://github.com/dolthub/go-mysql-server)
 - [Github Blog - MySQL High Availability at Github](https://github.blog/2018-06-20-mysql-high-availability-at-github/#:~:text=GitHub%20uses%20MySQL%20as%20its,is%20critical%20to%20GitHub's%20operation.)
