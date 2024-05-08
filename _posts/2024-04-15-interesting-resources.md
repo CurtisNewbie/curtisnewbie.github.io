@@ -62,6 +62,8 @@ Interesting papers, books and websites are listed here.
 
 ### Database Related
 
+- [stackoverflow - how mvcc works with lock in mysql](https://stackoverflow.com/questions/68443220/how-mvcc-works-with-lock-in-mysql)
+- [jahfer.com - innodb-locks](https://jahfer.com/posts/innodb-locks/)
 - [mysql_upgrade tool for MySQL < 8.0.16](https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html)
 - [Inplace Upgrade MySQL 5.7 to 8.0](https://dev.mysql.com/blog-archive/inplace-upgrade-from-mysql-5-7-to-mysql-8-0/)
 - [MySQL Shell Upgrade Checker](https://dev.mysql.com/doc/mysql-shell/8.0/en/mysql-shell-utilities-upgrade.html)
