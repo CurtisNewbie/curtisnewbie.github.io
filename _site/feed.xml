@@ -1,4 +1,126 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-06-24T11:39:02+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">moon - the private cloud</title><link href="https://curtisnewbie.github.io/projects/2024/06/03/moon-the-private-cloud.html" rel="alternate" type="text/html" title="moon - the private cloud" /><published>2024-06-03T18:00:00+08:00</published><updated>2024-06-03T18:00:00+08:00</updated><id>https://curtisnewbie.github.io/projects/2024/06/03/moon-the-private-cloud</id><content type="html" xml:base="https://curtisnewbie.github.io/projects/2024/06/03/moon-the-private-cloud.html"><![CDATA[<p>The moon project is self-hosted private cloud that consists of a set of backend and frontend services that I maintain in my spare time.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-06-25T11:27:01+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Learning LangChain</title><link href="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html" rel="alternate" type="text/html" title="Learning LangChain" /><published>2024-06-24T00:00:00+08:00</published><updated>2024-06-24T00:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html"><![CDATA[<h2 id="relevant-sites">Relevant Sites</h2>
+
+<ul>
+  <li><a href="https://python.langchain.com/v0.2/docs/introduction/">LangChain v0.2 Doc</a></li>
+  <li><a href="https://github.com/langchain-ai/langchain">LangChain Github</a></li>
+  <li><a href="https://huggingface.co/docs/hub/en/models-downloading">Download HuggingFace Model</a></li>
+  <li><a href="https://huggingface.co/microsoft/Phi-3-mini-4k-instruct">HuggingFace - Microsoft/Phi-3-mini-4k-instruct</a></li>
+  <li><a href="https://huggingface.co/blog/langchain">Blog - HuggingFace LangChain Partner Package</a></li>
+  <li><a href="https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0">HuggingFace - TinyLlama/TinyLlama-1.1B-Chat-v1.0</a></li>
+  <li><a href="https://discuss.huggingface.co/t/llama-7b-gpu-memory-requirement/34323/7">HuggingFace Discussion - LLaMA 7B GPU Memory Requirement</a></li>
+</ul>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>Install langchain</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> pip <span class="nb">install </span>langchain
+</code></pre></div></div>
+
+<p>Setup langsmith (https://smith.langchain.com/), but it’s not really needed, we may well just skip this.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">LANGCHAIN_TRACING_V2</span><span class="o">=</span><span class="s2">"true"</span>
+<span class="nb">export </span><span class="nv">LANGCHAIN_API_KEY</span><span class="o">=</span><span class="s2">"..."</span>
+</code></pre></div></div>
+
+<p>Use LangChain with HuggingFace</p>
+
+<ul>
+  <li>https://python.langchain.com/v0.2/docs/integrations/platforms/huggingface/</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> pip <span class="nb">install </span>langchain-huggingface
+python3 <span class="nt">-m</span> pip <span class="nb">install</span> <span class="nt">--upgrade</span> <span class="nt">--quiet</span>  transformers <span class="nt">--quiet</span>
+</code></pre></div></div>
+
+<p>Load hugging face model (TinyLlama/TinyLlama-1.1B-Chat-v1.0, 1.1b model)</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langchain_huggingface</span> <span class="kn">import</span> <span class="n">HuggingFacePipeline</span>
+
+<span class="n">hf</span> <span class="o">=</span> <span class="n">HuggingFacePipeline</span><span class="p">.</span><span class="n">from_model_id</span><span class="p">(</span>
+    <span class="n">model_id</span><span class="o">=</span><span class="s">"TinyLlama/TinyLlama-1.1B-Chat-v1.0"</span><span class="p">,</span>
+    <span class="n">task</span><span class="o">=</span><span class="s">"text-generation"</span><span class="p">,</span>
+    <span class="n">pipeline_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s">"max_new_tokens"</span><span class="p">:</span> <span class="mi">150</span><span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>Task is what that the model can and will handle. In this case, we are using a <code class="language-plaintext highlighter-rouge">text-generation</code> model. Which task should we specify depends on what we are doing and what task the model can handle, a model may be capable of multiple tasks.</p>
+
+<p><img src="/assets/images/hugging-face-search-task.png" alt="assets/images/hugging-face-search-task.png" /></p>
+
+<blockquote>
+  <p>Searching models based on tasks on HuggingFace.</p>
+</blockquote>
+
+<p>Create Prompt Template (will get much better response):</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langchain_core.prompts</span> <span class="kn">import</span> <span class="n">PromptTemplate</span>
+
+<span class="c1"># prompt template
+</span><span class="n">template</span> <span class="o">=</span> <span class="s">"""Question: {question}
+
+Answer: Let's think step by step."""</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">.</span><span class="n">from_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+
+<span class="c1"># bind local langchain to the prompt
+</span><span class="n">chain</span> <span class="o">=</span> <span class="n">prompt</span> <span class="o">|</span> <span class="n">hf</span><span class="p">.</span><span class="n">bind</span><span class="p">()</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="s">"How to brew coffee?"</span>
+<span class="k">print</span><span class="p">(</span><span class="n">chain</span><span class="p">.</span><span class="n">invoke</span><span class="p">({</span><span class="s">"question"</span><span class="p">:</span> <span class="n">q</span><span class="p">}))</span>
+</code></pre></div></div>
+
+<p>We can also invoke the model directly without PromptTemplate, but the response is worse:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">hf</span><span class="p">.</span><span class="n">invoke</span><span class="p">(</span><span class="s">"How to brew coffee?"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>A working example:</p>
+
+<p>gist: https://gist.github.com/CurtisNewbie/2b25f811b5b177548207488b2b409dbf</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langchain_core.prompts</span> <span class="kn">import</span> <span class="n">PromptTemplate</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">readline</span>
+<span class="kn">from</span> <span class="nn">langchain_huggingface</span> <span class="kn">import</span> <span class="n">HuggingFacePipeline</span>
+
+<span class="n">hf</span> <span class="o">=</span> <span class="n">HuggingFacePipeline</span><span class="p">.</span><span class="n">from_model_id</span><span class="p">(</span>
+    <span class="n">model_id</span><span class="o">=</span><span class="s">"TinyLlama/TinyLlama-1.1B-Chat-v1.0"</span><span class="p">,</span>
+    <span class="n">task</span><span class="o">=</span><span class="s">"text-generation"</span><span class="p">,</span>
+    <span class="n">pipeline_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"max_new_tokens"</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
+        <span class="s">"temperature"</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
+        <span class="s">"top_k"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="s">"top_p"</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
+        <span class="s">"do_sample"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+
+<span class="n">template</span> <span class="o">=</span> <span class="s">"""Question: {question}
+
+Answer: Let's think step by step."""</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">.</span><span class="n">from_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+
+<span class="n">chain</span> <span class="o">=</span> <span class="n">prompt</span> <span class="o">|</span> <span class="n">hf</span><span class="p">.</span><span class="n">bind</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Enter your question:"</span><span class="p">)</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">().</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">q</span><span class="p">:</span> <span class="k">continue</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">chain</span><span class="p">.</span><span class="n">invoke</span><span class="p">({</span><span class="s">"question"</span><span class="p">:</span> <span class="n">q</span><span class="p">})</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n\n</span><span class="s">&gt; model: '</span><span class="si">{</span><span class="n">resp</span><span class="si">}</span><span class="s">'</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="nb">InterruptedError</span><span class="p">:</span>
+        <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">()</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Exception caught </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="terminology">Terminology</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">HF Format</code>: Hugging Face Format</li>
+</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Relevant Sites]]></summary></entry><entry><title type="html">moon - the private cloud</title><link href="https://curtisnewbie.github.io/projects/2024/06/03/moon-the-private-cloud.html" rel="alternate" type="text/html" title="moon - the private cloud" /><published>2024-06-03T18:00:00+08:00</published><updated>2024-06-03T18:00:00+08:00</updated><id>https://curtisnewbie.github.io/projects/2024/06/03/moon-the-private-cloud</id><content type="html" xml:base="https://curtisnewbie.github.io/projects/2024/06/03/moon-the-private-cloud.html"><![CDATA[<p>The moon project is self-hosted private cloud that consists of a set of backend and frontend services that I maintain in my spare time.</p>
 
 <p>These can be found in the following repositories:</p>
 
