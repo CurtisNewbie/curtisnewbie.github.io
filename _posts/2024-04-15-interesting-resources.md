@@ -88,3 +88,8 @@ Interesting papers, books and websites are listed here.
 - [yuin/gopher-lua](https://github.com/yuin/gopher-lua)
 - [jamiebuilds/the-super-tiny-compiler](https://github.com/jamiebuilds/the-super-tiny-compiler)
 - [kjpgit/SmallestCSVParser](https://github.com/kjpgit/smallestcsvparser)
+
+## Perf
+
+- [Bred Angregg Flame Grphs](https://www.brendangregg.com/flamegraphs.html)
+- [Acm Queue - The Flame Graph](https://queue.acm.org/detail.cfm?id=2927301)
