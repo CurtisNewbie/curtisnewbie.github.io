@@ -14,6 +14,10 @@ categories: Learning
 - [Blog - HuggingFace LangChain Partner Package](https://huggingface.co/blog/langchain)
 - [HuggingFace - TinyLlama/TinyLlama-1.1B-Chat-v1.0](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0)
 - [HuggingFace Discussion - LLaMA 7B GPU Memory Requirement](https://discuss.huggingface.co/t/llama-7b-gpu-memory-requirement/34323/7)
+- [HuggingFace - Download Modesl](https://huggingface.co/docs/hub/en/models-downloading)
+- [LangChain - Chatbot](https://python.langchain.com/v0.2/docs/tutorials/chatbot/)
+- [LangChain - Conversational RAG](https://python.langchain.com/v0.2/docs/tutorials/qa_chat_history/)
+- [LangChain - Build a Retrieval Augmented Generation (RAG) App](https://python.langchain.com/v0.2/docs/tutorials/rag/)
 
 ## Getting Started
 
@@ -123,6 +127,17 @@ while True:
     except Exception as e:
         print(f"Exception caught {e}")
 ```
+
+If the model supports streaming, we can change the code like the following, the model doesn't support streaming then:
+
+```py
+for chunk in chain.stream({"question": q}):
+    print(chunk, flush=True)
+```
+
+## Retrieval Augmented Generation (RAG)
+
+TODO
 
 
 ## Terminology
