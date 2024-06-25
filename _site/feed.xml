@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-06-25T11:27:01+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Learning LangChain</title><link href="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html" rel="alternate" type="text/html" title="Learning LangChain" /><published>2024-06-24T00:00:00+08:00</published><updated>2024-06-24T00:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html"><![CDATA[<h2 id="relevant-sites">Relevant Sites</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-06-25T14:51:17+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Learning LangChain</title><link href="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html" rel="alternate" type="text/html" title="Learning LangChain" /><published>2024-06-24T00:00:00+08:00</published><updated>2024-06-24T00:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html"><![CDATA[<h2 id="relevant-sites">Relevant Sites</h2>
 
 <ul>
   <li><a href="https://python.langchain.com/v0.2/docs/introduction/">LangChain v0.2 Doc</a></li>
@@ -33,7 +33,7 @@
 python3 <span class="nt">-m</span> pip <span class="nb">install</span> <span class="nt">--upgrade</span> <span class="nt">--quiet</span>  transformers <span class="nt">--quiet</span>
 </code></pre></div></div>
 
-<p>Load hugging face model (TinyLlama/TinyLlama-1.1B-Chat-v1.0, 1.1b model)</p>
+<p>Load the HuggingFace model locally (TinyLlama/TinyLlama-1.1B-Chat-v1.0), it’s a 1.1b model, I am running it on Macbook Pro M2 16GB. My laptop cannot handle Model with over 3b parameters.</p>
 
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langchain_huggingface</span> <span class="kn">import</span> <span class="n">HuggingFacePipeline</span>
 
@@ -44,7 +44,7 @@ python3 <span class="nt">-m</span> pip <span class="nb">install</span> <span cla
 <span class="p">)</span>
 </code></pre></div></div>
 
-<p>Task is what that the model can and will handle. In this case, we are using a <code class="language-plaintext highlighter-rouge">text-generation</code> model. Which task should we specify depends on what we are doing and what task the model can handle, a model may be capable of multiple tasks.</p>
+<p>Task is what the model can handle. In this case, we are using a <code class="language-plaintext highlighter-rouge">text-generation</code> model. Which task should we specify depends on what we are doing, a model may be capable of multiple tasks.</p>
 
 <p><img src="/assets/images/hugging-face-search-task.png" alt="assets/images/hugging-face-search-task.png" /></p>
 

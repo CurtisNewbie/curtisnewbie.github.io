@@ -39,7 +39,7 @@ python3 -m pip install langchain-huggingface
 python3 -m pip install --upgrade --quiet  transformers --quiet
 ```
 
-Load hugging face model (TinyLlama/TinyLlama-1.1B-Chat-v1.0, 1.1b model)
+Load the HuggingFace model locally (TinyLlama/TinyLlama-1.1B-Chat-v1.0), it's a 1.1b model, I am running it on Macbook Pro M2 16GB. My laptop cannot handle Model with over 3b parameters.
 
 ```py
 from langchain_huggingface import HuggingFacePipeline
@@ -51,7 +51,7 @@ hf = HuggingFacePipeline.from_model_id(
 )
 ```
 
-Task is what that the model can and will handle. In this case, we are using a `text-generation` model. Which task should we specify depends on what we are doing and what task the model can handle, a model may be capable of multiple tasks.
+Task is what the model can handle. In this case, we are using a `text-generation` model. Which task should we specify depends on what we are doing, a model may be capable of multiple tasks.
 
 ![assets/images/hugging-face-search-task.png](/assets/images/hugging-face-search-task.png)
 

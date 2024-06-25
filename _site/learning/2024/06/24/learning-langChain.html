@@ -83,7 +83,7 @@
 python3 <span class="nt">-m</span> pip <span class="nb">install</span> <span class="nt">--upgrade</span> <span class="nt">--quiet</span>  transformers <span class="nt">--quiet</span>
 </code></pre></div></div>
 
-<p>Load hugging face model (TinyLlama/TinyLlama-1.1B-Chat-v1.0, 1.1b model)</p>
+<p>Load the HuggingFace model locally (TinyLlama/TinyLlama-1.1B-Chat-v1.0), it’s a 1.1b model, I am running it on Macbook Pro M2 16GB. My laptop cannot handle Model with over 3b parameters.</p>
 
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langchain_huggingface</span> <span class="kn">import</span> <span class="n">HuggingFacePipeline</span>
 
@@ -94,7 +94,7 @@ python3 <span class="nt">-m</span> pip <span class="nb">install</span> <span cla
 <span class="p">)</span>
 </code></pre></div></div>
 
-<p>Task is what that the model can and will handle. In this case, we are using a <code class="language-plaintext highlighter-rouge">text-generation</code> model. Which task should we specify depends on what we are doing and what task the model can handle, a model may be capable of multiple tasks.</p>
+<p>Task is what the model can handle. In this case, we are using a <code class="language-plaintext highlighter-rouge">text-generation</code> model. Which task should we specify depends on what we are doing, a model may be capable of multiple tasks.</p>
 
 <p><img src="/assets/images/hugging-face-search-task.png" alt="assets/images/hugging-face-search-task.png" /></p>
 
