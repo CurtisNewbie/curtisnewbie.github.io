@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-06-26T14:42:44+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Learning LangChain</title><link href="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html" rel="alternate" type="text/html" title="Learning LangChain" /><published>2024-06-24T00:00:00+08:00</published><updated>2024-06-24T00:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html"><![CDATA[<h2 id="relevant-sites">Relevant Sites</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-06-26T14:44:24+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Learning LangChain</title><link href="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html" rel="alternate" type="text/html" title="Learning LangChain" /><published>2024-06-24T00:00:00+08:00</published><updated>2024-06-24T00:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html"><![CDATA[<h2 id="relevant-sites">Relevant Sites</h2>
 
 <ul>
   <li><a href="https://python.langchain.com/v0.2/docs/introduction/">LangChain v0.2 Doc</a></li>
@@ -180,8 +180,9 @@ i.e., Similarity Search) for the question, and finally adding the context to the
 <span class="p">)</span>
 </code></pre></div></div>
 
-<p>Import DocumentLoader to load external documents. Import Splitter to break documents into chunks. Import Embeddings to create a vector representation of text that is stored in a vector database.
-In the following code, the retriever is created from the vector database. Retriever is simply a concept that accepts a string query and returns a list of documents,
+<p>Import DocumentLoader to load external documents. Import Splitter to break documents into chunks. Import Embeddings to create a vector representation of text that is stored in a vector database.</p>
+
+<p>In the following code, the retriever is created from the vector database. Retriever is simply a concept that accepts a string query and returns a list of documents,
 in this case, it’s doing similarity search based on the question asked.</p>
 
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langchain_chroma</span> <span class="kn">import</span> <span class="n">Chroma</span>
@@ -209,10 +210,11 @@ in this case, it’s doing similarity search based on the question asked.</p>
 </span><span class="n">retriever</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">as_retriever</span><span class="p">(</span><span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s">"k"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span> <span class="c1"># default: k is 4
 </span></code></pre></div></div>
 
-<p>With all the Loader, Splitter, Embeddings, Vector Database and Retriever setup, we can construct a chain that automatically complete the context for the LLM model.
-The prompt template is slightly different, it now contains a context section for the LLM model. The content of <code class="language-plaintext highlighter-rouge">{context}</code> actually comes from the vector database
-using the Retriever that we just created.
-The <code class="language-plaintext highlighter-rouge">RunnablePassthrough()</code> does nothing, it just passes the query to <code class="language-plaintext highlighter-rouge">{question}</code> section.</p>
+<p>With all the Loader, Splitter, Embeddings, Vector Database and Retriever setup, we can construct a chain that automatically complete the context for the LLM model.</p>
+
+<p>The prompt template is slightly different, it now contains a context section for the LLM model. The content of <code class="language-plaintext highlighter-rouge">{context}</code> actually comes from the vector database using the Retriever that we just created.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">RunnablePassthrough()</code> does nothing, it just passes the query to <code class="language-plaintext highlighter-rouge">{question}</code> section.</p>
 
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">format_docs</span><span class="p">(</span><span class="n">docs</span><span class="p">):</span>
     <span class="k">return</span> <span class="s">"</span><span class="se">\n\n</span><span class="s">"</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">doc</span><span class="p">.</span><span class="n">page_content</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">)</span>

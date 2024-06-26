@@ -191,6 +191,7 @@ hf = HuggingFacePipeline.from_model_id(
 ```
 
 Import DocumentLoader to load external documents. Import Splitter to break documents into chunks. Import Embeddings to create a vector representation of text that is stored in a vector database.
+
 In the following code, the retriever is created from the vector database. Retriever is simply a concept that accepts a string query and returns a list of documents,
 in this case, it's doing similarity search based on the question asked.
 
@@ -221,8 +222,9 @@ retriever = vec.as_retriever(search_kwargs={"k": 1}) # default: k is 4
 ```
 
 With all the Loader, Splitter, Embeddings, Vector Database and Retriever setup, we can construct a chain that automatically complete the context for the LLM model.
-The prompt template is slightly different, it now contains a context section for the LLM model. The content of `{context}` actually comes from the vector database
-using the Retriever that we just created.
+
+The prompt template is slightly different, it now contains a context section for the LLM model. The content of `{context}` actually comes from the vector database using the Retriever that we just created.
+
 The `RunnablePassthrough()` does nothing, it just passes the query to `{question}` section.
 
 ```py
