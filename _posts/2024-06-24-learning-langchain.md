@@ -13,6 +13,8 @@ categories: Learning
 - [HuggingFace - Microsoft/Phi-3-mini-4k-instruct](https://huggingface.co/microsoft/Phi-3-mini-4k-instruct)
 - [Blog - HuggingFace LangChain Partner Package](https://huggingface.co/blog/langchain)
 - [HuggingFace - TinyLlama/TinyLlama-1.1B-Chat-v1.0](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0)
+- [HuggingFace - TinyLlama/TinyLlama_v1.1](https://huggingface.co/TinyLlama/TinyLlama_v1.1)
+- [HuggingFace - TinyLlama/TinyLlama_v1.1_chinese](https://huggingface.co/TinyLlama/TinyLlama_v1.1_chinese)
 - [HuggingFace Discussion - LLaMA 7B GPU Memory Requirement](https://discuss.huggingface.co/t/llama-7b-gpu-memory-requirement/34323/7)
 - [HuggingFace - Download Modesl](https://huggingface.co/docs/hub/en/models-downloading)
 - [LangChain - Chatbot](https://python.langchain.com/v0.2/docs/tutorials/chatbot/)
@@ -21,6 +23,10 @@ categories: Learning
 - [LangChain - Chroma (Vector Store)](https://python.langchain.com/v0.2/docs/integrations/vectorstores/chroma/)
 - [LangChain - Vector Stores](https://python.langchain.com/v0.1/docs/modules/data_connection/vectorstores/)
 - [HuggingFace - Qwen/Qwen-1_8B-Chat-Int4](https://huggingface.co/Qwen/Qwen-1_8B-Chat-Int4)
+- [Github - QwenLM/Qwen](https://github.com/QwenLM/Qwen?tab=readme-ov-file#quantization)
+- [Gist CurtisNewbie - Qwen/Qwen-1_8B-Chat-Int4 Demo](https://gist.github.com/CurtisNewbie/9d220701b4dd7f3ce00e728317ca1436)
+- [HuggingFace - 4bit Quantization](https://huggingface.co/blog/4bit-transformers-bitsandbytes)
+- [HuggingFace - bitsandbytes for Quantization](https://huggingface.co/docs/bitsandbytes/main/en/installation)
 
 ## Getting Started
 
@@ -349,6 +355,41 @@ while True:
     except Exception as e:
         print("Exception caught", e)
         traceback.print_exc()
+```
+
+## Quantization
+
+- [HuggingFace - 4bit Quantization](https://huggingface.co/blog/4bit-transformers-bitsandbytes)
+- [HuggingFace - bitsandbytes for Quantization](https://huggingface.co/docs/bitsandbytes/main/en/installation)
+
+With Quantization (e.g., 4bit), we can reduce the usage of memory, making LLM runs faster. Some models on HuggingFace have already done it without extra configuration, but those may require CUDA support.
+
+Quantization only works on GPU (kinda), include `load_in_4bit=True` and `device_map=auto` to enable the quantization, but model should support it in the first place.
+
+Quantization needs bitsandbytes:
+
+```py
+python3 -m pip install bitsandbytes
+```
+
+When we create the model, include the args mentioned above:
+
+```py
+hf = HuggingFacePipeline.from_model_id(
+    model_id=model,
+    task=task,
+    pipeline_kwargs={
+        "max_new_tokens": max_new_tokens,
+    },
+    model_kwargs={
+        "temperature": 0.7,
+        "top_k": 50,
+        "top_p": 0.95,
+        "do_sample": True,
+        "load_in_4bit": True, # 4bit quantization
+        "device_map":"auto",
+    },
+)
 ```
 
 ## Conceptual Guide
