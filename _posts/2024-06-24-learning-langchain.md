@@ -149,6 +149,8 @@ i.e., Similarity Search) for the question, and finally adding the context to the
 The following images are from LangChain.
 
 <img src="https://python.langchain.com/v0.2/assets/images/rag_indexing-8160f90a90a33253d0154659cf7d453f.png" height="400px">
+
+
 <img src="https://python.langchain.com/v0.2/assets/images/rag_retrieval_generation-1046a4668d6bb08786ef73c56d4f228a.png" height="400px">
 
 Install relevant dependencies. Chroma is a vector database.
