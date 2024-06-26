@@ -139,7 +139,7 @@ while True:
         print(f"Exception caught {e}")
 ```
 
-If the model supports streaming, we can change the code like the following, the model doesn't support streaming then:
+If the model supports streaming, we can change the code like the following. If the model doesn't support streaming then the method call is simply blocked returning only one single chunk:
 
 ```py
 for chunk in chain.stream({"question": q}):

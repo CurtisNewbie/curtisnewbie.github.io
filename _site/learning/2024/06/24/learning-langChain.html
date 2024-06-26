@@ -181,7 +181,7 @@ Answer: Let's think step by step."""</span>
         <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Exception caught </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>If the model supports streaming, we can change the code like the following, the model doesn’t support streaming then:</p>
+<p>If the model supports streaming, we can change the code like the following. If the model doesn’t support streaming then the method call is simply blocked returning only one single chunk:</p>
 
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chain</span><span class="p">.</span><span class="n">stream</span><span class="p">({</span><span class="s">"question"</span><span class="p">:</span> <span class="n">q</span><span class="p">}):</span>
     <span class="k">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
