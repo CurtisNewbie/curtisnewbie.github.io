@@ -145,6 +145,8 @@ Answer: Let's think step by step."""</span>
     <span class="n">task</span><span class="o">=</span><span class="s">"text-generation"</span><span class="p">,</span>
     <span class="n">pipeline_kwargs</span><span class="o">=</span><span class="p">{</span>
         <span class="s">"max_new_tokens"</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span>
         <span class="s">"temperature"</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
         <span class="s">"top_k"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
         <span class="s">"top_p"</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
@@ -224,7 +226,9 @@ i.e., Similarity Search) for the question, and finally adding the context to the
     <span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span>
     <span class="n">pipeline_kwargs</span><span class="o">=</span><span class="p">{</span>
         <span class="s">"max_new_tokens"</span><span class="p">:</span> <span class="n">max_new_tokens</span><span class="p">,</span>
-        <span class="s">"temperature"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"temperature"</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
         <span class="s">"top_k"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
         <span class="s">"top_p"</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
         <span class="s">"do_sample"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
@@ -310,7 +314,9 @@ Answer:"""</span>
     <span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span>
     <span class="n">pipeline_kwargs</span><span class="o">=</span><span class="p">{</span>
         <span class="s">"max_new_tokens"</span><span class="p">:</span> <span class="n">max_new_tokens</span><span class="p">,</span>
-        <span class="s">"temperature"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"temperature"</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
         <span class="s">"top_k"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
         <span class="s">"top_p"</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
         <span class="s">"do_sample"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>

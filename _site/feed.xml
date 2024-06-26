@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-06-26T17:07:31+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Learning LangChain</title><link href="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html" rel="alternate" type="text/html" title="Learning LangChain" /><published>2024-06-24T00:00:00+08:00</published><updated>2024-06-24T00:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html"><![CDATA[<h2 id="relevant-sites">Relevant Sites</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-06-26T17:23:43+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Learning LangChain</title><link href="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html" rel="alternate" type="text/html" title="Learning LangChain" /><published>2024-06-24T00:00:00+08:00</published><updated>2024-06-24T00:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html"><![CDATA[<h2 id="relevant-sites">Relevant Sites</h2>
 
 <ul>
   <li><a href="https://python.langchain.com/v0.2/docs/introduction/">LangChain v0.2 Doc</a></li>
@@ -95,6 +95,8 @@ Answer: Let's think step by step."""</span>
     <span class="n">task</span><span class="o">=</span><span class="s">"text-generation"</span><span class="p">,</span>
     <span class="n">pipeline_kwargs</span><span class="o">=</span><span class="p">{</span>
         <span class="s">"max_new_tokens"</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span>
         <span class="s">"temperature"</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
         <span class="s">"top_k"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
         <span class="s">"top_p"</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
@@ -174,7 +176,9 @@ i.e., Similarity Search) for the question, and finally adding the context to the
     <span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span>
     <span class="n">pipeline_kwargs</span><span class="o">=</span><span class="p">{</span>
         <span class="s">"max_new_tokens"</span><span class="p">:</span> <span class="n">max_new_tokens</span><span class="p">,</span>
-        <span class="s">"temperature"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"temperature"</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
         <span class="s">"top_k"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
         <span class="s">"top_p"</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
         <span class="s">"do_sample"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
@@ -260,7 +264,9 @@ Answer:"""</span>
     <span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span>
     <span class="n">pipeline_kwargs</span><span class="o">=</span><span class="p">{</span>
         <span class="s">"max_new_tokens"</span><span class="p">:</span> <span class="n">max_new_tokens</span><span class="p">,</span>
-        <span class="s">"temperature"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"temperature"</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
         <span class="s">"top_k"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
         <span class="s">"top_p"</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
         <span class="s">"do_sample"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>

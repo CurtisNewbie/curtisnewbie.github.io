@@ -103,6 +103,8 @@ hf = HuggingFacePipeline.from_model_id(
     task="text-generation",
     pipeline_kwargs={
         "max_new_tokens": 150,
+    },
+    model_kwargs={
         "temperature": 0.7,
         "top_k": 50,
         "top_p": 0.95,
@@ -184,7 +186,9 @@ hf = HuggingFacePipeline.from_model_id(
     task=task,
     pipeline_kwargs={
         "max_new_tokens": max_new_tokens,
-        "temperature": 0.5,
+    },
+    model_kwargs={
+        "temperature": 0.7,
         "top_k": 50,
         "top_p": 0.95,
         "do_sample": True,
@@ -274,7 +278,9 @@ hf = HuggingFacePipeline.from_model_id(
     task=task,
     pipeline_kwargs={
         "max_new_tokens": max_new_tokens,
-        "temperature": 0.5,
+    },
+    model_kwargs={
+        "temperature": 0.7,
         "top_k": 50,
         "top_p": 0.95,
         "do_sample": True,
