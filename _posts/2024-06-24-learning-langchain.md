@@ -223,7 +223,7 @@ retriever = vec.as_retriever(search_kwargs={"k": 1}) # default: k is 4
 
 With all the Loader, Splitter, Embeddings, Vector Database and Retriever setup, we can construct a chain that automatically complete the context for the LLM model.
 
-The prompt template is slightly different, it now contains a context section for the LLM model. The content of `{context}` actually comes from the vector database using the Retriever that we just created.
+The prompt template is slightly different, it now contains a context section for the LLM model (It's copied from LangSmith). The content of `{context}` actually comes from the vector database using the Retriever that we just created.
 
 The `RunnablePassthrough()` does nothing, it just passes the query to `{question}` section.
 

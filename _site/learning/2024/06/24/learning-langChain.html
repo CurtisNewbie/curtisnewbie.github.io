@@ -262,7 +262,7 @@ in this case, it’s doing similarity search based on the question asked.</p>
 
 <p>With all the Loader, Splitter, Embeddings, Vector Database and Retriever setup, we can construct a chain that automatically complete the context for the LLM model.</p>
 
-<p>The prompt template is slightly different, it now contains a context section for the LLM model. The content of <code class="language-plaintext highlighter-rouge">{context}</code> actually comes from the vector database using the Retriever that we just created.</p>
+<p>The prompt template is slightly different, it now contains a context section for the LLM model (It’s copied from LangSmith). The content of <code class="language-plaintext highlighter-rouge">{context}</code> actually comes from the vector database using the Retriever that we just created.</p>
 
 <p>The <code class="language-plaintext highlighter-rouge">RunnablePassthrough()</code> does nothing, it just passes the query to <code class="language-plaintext highlighter-rouge">{question}</code> section.</p>
 
