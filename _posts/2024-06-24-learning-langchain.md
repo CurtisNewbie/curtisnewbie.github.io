@@ -19,6 +19,8 @@ categories: Learning
 - [LangChain - Conversational RAG](https://python.langchain.com/v0.2/docs/tutorials/qa_chat_history/)
 - [LangChain - Build a Retrieval Augmented Generation (RAG) App](https://python.langchain.com/v0.2/docs/tutorials/rag/)
 - [LangChain - Chroma (Vector Store)](https://python.langchain.com/v0.2/docs/integrations/vectorstores/chroma/)
+- [LangChain - Vector Stores](https://python.langchain.com/v0.1/docs/modules/data_connection/vectorstores/)
+- [HuggingFace - Qwen/Qwen-1_8B-Chat-Int4](https://huggingface.co/Qwen/Qwen-1_8B-Chat-Int4)
 
 ## Getting Started
 
@@ -143,7 +145,7 @@ for chunk in chain.stream({"question": q}):
 
 RAG is a way to connect LLM model with external sources. In LangChain's RAG tutorial, an OpenAI model is used and connected to a online document parsed using bs4.
 
-In essence, RAG involves indexing the data (documents), storing the indexes in vector database, and retrieving the context from the vector database (based on similarity,
+In essence, RAG involves indexing the data (documents), storing the indexes in vector database, retrieving the context from the vector database (based on similarity,
 i.e., Similarity Search) for the question, and finally adding the context to the prompt that is passed to the LLM model.
 
 The following images are from LangChain.
@@ -326,8 +328,8 @@ ans_pat = "^.*Answer: *(.*)$"
 while True:
     try:
         print("Enter your question:")
-        q = sys.stdin.readline().strip()
-        while not q: continue
+        q = None
+        while not q: q = sys.stdin.readline().strip()
 
         resp = chain.invoke(q)
         m = re.search(ans_pat, resp, re.DOTALL)

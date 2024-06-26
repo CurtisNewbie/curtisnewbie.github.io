@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-06-26T14:48:48+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Learning LangChain</title><link href="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html" rel="alternate" type="text/html" title="Learning LangChain" /><published>2024-06-24T00:00:00+08:00</published><updated>2024-06-24T00:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html"><![CDATA[<h2 id="relevant-sites">Relevant Sites</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-06-26T17:07:31+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Learning LangChain</title><link href="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html" rel="alternate" type="text/html" title="Learning LangChain" /><published>2024-06-24T00:00:00+08:00</published><updated>2024-06-24T00:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html"><![CDATA[<h2 id="relevant-sites">Relevant Sites</h2>
 
 <ul>
   <li><a href="https://python.langchain.com/v0.2/docs/introduction/">LangChain v0.2 Doc</a></li>
@@ -13,6 +13,8 @@
   <li><a href="https://python.langchain.com/v0.2/docs/tutorials/qa_chat_history/">LangChain - Conversational RAG</a></li>
   <li><a href="https://python.langchain.com/v0.2/docs/tutorials/rag/">LangChain - Build a Retrieval Augmented Generation (RAG) App</a></li>
   <li><a href="https://python.langchain.com/v0.2/docs/integrations/vectorstores/chroma/">LangChain - Chroma (Vector Store)</a></li>
+  <li><a href="https://python.langchain.com/v0.1/docs/modules/data_connection/vectorstores/">LangChain - Vector Stores</a></li>
+  <li><a href="https://huggingface.co/Qwen/Qwen-1_8B-Chat-Int4">HuggingFace - Qwen/Qwen-1_8B-Chat-Int4</a></li>
 </ul>
 
 <h2 id="getting-started">Getting Started</h2>
@@ -136,7 +138,7 @@ Answer: Let's think step by step."""</span>
 
 <p>RAG is a way to connect LLM model with external sources. In LangChain’s RAG tutorial, an OpenAI model is used and connected to a online document parsed using bs4.</p>
 
-<p>In essence, RAG involves indexing the data (documents), storing the indexes in vector database, and retrieving the context from the vector database (based on similarity,
+<p>In essence, RAG involves indexing the data (documents), storing the indexes in vector database, retrieving the context from the vector database (based on similarity,
 i.e., Similarity Search) for the question, and finally adding the context to the prompt that is passed to the LLM model.</p>
 
 <p>The following images are from LangChain.</p>
@@ -312,8 +314,8 @@ Answer:"""</span>
 <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="s">"Enter your question:"</span><span class="p">)</span>
-        <span class="n">q</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">().</span><span class="n">strip</span><span class="p">()</span>
-        <span class="k">while</span> <span class="ow">not</span> <span class="n">q</span><span class="p">:</span> <span class="k">continue</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">q</span><span class="p">:</span> <span class="n">q</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">().</span><span class="n">strip</span><span class="p">()</span>
 
         <span class="n">resp</span> <span class="o">=</span> <span class="n">chain</span><span class="p">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
         <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="n">ans_pat</span><span class="p">,</span> <span class="n">resp</span><span class="p">,</span> <span class="n">re</span><span class="p">.</span><span class="n">DOTALL</span><span class="p">)</span>
