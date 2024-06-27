@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-06-27T10:02:04+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Learning LangChain</title><link href="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html" rel="alternate" type="text/html" title="Learning LangChain" /><published>2024-06-24T00:00:00+08:00</published><updated>2024-06-24T00:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html"><![CDATA[<h2 id="relevant-sites">Relevant Sites</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-06-27T16:58:23+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Learning LangChain</title><link href="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html" rel="alternate" type="text/html" title="Learning LangChain" /><published>2024-06-24T00:00:00+08:00</published><updated>2024-06-24T00:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html"><![CDATA[<h2 id="relevant-sites">Relevant Sites</h2>
 
 <ul>
   <li><a href="https://python.langchain.com/v0.2/docs/introduction/">LangChain v0.2 Doc</a></li>
@@ -379,7 +379,128 @@ Answer:"""</span>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">HF Format</code>: Hugging Face Format</li>
-</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Relevant Sites]]></summary></entry><entry><title type="html">moon - the private cloud</title><link href="https://curtisnewbie.github.io/projects/2024/06/03/moon-the-private-cloud.html" rel="alternate" type="text/html" title="moon - the private cloud" /><published>2024-06-03T18:00:00+08:00</published><updated>2024-06-03T18:00:00+08:00</updated><id>https://curtisnewbie.github.io/projects/2024/06/03/moon-the-private-cloud</id><content type="html" xml:base="https://curtisnewbie.github.io/projects/2024/06/03/moon-the-private-cloud.html"><![CDATA[<p>The moon project is self-hosted private cloud that consists of a set of backend and frontend services that I maintain in my spare time.</p>
+</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Relevant Sites]]></summary></entry><entry><title type="html">Make mvn compile faster</title><link href="https://curtisnewbie.github.io/learning/2024/06/24/make-mvn-compile-faster.html" rel="alternate" type="text/html" title="Make mvn compile faster" /><published>2024-06-24T00:00:00+08:00</published><updated>2024-06-24T00:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/24/make-mvn-compile-faster</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/24/make-mvn-compile-faster.html"><![CDATA[<h2 id="1-brief">1. Brief</h2>
+
+<p>The followings are some of the tricks that I am using to make mvn run faster, all of these ideas are from the Internet, but unfortunately I forgot where they were from.</p>
+
+<p>These tricks indeed work on my machine (Macbook Pro m2 and m3) with noticeable speedup, but I recommend you to always measure the result before you make any judgement.</p>
+
+<p>How much these tricks improve the performance may also depend on your project, dependencies and so on.</p>
+
+<h2 id="2-tricks">2. Tricks</h2>
+
+<h3 id="21-enable-multi-threading">2.1 Enable multi-threading</h3>
+
+<p>Compiling code with multiple threads may speed up the process a little bit, though it depends on whether your dependencies support multi-threading.</p>
+
+<p>In the following example, we are compiling with <code class="language-plaintext highlighter-rouge">Num of Cores * 1</code> threads. E.g., <code class="language-plaintext highlighter-rouge">2C</code> is equivalent to <code class="language-plaintext highlighter-rouge">Num of Cores * 2</code>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-T</span> 1C
+</code></pre></div></div>
+
+<p>You can also explicitly configure exactly how many threads you want to use:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 2 threads</span>
+mvn compile <span class="nt">-T</span> 2
+</code></pre></div></div>
+
+<h3 id="22-enable-offline-mode">2.2 Enable offline mode</h3>
+
+<p>Enable offline mode allows you to compile project without attempting to pull remote dependencies. It’s useful if you know that you have already got the latest dependencies or you simply don’t care. This can bring huge performance boost, especially if your network is unacceptably slow.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-o</span>
+</code></pre></div></div>
+
+<h3 id="23-skip-running-tests">2.3. Skip running tests</h3>
+
+<p>With this flag included, tests are compiled but not executed.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-DskipTests</span>
+</code></pre></div></div>
+
+<h3 id="24-skip-compiling-tests">2.4. Skip compiling tests</h3>
+
+<p>With this flag included, test artifacts for the project are not compiled at all.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-Dmaven</span>.test.skip<span class="o">=</span><span class="nb">true</span>
+</code></pre></div></div>
+
+<h3 id="25-skip-javadoc-generation">2.5. Skip javadoc generation</h3>
+
+<p>If you are deploying packages to remote repository as dependencies, then you should almost always include JavaDoc in the generated packages.</p>
+
+<p>However, if you are just compiling the code for testing or deployment (as an app), then you don’t really need the javadoc. You can skip the javadoc generation as below to speed up the process.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-Dmaven</span>.javadoc.skip<span class="o">=</span><span class="nb">true</span>
+</code></pre></div></div>
+
+<p>You can also disable javadoc linting as below:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-DadditionalJOption</span><span class="o">=</span><span class="nt">-Xdoclint</span>:none
+</code></pre></div></div>
+
+<h3 id="26-disable-mvn-jvm-tieredcompilation-and-increase-heap-size">2.6. Disable mvn JVM TieredCompilation and increase heap size</h3>
+
+<p>As we all know that JVM uses JIT to optimize bytecode in runtime. During the Java program execution, JVM identifies hot spots and rewrites the bytecode to make things faster. In other words, JVM is frequently recompiling our code.</p>
+
+<p>JIT is great for long-running Java program, but it’s not gonna be very helpful for mvn. We can disable it as below:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">"-XX:+TieredCompilation -XX:TieredStopAtLevel=1"</span>
+</code></pre></div></div>
+
+<p>We can also increase the size of the heap space for mvn to help it’s compilation, which is a quite memory extensive task. Then, we have:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">"-Xmx1000m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"</span>
+</code></pre></div></div>
+
+<h2 id="3-result">3. Result</h2>
+
+<p>Put them all together, we have following command:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">"-Xmx1000m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"</span>
+
+mvn compile <span class="nt">-T</span> 1C <span class="nt">-o</span> <span class="nt">-Dmaven</span>.javadoc.skip<span class="o">=</span><span class="nb">true</span> <span class="nt">-Dmaven</span>.test.skip<span class="o">=</span><span class="nb">true</span> <span class="nt">-DadditionalJOption</span><span class="o">=</span><span class="nt">-Xdoclint</span>:none <span class="nt">-DskipTests</span>
+</code></pre></div></div>
+
+<p>Below is a comparison between normal <code class="language-plaintext highlighter-rouge">mvn compile</code> and the one without all of the optimization mentioned above.</p>
+
+<h2 id="4-experiment">4. Experiment</h2>
+
+<p>The experiment only demonstrates the potential improvement these tricks bring, it may differ for different projects on different machines.</p>
+
+<ul>
+  <li>Same maven project (classic spring-boot style webapp)</li>
+  <li>MacBook Pro 2022 M2 16GB</li>
+  <li>Three attempts for each.</li>
+</ul>
+
+<p>Without optimization:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">unset </span>MAVEN_OPTS
+
+mvn compile
+</code></pre></div></div>
+
+<ol>
+  <li>1st Attempt: <code class="language-plaintext highlighter-rouge">Total time:  13.380 s</code></li>
+  <li>2nd Attempt: <code class="language-plaintext highlighter-rouge">Total time:  13.373 s</code></li>
+  <li>3rd Attempt: <code class="language-plaintext highlighter-rouge">Total time:  13.178 s</code></li>
+</ol>
+
+<p>With all the optimization:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">"-Xmx1000m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"</span>
+
+mvn compile <span class="nt">-T</span> 1C <span class="nt">-o</span> <span class="nt">-Dmaven</span>.javadoc.skip<span class="o">=</span><span class="nb">true</span> <span class="nt">-Dmaven</span>.test.skip<span class="o">=</span><span class="nb">true</span> <span class="nt">-DadditionalJOption</span><span class="o">=</span><span class="nt">-Xdoclint</span>:none <span class="nt">-DskipTests</span>
+</code></pre></div></div>
+
+<ol>
+  <li>1st Attempt: <code class="language-plaintext highlighter-rouge">Total time:  7.032 s</code></li>
+  <li>2nd Attempt: <code class="language-plaintext highlighter-rouge">Total time:  6.979 s</code></li>
+  <li>3rd Attempt: <code class="language-plaintext highlighter-rouge">Total time:  7.182 s</code></li>
+</ol>
+
+<p>The <code class="language-plaintext highlighter-rouge">'Total time'</code> shown above is copied from the output of <code class="language-plaintext highlighter-rouge">mvn compile</code> command.</p>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[1. Brief]]></summary></entry><entry><title type="html">moon - the private cloud</title><link href="https://curtisnewbie.github.io/projects/2024/06/03/moon-the-private-cloud.html" rel="alternate" type="text/html" title="moon - the private cloud" /><published>2024-06-03T18:00:00+08:00</published><updated>2024-06-03T18:00:00+08:00</updated><id>https://curtisnewbie.github.io/projects/2024/06/03/moon-the-private-cloud</id><content type="html" xml:base="https://curtisnewbie.github.io/projects/2024/06/03/moon-the-private-cloud.html"><![CDATA[<p>The moon project is self-hosted private cloud that consists of a set of backend and frontend services that I maintain in my spare time.</p>
 
 <p>These can be found in the following repositories:</p>
 
