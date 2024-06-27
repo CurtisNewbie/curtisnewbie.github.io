@@ -261,7 +261,7 @@ chain = (
 Finally, we just invoke the chain with our question:
 
 ```py
-print(resp = chain.invoke("What is LLM model?"))
+print(chain.invoke("What is LLM model?"))
 ```
 
 A working example is available at: [github.com/CurtisNewbie/llm_stuff/blob/main/tinyllama_rag.py](https://github.com/CurtisNewbie/llm_stuff/blob/main/tinyllama_rag.py)
