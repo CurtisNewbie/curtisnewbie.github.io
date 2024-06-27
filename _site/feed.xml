@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-06-27T17:12:08+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Make mvn compile faster</title><link href="https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-compile-faster.html" rel="alternate" type="text/html" title="Make mvn compile faster" /><published>2024-06-27T17:00:00+08:00</published><updated>2024-06-27T17:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-compile-faster</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-compile-faster.html"><![CDATA[<h2 id="1-brief">1. Brief</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-06-27T17:21:50+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Make mvn compile faster</title><link href="https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-compile-faster.html" rel="alternate" type="text/html" title="Make mvn compile faster" /><published>2024-06-27T17:00:00+08:00</published><updated>2024-06-27T17:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-compile-faster</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-compile-faster.html"><![CDATA[<h2 id="1-brief">1. Brief</h2>
 
 <p>The followings are some of the tricks that I am using to make mvn run faster, all of these ideas are from the Internet, but unfortunately I forgot where they were from.</p>
 
@@ -119,7 +119,23 @@ mvn compile <span class="nt">-T</span> 1C <span class="nt">-o</span> <span class
   <li>3rd Attempt: <code class="language-plaintext highlighter-rouge">Total time:  7.182 s</code></li>
 </ol>
 
-<p>The <code class="language-plaintext highlighter-rouge">'Total time'</code> shown above is copied from the output of <code class="language-plaintext highlighter-rouge">mvn compile</code> command.</p>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[1. Brief]]></summary></entry><entry><title type="html">Learning LangChain</title><link href="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html" rel="alternate" type="text/html" title="Learning LangChain" /><published>2024-06-24T09:00:00+08:00</published><updated>2024-06-24T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html"><![CDATA[<h2 id="relevant-sites">Relevant Sites</h2>
+<p>The <code class="language-plaintext highlighter-rouge">'Total time'</code> shown above is copied from the output of <code class="language-plaintext highlighter-rouge">mvn compile</code> command.</p>
+
+<h2 id="5-more-on-install-and-deploy">5. More on install and deploy</h2>
+
+<p>If you are installing / deploying a specific submodule in a project (e.g., submodule being a dependency for other apps), you can choose to install or deploy that specific submodule without recompiling other modules.</p>
+
+<p>Imagine that our project is called <code class="language-plaintext highlighter-rouge">myapp</code>, and we are trying to install a submodule called <code class="language-plaintext highlighter-rouge">myapp-api</code>, then we can install this submodule using following command:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn <span class="nb">install</span> <span class="nt">-pl</span> myapp-api
+</code></pre></div></div>
+
+<p>It’s the same if we are deploying the submodule:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn deploy <span class="nt">-pl</span> myapp-api
+</code></pre></div></div>
+
+<p>This can also speed up the process quite a lot.</p>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[1. Brief]]></summary></entry><entry><title type="html">Learning LangChain</title><link href="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html" rel="alternate" type="text/html" title="Learning LangChain" /><published>2024-06-24T09:00:00+08:00</published><updated>2024-06-24T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html"><![CDATA[<h2 id="relevant-sites">Relevant Sites</h2>
 
 <ul>
   <li><a href="https://python.langchain.com/v0.2/docs/introduction/">LangChain v0.2 Doc</a></li>

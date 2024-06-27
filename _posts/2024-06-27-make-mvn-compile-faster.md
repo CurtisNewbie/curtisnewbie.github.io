@@ -133,3 +133,21 @@ mvn compile -T 1C -o -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -Daddition
 3. 3rd Attempt: `Total time:  7.182 s`
 
 The `'Total time'` shown above is copied from the output of `mvn compile` command.
+
+## 5. More on install and deploy
+
+If you are installing / deploying a specific submodule in a project (e.g., submodule being a dependency for other apps), you can choose to install or deploy that specific submodule without recompiling other modules.
+
+Imagine that our project is called `myapp`, and we are trying to install a submodule called `myapp-api`, then we can install this submodule using following command:
+
+```sh
+mvn install -pl myapp-api
+```
+
+It's the same if we are deploying the submodule:
+
+```sh
+mvn deploy -pl myapp-api
+```
+
+This can also speed up the process quite a lot.

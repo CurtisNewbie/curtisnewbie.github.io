@@ -171,6 +171,22 @@ mvn compile <span class="nt">-T</span> 1C <span class="nt">-o</span> <span class
 
 <p>The <code class="language-plaintext highlighter-rouge">'Total time'</code> shown above is copied from the output of <code class="language-plaintext highlighter-rouge">mvn compile</code> command.</p>
 
+<h2 id="5-more-on-install-and-deploy">5. More on install and deploy</h2>
+
+<p>If you are installing / deploying a specific submodule in a project (e.g., submodule being a dependency for other apps), you can choose to install or deploy that specific submodule without recompiling other modules.</p>
+
+<p>Imagine that our project is called <code class="language-plaintext highlighter-rouge">myapp</code>, and we are trying to install a submodule called <code class="language-plaintext highlighter-rouge">myapp-api</code>, then we can install this submodule using following command:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn <span class="nb">install</span> <span class="nt">-pl</span> myapp-api
+</code></pre></div></div>
+
+<p>It’s the same if we are deploying the submodule:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn deploy <span class="nt">-pl</span> myapp-api
+</code></pre></div></div>
+
+<p>This can also speed up the process quite a lot.</p>
+
   </div><a class="u-url" href="/learning/2024/06/27/make-mvn-compile-faster.html" hidden></a>
 </article>
 
