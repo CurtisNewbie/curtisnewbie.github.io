@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Make mvn compile faster"
+title: "Make mvn faster"
 date: 2024-06-27 17:00:00 +0800
 categories: Learning
 ---
