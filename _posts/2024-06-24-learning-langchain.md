@@ -27,6 +27,7 @@ categories: Learning
 - [Gist CurtisNewbie - Qwen/Qwen-1_8B-Chat-Int4 Demo](https://gist.github.com/CurtisNewbie/9d220701b4dd7f3ce00e728317ca1436)
 - [HuggingFace - 4bit Quantization](https://huggingface.co/blog/4bit-transformers-bitsandbytes)
 - [HuggingFace - bitsandbytes for Quantization](https://huggingface.co/docs/bitsandbytes/main/en/installation)
+- [LangChain - Vector store-backed retriever](https://python.langchain.com/v0.1/docs/modules/data_connection/retrievers/vectorstore/)
 
 ## Getting Started
 
@@ -94,9 +95,7 @@ We can also invoke the model directly without PromptTemplate, but the response i
 print(hf.invoke("How to brew coffee?"))
 ```
 
-A working example:
-
-gist: https://gist.github.com/CurtisNewbie/2b25f811b5b177548207488b2b409dbf
+A working example is available at: [github.com/CurtisNewbie/llm_stuff/blob/main/tinyllama.py](https://github.com/CurtisNewbie/llm_stuff/blob/main/tinyllama.py)
 
 ```py
 from langchain_core.prompts import PromptTemplate
@@ -211,7 +210,7 @@ in this case, it's doing similarity search based on the question asked.
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import CharacterTextSplitter
-from langchain_community.embeddings.sentence_transformer import SentenceTransformerEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.runnables import RunnablePassthrough
 
 # load the local document
@@ -224,7 +223,7 @@ text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
 docs = text_splitter.split_documents(documents)
 
 # create Embedding function to convert each piece of text to vector
-embed = SentenceTransformerEmbeddings(model_name=model)
+embed = HuggingFaceEmbeddings()
 
 # store documents into Chroma (in memory)
 vec = Chroma.from_documents(docs, embed)
@@ -265,7 +264,7 @@ Finally, we just invoke the chain with our question:
 print(resp = chain.invoke("What is LLM model?"))
 ```
 
-A working example is available in Gist: https://gist.github.com/CurtisNewbie/4037a5c0c924b51ddcf4aa5c99f8590b
+A working example is available at: [github.com/CurtisNewbie/llm_stuff/blob/main/tinyllama_rag.py](https://github.com/CurtisNewbie/llm_stuff/blob/main/tinyllama_rag.py)
 
 ```py
 from langchain_core.prompts import PromptTemplate
@@ -296,7 +295,7 @@ hf = HuggingFacePipeline.from_model_id(
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import CharacterTextSplitter
-from langchain_community.embeddings.sentence_transformer import SentenceTransformerEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.runnables import RunnablePassthrough
 
 # load the document and split it into chunks
@@ -308,10 +307,9 @@ for f in files:
 # split it into chunks
 text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
 docs = text_splitter.split_documents(documents)
-# print(">> docs", docs)
 
-# create the open-source embedding function
-embed = SentenceTransformerEmbeddings(model_name=model)
+# create the open-source embedding function (also a model)
+embed = HuggingFaceEmbeddings()
 
 # load it into Chroma
 vec = Chroma.from_documents(docs, embed)
@@ -335,26 +333,7 @@ chain = (
     | hf.bind()
 )
 
-print("\n\n")
-ans_pat = "^.*Answer: *(.*)$"
-while True:
-    try:
-        print("Enter your question:")
-        q = None
-        while not q: q = sys.stdin.readline().strip()
-
-        resp = chain.invoke(q)
-        m = re.search(ans_pat, resp, re.DOTALL)
-        ans = resp
-        if m: ans = m[1]
-
-        print(f"\n\n> AI: '{ans}'\n")
-
-    except InterruptedError:
-        sys.exit()
-    except Exception as e:
-        print("Exception caught", e)
-        traceback.print_exc()
+print(chain.invoke("Tell me about onecafe"))
 ```
 
 ## Quantization
@@ -399,6 +378,8 @@ hf = HuggingFacePipeline.from_model_id(
 TODO:
 
 ## Conversational RAG
+
+Conversational RAG maintains history of conversation.
 
 - [LangChain - Conversational RAG](https://python.langchain.com/v0.2/docs/tutorials/qa_chat_history/)
 
