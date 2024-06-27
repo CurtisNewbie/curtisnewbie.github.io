@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Learning LangChain"
-date: 2024-06-24 00:00:00 +0800
+date: 2024-06-24 09:00:00 +0800
 categories: Learning
 ---
 
