@@ -93,3 +93,8 @@ Interesting papers, books and websites are listed here.
 
 - [Bred Angregg Flame Grphs](https://www.brendangregg.com/flamegraphs.html)
 - [Acm Queue - The Flame Graph](https://queue.acm.org/detail.cfm?id=2927301)
+
+## Git
+
+- [Julia Evans - git rebase: what can go wrong?](https://jvns.ca/blog/2023/11/06/rebasing-what-can-go-wrong-/)
+- [StackOverflow - How do I squash my last N commits together?](https://stackoverflow.com/questions/5189560/how-do-i-squash-my-last-n-commits-together)
