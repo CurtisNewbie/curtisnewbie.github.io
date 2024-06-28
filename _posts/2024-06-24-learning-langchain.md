@@ -28,6 +28,7 @@ categories: Learning
 - [HuggingFace - 4bit Quantization](https://huggingface.co/blog/4bit-transformers-bitsandbytes)
 - [HuggingFace - bitsandbytes for Quantization](https://huggingface.co/docs/bitsandbytes/main/en/installation)
 - [LangChain - Vector store-backed retriever](https://python.langchain.com/v0.1/docs/modules/data_connection/retrievers/vectorstore/)
+- [Private GPT](https://github.com/zylon-ai/private-gpt)
 
 ## Getting Started
 
