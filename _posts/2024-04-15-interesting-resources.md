@@ -89,12 +89,18 @@ Interesting papers, books and websites are listed here.
 - [jamiebuilds/the-super-tiny-compiler](https://github.com/jamiebuilds/the-super-tiny-compiler)
 - [kjpgit/SmallestCSVParser](https://github.com/kjpgit/smallestcsvparser)
 
-## Perf
+### Perf
 
 - [Bred Angregg Flame Grphs](https://www.brendangregg.com/flamegraphs.html)
 - [Acm Queue - The Flame Graph](https://queue.acm.org/detail.cfm?id=2927301)
+- [peteris.rocks - htop explained](https://peteris.rocks/blog/htop/#htop-on-ubuntu-server-16-04-x64)
 
-## Git
+### Git
 
 - [Julia Evans - git rebase: what can go wrong?](https://jvns.ca/blog/2023/11/06/rebasing-what-can-go-wrong-/)
 - [StackOverflow - How do I squash my last N commits together?](https://stackoverflow.com/questions/5189560/how-do-i-squash-my-last-n-commits-together)
+
+### Go Modules
+
+- [go.dev - Go Modules: v2 and Beyond](https://go.dev/blog/v2-go-modules)
+- [go.dev - Developing and publishing modules](https://go.dev/doc/modules/developing)
