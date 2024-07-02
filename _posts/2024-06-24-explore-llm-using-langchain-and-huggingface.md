@@ -477,6 +477,7 @@ python3.11 -m ensurepip
 ```
 
 As shown below, I wrote two python scripts: one is for loading documents to Qdrant (vector database), another one is for bootstraping the RAG LLM model to server QA queries.
+(The model used in this example: [huggingface.co/Qwen/Qwen2-7B-Instruct](https://huggingface.co/Qwen/Qwen2-7B-Instruct))
 
 `llm.py`
 
