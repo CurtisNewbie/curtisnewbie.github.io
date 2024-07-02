@@ -48,7 +48,7 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <h2 id="1-brief">1. Brief</h2>
+    <h3 id="1-brief">1. Brief</h3>
 
 <p>The followings are some of the tricks that I am using to make mvn run faster, all of these ideas are from the Internet, but unfortunately I forgot where they were from.</p>
 
@@ -56,9 +56,9 @@
 
 <p>How much these tricks improve the performance may also depend on your project, dependencies and so on.</p>
 
-<h2 id="2-tricks">2. Tricks</h2>
+<h3 id="2-tricks">2. Tricks</h3>
 
-<h3 id="21-enable-multi-threading">2.1 Enable multi-threading</h3>
+<h4 id="21-enable-multi-threading">2.1 Enable multi-threading</h4>
 
 <p>Compiling code with multiple threads may speed up the process a little bit, though it depends on whether your dependencies support multi-threading.</p>
 
@@ -73,28 +73,28 @@
 mvn compile <span class="nt">-T</span> 2
 </code></pre></div></div>
 
-<h3 id="22-enable-offline-mode">2.2 Enable offline mode</h3>
+<h4 id="22-enable-offline-mode">2.2 Enable offline mode</h4>
 
 <p>Enable offline mode allows you to compile project without attempting to pull remote dependencies. It’s useful if you know that you have already got the latest dependencies or you simply don’t care. This can bring huge performance boost, especially if your network is unacceptably slow.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-o</span>
 </code></pre></div></div>
 
-<h3 id="23-skip-running-tests">2.3. Skip running tests</h3>
+<h4 id="23-skip-running-tests">2.3. Skip running tests</h4>
 
 <p>With this flag included, tests are compiled but not executed.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-DskipTests</span>
 </code></pre></div></div>
 
-<h3 id="24-skip-compiling-tests">2.4. Skip compiling tests</h3>
+<h4 id="24-skip-compiling-tests">2.4. Skip compiling tests</h4>
 
 <p>With this flag included, test artifacts for the project are not compiled at all.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-Dmaven</span>.test.skip<span class="o">=</span><span class="nb">true</span>
 </code></pre></div></div>
 
-<h3 id="25-skip-javadoc-generation">2.5. Skip javadoc generation</h3>
+<h4 id="25-skip-javadoc-generation">2.5. Skip javadoc generation</h4>
 
 <p>If you are deploying packages to remote repository as dependencies, then you should almost always include JavaDoc in the generated packages.</p>
 
@@ -108,7 +108,7 @@ mvn compile <span class="nt">-T</span> 2
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-DadditionalJOption</span><span class="o">=</span><span class="nt">-Xdoclint</span>:none
 </code></pre></div></div>
 
-<h3 id="26-disable-mvn-jvm-tieredcompilation-and-increase-heap-size">2.6. Disable mvn JVM TieredCompilation and increase heap size</h3>
+<h4 id="26-disable-mvn-jvm-tieredcompilation-and-increase-heap-size">2.6. Disable mvn JVM TieredCompilation and increase heap size</h4>
 
 <p>As we all know that JVM uses JIT to optimize bytecode in runtime. During the Java program execution, JVM identifies hot spots and rewrites the bytecode to make things faster. In other words, JVM is frequently recompiling our code.</p>
 
@@ -122,7 +122,7 @@ mvn compile <span class="nt">-T</span> 2
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">"-Xmx1000m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"</span>
 </code></pre></div></div>
 
-<h2 id="3-result">3. Result</h2>
+<h3 id="3-result">3. Result</h3>
 
 <p>Put them all together, we have following command:</p>
 
@@ -133,7 +133,7 @@ mvn compile <span class="nt">-T</span> 1C <span class="nt">-o</span> <span class
 
 <p>Below is a comparison between normal <code class="language-plaintext highlighter-rouge">mvn compile</code> and the one without all of the optimization mentioned above.</p>
 
-<h2 id="4-experiment">4. Experiment</h2>
+<h3 id="4-experiment">4. Experiment</h3>
 
 <p>The experiment only demonstrates the potential improvement these tricks bring, it may differ for different projects on different machines.</p>
 
@@ -171,7 +171,7 @@ mvn compile <span class="nt">-T</span> 1C <span class="nt">-o</span> <span class
 
 <p>The <code class="language-plaintext highlighter-rouge">'Total time'</code> shown above is copied from the output of <code class="language-plaintext highlighter-rouge">mvn compile</code> command.</p>
 
-<h2 id="5-more-on-install-and-deploy">5. More on install and deploy</h2>
+<h3 id="5-more-on-install-and-deploy">5. More on install and deploy</h3>
 
 <p>If you are installing / deploying a specific submodule in a project (e.g., submodule being a dependency for other apps), you can choose to install or deploy that specific submodule without recompiling other modules.</p>
 
