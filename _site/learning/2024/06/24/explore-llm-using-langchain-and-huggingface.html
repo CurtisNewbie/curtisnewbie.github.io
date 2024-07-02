@@ -3,22 +3,22 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Learning LangChain | somewhere in the ocean</title>
+<title>Explore LLM using LangChain and HuggingFace | somewhere in the ocean</title>
 <meta name="generator" content="Jekyll v3.9.5" />
-<meta property="og:title" content="Learning LangChain" />
+<meta property="og:title" content="Explore LLM using LangChain and HuggingFace" />
 <meta name="author" content="Yongjie Zhuang" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Relevant Sites" />
 <meta property="og:description" content="Relevant Sites" />
-<link rel="canonical" href="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html" />
-<meta property="og:url" content="https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html" />
+<link rel="canonical" href="https://curtisnewbie.github.io/learning/2024/06/24/explore-llm-using-langchain-and-huggingface.html" />
+<meta property="og:url" content="https://curtisnewbie.github.io/learning/2024/06/24/explore-llm-using-langchain-and-huggingface.html" />
 <meta property="og:site_name" content="somewhere in the ocean" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2024-06-24T09:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Learning LangChain" />
+<meta property="twitter:title" content="Explore LLM using LangChain and HuggingFace" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Yongjie Zhuang"},"dateModified":"2024-06-24T09:00:00+08:00","datePublished":"2024-06-24T09:00:00+08:00","description":"Relevant Sites","headline":"Learning LangChain","mainEntityOfPage":{"@type":"WebPage","@id":"https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html"},"url":"https://curtisnewbie.github.io/learning/2024/06/24/learning-langChain.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Yongjie Zhuang"},"dateModified":"2024-06-24T09:00:00+08:00","datePublished":"2024-06-24T09:00:00+08:00","description":"Relevant Sites","headline":"Explore LLM using LangChain and HuggingFace","mainEntityOfPage":{"@type":"WebPage","@id":"https://curtisnewbie.github.io/learning/2024/06/24/explore-llm-using-langchain-and-huggingface.html"},"url":"https://curtisnewbie.github.io/learning/2024/06/24/explore-llm-using-langchain-and-huggingface.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://curtisnewbie.github.io/feed.xml" title="somewhere in the ocean" /></head>
 <body><header class="site-header" role="banner">
@@ -41,7 +41,7 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Learning LangChain</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Explore LLM using LangChain and HuggingFace</h1>
     <p class="post-meta">
       <time class="dt-published" datetime="2024-06-24T09:00:00+08:00" itemprop="datePublished">Jun 24, 2024
       </time></p>
@@ -408,6 +408,311 @@ Answer:"""</span>
 <span class="p">)</span>
 </code></pre></div></div>
 
+<h2 id="demo---deploy-llm-model-on-centos-with-gpu">Demo - Deploy LLM Model on CentOS with GPU</h2>
+
+<p>This section roughly documents how I setup CUDA and all sort of dependencies to run the LLM Model: <code class="language-plaintext highlighter-rouge">Qwen/Qwen2-7B-Instruct</code> on CentOS
+(the setup is roughly the same even if you change to another LLM model).</p>
+
+<p><strong><em>The python code is available in repo: <a href="https://github.com/CurtisNewbie/llm_stuff/tree/main/qwen2_deploy">https://github.com/CurtisNewbie/llm_stuff/tree/main/qwen2_deploy</a></em></strong></p>
+
+<p>You may follow other official guides, e.g., to install Pytorch properly using venv, conda or something else.</p>
+
+<ul>
+  <li>https://pytorch.org/get-started/previous-versions/</li>
+</ul>
+
+<p>Install nvidia driver, after the installation, check your GPU status using <code class="language-plaintext highlighter-rouge">nvidia-smi</code> command:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nvidia-smi
+
+<span class="c"># *** ***  * **:**:** 2024</span>
+<span class="c"># +---------------------------------------------------------------------------------------+</span>
+<span class="c"># | NVIDIA-SMI 535.154.05             Driver Version: 535.154.05   CUDA Version: 12.2     |</span>
+<span class="c"># |-----------------------------------------+----------------------+----------------------+</span>
+<span class="c"># | GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |</span>
+<span class="c"># | Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |</span>
+<span class="c"># |                                         |                      |               MIG M. |</span>
+<span class="c"># |=========================================+======================+======================|</span>
+<span class="c"># |   0  NVIDIA A10                     On  | 00000000:00:07.0 Off |                    0 |</span>
+<span class="c"># |  0%   26C    P8               8W / 150W |      0MiB / 23028MiB |      0%      Default |</span>
+<span class="c"># |                                         |                      |                  N/A |</span>
+<span class="c"># +-----------------------------------------+----------------------+----------------------+</span>
+
+<span class="c"># +---------------------------------------------------------------------------------------+</span>
+<span class="c"># | Processes:                                                                            |</span>
+<span class="c"># |  GPU   GI   CI        PID   Type   Process name                            GPU Memory |</span>
+<span class="c"># |        ID   ID                                                             Usage      |</span>
+<span class="c"># |=======================================================================================|</span>
+<span class="c"># |  No running processes found                                                           |</span>
+<span class="c"># +---------------------------------------------------------------------------------------+</span>
+</code></pre></div></div>
+
+<p>The output above shows that we have a Nvidia A10 GPU installed with 23GB of VRAM available. Notice that even though the output of <code class="language-plaintext highlighter-rouge">nvidia-smi</code> shows <code class="language-plaintext highlighter-rouge">CUDA Version: 12.2</code>, it’s merely a compatible driver version.</p>
+
+<p>If you don’t have CUDA already, install CUDA toolkit instead of CUDA. CUDA is included in CUDA toolkit. Notice that we are using <code class="language-plaintext highlighter-rouge">CUDA12.1</code>, we should make sure that all relavent cuda dependencies support exactly CUDA 12.1.</p>
+
+<ul>
+  <li><a href="https://developer.nvidia.com/cuda-12-0-0-download-archive?target_os=Linux&amp;target_arch=x86_64&amp;Distribution=CentOS&amp;target_version=7&amp;target_type=rpm_network">Nvidia CUDA Toolkit 12.0 Downloads</a></li>
+  <li><a href="https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html">Nvidia CUDA Toolkit Release Notes</a></li>
+  <li><a href="https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/">Nvidia rhel7/x86_64 CUDA Repo Index</a></li>
+</ul>
+
+<p>Since we are using CentOS, we use yum package manager. In the above Nvidia websites: select your OS, architecture and distribution; copy paste the generated installation instructions:
+(it seems like you don’t actually need <code class="language-plaintext highlighter-rouge">nvidia-driver-latest-dkms</code>, the commands below are exactly what I did anyway).</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Add cuda repo config</span>
+<span class="nb">sudo </span>yum-config-manager <span class="nt">--add-repo</span> https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-rhel7.repo
+
+<span class="c"># clean cache</span>
+<span class="nb">sudo </span>yum clean all
+
+<span class="c"># install cuda toolkit, cuda is included</span>
+<span class="nb">sudo </span>yum <span class="nt">-y</span> <span class="nb">install </span>cuda-toolkit
+</code></pre></div></div>
+
+<p>Check that we have <code class="language-plaintext highlighter-rouge">nvcc</code> installed, <code class="language-plaintext highlighter-rouge">nvcc</code> is Nvidia CUDA Compiler Driver, it should be automatically installed as part of the CUDA toolkit.</p>
+
+<ul>
+  <li>https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/</li>
+</ul>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nvcc <span class="nt">--version</span>
+<span class="c"># nvcc: NVIDIA (R) Cuda compiler driver</span>
+<span class="c"># Copyright (c) 2005-2023 NVIDIA Corporation</span>
+<span class="c"># Built on Mon_Apr__3_17:16:06_PDT_2023</span>
+<span class="c"># Cuda compilation tools, release 12.1, V12.1.105</span>
+<span class="c"># Build cuda_12.1.r12.1/compiler.32688072_0</span>
+</code></pre></div></div>
+
+<p>Install <code class="language-plaintext highlighter-rouge">nccl</code> library. <code class="language-plaintext highlighter-rouge">nccl</code> is NVIDIA Collective Communications Library. PyTorch will attempt to open these <code class="language-plaintext highlighter-rouge">*.so.*</code> lib files provided by nccl.</p>
+
+<ul>
+  <li><a href="https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/overview.html#:~:text=The%20NVIDIA%20Collective%20Communications%20Library,be%20easily%20integrated%20into%20applications.">Nvidia Overview of NCCL</a></li>
+  <li><a href="https://docs.nvidia.com/deeplearning/nccl/install-guide/index.html">Nvidia NCCL Installation Guide</a></li>
+  <li><a href="https://developer.nvidia.com/nccl">Nvidia NCCL</a></li>
+</ul>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Add cuda repo config (same repo)</span>
+<span class="nb">sudo </span>yum-config-manager <span class="nt">--add-repo</span> https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-rhel7.repo
+
+<span class="c"># Install libnccl for cuda12.1</span>
+yum <span class="nb">install </span>libnccl-2.18.3-1+cuda12.1
+
+yum list installed | <span class="nb">grep </span>nccl
+<span class="c"># libnccl.x86_64                                     2.18.3-1+cuda12.1                   @cuda-rhel7-x86_64</span>
+</code></pre></div></div>
+
+<p>Have a look at cuda lib location, it should be located at <code class="language-plaintext highlighter-rouge">/usr/local</code></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-l</span> /usr/local/ | <span class="nb">grep </span>cuda
+<span class="c"># lrwxrwxrwx   1 root root   21 Jun 28 15:15 cuda -&gt; /usr/local/cuda-12.1/</span>
+<span class="c"># drwxr-xr-x  17 root root 4096 Jun 28 15:16 cuda-12.1</span>
+</code></pre></div></div>
+
+<p>Install python3.11 (or later versions):</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum <span class="nb">install </span>python3.11
+python3.11 <span class="nt">-m</span> ensurepip
+</code></pre></div></div>
+
+<p>As shown below, I wrote two python scripts: one is for loading documents to Qdrant (vector database), another one is for bootstraping the RAG LLM model to server QA queries.</p>
+
+<p><code class="language-plaintext highlighter-rouge">llm.py</code></p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ...
+</span><span class="n">collection_name</span> <span class="o">=</span> <span class="s">"documents"</span>
+<span class="n">embedding_name</span> <span class="o">=</span> <span class="s">"sentence-transformers/distiluse-base-multilingual-cased-v1"</span>
+<span class="n">max_new_tokens</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">task</span> <span class="o">=</span> <span class="s">"text-generation"</span>
+<span class="n">model</span> <span class="o">=</span> <span class="s">"Qwen/Qwen2-7B-Instruct"</span>
+<span class="n">cache_path</span> <span class="o">=</span> <span class="s">"/root/qdrant_cache"</span>
+
+<span class="n">hf</span> <span class="o">=</span> <span class="n">HuggingFacePipeline</span><span class="p">.</span><span class="n">from_model_id</span><span class="p">(</span>
+    <span class="n">model_id</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span>
+    <span class="n">pipeline_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"max_new_tokens"</span><span class="p">:</span> <span class="n">max_new_tokens</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"temperature"</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+        <span class="s">"top_k"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="s">"top_p"</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
+        <span class="s">"do_sample"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+        <span class="s">"load_in_4bit"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="n">embedding_name</span><span class="p">)</span>
+<span class="n">vectorstore</span> <span class="o">=</span> <span class="n">Qdrant</span><span class="p">.</span><span class="n">from_existing_collection</span><span class="p">(</span>
+    <span class="n">embedding</span><span class="o">=</span><span class="n">embeddings</span><span class="p">,</span>
+    <span class="n">path</span><span class="o">=</span><span class="n">cache_path</span><span class="p">,</span>
+    <span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">)</span>
+
+<span class="n">template</span> <span class="o">=</span> <span class="s">"""...."""</span>
+<span class="n">retriever</span> <span class="o">=</span> <span class="n">vectorstore</span><span class="p">.</span><span class="n">as_retriever</span><span class="p">(</span><span class="n">search_type</span><span class="o">=</span><span class="s">"similarity_score_threshold"</span><span class="p">,</span> <span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s">"score_threshold"</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">})</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">.</span><span class="n">from_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+<span class="n">chain</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">{</span><span class="s">"context"</span><span class="p">:</span> <span class="n">retriever</span> <span class="o">|</span> <span class="n">format_docs</span><span class="p">,</span> <span class="s">"question"</span><span class="p">:</span> <span class="n">RunnablePassthrough</span><span class="p">()}</span>
+    <span class="o">|</span> <span class="n">prompt</span>
+    <span class="o">|</span> <span class="n">hf</span><span class="p">.</span><span class="n">bind</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">chain</span><span class="p">.</span><span class="n">invoke</span><span class="p">(</span><span class="s">"How is the weather today?"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">qdrant_load.py</code></p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ...
+</span><span class="n">collection_name</span> <span class="o">=</span> <span class="s">"documents"</span>
+<span class="n">embedding_name</span> <span class="o">=</span> <span class="s">"sentence-transformers/distiluse-base-multilingual-cased-v1"</span>
+<span class="n">cache_path</span> <span class="o">=</span> <span class="s">"/root/qdrant_cache"</span>
+<span class="n">base_dir</span> <span class="o">=</span> <span class="s">'/root/llm/files'</span>
+<span class="n">documents</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">base_dir</span><span class="p">):</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">file</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.pdf'</span><span class="p">):</span>
+        <span class="n">documents</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">PyPDFLoader</span><span class="p">(</span><span class="n">file_path</span><span class="p">).</span><span class="n">load</span><span class="p">())</span>
+    <span class="k">elif</span> <span class="nb">file</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.docx'</span><span class="p">):</span>
+        <span class="n">documents</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">Docx2txtLoader</span><span class="p">(</span><span class="n">file_path</span><span class="p">).</span><span class="n">load</span><span class="p">())</span>
+    <span class="k">elif</span> <span class="nb">file</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.txt'</span><span class="p">):</span>
+        <span class="n">documents</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">TextLoader</span><span class="p">(</span><span class="n">file_path</span><span class="p">).</span><span class="n">load</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Documents loaded"</span><span class="p">)</span>
+
+<span class="n">text_splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">chunked_documents</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="p">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Documents splited"</span><span class="p">)</span>
+
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="n">embedding_name</span><span class="p">,</span> <span class="n">show_progress</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Embeddings loaded"</span><span class="p">)</span>
+
+<span class="n">vectorstore</span> <span class="o">=</span> <span class="n">Qdrant</span><span class="p">.</span><span class="n">from_existing_collection</span><span class="p">(</span>
+    <span class="n">embedding</span><span class="o">=</span><span class="n">embeddings</span><span class="p">,</span>
+    <span class="n">path</span><span class="o">=</span><span class="n">cache_path</span><span class="p">,</span>
+    <span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">)</span>
+
+<span class="n">vectorstore</span><span class="p">.</span><span class="n">add_documents</span><span class="p">(</span><span class="n">chunked_documents</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Documents added"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Install python dependencies:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3.11 <span class="nt">-m</span> pip <span class="nb">install </span>langchain langchain-huggingface transformers bitsandbytes langchain-community langchain-qdrant accelerate
+</code></pre></div></div>
+
+<p>If everything goes right, we can use <code class="language-plaintext highlighter-rouge">qdrant_load.py</code> to load documents, and then we can use <code class="language-plaintext highlighter-rouge">llm.py</code> to load the RAG LLM Model to answer questions.</p>
+
+<p>To create simple ChatUI, we can use <code class="language-plaintext highlighter-rouge">gradio</code>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3.11 <span class="nt">-m</span> pip <span class="nb">install </span>gradio
+</code></pre></div></div>
+
+<p>Change <code class="language-plaintext highlighter-rouge">llm.py</code> to use gradio to serve QA at <code class="language-plaintext highlighter-rouge">0.0.0.0:80</code>:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="n">gr</span>
+
+<span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">history</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">message</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="s">"Say something?"</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">chain</span><span class="p">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="n">result</span>
+
+<span class="n">gr</span><span class="p">.</span><span class="n">ChatInterface</span><span class="p">(</span><span class="n">predict</span><span class="p">).</span><span class="n">queue</span><span class="p">().</span><span class="n">launch</span><span class="p">(</span><span class="n">share</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">server_name</span><span class="o">=</span><span class="s">"0.0.0.0"</span><span class="p">,</span> <span class="n">server_port</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="potential-issues">Potential Issues</h3>
+
+<h4 id="1-pytorch---importerror-libcuptiso12-cannot-open-shared-object-file-no-such-file-or-directory">1. PyTorch - <code class="language-plaintext highlighter-rouge">ImportError: libcupti.so.12: cannot open shared object file: No such file or directory</code></h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"/usr/local/lib/python3.11/site-packages/langchain_huggingface/embeddings/huggingface.py"</span>, line 53, <span class="k">in </span>__init__
+    import sentence_transformers  <span class="c"># type: ignore[import]</span>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File <span class="s2">"/usr/local/lib/python3.11/site-packages/sentence_transformers/__init__.py"</span>, line 7, <span class="k">in</span> &lt;module&gt;
+    from sentence_transformers.cross_encoder.CrossEncoder import CrossEncoder
+  File <span class="s2">"/usr/local/lib/python3.11/site-packages/sentence_transformers/cross_encoder/__init__.py"</span>, line 1, <span class="k">in</span> &lt;module&gt;
+    from .CrossEncoder import CrossEncoder
+  File <span class="s2">"/usr/local/lib/python3.11/site-packages/sentence_transformers/cross_encoder/CrossEncoder.py"</span>, line 7, <span class="k">in</span> &lt;module&gt;
+    import torch
+  File <span class="s2">"/usr/local/lib64/python3.11/site-packages/torch/__init__.py"</span>, line 239, <span class="k">in</span> &lt;module&gt;
+    from torch._C import <span class="k">*</span>  <span class="c"># noqa: F403</span>
+    ^^^^^^^^^^^^^^^^^^^^^^
+ImportError: libcupti.so.12: cannot open shared object file: No such file or directory
+</code></pre></div></div>
+
+<p>This issue is actually caused by PyTorch. Notice that almost everything is built on top of PyTorch, and PyTorch internally communicates with Nvidia GPU using CUDA.
+<code class="language-plaintext highlighter-rouge">libcupti.so.12</code> is a lib file provided by CUDA.</p>
+
+<p>The file may exist in your OS, but PyTorch somehow couldn’t find it. Use <code class="language-plaintext highlighter-rouge">find</code> to locate the lib file first:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>find / <span class="nt">-name</span> <span class="s2">"libcupti.so.12"</span>
+<span class="c"># /usr/local/cuda-12.1/extras/CUPTI/lib64/libcupti.so.12</span>
+</code></pre></div></div>
+
+<p>Create symbolic link to python3.11 package path so that PyTorch can correctly open the lib files:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> /usr/local/lib64/python3.11/site-packages/nvidia/nccl/lib
+<span class="nb">ln</span> <span class="nt">-s</span> /usr/local/cuda-12.1/extras/CUPTI/lib64 /usr/local/lib64/python3.11/site-packages/nvidia/nccl/lib
+
+<span class="c"># just in case you want to remove the symlink:</span>
+<span class="c"># unlink  /usr/local/lib64/python3.11/site-packages/nvidia/nccl/lib</span>
+</code></pre></div></div>
+
+<p>Before I tried the symlink approch, I did some research; some recommend setting <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code> env variable like below, but unfortunately, this doesn’t work for me.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/cuda-12.1/extras/CUPTI/lib64/:<span class="nv">$LD_LIBRARY_PATH</span>
+</code></pre></div></div>
+
+<h4 id="2-pytorch---importerror-libncclso2-cannot-open-shared-object-file-no-such-file-or-directory">2. PyTorch - <code class="language-plaintext highlighter-rouge">ImportError: libnccl.so.2: cannot open shared object file: No such file or directory</code></h4>
+
+<p>This is still a PyTorch problem, the output tracktrace is almost the same. This is due to incompatible PyTorch version.</p>
+
+<p>Some recommend to simply downgrade the PyTorch version, or build the PyTorch on your own.</p>
+
+<ul>
+  <li>https://github.com/pytorch/pytorch/issues/88802</li>
+  <li>https://discuss.pytorch.org/t/pytorch-for-cuda-12/169447/20?page=2</li>
+</ul>
+
+<p>So what I did was simply downgrading my PyTorch from <code class="language-plaintext highlighter-rouge">2.3.1</code> to <code class="language-plaintext highlighter-rouge">2.1.1</code>:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3.11 <span class="nt">-m</span> pip <span class="nb">install </span>torch-<span class="o">=</span>2.1.1
+</code></pre></div></div>
+
+<h4 id="3-pytorch---importerror-site-packagestorchliblibtorch_cudaso-undefined-symbol-ncclcommregister">3. PyTorch - <code class="language-plaintext highlighter-rouge">ImportError: .../site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommRegister</code></h4>
+
+<p>This issue arrived when I tried to downgrade PyTorch from <code class="language-plaintext highlighter-rouge">2.3.1</code> to <code class="language-plaintext highlighter-rouge">2.3.0</code>. This is due to incompatible PyTorch version.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"/usr/local/lib/python3.11/site-packages/langchain_huggingface/embeddings/huggingface.py"</span>, line 53, <span class="k">in </span>__init__
+    import sentence_transformers  <span class="c"># type: ignore[import]</span>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File <span class="s2">"/usr/local/lib/python3.11/site-packages/sentence_transformers/__init__.py"</span>, line 7, <span class="k">in</span> &lt;module&gt;
+    from sentence_transformers.cross_encoder.CrossEncoder import CrossEncoder
+  File <span class="s2">"/usr/local/lib/python3.11/site-packages/sentence_transformers/cross_encoder/__init__.py"</span>, line 1, <span class="k">in</span> &lt;module&gt;
+    from .CrossEncoder import CrossEncoder
+  File <span class="s2">"/usr/local/lib/python3.11/site-packages/sentence_transformers/cross_encoder/CrossEncoder.py"</span>, line 7, <span class="k">in</span> &lt;module&gt;
+    import torch
+  File <span class="s2">"/usr/local/lib64/python3.11/site-packages/torch/__init__.py"</span>, line 237, <span class="k">in</span> &lt;module&gt;
+    from torch._C import <span class="k">*</span>  <span class="c"># noqa: F403</span>
+    ^^^^^^^^^^^^^^^^^^^^^^
+ImportError: /usr/local/lib64/python3.11/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommRegister
+</code></pre></div></div>
+
+<p>The way you fix the problem is the same as the issue 2: downgrading your PyTorch to an older version like <code class="language-plaintext highlighter-rouge">2.1.1</code>.</p>
+
+<h4 id="4-huggingface-connectivity-issue">4. HuggingFace Connectivity Issue.</h4>
+
+<p>If you are from countries where HuggingFace is not really accesible. You can set <code class="language-plaintext highlighter-rouge">HF_ENDPOINT</code> environment variable to a mirror repo that is accessible from your country.</p>
+
+<p>E.g.,</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">HF_ENDPOINT</span><span class="o">=</span>https://hf-mirror.com
+</code></pre></div></div>
+
 <h2 id="conceptual-guide">Conceptual Guide</h2>
 
 <ul>
@@ -432,7 +737,7 @@ Answer:"""</span>
   <li><code class="language-plaintext highlighter-rouge">HF Format</code>: Hugging Face Format</li>
 </ul>
 
-  </div><a class="u-url" href="/learning/2024/06/24/learning-langChain.html" hidden></a>
+  </div><a class="u-url" href="/learning/2024/06/24/explore-llm-using-langchain-and-huggingface.html" hidden></a>
 </article>
 
       </div>
