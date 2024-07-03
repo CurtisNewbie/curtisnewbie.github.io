@@ -178,10 +178,6 @@ import sys
 import readline
 from langchain_huggingface import HuggingFacePipeline
 
-# template = """Question: {question}
-
-# Answer: Let's think step by step."""
-
 max_new_tokens=300
 task="text-generation"
 model="TinyLlama/TinyLlama-1.1B-Chat-v1.0"
