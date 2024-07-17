@@ -104,3 +104,11 @@ Interesting papers, books and websites are listed here.
 
 - [go.dev - Go Modules: v2 and Beyond](https://go.dev/blog/v2-go-modules)
 - [go.dev - Developing and publishing modules](https://go.dev/doc/modules/developing)
+
+### GC
+
+- [Yan Yu - A Basic Overview of JVM Garbage Collection - Part 1](https://www.callibrity.com/articles/a-basic-overview-of-jvm-garbage-collection)
+- [Yan Yu - A Basic Overview of JVM Garbage Collection - Part 2](https://www.callibrity.com/articles/further-look-at-jvm-garbage-collection#:~:text=ParNew%20is%20the%20multi%2Dthreaded,%2C%20stop%20the%20world%2C%20etc.)
+- [How Garbage Collection works inside a Java Virtual Machine](https://opensource.com/article/22/6/garbage-collection-java-virtual-machine)
+- [Uber - Tricks of the Trade: Tuning JVM Memory for Large-scale Services](https://www.uber.com/blog/jvm-tuning-garbage-collection/)
+- [Uber - Scaling Uber’s Apache Hadoop Distributed File System for Growth](https://www.uber.com/blog/scaling-hdfs/?uclick_id=b993a76e-eb97-4f64-b884-21e30bd60959)
