@@ -112,3 +112,4 @@ Interesting papers, books and websites are listed here.
 - [How Garbage Collection works inside a Java Virtual Machine](https://opensource.com/article/22/6/garbage-collection-java-virtual-machine)
 - [Uber - Tricks of the Trade: Tuning JVM Memory for Large-scale Services](https://www.uber.com/blog/jvm-tuning-garbage-collection/)
 - [Uber - Scaling Uber’s Apache Hadoop Distributed File System for Growth](https://www.uber.com/blog/scaling-hdfs/?uclick_id=b993a76e-eb97-4f64-b884-21e30bd60959)
+- [Java 11 - HotSpot Virtual Machine Garbage Collection Tuning Guide](https://docs.oracle.com/en/java/javase/11/gctuning/introduction-garbage-collection-tuning.html#GUID-8A443184-7E07-4B71-9777-4F12947C8184)
