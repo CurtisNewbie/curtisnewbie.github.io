@@ -1,4 +1,81 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-07-19T17:47:53+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Make mvn faster</title><link href="https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-faster.html" rel="alternate" type="text/html" title="Make mvn faster" /><published>2024-06-27T17:00:00+08:00</published><updated>2024-06-27T17:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-faster</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-faster.html"><![CDATA[<h3 id="1-brief">1. Brief</h3>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-08-05T10:17:03+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Algorithm - Kmp</title><link href="https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp.html" rel="alternate" type="text/html" title="Algorithm - Kmp" /><published>2024-07-25T09:00:00+08:00</published><updated>2024-07-25T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp.html"><![CDATA[<h2 id="kmp-algorithm">KMP Algorithm</h2>
+
+<p>KMP is essentially finding common prefix within the substring.</p>
+
+<p>Create a <code class="language-plaintext highlighter-rouge">next</code> (index) array, for each character in substring, find the previous character that also share the same prefix as the current substring. In the process of finding substring, when we find a mismatch, we can use this <code class="language-plaintext highlighter-rouge">next</code> (index) array to jump back to the previous character that matches current substring without needing to traverse the whole substring again.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>substring: `abeabc`
+next: `[0,0,0,1,2,0]`
+
+substring: `aaa`
+next: `[0,1,2]`
+
+substring: `abcabc`
+next: `[0,0,0,1,2,3]`
+</code></pre></div></div>
+
+<p>E.g., in <code class="language-plaintext highlighter-rouge">abcabc</code>, substring [0:3] (<code class="language-plaintext highlighter-rouge">abc</code>) doesn’t share any prefix, when we find a mismatch, we always go back to 0 index. For index 3 (<code class="language-plaintext highlighter-rouge">a</code>), it shares the same prefix with substring [0:1] (<code class="language-plaintext highlighter-rouge">a</code>), so when we find a mismatch at index 4 (<code class="language-plaintext highlighter-rouge">abcab</code>), we jump back to next[4-1] = 1, because we know previous character is <code class="language-plaintext highlighter-rouge">a</code> and the first character is also <code class="language-plaintext highlighter-rouge">a</code> (by building the next array). For index 4 (<code class="language-plaintext highlighter-rouge">b</code>, substring[3:5], <code class="language-plaintext highlighter-rouge">ab</code>), it shares the same prefix with substring [0:2] (<code class="language-plaintext highlighter-rouge">ab</code>), so the value of next[4] is 2.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">kmp</span><span class="o">(</span><span class="nc">String</span> <span class="n">source</span><span class="o">,</span> <span class="nc">String</span> <span class="n">sub</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">next</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">sub</span><span class="o">.</span><span class="na">length</span><span class="o">()];</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sub</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span> <span class="o">++)</span> <span class="o">{</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">sub</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">!=</span> <span class="n">sub</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">next</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">sub</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="n">sub</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">j</span><span class="o">++;</span>
+        <span class="o">}</span>
+        <span class="n">next</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">source</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">source</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">!=</span> <span class="n">sub</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">next</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="n">sub</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">j</span><span class="o">++;</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">sub</span><span class="o">.</span><span class="na">length</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">i</span> <span class="o">-</span> <span class="n">sub</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Go:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">Kmp</span><span class="p">(</span><span class="n">source</span> <span class="kt">string</span><span class="p">,</span> <span class="n">sub</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="n">sour</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">rune</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+	<span class="n">subr</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">rune</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span>
+	<span class="n">next</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">subr</span><span class="p">))</span>
+	<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">:=</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">subr</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="m">0</span> <span class="o">&amp;&amp;</span> <span class="n">subr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">subr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">{</span>
+			<span class="n">j</span> <span class="o">=</span> <span class="n">next</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="m">1</span><span class="p">]</span>
+		<span class="p">}</span>
+
+		<span class="k">if</span> <span class="n">subr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">subr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">{</span>
+			<span class="n">j</span><span class="o">++</span>
+		<span class="p">}</span>
+		<span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span>
+	<span class="p">}</span>
+
+	<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">:=</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">sour</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="m">0</span> <span class="o">&amp;&amp;</span> <span class="n">sour</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">sour</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">{</span>
+			<span class="n">j</span> <span class="o">=</span> <span class="n">next</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="m">1</span><span class="p">]</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="n">sour</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">sour</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">{</span>
+			<span class="n">j</span><span class="o">++</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">subr</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="n">i</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">subr</span><span class="p">)</span> <span class="o">+</span> <span class="m">1</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="o">-</span><span class="m">1</span>
+<span class="p">}</span>
+</code></pre></div></div>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[KMP Algorithm]]></summary></entry><entry><title type="html">Make mvn faster</title><link href="https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-faster.html" rel="alternate" type="text/html" title="Make mvn faster" /><published>2024-06-27T17:00:00+08:00</published><updated>2024-06-27T17:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-faster</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-faster.html"><![CDATA[<h3 id="1-brief">1. Brief</h3>
 
 <p>The followings are some of the tricks that I am using to make mvn run faster, all of these ideas are from the Internet, but unfortunately I forgot where they were from.</p>
 
@@ -955,6 +1032,13 @@ ImportError: /usr/local/lib64/python3.11/site-packages/torch/lib/libtorch_cuda.s
   <li><a href="https://www.uber.com/blog/jvm-tuning-garbage-collection/">Uber - Tricks of the Trade: Tuning JVM Memory for Large-scale Services</a></li>
   <li><a href="https://www.uber.com/blog/scaling-hdfs/?uclick_id=b993a76e-eb97-4f64-b884-21e30bd60959">Uber - Scaling Uber’s Apache Hadoop Distributed File System for Growth</a></li>
   <li><a href="https://docs.oracle.com/en/java/javase/11/gctuning/introduction-garbage-collection-tuning.html#GUID-8A443184-7E07-4B71-9777-4F12947C8184">Java 11 - HotSpot Virtual Machine Garbage Collection Tuning Guide</a></li>
+  <li><a href="https://www.infoq.com/articles/G1-One-Garbage-Collector-To-Rule-Them-All/">InfoQ - G1: One Garbage Collector To Rule Them All</a></li>
+  <li><a href="https://www.infoq.com/articles/tuning-tips-G1-GC/">InfoQ - Tips for Tuning the Garbage First Garbage Collector</a></li>
+  <li><a href="https://www.oracle.com/java/technologies/whitepaper.html#garbage">The Java HotSpot Performance Engine Architecture</a></li>
+  <li><a href="https://www.oracle.com/technical-resources/articles/java/g1gc.html#:~:text=Initial%20mark%20phase%3A%20The%20G1,and%20marks%20the%20referenced%20objects.">Monica Beckwith (2013) Oracle - Garbage First Garbage Collector Tuning</a></li>
+  <li><a href="https://www.oracle.com/technetwork/java/javase/memorymanagement-whitepaper-150215.pdf">Description of HotSpot GCs: Memory Management in the Java HotSpot Virtual Machine White Paper: link (PDF)</a></li>
+  <li><a href="https://dl.acm.org/citation.cfm?id=362422.362480">The original CMS paper: Printezis, T. and Detlefs, D. 2000. A generational mostly-concurrent garbage collector. In Proceedings of the 2nd international Symposium on Memory Management (Minneapolis, Minnesota, United States, October 15 - 16, 2000).</a></li>
+  <li><a href="https://dl.acm.org/citation.cfm?id=1029879">The original G1 paper: Detlefs, D., Flood, C., Heller, S., and Printezis, T. 2004. Garbage-first garbage collection. In Proceedings of the 4th international Symposium on Memory Management (Vancouver, BC, Canada, October 24 - 25, 2004).</a></li>
 </ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Interesting papers, books and websites are listed here.]]></summary></entry><entry><title type="html">Random Ideas</title><link href="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html" rel="alternate" type="text/html" title="Random Ideas" /><published>2024-04-15T19:00:00+08:00</published><updated>2024-04-15T19:00:00+08:00</updated><id>https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas</id><content type="html" xml:base="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html"><![CDATA[<p>List of random ideas:</p>
 
 <ul class="task-list">

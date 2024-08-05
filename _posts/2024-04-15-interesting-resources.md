@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Interesting Resources"
-date:   2024-04-15 20:00:00 +0800
+title: "Interesting Resources"
+date: 2024-04-15 20:00:00 +0800
 categories: Learning
 ---
 
@@ -113,3 +113,10 @@ Interesting papers, books and websites are listed here.
 - [Uber - Tricks of the Trade: Tuning JVM Memory for Large-scale Services](https://www.uber.com/blog/jvm-tuning-garbage-collection/)
 - [Uber - Scaling Uber’s Apache Hadoop Distributed File System for Growth](https://www.uber.com/blog/scaling-hdfs/?uclick_id=b993a76e-eb97-4f64-b884-21e30bd60959)
 - [Java 11 - HotSpot Virtual Machine Garbage Collection Tuning Guide](https://docs.oracle.com/en/java/javase/11/gctuning/introduction-garbage-collection-tuning.html#GUID-8A443184-7E07-4B71-9777-4F12947C8184)
+- [InfoQ - G1: One Garbage Collector To Rule Them All](https://www.infoq.com/articles/G1-One-Garbage-Collector-To-Rule-Them-All/)
+- [InfoQ - Tips for Tuning the Garbage First Garbage Collector](https://www.infoq.com/articles/tuning-tips-G1-GC/)
+- [The Java HotSpot Performance Engine Architecture](https://www.oracle.com/java/technologies/whitepaper.html#garbage)
+- [Monica Beckwith (2013) Oracle - Garbage First Garbage Collector Tuning](https://www.oracle.com/technical-resources/articles/java/g1gc.html#:~:text=Initial%20mark%20phase%3A%20The%20G1,and%20marks%20the%20referenced%20objects.)
+- [Description of HotSpot GCs: Memory Management in the Java HotSpot Virtual Machine White Paper: link (PDF)](https://www.oracle.com/technetwork/java/javase/memorymanagement-whitepaper-150215.pdf)
+- [The original CMS paper: Printezis, T. and Detlefs, D. 2000. A generational mostly-concurrent garbage collector. In Proceedings of the 2nd international Symposium on Memory Management (Minneapolis, Minnesota, United States, October 15 - 16, 2000).](https://dl.acm.org/citation.cfm?id=362422.362480)
+- [The original G1 paper: Detlefs, D., Flood, C., Heller, S., and Printezis, T. 2004. Garbage-first garbage collection. In Proceedings of the 4th international Symposium on Memory Management (Vancouver, BC, Canada, October 24 - 25, 2004).](https://dl.acm.org/citation.cfm?id=1029879)
