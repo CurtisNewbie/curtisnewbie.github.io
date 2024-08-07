@@ -78,8 +78,7 @@ Interesting papers, books and websites are listed here.
 - [Oceanbase Github](https://github.com/oceanbase/oceanbase)
 - [Oceanbase Doc](https://en.oceanbase.com/docs/oceanbase-database)
 - [Use the index, Luke - A Guide to Database Performance for Developers](https://use-the-index-luke.com/sql/preface)
-
-<!-- ### Languages -->
+- [Eaton Phil, A write-ahead log is not a universal part of durability](https://notes.eatonphil.com/2024-07-01-a-write-ahead-log-is-not-a-universal-part-of-durability.html)
 
 ### Other Github Repos
 
