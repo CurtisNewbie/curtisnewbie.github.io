@@ -122,3 +122,10 @@ Interesting papers, books and websites are listed here.
 - [ResearchGate - The original G1 paper: Detlefs, D., Flood, C., Heller, S., and Printezis, T. 2004. Garbage-first garbage collection. In Proceedings of the 4th international Symposium on Memory Management (Vancouver, BC, Canada, October 24 - 25, 2004).](https://www.researchgate.net/publication/221032945_Garbage-First_garbage_collection)
 - [RedHat, Matt Robson - Part 1: Introduction to the G1 Garbage Collector](https://www.redhat.com/en/blog/part-1-introduction-g1-garbage-collector)
 - [RedHat, Matt Robson - Part 2: Collecting and reading G1 garbage collector logs](https://www.redhat.com/en/blog/collecting-and-reading-g1-garbage-collector-logs-part-2)
+
+### Tools
+
+- [mitproxy](https://mitmproxy.org/)
+- [ecapture](https://github.com/gojue/ecapture)
+- [Tampermonkey](https://www.tampermonkey.net/)
+- [Tampermonkey API](https://www.tampermonkey.net/documentation.php)
