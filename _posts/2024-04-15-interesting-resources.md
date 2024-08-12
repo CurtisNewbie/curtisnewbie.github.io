@@ -99,10 +99,11 @@ Interesting papers, books and websites are listed here.
 - [Julia Evans - git rebase: what can go wrong?](https://jvns.ca/blog/2023/11/06/rebasing-what-can-go-wrong-/)
 - [StackOverflow - How do I squash my last N commits together?](https://stackoverflow.com/questions/5189560/how-do-i-squash-my-last-n-commits-together)
 
-### Go Modules
+### Golang
 
 - [go.dev - Go Modules: v2 and Beyond](https://go.dev/blog/v2-go-modules)
 - [go.dev - Developing and publishing modules](https://go.dev/doc/modules/developing)
+- [100 Go Mistakes and How to Avoid Them](https://100go.co/)
 
 ### GC
 
