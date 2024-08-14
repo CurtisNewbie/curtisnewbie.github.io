@@ -133,3 +133,5 @@ Interesting papers, books and websites are listed here.
 - [Tampermonkey](https://www.tampermonkey.net/)
 - [Tampermonkey API](https://www.tampermonkey.net/documentation.php)
 - [javaparser.org](https://javaparser.org/)
+    - [javaparser - Analysing an entire project in one go](https://javaparser.org/setting-up-for-analysing-a-whole-project/)
+    - [github.com/javaparser](https://github.com/javaparser/javaparser?tab=readme-ov-file)
