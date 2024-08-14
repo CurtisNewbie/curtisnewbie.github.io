@@ -105,6 +105,7 @@ Interesting papers, books and websites are listed here.
 - [go.dev - Developing and publishing modules](https://go.dev/doc/modules/developing)
 - [100 Go Mistakes and How to Avoid Them](https://100go.co/)
 - [Phuong Le, Golang Sync Mutex: Normal and Starvation Mode](https://victoriametrics.com/blog/go-sync-mutex/)
+- [Phuong Le, Vendoring, or go mod vendor: What Is It?](https://victoriametrics.com/blog/vendoring-go-mod-vendor/index.html)
 
 ### GC
 

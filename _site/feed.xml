@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-08-14T10:14:55+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Algorithm - Kmp</title><link href="https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp.html" rel="alternate" type="text/html" title="Algorithm - Kmp" /><published>2024-07-25T09:00:00+08:00</published><updated>2024-07-25T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp.html"><![CDATA[<h2 id="kmp-algorithm">KMP Algorithm</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-08-14T11:02:42+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Algorithm - Kmp</title><link href="https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp.html" rel="alternate" type="text/html" title="Algorithm - Kmp" /><published>2024-07-25T09:00:00+08:00</published><updated>2024-07-25T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp.html"><![CDATA[<h2 id="kmp-algorithm">KMP Algorithm</h2>
 
 <p>KMP is essentially finding common prefix within the substring.</p>
 
@@ -1022,6 +1022,7 @@ ImportError: /usr/local/lib64/python3.11/site-packages/torch/lib/libtorch_cuda.s
   <li><a href="https://go.dev/doc/modules/developing">go.dev - Developing and publishing modules</a></li>
   <li><a href="https://100go.co/">100 Go Mistakes and How to Avoid Them</a></li>
   <li><a href="https://victoriametrics.com/blog/go-sync-mutex/">Phuong Le, Golang Sync Mutex: Normal and Starvation Mode</a></li>
+  <li><a href="https://victoriametrics.com/blog/vendoring-go-mod-vendor/index.html">Phuong Le, Vendoring, or go mod vendor: What Is It?</a></li>
 </ul>
 
 <h3 id="gc">GC</h3>
