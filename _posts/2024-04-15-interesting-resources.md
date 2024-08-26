@@ -79,6 +79,7 @@ Interesting papers, books and websites are listed here.
 - [Oceanbase Doc](https://en.oceanbase.com/docs/oceanbase-database)
 - [Use the index, Luke - A Guide to Database Performance for Developers](https://use-the-index-luke.com/sql/preface)
 - [Eaton Phil, A write-ahead log is not a universal part of durability](https://notes.eatonphil.com/2024-07-01-a-write-ahead-log-is-not-a-universal-part-of-durability.html)
+- [StackOverflow - How are internal nodes in a innodb b-tree physically stored?](https://stackoverflow.com/questions/4307464/how-are-internal-nodes-in-a-innodb-b-tree-physically-stored)
 
 ### Other Github Repos
 
