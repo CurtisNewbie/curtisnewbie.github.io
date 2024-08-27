@@ -117,7 +117,7 @@ mvn compile <span class="nt">-T</span> 2
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">"-XX:+TieredCompilation -XX:TieredStopAtLevel=1"</span>
 </code></pre></div></div>
 
-<p>(<code class="language-plaintext highlighter-rouge">-XX:+TieredCompilation</code> is just JIT, which is by default enabled in jdk8+).</p>
+<p>(<code class="language-plaintext highlighter-rouge">-XX:+TieredCompilation</code> is multi-tier JIT, which is by default enabled in jdk8+. Tier-0 means only using interpreter).</p>
 
 <p>We can also increase the size of the heap space for mvn to help it’s compilation, which is a quite memory extensive task. Then, we have:</p>
 

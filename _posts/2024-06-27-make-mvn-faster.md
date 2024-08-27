@@ -82,7 +82,7 @@ JIT is great for long-running Java program, but it's not gonna be very helpful f
 export MAVEN_OPTS="-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
 ```
 
-(`-XX:+TieredCompilation` is just JIT, which is by default enabled in jdk8+).
+(`-XX:+TieredCompilation` is multi-tier JIT, which is by default enabled in jdk8+. Tier-0 means only using interpreter).
 
 We can also increase the size of the heap space for mvn to help it's compilation, which is a quite memory extensive task. Then, we have:
 
