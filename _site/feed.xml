@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-08-26T16:27:47+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Algorithm - Kmp</title><link href="https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp.html" rel="alternate" type="text/html" title="Algorithm - Kmp" /><published>2024-07-25T09:00:00+08:00</published><updated>2024-07-25T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp.html"><![CDATA[<h2 id="kmp-algorithm">KMP Algorithm</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-08-27T16:15:19+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Algorithm - Kmp</title><link href="https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp.html" rel="alternate" type="text/html" title="Algorithm - Kmp" /><published>2024-07-25T09:00:00+08:00</published><updated>2024-07-25T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp.html"><![CDATA[<h2 id="kmp-algorithm">KMP Algorithm</h2>
 
 <p>KMP is essentially finding common prefix within the substring.</p>
 
@@ -139,10 +139,12 @@ mvn compile <span class="nt">-T</span> 2
 
 <p>As we all know that JVM uses JIT to optimize bytecode in runtime. During the Java program execution, JVM identifies hot spots and rewrites the bytecode to make things faster. In other words, JVM is frequently recompiling our code.</p>
 
-<p>JIT is great for long-running Java program, but it’s not gonna be very helpful for mvn. We can disable it as below:</p>
+<p>JIT is great for long-running Java program, but it’s not gonna be very helpful for mvn. We can disable C2 compiler and leave C1 compiler only as below:</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">"-XX:+TieredCompilation -XX:TieredStopAtLevel=1"</span>
 </code></pre></div></div>
+
+<p>(<code class="language-plaintext highlighter-rouge">-XX:+TieredCompilation</code> is just JIT, which is by default enabled in jdk8+).</p>
 
 <p>We can also increase the size of the heap space for mvn to help it’s compilation, which is a quite memory extensive task. Then, we have:</p>
 

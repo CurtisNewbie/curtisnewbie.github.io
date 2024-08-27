@@ -76,11 +76,13 @@ mvn compile -DadditionalJOption=-Xdoclint:none
 
 As we all know that JVM uses JIT to optimize bytecode in runtime. During the Java program execution, JVM identifies hot spots and rewrites the bytecode to make things faster. In other words, JVM is frequently recompiling our code.
 
-JIT is great for long-running Java program, but it's not gonna be very helpful for mvn. We can disable it as below:
+JIT is great for long-running Java program, but it's not gonna be very helpful for mvn. We can disable C2 compiler and leave C1 compiler only as below:
 
 ```sh
 export MAVEN_OPTS="-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
 ```
+
+(`-XX:+TieredCompilation` is just JIT, which is by default enabled in jdk8+).
 
 We can also increase the size of the heap space for mvn to help it's compilation, which is a quite memory extensive task. Then, we have:
 
