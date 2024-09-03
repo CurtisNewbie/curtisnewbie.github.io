@@ -7,15 +7,8 @@ categories: Projects
 
 The moon project is self-hosted private cloud that consists of a set of backend and frontend services that I maintain in my spare time.
 
-These can be found in the following repositories:
+Monorepo: https://github.com/CurtisNewbie/moon-monorepo
 
-- [curtisnewbie/user-vault](https://github.com/curtisnewbie/user-vault)
-- [curtisnewbie/vfm](https://github.com/curtisnewbie/vfm)
-- [curtisnewbie/mini-fstore](https://github.com/curtisnewbie/mini-fstore)
-- [curtisnewbie/logbot](https://github.com/curtisnewbie/logbot)
-- [curtisnewbie/gatekeeper](https://github.com/curtisnewbie/gatekeeper)
-- [curtisnewbie/moon](https://github.com/curtisnewbie/moon)
-
-<!-- TODO -->
+<!-- TODO talk about the monorepo -->
 
 
