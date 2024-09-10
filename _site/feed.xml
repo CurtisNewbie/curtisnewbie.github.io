@@ -1,4 +1,80 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-09-03T15:29:28+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Algorithm - Kmp</title><link href="https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp.html" rel="alternate" type="text/html" title="Algorithm - Kmp" /><published>2024-07-25T09:00:00+08:00</published><updated>2024-07-25T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp.html"><![CDATA[<h2 id="kmp-algorithm">KMP Algorithm</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-09-10T15:52:48+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">How to patch node_module source code</title><link href="https://curtisnewbie.github.io/learning/2024/09/10/how-to-patch-node-module.html" rel="alternate" type="text/html" title="How to patch node_module source code" /><published>2024-09-10T15:39:00+08:00</published><updated>2024-09-10T15:39:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/09/10/how-to-patch-node-module</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/09/10/how-to-patch-node-module.html"><![CDATA[<p><strong>Credits:</strong></p>
+
+<ul>
+  <li>https://stackoverflow.com/questions/72820625/what-is-the-proper-way-to-patch-a-node-modules-module</li>
+</ul>
+
+<p>Install all your dependencies, make sure <code class="language-plaintext highlighter-rouge">/node_modules</code> is properly installed:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm ci
+</code></pre></div></div>
+
+<p>Modify code in <code class="language-plaintext highlighter-rouge">/node_modules</code>, e.g.,:</p>
+
+<p>Changing <code class="language-plaintext highlighter-rouge">highlight.js</code> source code as follow</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// before the change</span>
+<span class="nx">regex</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">concat</span><span class="p">:</span> <span class="p">(...</span><span class="nx">args</span><span class="p">:</span> <span class="p">(</span><span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)[])</span> <span class="o">=&gt;</span> <span class="kr">string</span><span class="p">,</span>
+    <span class="nx">lookahead</span><span class="p">:</span> <span class="p">(</span><span class="nx">re</span><span class="p">:</span> <span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">string</span><span class="p">,</span>
+    <span class="nx">either</span><span class="p">:</span> <span class="p">(...</span><span class="nx">args</span><span class="p">:</span> <span class="p">(</span><span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)[]</span> <span class="o">|</span> <span class="kr">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">string</span><span class="p">,</span>
+    <span class="nx">optional</span><span class="p">:</span> <span class="p">(</span><span class="nx">re</span><span class="p">:</span> <span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">string</span><span class="p">,</span>
+    <span class="nx">anyNumberOfTimes</span><span class="p">:</span> <span class="p">(</span><span class="nx">re</span><span class="p">:</span> <span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">string</span>
+<span class="p">}</span>
+<span class="nl">newInstance</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">HLJSApi</span>
+
+<span class="c1">// after the change</span>
+<span class="nx">regex</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">concat</span><span class="p">:</span> <span class="p">(...</span><span class="nx">args</span><span class="p">:</span> <span class="p">(</span><span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)[])</span> <span class="o">=&gt;</span> <span class="kr">string</span><span class="p">,</span>
+    <span class="nx">lookahead</span><span class="p">:</span> <span class="p">(</span><span class="nx">re</span><span class="p">:</span> <span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">string</span><span class="p">,</span>
+    <span class="nx">either</span><span class="p">:</span> <span class="p">(...</span><span class="nx">args</span><span class="p">:</span> <span class="p">(</span><span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)[]</span> <span class="o">|</span> <span class="kr">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">string</span><span class="p">,</span> <span class="c1">// &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; Change this</span>
+    <span class="nx">optional</span><span class="p">:</span> <span class="p">(</span><span class="nx">re</span><span class="p">:</span> <span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">string</span><span class="p">,</span>
+    <span class="nx">anyNumberOfTimes</span><span class="p">:</span> <span class="p">(</span><span class="nx">re</span><span class="p">:</span> <span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">string</span>
+<span class="p">}</span>
+<span class="nl">newInstance</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">HLJSApi</span>
+</code></pre></div></div>
+
+<p>Create patch using <code class="language-plaintext highlighter-rouge">npx</code>:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx patch-package highlight.js
+</code></pre></div></div>
+
+<p>Patch file is created at <code class="language-plaintext highlighter-rouge">/patches</code> folder, it looks this:</p>
+
+<p>Filename: <code class="language-plaintext highlighter-rouge">highlight.js+11.9.0.patch</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>diff --git a/node_modules/highlight.js/types/index.d.ts b/node_modules/highlight.js/types/index.d.ts
+index 1941e61..8b4d959 100644
+--- a/node_modules/highlight.js/types/index.d.ts
++++ b/node_modules/highlight.js/types/index.d.ts
+@@ -53,7 +53,7 @@ declare module 'highlight.js' {
+         regex: {
+             concat: (...args: (RegExp | string)[]) =&gt; string,
+             lookahead: (re: RegExp | string) =&gt; string,
+-            either: (...args: (RegExp | string)[] | [...(RegExp | string)[], RegexEitherOptions]) =&gt; string,
++            either: (...args: any) =&gt; string, // &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; Change this
+             optional: (re: RegExp | string) =&gt; string,
+             anyNumberOfTimes: (re: RegExp | string) =&gt; string
+         }
+</code></pre></div></div>
+
+<p>Install patche-packages and postinstall dependencies:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>patch-package postinstall-postinstall
+</code></pre></div></div>
+
+<p>Modify <code class="language-plaintext highlighter-rouge">package.json</code> to apply patches after install:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
+  </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+	</span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"postinstall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"patch-package"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+
+  </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Credits:]]></summary></entry><entry><title type="html">Algorithm - Kmp</title><link href="https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp.html" rel="alternate" type="text/html" title="Algorithm - Kmp" /><published>2024-07-25T09:00:00+08:00</published><updated>2024-07-25T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp.html"><![CDATA[<h2 id="kmp-algorithm">KMP Algorithm</h2>
 
 <p>KMP is essentially finding common prefix within the substring.</p>
 
