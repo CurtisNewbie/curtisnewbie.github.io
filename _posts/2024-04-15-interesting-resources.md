@@ -59,6 +59,7 @@ Interesting papers, books and websites are listed here.
 - [Go Data Structures: Interfaces](https://research.swtch.com/interfaces)
 - [The Go Scheduler](https://morsmachine.dk/go-scheduler)
 - [Linux Kernel Documentation](https://www.kernel.org/doc/html/latest/index.html)
+- [The Secret Lives of Data - Raft](https://thesecretlivesofdata.com/raft/)
 
 ### Database Related
 
