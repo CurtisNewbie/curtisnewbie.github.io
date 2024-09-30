@@ -143,3 +143,6 @@ Interesting papers, books and websites are listed here.
 ### Typing
 
 - [typelit.io](https://www.typelit.io/)
+- [keymash.io](https://keymash.io/)
+- [typeracer](https://play.typeracer.com/)
+- [zty.pe](https://zty.pe/)
