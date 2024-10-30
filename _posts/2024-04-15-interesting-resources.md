@@ -140,6 +140,7 @@ Interesting papers, books and websites are listed here.
     - [javaparser - Analysing an entire project in one go](https://javaparser.org/setting-up-for-analysing-a-whole-project/)
     - [github.com/javaparser](https://github.com/javaparser/javaparser?tab=readme-ov-file)
 - [Online Java Compiler](https://www.jdoodle.com/online-java-compiler)
+- [set -ex - The most useful bash trick of the year](https://www.peterbe.com/plog/set-ex)
 
 ### Typing
 
