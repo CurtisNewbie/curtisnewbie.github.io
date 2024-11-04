@@ -60,6 +60,10 @@ Interesting papers, books and websites are listed here.
 - [The Go Scheduler](https://morsmachine.dk/go-scheduler)
 - [Linux Kernel Documentation](https://www.kernel.org/doc/html/latest/index.html)
 - [The Secret Lives of Data - Raft](https://thesecretlivesofdata.com/raft/)
+- Posts, Blogs
+    - [techurls](https://techurls.com/)
+    - [hacker news](https://news.ycombinator.com/)
+    - [bearblog](https://bearblog.dev/discover/?page=1)
 
 ### Database Related
 
