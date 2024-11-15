@@ -152,3 +152,7 @@ Interesting papers, books and websites are listed here.
 - [keymash.io](https://keymash.io/)
 - [typeracer](https://play.typeracer.com/)
 - [zty.pe](https://zty.pe/)
+
+### Java Lambda & Serialization
+
+- [https://blogs.oracle.com/javamagazine/post/behind-the-scenes-how-do-lambda-expressions-really-work-in-java](https://blogs.oracle.com/javamagazine/post/behind-the-scenes-how-do-lambda-expressions-really-work-in-java)
