@@ -64,6 +64,7 @@ Interesting papers, books and websites are listed here.
     - [techurls](https://techurls.com/)
     - [hacker news](https://news.ycombinator.com/)
     - [bearblog](https://bearblog.dev/discover/?page=1)
+- [Constraints in Go](https://bitfieldconsulting.com/posts/constraints)
 
 ### Database Related
 
