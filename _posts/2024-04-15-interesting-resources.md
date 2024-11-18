@@ -65,6 +65,7 @@ Interesting papers, books and websites are listed here.
     - [hacker news](https://news.ycombinator.com/)
     - [bearblog](https://bearblog.dev/discover/?page=1)
 - [Constraints in Go](https://bitfieldconsulting.com/posts/constraints)
+- [Soldering is Easy: Here's How to Do it (Extended Version)](https://mightyohm.com/files/soldercomic/FullSolderComic_EN.pdf)
 
 ### Database Related
 
