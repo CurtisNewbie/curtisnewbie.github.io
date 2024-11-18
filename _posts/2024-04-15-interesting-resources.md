@@ -134,6 +134,7 @@ Interesting papers, books and websites are listed here.
 - [RedHat, Matt Robson - Part 1: Introduction to the G1 Garbage Collector](https://www.redhat.com/en/blog/part-1-introduction-g1-garbage-collector)
 - [RedHat, Matt Robson - Part 2: Collecting and reading G1 garbage collector logs](https://www.redhat.com/en/blog/collecting-and-reading-g1-garbage-collector-logs-part-2)
 - [美团技术团队 - Java Hotspot G1 GC 的一些关键技术](https://tech.meituan.com/2016/09/23/g1.html)
+- [wiki.openjdk.org - shenandoah](https://wiki.openjdk.org/display/shenandoah/Main)
 
 ### Tools
 
