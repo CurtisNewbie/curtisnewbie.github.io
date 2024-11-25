@@ -66,6 +66,8 @@ Interesting papers, books and websites are listed here.
     - [bearblog](https://bearblog.dev/discover/?page=1)
 - [Constraints in Go](https://bitfieldconsulting.com/posts/constraints)
 - [Soldering is Easy: Here's How to Do it (Extended Version)](https://mightyohm.com/files/soldercomic/FullSolderComic_EN.pdf)
+- [htmx - Codin' Dirty](https://htmx.org/essays/codin-dirty/)
+- [The Grug Brained Developer A layman's guide to thinking like the self-aware smol brained](https://grugbrain.dev)
 
 ### Database Related
 
@@ -136,6 +138,7 @@ Interesting papers, books and websites are listed here.
 - [RedHat, Matt Robson - Part 2: Collecting and reading G1 garbage collector logs](https://www.redhat.com/en/blog/collecting-and-reading-g1-garbage-collector-logs-part-2)
 - [美团技术团队 - Java Hotspot G1 GC 的一些关键技术](https://tech.meituan.com/2016/09/23/g1.html)
 - [wiki.openjdk.org - shenandoah](https://wiki.openjdk.org/display/shenandoah/Main)
+- [The Go Blog - Getting to Go: The Journey of Go's Garbage Collector](https://go.dev/blog/ismmkeynote)
 
 ### Tools
 
