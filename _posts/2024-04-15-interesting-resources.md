@@ -90,6 +90,7 @@ Interesting papers, books and websites are listed here.
 - [Eaton Phil, A write-ahead log is not a universal part of durability](https://notes.eatonphil.com/2024-07-01-a-write-ahead-log-is-not-a-universal-part-of-durability.html)
 - [StackOverflow - How are internal nodes in a innodb b-tree physically stored?](https://stackoverflow.com/questions/4307464/how-are-internal-nodes-in-a-innodb-b-tree-physically-stored)
 - [Uber - Upgrading Ubers MySQL Fleet](https://www.uber.com/en-JO/blog/upgrading-ubers-mysql-fleet/)
+- [Brian Douglas - SQLite Defaults](https://briandouglas.ie/sqlite-defaults/)
 
 ### Other Github Repos
 
