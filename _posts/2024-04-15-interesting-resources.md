@@ -68,6 +68,7 @@ Interesting papers, books and websites are listed here.
 - [Soldering is Easy: Here's How to Do it (Extended Version)](https://mightyohm.com/files/soldercomic/FullSolderComic_EN.pdf)
 - [htmx - Codin' Dirty](https://htmx.org/essays/codin-dirty/)
 - [The Grug Brained Developer A layman's guide to thinking like the self-aware smol brained](https://grugbrain.dev)
+- [Matt Kline - What every systems programmer should know about concurrency](https://assets.bitbashing.io/papers/concurrency-primer.pdf)
 
 ### Database Related
 
