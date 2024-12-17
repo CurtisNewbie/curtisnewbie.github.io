@@ -70,6 +70,9 @@ Interesting papers, books and websites are listed here.
 - [The Grug Brained Developer A layman's guide to thinking like the self-aware smol brained](https://grugbrain.dev)
 - [Matt Kline - What every systems programmer should know about concurrency](https://assets.bitbashing.io/papers/concurrency-primer.pdf)
 - [Kate holterhoff - Why Message Queues Endure: A History](https://redmonk.com/kholterhoff/2024/12/12/why-message-queues-endure-a-history/)
+- [HTTP/3 Explained](https://http3-explained.haxx.se/en)
+- [HTTP/2 Explained](https://daniel.haxx.se/http2/)
+
 
 ### Database Related
 
