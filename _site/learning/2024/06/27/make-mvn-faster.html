@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Make mvn faster | kekw</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="Make mvn faster" />
+<meta name="author" content="Yongjie Zhuang" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="1. Brief" />
+<meta property="og:description" content="1. Brief" />
+<link rel="canonical" href="https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-faster.html" />
+<meta property="og:url" content="https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-faster.html" />
+<meta property="og:site_name" content="kekw" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-06-27T17:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Make mvn faster" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Yongjie Zhuang"},"dateModified":"2024-06-27T17:00:00+08:00","datePublished":"2024-06-27T17:00:00+08:00","description":"1. Brief","headline":"Make mvn faster","mainEntityOfPage":{"@type":"WebPage","@id":"https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-faster.html"},"url":"https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-faster.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://curtisnewbie.github.io/feed.xml" title="kekw" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">kekw</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Make mvn faster</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2024-06-27T17:00:00+08:00" itemprop="datePublished">Jun 27, 2024
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h3 id="1-brief">1. Brief</h3>
+
+<p>The followings are some of the tricks that I am using to make mvn run faster, all of these ideas are from the Internet, but unfortunately I forgot where they were from.</p>
+
+<p>These tricks indeed work on my machine (Macbook Pro m2 and m3) with noticeable speedup, but I recommend you to always measure the result before you make any judgement.</p>
+
+<p>How much these tricks improve the performance may also depend on your project, dependencies and so on.</p>
+
+<h3 id="2-tricks">2. Tricks</h3>
+
+<h4 id="21-enable-multi-threading">2.1 Enable multi-threading</h4>
+
+<p>Compiling code with multiple threads may speed up the process a little bit, though it depends on whether your dependencies support multi-threading.</p>
+
+<p>In the following example, we are compiling with <code class="language-plaintext highlighter-rouge">Num of Cores * 1</code> threads. E.g., <code class="language-plaintext highlighter-rouge">2C</code> is equivalent to <code class="language-plaintext highlighter-rouge">Num of Cores * 2</code>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-T</span> 1C
+</code></pre></div></div>
+
+<p>You can also explicitly configure exactly how many threads you want to use:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 2 threads</span>
+mvn compile <span class="nt">-T</span> 2
+</code></pre></div></div>
+
+<h4 id="22-enable-offline-mode">2.2 Enable offline mode</h4>
+
+<p>Enable offline mode allows you to compile project without attempting to pull remote dependencies. It’s useful if you know that you have already got the latest dependencies or you simply don’t care. This can bring huge performance boost, especially if your network is unacceptably slow.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-o</span>
+</code></pre></div></div>
+
+<h4 id="23-skip-running-tests">2.3. Skip running tests</h4>
+
+<p>With this flag included, tests are compiled but not executed.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-DskipTests</span>
+</code></pre></div></div>
+
+<h4 id="24-skip-compiling-tests">2.4. Skip compiling tests</h4>
+
+<p>With this flag included, test artifacts for the project are not compiled at all.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-Dmaven</span>.test.skip<span class="o">=</span><span class="nb">true</span>
+</code></pre></div></div>
+
+<h4 id="25-skip-javadoc-generation">2.5. Skip javadoc generation</h4>
+
+<p>If you are deploying packages to remote repository as dependencies, then you should almost always include JavaDoc in the generated packages.</p>
+
+<p>However, if you are just compiling the code for testing or deployment (as an app), then you don’t really need the javadoc. You can skip the javadoc generation as below to speed up the process.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-Dmaven</span>.javadoc.skip<span class="o">=</span><span class="nb">true</span>
+</code></pre></div></div>
+
+<p>You can also disable javadoc linting as below:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-DadditionalJOption</span><span class="o">=</span><span class="nt">-Xdoclint</span>:none
+</code></pre></div></div>
+
+<h4 id="26-disable-mvn-jvm-tieredcompilation-and-increase-heap-size">2.6. Disable mvn JVM TieredCompilation and increase heap size</h4>
+
+<p>As we all know that JVM uses JIT to optimize bytecode in runtime. During the Java program execution, JVM identifies hot spots and rewrites the bytecode to make things faster. In other words, JVM is frequently recompiling our code.</p>
+
+<p>JIT is great for long-running Java program, but it’s not gonna be very helpful for mvn. We can disable C2 compiler and leave C1 compiler only as below:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">"-XX:+TieredCompilation -XX:TieredStopAtLevel=1"</span>
+</code></pre></div></div>
+
+<p>(<code class="language-plaintext highlighter-rouge">-XX:+TieredCompilation</code> is multi-tier JIT, which is by default enabled in jdk8+. Tier-0 means only using interpreter).</p>
+
+<p>We can also increase the size of the heap space for mvn to help it’s compilation, which is a quite memory extensive task. Then, we have:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">"-Xmx1000m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"</span>
+</code></pre></div></div>
+
+<h3 id="3-result">3. Result</h3>
+
+<p>Put them all together, we have following command:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">"-Xmx1000m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"</span>
+
+mvn compile <span class="nt">-T</span> 1C <span class="nt">-o</span> <span class="nt">-Dmaven</span>.javadoc.skip<span class="o">=</span><span class="nb">true</span> <span class="nt">-Dmaven</span>.test.skip<span class="o">=</span><span class="nb">true</span> <span class="nt">-DadditionalJOption</span><span class="o">=</span><span class="nt">-Xdoclint</span>:none <span class="nt">-DskipTests</span>
+</code></pre></div></div>
+
+<p>Below is a comparison between normal <code class="language-plaintext highlighter-rouge">mvn compile</code> and the one without all of the optimization mentioned above.</p>
+
+<h3 id="4-experiment">4. Experiment</h3>
+
+<p>The experiment only demonstrates the potential improvement these tricks bring, it may differ for different projects on different machines.</p>
+
+<ul>
+  <li>Same maven project (classic spring-boot style webapp)</li>
+  <li>MacBook Pro 2022 M2 16GB</li>
+  <li>Three attempts for each.</li>
+</ul>
+
+<p>Without optimization:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">unset </span>MAVEN_OPTS
+
+mvn compile
+</code></pre></div></div>
+
+<ol>
+  <li>1st Attempt: <code class="language-plaintext highlighter-rouge">Total time:  13.380 s</code></li>
+  <li>2nd Attempt: <code class="language-plaintext highlighter-rouge">Total time:  13.373 s</code></li>
+  <li>3rd Attempt: <code class="language-plaintext highlighter-rouge">Total time:  13.178 s</code></li>
+</ol>
+
+<p>With all the optimization:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">"-Xmx1000m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"</span>
+
+mvn compile <span class="nt">-T</span> 1C <span class="nt">-o</span> <span class="nt">-Dmaven</span>.javadoc.skip<span class="o">=</span><span class="nb">true</span> <span class="nt">-Dmaven</span>.test.skip<span class="o">=</span><span class="nb">true</span> <span class="nt">-DadditionalJOption</span><span class="o">=</span><span class="nt">-Xdoclint</span>:none <span class="nt">-DskipTests</span>
+</code></pre></div></div>
+
+<ol>
+  <li>1st Attempt: <code class="language-plaintext highlighter-rouge">Total time:  7.032 s</code></li>
+  <li>2nd Attempt: <code class="language-plaintext highlighter-rouge">Total time:  6.979 s</code></li>
+  <li>3rd Attempt: <code class="language-plaintext highlighter-rouge">Total time:  7.182 s</code></li>
+</ol>
+
+<p>The <code class="language-plaintext highlighter-rouge">'Total time'</code> shown above is copied from the output of <code class="language-plaintext highlighter-rouge">mvn compile</code> command.</p>
+
+<h3 id="5-more-on-install-and-deploy">5. More on install and deploy</h3>
+
+<p>If you are installing / deploying a specific submodule in a project (e.g., submodule being a dependency for other apps), you can choose to install or deploy that specific submodule without recompiling other modules.</p>
+
+<p>Imagine that our project is called <code class="language-plaintext highlighter-rouge">myapp</code>, and we are trying to install a submodule called <code class="language-plaintext highlighter-rouge">myapp-api</code>, then we can install this submodule using following command:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn <span class="nb">install</span> <span class="nt">-pl</span> myapp-api
+</code></pre></div></div>
+
+<p>It’s the same if we are deploying the submodule:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn deploy <span class="nt">-pl</span> myapp-api
+</code></pre></div></div>
+
+<p>This can also speed up the process quite a lot.</p>
+
+  </div><a class="u-url" href="/learning/2024/06/27/make-mvn-faster.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">kekw</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Yongjie Zhuang</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/CurtisNewbie"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">CurtisNewbie</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Til the end</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,21 +1,1002 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-04-21T17:46:44+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">somewhere in the ocean</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Interesting Resources</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html" rel="alternate" type="text/html" title="Interesting Resources" /><published>2024-04-15T20:00:00+08:00</published><updated>2024-04-15T20:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html"><![CDATA[<p>Interesting papers, books and websites are listed here.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-12-17T13:56:54+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">How to patch node_module source code</title><link href="https://curtisnewbie.github.io/learning/2024/09/10/how-to-patch-node-module.html" rel="alternate" type="text/html" title="How to patch node_module source code" /><published>2024-09-10T15:39:00+08:00</published><updated>2024-09-10T15:39:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/09/10/how-to-patch-node-module</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/09/10/how-to-patch-node-module.html"><![CDATA[<p><strong>Credits:</strong></p>
 
-<p>Some interesting papers:</p>
+<ul>
+  <li>https://stackoverflow.com/questions/72820625/what-is-the-proper-way-to-patch-a-node-modules-module</li>
+</ul>
+
+<p>Install all your dependencies, make sure <code class="language-plaintext highlighter-rouge">/node_modules</code> is properly installed:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm ci
+</code></pre></div></div>
+
+<p>Modify code in <code class="language-plaintext highlighter-rouge">/node_modules</code>, e.g.,:</p>
+
+<p>Changing <code class="language-plaintext highlighter-rouge">highlight.js</code> source code as follow</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// before the change</span>
+<span class="nx">regex</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">concat</span><span class="p">:</span> <span class="p">(...</span><span class="nx">args</span><span class="p">:</span> <span class="p">(</span><span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)[])</span> <span class="o">=&gt;</span> <span class="kr">string</span><span class="p">,</span>
+    <span class="nx">lookahead</span><span class="p">:</span> <span class="p">(</span><span class="nx">re</span><span class="p">:</span> <span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">string</span><span class="p">,</span>
+    <span class="nx">either</span><span class="p">:</span> <span class="p">(...</span><span class="nx">args</span><span class="p">:</span> <span class="p">(</span><span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)[]</span> <span class="o">|</span> <span class="kr">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">string</span><span class="p">,</span>
+    <span class="nx">optional</span><span class="p">:</span> <span class="p">(</span><span class="nx">re</span><span class="p">:</span> <span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">string</span><span class="p">,</span>
+    <span class="nx">anyNumberOfTimes</span><span class="p">:</span> <span class="p">(</span><span class="nx">re</span><span class="p">:</span> <span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">string</span>
+<span class="p">}</span>
+<span class="nl">newInstance</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">HLJSApi</span>
+
+<span class="c1">// after the change</span>
+<span class="nx">regex</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">concat</span><span class="p">:</span> <span class="p">(...</span><span class="nx">args</span><span class="p">:</span> <span class="p">(</span><span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)[])</span> <span class="o">=&gt;</span> <span class="kr">string</span><span class="p">,</span>
+    <span class="nx">lookahead</span><span class="p">:</span> <span class="p">(</span><span class="nx">re</span><span class="p">:</span> <span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">string</span><span class="p">,</span>
+    <span class="nx">either</span><span class="p">:</span> <span class="p">(...</span><span class="nx">args</span><span class="p">:</span> <span class="p">(</span><span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)[]</span> <span class="o">|</span> <span class="kr">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">string</span><span class="p">,</span> <span class="c1">// &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; Change this</span>
+    <span class="nx">optional</span><span class="p">:</span> <span class="p">(</span><span class="nx">re</span><span class="p">:</span> <span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">string</span><span class="p">,</span>
+    <span class="nx">anyNumberOfTimes</span><span class="p">:</span> <span class="p">(</span><span class="nx">re</span><span class="p">:</span> <span class="nb">RegExp</span> <span class="o">|</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="kr">string</span>
+<span class="p">}</span>
+<span class="nl">newInstance</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">HLJSApi</span>
+</code></pre></div></div>
+
+<p>Create patch using <code class="language-plaintext highlighter-rouge">npx</code>:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx patch-package highlight.js
+</code></pre></div></div>
+
+<p>Patch file is created at <code class="language-plaintext highlighter-rouge">/patches</code> folder, it looks this:</p>
+
+<p>Filename: <code class="language-plaintext highlighter-rouge">highlight.js+11.9.0.patch</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>diff --git a/node_modules/highlight.js/types/index.d.ts b/node_modules/highlight.js/types/index.d.ts
+index 1941e61..8b4d959 100644
+--- a/node_modules/highlight.js/types/index.d.ts
++++ b/node_modules/highlight.js/types/index.d.ts
+@@ -53,7 +53,7 @@ declare module 'highlight.js' {
+         regex: {
+             concat: (...args: (RegExp | string)[]) =&gt; string,
+             lookahead: (re: RegExp | string) =&gt; string,
+-            either: (...args: (RegExp | string)[] | [...(RegExp | string)[], RegexEitherOptions]) =&gt; string,
++            either: (...args: any) =&gt; string, // &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; Change this
+             optional: (re: RegExp | string) =&gt; string,
+             anyNumberOfTimes: (re: RegExp | string) =&gt; string
+         }
+</code></pre></div></div>
+
+<p>Install patche-packages and postinstall dependencies:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>patch-package postinstall-postinstall
+</code></pre></div></div>
+
+<p>Modify <code class="language-plaintext highlighter-rouge">package.json</code> to apply patches after install:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
+  </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+	</span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"postinstall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"patch-package"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+
+  </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Credits:]]></summary></entry><entry><title type="html">Algorithm - Kmp</title><link href="https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp.html" rel="alternate" type="text/html" title="Algorithm - Kmp" /><published>2024-07-25T09:00:00+08:00</published><updated>2024-07-25T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/07/25/algo-kmp.html"><![CDATA[<h2 id="kmp-algorithm">KMP Algorithm</h2>
+
+<p>KMP is essentially finding common prefix within the substring.</p>
+
+<p>Create a <code class="language-plaintext highlighter-rouge">next</code> (index) array, for each character in substring, find the previous character that also share the same prefix as the current substring. In the process of finding substring, when we find a mismatch, we can use this <code class="language-plaintext highlighter-rouge">next</code> (index) array to jump back to the previous character that matches current substring without needing to traverse the whole substring again.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>substring: `abeabc`
+next: `[0,0,0,1,2,0]`
+
+substring: `aaa`
+next: `[0,1,2]`
+
+substring: `abcabc`
+next: `[0,0,0,1,2,3]`
+</code></pre></div></div>
+
+<p>E.g., in <code class="language-plaintext highlighter-rouge">abcabc</code>, substring [0:3] (<code class="language-plaintext highlighter-rouge">abc</code>) doesn’t share any prefix, when we find a mismatch, we always go back to 0 index. For index 3 (<code class="language-plaintext highlighter-rouge">a</code>), it shares the same prefix with substring [0:1] (<code class="language-plaintext highlighter-rouge">a</code>), so when we find a mismatch at index 4 (<code class="language-plaintext highlighter-rouge">abcab</code>), we jump back to next[4-1] = 1, because we know previous character is <code class="language-plaintext highlighter-rouge">a</code> and the first character is also <code class="language-plaintext highlighter-rouge">a</code> (by building the next array). For index 4 (<code class="language-plaintext highlighter-rouge">b</code>, substring[3:5], <code class="language-plaintext highlighter-rouge">ab</code>), it shares the same prefix with substring [0:2] (<code class="language-plaintext highlighter-rouge">ab</code>), so the value of next[4] is 2.</p>
+
+<p>Java:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">kmp</span><span class="o">(</span><span class="nc">String</span> <span class="n">source</span><span class="o">,</span> <span class="nc">String</span> <span class="n">sub</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">next</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">sub</span><span class="o">.</span><span class="na">length</span><span class="o">()];</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sub</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span> <span class="o">++)</span> <span class="o">{</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">sub</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">!=</span> <span class="n">sub</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">next</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">sub</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="n">sub</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">j</span><span class="o">++;</span>
+        <span class="o">}</span>
+        <span class="n">next</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">source</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">source</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">!=</span> <span class="n">sub</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">next</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="n">sub</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">j</span><span class="o">++;</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">sub</span><span class="o">.</span><span class="na">length</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">i</span> <span class="o">-</span> <span class="n">sub</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Go:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">Kmp</span><span class="p">(</span><span class="n">source</span> <span class="kt">string</span><span class="p">,</span> <span class="n">sub</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="n">sour</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">rune</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+	<span class="n">subr</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">rune</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span>
+	<span class="n">next</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">subr</span><span class="p">))</span>
+	<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">:=</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">subr</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="m">0</span> <span class="o">&amp;&amp;</span> <span class="n">subr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">subr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">{</span>
+			<span class="n">j</span> <span class="o">=</span> <span class="n">next</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="m">1</span><span class="p">]</span>
+		<span class="p">}</span>
+
+		<span class="k">if</span> <span class="n">subr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">subr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">{</span>
+			<span class="n">j</span><span class="o">++</span>
+		<span class="p">}</span>
+		<span class="n">next</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span>
+	<span class="p">}</span>
+
+	<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">:=</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">sour</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="m">0</span> <span class="o">&amp;&amp;</span> <span class="n">sour</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">sour</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">{</span>
+			<span class="n">j</span> <span class="o">=</span> <span class="n">next</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="m">1</span><span class="p">]</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="n">sour</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">sour</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">{</span>
+			<span class="n">j</span><span class="o">++</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">subr</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="n">i</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">subr</span><span class="p">)</span> <span class="o">+</span> <span class="m">1</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="o">-</span><span class="m">1</span>
+<span class="p">}</span>
+</code></pre></div></div>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[KMP Algorithm]]></summary></entry><entry><title type="html">Make mvn faster</title><link href="https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-faster.html" rel="alternate" type="text/html" title="Make mvn faster" /><published>2024-06-27T17:00:00+08:00</published><updated>2024-06-27T17:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-faster</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/27/make-mvn-faster.html"><![CDATA[<h3 id="1-brief">1. Brief</h3>
+
+<p>The followings are some of the tricks that I am using to make mvn run faster, all of these ideas are from the Internet, but unfortunately I forgot where they were from.</p>
+
+<p>These tricks indeed work on my machine (Macbook Pro m2 and m3) with noticeable speedup, but I recommend you to always measure the result before you make any judgement.</p>
+
+<p>How much these tricks improve the performance may also depend on your project, dependencies and so on.</p>
+
+<h3 id="2-tricks">2. Tricks</h3>
+
+<h4 id="21-enable-multi-threading">2.1 Enable multi-threading</h4>
+
+<p>Compiling code with multiple threads may speed up the process a little bit, though it depends on whether your dependencies support multi-threading.</p>
+
+<p>In the following example, we are compiling with <code class="language-plaintext highlighter-rouge">Num of Cores * 1</code> threads. E.g., <code class="language-plaintext highlighter-rouge">2C</code> is equivalent to <code class="language-plaintext highlighter-rouge">Num of Cores * 2</code>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-T</span> 1C
+</code></pre></div></div>
+
+<p>You can also explicitly configure exactly how many threads you want to use:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 2 threads</span>
+mvn compile <span class="nt">-T</span> 2
+</code></pre></div></div>
+
+<h4 id="22-enable-offline-mode">2.2 Enable offline mode</h4>
+
+<p>Enable offline mode allows you to compile project without attempting to pull remote dependencies. It’s useful if you know that you have already got the latest dependencies or you simply don’t care. This can bring huge performance boost, especially if your network is unacceptably slow.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-o</span>
+</code></pre></div></div>
+
+<h4 id="23-skip-running-tests">2.3. Skip running tests</h4>
+
+<p>With this flag included, tests are compiled but not executed.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-DskipTests</span>
+</code></pre></div></div>
+
+<h4 id="24-skip-compiling-tests">2.4. Skip compiling tests</h4>
+
+<p>With this flag included, test artifacts for the project are not compiled at all.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-Dmaven</span>.test.skip<span class="o">=</span><span class="nb">true</span>
+</code></pre></div></div>
+
+<h4 id="25-skip-javadoc-generation">2.5. Skip javadoc generation</h4>
+
+<p>If you are deploying packages to remote repository as dependencies, then you should almost always include JavaDoc in the generated packages.</p>
+
+<p>However, if you are just compiling the code for testing or deployment (as an app), then you don’t really need the javadoc. You can skip the javadoc generation as below to speed up the process.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-Dmaven</span>.javadoc.skip<span class="o">=</span><span class="nb">true</span>
+</code></pre></div></div>
+
+<p>You can also disable javadoc linting as below:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn compile <span class="nt">-DadditionalJOption</span><span class="o">=</span><span class="nt">-Xdoclint</span>:none
+</code></pre></div></div>
+
+<h4 id="26-disable-mvn-jvm-tieredcompilation-and-increase-heap-size">2.6. Disable mvn JVM TieredCompilation and increase heap size</h4>
+
+<p>As we all know that JVM uses JIT to optimize bytecode in runtime. During the Java program execution, JVM identifies hot spots and rewrites the bytecode to make things faster. In other words, JVM is frequently recompiling our code.</p>
+
+<p>JIT is great for long-running Java program, but it’s not gonna be very helpful for mvn. We can disable C2 compiler and leave C1 compiler only as below:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">"-XX:+TieredCompilation -XX:TieredStopAtLevel=1"</span>
+</code></pre></div></div>
+
+<p>(<code class="language-plaintext highlighter-rouge">-XX:+TieredCompilation</code> is multi-tier JIT, which is by default enabled in jdk8+. Tier-0 means only using interpreter).</p>
+
+<p>We can also increase the size of the heap space for mvn to help it’s compilation, which is a quite memory extensive task. Then, we have:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">"-Xmx1000m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"</span>
+</code></pre></div></div>
+
+<h3 id="3-result">3. Result</h3>
+
+<p>Put them all together, we have following command:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">"-Xmx1000m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"</span>
+
+mvn compile <span class="nt">-T</span> 1C <span class="nt">-o</span> <span class="nt">-Dmaven</span>.javadoc.skip<span class="o">=</span><span class="nb">true</span> <span class="nt">-Dmaven</span>.test.skip<span class="o">=</span><span class="nb">true</span> <span class="nt">-DadditionalJOption</span><span class="o">=</span><span class="nt">-Xdoclint</span>:none <span class="nt">-DskipTests</span>
+</code></pre></div></div>
+
+<p>Below is a comparison between normal <code class="language-plaintext highlighter-rouge">mvn compile</code> and the one without all of the optimization mentioned above.</p>
+
+<h3 id="4-experiment">4. Experiment</h3>
+
+<p>The experiment only demonstrates the potential improvement these tricks bring, it may differ for different projects on different machines.</p>
+
+<ul>
+  <li>Same maven project (classic spring-boot style webapp)</li>
+  <li>MacBook Pro 2022 M2 16GB</li>
+  <li>Three attempts for each.</li>
+</ul>
+
+<p>Without optimization:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">unset </span>MAVEN_OPTS
+
+mvn compile
+</code></pre></div></div>
+
+<ol>
+  <li>1st Attempt: <code class="language-plaintext highlighter-rouge">Total time:  13.380 s</code></li>
+  <li>2nd Attempt: <code class="language-plaintext highlighter-rouge">Total time:  13.373 s</code></li>
+  <li>3rd Attempt: <code class="language-plaintext highlighter-rouge">Total time:  13.178 s</code></li>
+</ol>
+
+<p>With all the optimization:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">MAVEN_OPTS</span><span class="o">=</span><span class="s2">"-Xmx1000m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"</span>
+
+mvn compile <span class="nt">-T</span> 1C <span class="nt">-o</span> <span class="nt">-Dmaven</span>.javadoc.skip<span class="o">=</span><span class="nb">true</span> <span class="nt">-Dmaven</span>.test.skip<span class="o">=</span><span class="nb">true</span> <span class="nt">-DadditionalJOption</span><span class="o">=</span><span class="nt">-Xdoclint</span>:none <span class="nt">-DskipTests</span>
+</code></pre></div></div>
+
+<ol>
+  <li>1st Attempt: <code class="language-plaintext highlighter-rouge">Total time:  7.032 s</code></li>
+  <li>2nd Attempt: <code class="language-plaintext highlighter-rouge">Total time:  6.979 s</code></li>
+  <li>3rd Attempt: <code class="language-plaintext highlighter-rouge">Total time:  7.182 s</code></li>
+</ol>
+
+<p>The <code class="language-plaintext highlighter-rouge">'Total time'</code> shown above is copied from the output of <code class="language-plaintext highlighter-rouge">mvn compile</code> command.</p>
+
+<h3 id="5-more-on-install-and-deploy">5. More on install and deploy</h3>
+
+<p>If you are installing / deploying a specific submodule in a project (e.g., submodule being a dependency for other apps), you can choose to install or deploy that specific submodule without recompiling other modules.</p>
+
+<p>Imagine that our project is called <code class="language-plaintext highlighter-rouge">myapp</code>, and we are trying to install a submodule called <code class="language-plaintext highlighter-rouge">myapp-api</code>, then we can install this submodule using following command:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn <span class="nb">install</span> <span class="nt">-pl</span> myapp-api
+</code></pre></div></div>
+
+<p>It’s the same if we are deploying the submodule:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn deploy <span class="nt">-pl</span> myapp-api
+</code></pre></div></div>
+
+<p>This can also speed up the process quite a lot.</p>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[1. Brief]]></summary></entry><entry><title type="html">Explore LLM using LangChain and HuggingFace</title><link href="https://curtisnewbie.github.io/learning/2024/06/24/explore-llm-using-langchain-and-huggingface.html" rel="alternate" type="text/html" title="Explore LLM using LangChain and HuggingFace" /><published>2024-06-24T09:00:00+08:00</published><updated>2024-06-24T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/06/24/explore-llm-using-langchain-and-huggingface</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/06/24/explore-llm-using-langchain-and-huggingface.html"><![CDATA[<h2 id="relevant-sites">Relevant Sites</h2>
+
+<ul>
+  <li><a href="https://python.langchain.com/v0.2/docs/introduction/">LangChain v0.2 Doc</a></li>
+  <li><a href="https://github.com/langchain-ai/langchain">LangChain Github</a></li>
+  <li><a href="https://huggingface.co/docs/hub/en/models-downloading">Download HuggingFace Model</a></li>
+  <li><a href="https://huggingface.co/microsoft/Phi-3-mini-4k-instruct">HuggingFace - Microsoft/Phi-3-mini-4k-instruct</a></li>
+  <li><a href="https://huggingface.co/blog/langchain">Blog - HuggingFace LangChain Partner Package</a></li>
+  <li><a href="https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0">HuggingFace - TinyLlama/TinyLlama-1.1B-Chat-v1.0</a></li>
+  <li><a href="https://huggingface.co/TinyLlama/TinyLlama_v1.1">HuggingFace - TinyLlama/TinyLlama_v1.1</a></li>
+  <li><a href="https://huggingface.co/TinyLlama/TinyLlama_v1.1_chinese">HuggingFace - TinyLlama/TinyLlama_v1.1_chinese</a></li>
+  <li><a href="https://discuss.huggingface.co/t/llama-7b-gpu-memory-requirement/34323/7">HuggingFace Discussion - LLaMA 7B GPU Memory Requirement</a></li>
+  <li><a href="https://huggingface.co/docs/hub/en/models-downloading">HuggingFace - Download Modesl</a></li>
+  <li><a href="https://python.langchain.com/v0.2/docs/tutorials/chatbot/">LangChain - Chatbot</a></li>
+  <li><a href="https://python.langchain.com/v0.2/docs/tutorials/qa_chat_history/">LangChain - Conversational RAG</a></li>
+  <li><a href="https://python.langchain.com/v0.2/docs/tutorials/rag/">LangChain - Build a Retrieval Augmented Generation (RAG) App</a></li>
+  <li><a href="https://python.langchain.com/v0.2/docs/integrations/vectorstores/chroma/">LangChain - Chroma (Vector Store)</a></li>
+  <li><a href="https://python.langchain.com/v0.1/docs/modules/data_connection/vectorstores/">LangChain - Vector Stores</a></li>
+  <li><a href="https://huggingface.co/Qwen/Qwen-1_8B-Chat-Int4">HuggingFace - Qwen/Qwen-1_8B-Chat-Int4</a></li>
+  <li><a href="https://github.com/QwenLM/Qwen?tab=readme-ov-file#quantization">Github - QwenLM/Qwen</a></li>
+  <li><a href="https://gist.github.com/CurtisNewbie/9d220701b4dd7f3ce00e728317ca1436">Gist CurtisNewbie - Qwen/Qwen-1_8B-Chat-Int4 Demo</a></li>
+  <li><a href="https://huggingface.co/blog/4bit-transformers-bitsandbytes">HuggingFace - 4bit Quantization</a></li>
+  <li><a href="https://huggingface.co/docs/bitsandbytes/main/en/installation">HuggingFace - bitsandbytes for Quantization</a></li>
+  <li><a href="https://python.langchain.com/v0.1/docs/modules/data_connection/retrievers/vectorstore/">LangChain - Vector store-backed retriever</a></li>
+  <li><a href="https://github.com/zylon-ai/private-gpt">Private GPT</a></li>
+</ul>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>Install langchain</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> pip <span class="nb">install </span>langchain
+</code></pre></div></div>
+
+<p>Setup langsmith (https://smith.langchain.com/), but it’s not really needed, we may well just skip this.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">LANGCHAIN_TRACING_V2</span><span class="o">=</span><span class="s2">"true"</span>
+<span class="nb">export </span><span class="nv">LANGCHAIN_API_KEY</span><span class="o">=</span><span class="s2">"..."</span>
+</code></pre></div></div>
+
+<p>Use LangChain with HuggingFace</p>
+
+<ul>
+  <li>https://python.langchain.com/v0.2/docs/integrations/platforms/huggingface/</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> pip <span class="nb">install </span>langchain-huggingface
+python3 <span class="nt">-m</span> pip <span class="nb">install</span> <span class="nt">--upgrade</span> <span class="nt">--quiet</span>  transformers <span class="nt">--quiet</span>
+</code></pre></div></div>
+
+<p>Load the HuggingFace model locally (TinyLlama/TinyLlama-1.1B-Chat-v1.0), it’s a 1.1b model, I am running it on Macbook Pro M2 16GB. My laptop cannot handle Model with over 3b parameters.</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langchain_huggingface</span> <span class="kn">import</span> <span class="n">HuggingFacePipeline</span>
+
+<span class="n">hf</span> <span class="o">=</span> <span class="n">HuggingFacePipeline</span><span class="p">.</span><span class="n">from_model_id</span><span class="p">(</span>
+    <span class="n">model_id</span><span class="o">=</span><span class="s">"TinyLlama/TinyLlama-1.1B-Chat-v1.0"</span><span class="p">,</span>
+    <span class="n">task</span><span class="o">=</span><span class="s">"text-generation"</span><span class="p">,</span>
+    <span class="n">pipeline_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s">"max_new_tokens"</span><span class="p">:</span> <span class="mi">150</span><span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>Task is what the model can handle. In this case, we are using a <code class="language-plaintext highlighter-rouge">text-generation</code> model. Which task should we specify depends on what we are doing, a model may be capable of multiple tasks.</p>
+
+<p><img src="/assets/images/hugging-face-search-task.png" alt="assets/images/hugging-face-search-task.png" /></p>
+
+<blockquote>
+  <p>Searching models based on tasks on HuggingFace.</p>
+</blockquote>
+
+<p>Create Prompt Template (will get much better response):</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langchain_core.prompts</span> <span class="kn">import</span> <span class="n">PromptTemplate</span>
+
+<span class="c1"># prompt template
+</span><span class="n">template</span> <span class="o">=</span> <span class="s">"""Question: {question}
+
+Answer: Let's think step by step."""</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">.</span><span class="n">from_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+
+<span class="c1"># bind local langchain to the prompt
+</span><span class="n">chain</span> <span class="o">=</span> <span class="n">prompt</span> <span class="o">|</span> <span class="n">hf</span><span class="p">.</span><span class="n">bind</span><span class="p">()</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="s">"How to brew coffee?"</span>
+<span class="k">print</span><span class="p">(</span><span class="n">chain</span><span class="p">.</span><span class="n">invoke</span><span class="p">({</span><span class="s">"question"</span><span class="p">:</span> <span class="n">q</span><span class="p">}))</span>
+</code></pre></div></div>
+
+<p>We can also invoke the model directly without PromptTemplate, but the response is worse:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">hf</span><span class="p">.</span><span class="n">invoke</span><span class="p">(</span><span class="s">"How to brew coffee?"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>A working example is available at: <a href="https://github.com/CurtisNewbie/llm_stuff/blob/main/tinyllama.py">github.com/CurtisNewbie/llm_stuff/blob/main/tinyllama.py</a></p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langchain_core.prompts</span> <span class="kn">import</span> <span class="n">PromptTemplate</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">readline</span>
+<span class="kn">from</span> <span class="nn">langchain_huggingface</span> <span class="kn">import</span> <span class="n">HuggingFacePipeline</span>
+
+<span class="n">hf</span> <span class="o">=</span> <span class="n">HuggingFacePipeline</span><span class="p">.</span><span class="n">from_model_id</span><span class="p">(</span>
+    <span class="n">model_id</span><span class="o">=</span><span class="s">"TinyLlama/TinyLlama-1.1B-Chat-v1.0"</span><span class="p">,</span>
+    <span class="n">task</span><span class="o">=</span><span class="s">"text-generation"</span><span class="p">,</span>
+    <span class="n">pipeline_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"max_new_tokens"</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"temperature"</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
+        <span class="s">"top_k"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="s">"top_p"</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
+        <span class="s">"do_sample"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+
+<span class="n">template</span> <span class="o">=</span> <span class="s">"""Question: {question}
+
+Answer: Let's think step by step."""</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">.</span><span class="n">from_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+
+<span class="n">chain</span> <span class="o">=</span> <span class="n">prompt</span> <span class="o">|</span> <span class="n">hf</span><span class="p">.</span><span class="n">bind</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Enter your question:"</span><span class="p">)</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">().</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">q</span><span class="p">:</span> <span class="k">continue</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">chain</span><span class="p">.</span><span class="n">invoke</span><span class="p">({</span><span class="s">"question"</span><span class="p">:</span> <span class="n">q</span><span class="p">})</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n\n</span><span class="s">&gt; model: '</span><span class="si">{</span><span class="n">resp</span><span class="si">}</span><span class="s">'</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="nb">InterruptedError</span><span class="p">:</span>
+        <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">()</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Exception caught </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>If the model supports streaming, we can change the code like the following. If the model doesn’t support streaming then the method call is simply blocked returning only one single chunk:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chain</span><span class="p">.</span><span class="n">stream</span><span class="p">({</span><span class="s">"question"</span><span class="p">:</span> <span class="n">q</span><span class="p">}):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="retrieval-augmented-generation-rag">Retrieval Augmented Generation (RAG)</h2>
+
+<ul>
+  <li><a href="https://python.langchain.com/v0.2/docs/tutorials/rag/">LangChain - Build a Retrieval Augmented Generation (RAG) App</a></li>
+  <li><a href="https://python.langchain.com/v0.2/docs/integrations/vectorstores/chroma/">LangChain - Chroma (Vector Store)</a></li>
+</ul>
+
+<p>RAG is a way to connect LLM model with external sources. In LangChain’s RAG tutorial, an OpenAI model is used and connected to a online document parsed using bs4.</p>
+
+<p>In essence, RAG involves indexing the data (documents), storing the indexes in vector database, retrieving the context from the vector database (based on similarity,
+i.e., Similarity Search) for the question, and finally adding the context to the prompt that is passed to the LLM model.</p>
+
+<p>The following images are from LangChain.</p>
+
+<p><img src="https://python.langchain.com/v0.2/assets/images/rag_indexing-8160f90a90a33253d0154659cf7d453f.png" height="350px" /></p>
+
+<p><img src="https://python.langchain.com/v0.2/assets/images/rag_retrieval_generation-1046a4668d6bb08786ef73c56d4f228a.png" height="350px" /></p>
+
+<p>Install relevant dependencies. Chroma is a vector database.</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">langchain</span> <span class="n">langchain_community</span> <span class="n">langchain_chroma</span>
+</code></pre></div></div>
+
+<p>First of all, we create a LangChain pipeline for the model:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langchain_core.prompts</span> <span class="kn">import</span> <span class="n">PromptTemplate</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">readline</span>
+<span class="kn">from</span> <span class="nn">langchain_huggingface</span> <span class="kn">import</span> <span class="n">HuggingFacePipeline</span>
+
+<span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">300</span>
+<span class="n">task</span><span class="o">=</span><span class="s">"text-generation"</span>
+<span class="n">model</span><span class="o">=</span><span class="s">"TinyLlama/TinyLlama-1.1B-Chat-v1.0"</span>
+
+<span class="n">hf</span> <span class="o">=</span> <span class="n">HuggingFacePipeline</span><span class="p">.</span><span class="n">from_model_id</span><span class="p">(</span>
+    <span class="n">model_id</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span>
+    <span class="n">pipeline_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"max_new_tokens"</span><span class="p">:</span> <span class="n">max_new_tokens</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"temperature"</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
+        <span class="s">"top_k"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="s">"top_p"</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
+        <span class="s">"do_sample"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>Import DocumentLoader to load external documents. Import Splitter to break documents into chunks. Import Embeddings to create a vector representation of text that is stored in a vector database.</p>
+
+<p>In the following code, the retriever is created from the vector database. Retriever is simply a concept that accepts a string query and returns a list of documents,
+in this case, it’s doing similarity search based on the question asked.</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langchain_chroma</span> <span class="kn">import</span> <span class="n">Chroma</span>
+<span class="kn">from</span> <span class="nn">langchain_community.document_loaders</span> <span class="kn">import</span> <span class="n">TextLoader</span>
+<span class="kn">from</span> <span class="nn">langchain_text_splitters</span> <span class="kn">import</span> <span class="n">CharacterTextSplitter</span>
+<span class="kn">from</span> <span class="nn">langchain_huggingface</span> <span class="kn">import</span> <span class="n">HuggingFaceEmbeddings</span>
+<span class="kn">from</span> <span class="nn">langchain_core.runnables</span> <span class="kn">import</span> <span class="n">RunnablePassthrough</span>
+
+<span class="c1"># load the local document
+</span><span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s">"about_onecafe.txt"</span><span class="p">]</span>
+<span class="n">documents</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span> <span class="n">documents</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">TextLoader</span><span class="p">(</span><span class="n">f</span><span class="p">).</span><span class="n">load</span><span class="p">())</span>
+
+<span class="c1"># split documents into chunks
+</span><span class="n">text_splitter</span> <span class="o">=</span> <span class="n">CharacterTextSplitter</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="p">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+
+<span class="c1"># create Embedding function to convert each piece of text to vector
+</span><span class="n">embed</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">()</span>
+
+<span class="c1"># store documents into Chroma (in memory)
+</span><span class="n">vec</span> <span class="o">=</span> <span class="n">Chroma</span><span class="p">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">embed</span><span class="p">)</span>
+
+<span class="c1"># create retriever from the vector database
+</span><span class="n">retriever</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">as_retriever</span><span class="p">(</span><span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s">"k"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span> <span class="c1"># default: k is 4
+</span></code></pre></div></div>
+
+<p>With all the Loader, Splitter, Embeddings, Vector Database and Retriever setup, we can construct a chain that automatically complete the context for the LLM model.</p>
+
+<p>The prompt template is slightly different, it now contains a context section for the LLM model (It’s copied from LangSmith). The content of <code class="language-plaintext highlighter-rouge">{context}</code> actually comes from the vector database using the Retriever that we just created.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">RunnablePassthrough()</code> does nothing, it just passes the query to <code class="language-plaintext highlighter-rouge">{question}</code> section.</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">format_docs</span><span class="p">(</span><span class="n">docs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s">"</span><span class="se">\n\n</span><span class="s">"</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">doc</span><span class="p">.</span><span class="n">page_content</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">)</span>
+
+<span class="n">template</span> <span class="o">=</span> <span class="s">"""You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question. If you don't know the answer, just say that you don't know. Use three sentences maximum and keep the answer concise.
+
+Question: {question}
+
+Context: {context}
+
+Answer:"""</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">.</span><span class="n">from_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+
+<span class="n">chain</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">{</span><span class="s">"context"</span><span class="p">:</span> <span class="n">retriever</span> <span class="o">|</span> <span class="n">format_docs</span><span class="p">,</span> <span class="s">"question"</span><span class="p">:</span> <span class="n">RunnablePassthrough</span><span class="p">()}</span>
+    <span class="o">|</span> <span class="n">prompt</span>
+    <span class="o">|</span> <span class="n">hf</span><span class="p">.</span><span class="n">bind</span><span class="p">()</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>Finally, we just invoke the chain with our question:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">chain</span><span class="p">.</span><span class="n">invoke</span><span class="p">(</span><span class="s">"What is LLM model?"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>A working example is available at: <a href="https://github.com/CurtisNewbie/llm_stuff/blob/main/tinyllama_rag.py">github.com/CurtisNewbie/llm_stuff/blob/main/tinyllama_rag.py</a></p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">langchain_core.prompts</span> <span class="kn">import</span> <span class="n">PromptTemplate</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">readline</span>
+<span class="kn">from</span> <span class="nn">langchain_huggingface</span> <span class="kn">import</span> <span class="n">HuggingFacePipeline</span>
+
+<span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">300</span>
+<span class="n">task</span><span class="o">=</span><span class="s">"text-generation"</span>
+<span class="n">model</span><span class="o">=</span><span class="s">"TinyLlama/TinyLlama-1.1B-Chat-v1.0"</span>
+
+<span class="n">hf</span> <span class="o">=</span> <span class="n">HuggingFacePipeline</span><span class="p">.</span><span class="n">from_model_id</span><span class="p">(</span>
+    <span class="n">model_id</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span>
+    <span class="n">pipeline_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"max_new_tokens"</span><span class="p">:</span> <span class="n">max_new_tokens</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"temperature"</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
+        <span class="s">"top_k"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="s">"top_p"</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
+        <span class="s">"do_sample"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">langchain_chroma</span> <span class="kn">import</span> <span class="n">Chroma</span>
+<span class="kn">from</span> <span class="nn">langchain_community.document_loaders</span> <span class="kn">import</span> <span class="n">TextLoader</span>
+<span class="kn">from</span> <span class="nn">langchain_text_splitters</span> <span class="kn">import</span> <span class="n">CharacterTextSplitter</span>
+<span class="kn">from</span> <span class="nn">langchain_huggingface</span> <span class="kn">import</span> <span class="n">HuggingFaceEmbeddings</span>
+<span class="kn">from</span> <span class="nn">langchain_core.runnables</span> <span class="kn">import</span> <span class="n">RunnablePassthrough</span>
+
+<span class="c1"># load the document and split it into chunks
+</span><span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s">"about_onecafe.txt"</span><span class="p">]</span>
+<span class="n">documents</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+    <span class="n">documents</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">TextLoader</span><span class="p">(</span><span class="n">f</span><span class="p">).</span><span class="n">load</span><span class="p">())</span>
+
+<span class="c1"># split it into chunks
+</span><span class="n">text_splitter</span> <span class="o">=</span> <span class="n">CharacterTextSplitter</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="p">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+
+<span class="c1"># create the open-source embedding function (also a model)
+</span><span class="n">embed</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">()</span>
+
+<span class="c1"># load it into Chroma
+</span><span class="n">vec</span> <span class="o">=</span> <span class="n">Chroma</span><span class="p">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">embed</span><span class="p">)</span>
+<span class="n">reti</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">as_retriever</span><span class="p">(</span><span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s">"k"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span> <span class="c1"># default: k is 4
+</span>
+<span class="k">def</span> <span class="nf">format_docs</span><span class="p">(</span><span class="n">docs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s">"</span><span class="se">\n\n</span><span class="s">"</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">doc</span><span class="p">.</span><span class="n">page_content</span> <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">)</span>
+
+<span class="n">template</span> <span class="o">=</span> <span class="s">"""You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question. If you don't know the answer, just say that you don't know. Use three sentences maximum and keep the answer concise.
+
+Question: {question}
+
+Context: {context}
+
+Answer:"""</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">.</span><span class="n">from_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+
+<span class="n">chain</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">{</span><span class="s">"context"</span><span class="p">:</span> <span class="n">reti</span> <span class="o">|</span> <span class="n">format_docs</span><span class="p">,</span> <span class="s">"question"</span><span class="p">:</span> <span class="n">RunnablePassthrough</span><span class="p">()}</span>
+    <span class="o">|</span> <span class="n">prompt</span>
+    <span class="o">|</span> <span class="n">hf</span><span class="p">.</span><span class="n">bind</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">chain</span><span class="p">.</span><span class="n">invoke</span><span class="p">(</span><span class="s">"Tell me about onecafe"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="quantization">Quantization</h2>
+
+<ul>
+  <li><a href="https://huggingface.co/blog/4bit-transformers-bitsandbytes">HuggingFace - 4bit Quantization</a></li>
+  <li><a href="https://huggingface.co/docs/bitsandbytes/main/en/installation">HuggingFace - bitsandbytes for Quantization</a></li>
+</ul>
+
+<p>With Quantization (e.g., 4bit), we can reduce the usage of memory, making LLM runs faster. Some models on HuggingFace have already done it without extra configuration, but those may require CUDA support.</p>
+
+<p>Quantization only works on GPU (kinda), include <code class="language-plaintext highlighter-rouge">load_in_4bit=True</code> and <code class="language-plaintext highlighter-rouge">device_map=auto</code> to enable the quantization, but model should support it in the first place.</p>
+
+<p>Quantization needs bitsandbytes:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">bitsandbytes</span>
+</code></pre></div></div>
+
+<p>When we create the model, include the args mentioned above:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">hf</span> <span class="o">=</span> <span class="n">HuggingFacePipeline</span><span class="p">.</span><span class="n">from_model_id</span><span class="p">(</span>
+    <span class="n">model_id</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span>
+    <span class="n">pipeline_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"max_new_tokens"</span><span class="p">:</span> <span class="n">max_new_tokens</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"temperature"</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
+        <span class="s">"top_k"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="s">"top_p"</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
+        <span class="s">"do_sample"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+        <span class="s">"load_in_4bit"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span> <span class="c1"># 4bit quantization
+</span>        <span class="s">"device_map"</span><span class="p">:</span><span class="s">"auto"</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="demo---deploy-llm-model-on-centos-with-gpu">Demo - Deploy LLM Model on CentOS with GPU</h2>
+
+<p>This section roughly documents how I setup CUDA and all sort of dependencies to run the LLM Model: <code class="language-plaintext highlighter-rouge">Qwen/Qwen2-7B-Instruct</code> on CentOS
+(the setup is roughly the same even if you change to another LLM model).</p>
+
+<p><strong><em>The python code is available in repo: <a href="https://github.com/CurtisNewbie/llm_stuff/tree/main/qwen2_deploy">https://github.com/CurtisNewbie/llm_stuff/tree/main/qwen2_deploy</a></em></strong></p>
+
+<p>You may follow other official guides, e.g., to install Pytorch properly using venv, conda or something else.</p>
+
+<ul>
+  <li>https://pytorch.org/get-started/previous-versions/</li>
+</ul>
+
+<p>Install nvidia driver, after the installation, check your GPU status using <code class="language-plaintext highlighter-rouge">nvidia-smi</code> command:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nvidia-smi
+
+<span class="c"># *** ***  * **:**:** 2024</span>
+<span class="c"># +---------------------------------------------------------------------------------------+</span>
+<span class="c"># | NVIDIA-SMI 535.154.05             Driver Version: 535.154.05   CUDA Version: 12.2     |</span>
+<span class="c"># |-----------------------------------------+----------------------+----------------------+</span>
+<span class="c"># | GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |</span>
+<span class="c"># | Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |</span>
+<span class="c"># |                                         |                      |               MIG M. |</span>
+<span class="c"># |=========================================+======================+======================|</span>
+<span class="c"># |   0  NVIDIA A10                     On  | 00000000:00:07.0 Off |                    0 |</span>
+<span class="c"># |  0%   26C    P8               8W / 150W |      0MiB / 23028MiB |      0%      Default |</span>
+<span class="c"># |                                         |                      |                  N/A |</span>
+<span class="c"># +-----------------------------------------+----------------------+----------------------+</span>
+
+<span class="c"># +---------------------------------------------------------------------------------------+</span>
+<span class="c"># | Processes:                                                                            |</span>
+<span class="c"># |  GPU   GI   CI        PID   Type   Process name                            GPU Memory |</span>
+<span class="c"># |        ID   ID                                                             Usage      |</span>
+<span class="c"># |=======================================================================================|</span>
+<span class="c"># |  No running processes found                                                           |</span>
+<span class="c"># +---------------------------------------------------------------------------------------+</span>
+</code></pre></div></div>
+
+<p>The output above shows that we have a Nvidia A10 GPU installed with 23GB of VRAM available. Notice that even though the output of <code class="language-plaintext highlighter-rouge">nvidia-smi</code> shows <code class="language-plaintext highlighter-rouge">CUDA Version: 12.2</code>, it’s merely a compatible driver version.</p>
+
+<p>If you don’t have CUDA already, install CUDA toolkit instead of CUDA. CUDA is included in CUDA toolkit. Notice that we are using <code class="language-plaintext highlighter-rouge">CUDA12.1</code>, we should make sure that all relavent cuda dependencies support exactly CUDA 12.1.</p>
+
+<ul>
+  <li><a href="https://developer.nvidia.com/cuda-12-0-0-download-archive?target_os=Linux&amp;target_arch=x86_64&amp;Distribution=CentOS&amp;target_version=7&amp;target_type=rpm_network">Nvidia CUDA Toolkit 12.0 Downloads</a></li>
+  <li><a href="https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html">Nvidia CUDA Toolkit Release Notes</a></li>
+  <li><a href="https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/">Nvidia rhel7/x86_64 CUDA Repo Index</a></li>
+</ul>
+
+<p>Since we are using CentOS, we use yum package manager. In the above Nvidia websites: select your OS, architecture and distribution; copy paste the generated installation instructions:
+(it seems like you don’t actually need <code class="language-plaintext highlighter-rouge">nvidia-driver-latest-dkms</code>, the commands below are exactly what I did anyway).</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Add cuda repo config</span>
+<span class="nb">sudo </span>yum-config-manager <span class="nt">--add-repo</span> https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-rhel7.repo
+
+<span class="c"># clean cache</span>
+<span class="nb">sudo </span>yum clean all
+
+<span class="c"># install cuda toolkit, cuda is included</span>
+<span class="nb">sudo </span>yum <span class="nt">-y</span> <span class="nb">install </span>cuda-toolkit
+</code></pre></div></div>
+
+<p>Check that we have <code class="language-plaintext highlighter-rouge">nvcc</code> installed, <code class="language-plaintext highlighter-rouge">nvcc</code> is Nvidia CUDA Compiler Driver, it should be automatically installed as part of the CUDA toolkit.</p>
+
+<ul>
+  <li>https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/</li>
+</ul>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nvcc <span class="nt">--version</span>
+<span class="c"># nvcc: NVIDIA (R) Cuda compiler driver</span>
+<span class="c"># Copyright (c) 2005-2023 NVIDIA Corporation</span>
+<span class="c"># Built on Mon_Apr__3_17:16:06_PDT_2023</span>
+<span class="c"># Cuda compilation tools, release 12.1, V12.1.105</span>
+<span class="c"># Build cuda_12.1.r12.1/compiler.32688072_0</span>
+</code></pre></div></div>
+
+<p>Install <code class="language-plaintext highlighter-rouge">nccl</code> library. <code class="language-plaintext highlighter-rouge">nccl</code> is NVIDIA Collective Communications Library. PyTorch will attempt to open these <code class="language-plaintext highlighter-rouge">*.so.*</code> lib files provided by nccl.</p>
+
+<ul>
+  <li><a href="https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/overview.html#:~:text=The%20NVIDIA%20Collective%20Communications%20Library,be%20easily%20integrated%20into%20applications.">Nvidia Overview of NCCL</a></li>
+  <li><a href="https://docs.nvidia.com/deeplearning/nccl/install-guide/index.html">Nvidia NCCL Installation Guide</a></li>
+  <li><a href="https://developer.nvidia.com/nccl">Nvidia NCCL</a></li>
+</ul>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Add cuda repo config (same repo)</span>
+<span class="nb">sudo </span>yum-config-manager <span class="nt">--add-repo</span> https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-rhel7.repo
+
+<span class="c"># Install libnccl for cuda12.1</span>
+yum <span class="nb">install </span>libnccl-2.18.3-1+cuda12.1
+
+yum list installed | <span class="nb">grep </span>nccl
+<span class="c"># libnccl.x86_64                                     2.18.3-1+cuda12.1                   @cuda-rhel7-x86_64</span>
+</code></pre></div></div>
+
+<p>Have a look at cuda lib location, it should be located at <code class="language-plaintext highlighter-rouge">/usr/local</code></p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span> <span class="nt">-l</span> /usr/local/ | <span class="nb">grep </span>cuda
+<span class="c"># lrwxrwxrwx   1 root root   21 Jun 28 15:15 cuda -&gt; /usr/local/cuda-12.1/</span>
+<span class="c"># drwxr-xr-x  17 root root 4096 Jun 28 15:16 cuda-12.1</span>
+</code></pre></div></div>
+
+<p>Install python3.11 (or later versions):</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yum <span class="nb">install </span>python3.11
+python3.11 <span class="nt">-m</span> ensurepip
+</code></pre></div></div>
+
+<p>As shown below, I wrote two python scripts: one is for loading documents to Qdrant (vector database), another one is for bootstraping the RAG LLM model to server QA queries.
+(The model used in this example: <a href="https://huggingface.co/Qwen/Qwen2-7B-Instruct">huggingface.co/Qwen/Qwen2-7B-Instruct</a>)</p>
+
+<p><code class="language-plaintext highlighter-rouge">llm.py</code></p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ...
+</span><span class="n">collection_name</span> <span class="o">=</span> <span class="s">"documents"</span>
+<span class="n">embedding_name</span> <span class="o">=</span> <span class="s">"sentence-transformers/distiluse-base-multilingual-cased-v1"</span>
+<span class="n">max_new_tokens</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">task</span> <span class="o">=</span> <span class="s">"text-generation"</span>
+<span class="n">model</span> <span class="o">=</span> <span class="s">"Qwen/Qwen2-7B-Instruct"</span>
+<span class="n">cache_path</span> <span class="o">=</span> <span class="s">"/root/qdrant_cache"</span>
+
+<span class="n">hf</span> <span class="o">=</span> <span class="n">HuggingFacePipeline</span><span class="p">.</span><span class="n">from_model_id</span><span class="p">(</span>
+    <span class="n">model_id</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">task</span><span class="o">=</span><span class="n">task</span><span class="p">,</span>
+    <span class="n">pipeline_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"max_new_tokens"</span><span class="p">:</span> <span class="n">max_new_tokens</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">"temperature"</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+        <span class="s">"top_k"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+        <span class="s">"top_p"</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
+        <span class="s">"do_sample"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+        <span class="s">"load_in_4bit"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="n">embedding_name</span><span class="p">)</span>
+<span class="n">vectorstore</span> <span class="o">=</span> <span class="n">Qdrant</span><span class="p">.</span><span class="n">from_existing_collection</span><span class="p">(</span>
+    <span class="n">embedding</span><span class="o">=</span><span class="n">embeddings</span><span class="p">,</span>
+    <span class="n">path</span><span class="o">=</span><span class="n">cache_path</span><span class="p">,</span>
+    <span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">)</span>
+
+<span class="n">template</span> <span class="o">=</span> <span class="s">"""...."""</span>
+<span class="n">retriever</span> <span class="o">=</span> <span class="n">vectorstore</span><span class="p">.</span><span class="n">as_retriever</span><span class="p">(</span><span class="n">search_type</span><span class="o">=</span><span class="s">"similarity_score_threshold"</span><span class="p">,</span> <span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s">"score_threshold"</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">})</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">.</span><span class="n">from_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+<span class="n">chain</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">{</span><span class="s">"context"</span><span class="p">:</span> <span class="n">retriever</span> <span class="o">|</span> <span class="n">format_docs</span><span class="p">,</span> <span class="s">"question"</span><span class="p">:</span> <span class="n">RunnablePassthrough</span><span class="p">()}</span>
+    <span class="o">|</span> <span class="n">prompt</span>
+    <span class="o">|</span> <span class="n">hf</span><span class="p">.</span><span class="n">bind</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">chain</span><span class="p">.</span><span class="n">invoke</span><span class="p">(</span><span class="s">"How is the weather today?"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">qdrant_load.py</code></p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ...
+</span><span class="n">collection_name</span> <span class="o">=</span> <span class="s">"documents"</span>
+<span class="n">embedding_name</span> <span class="o">=</span> <span class="s">"sentence-transformers/distiluse-base-multilingual-cased-v1"</span>
+<span class="n">cache_path</span> <span class="o">=</span> <span class="s">"/root/qdrant_cache"</span>
+<span class="n">base_dir</span> <span class="o">=</span> <span class="s">'/root/llm/files'</span>
+<span class="n">documents</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">base_dir</span><span class="p">):</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_dir</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">file</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.pdf'</span><span class="p">):</span>
+        <span class="n">documents</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">PyPDFLoader</span><span class="p">(</span><span class="n">file_path</span><span class="p">).</span><span class="n">load</span><span class="p">())</span>
+    <span class="k">elif</span> <span class="nb">file</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.docx'</span><span class="p">):</span>
+        <span class="n">documents</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">Docx2txtLoader</span><span class="p">(</span><span class="n">file_path</span><span class="p">).</span><span class="n">load</span><span class="p">())</span>
+    <span class="k">elif</span> <span class="nb">file</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.txt'</span><span class="p">):</span>
+        <span class="n">documents</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">TextLoader</span><span class="p">(</span><span class="n">file_path</span><span class="p">).</span><span class="n">load</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Documents loaded"</span><span class="p">)</span>
+
+<span class="n">text_splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">chunked_documents</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="p">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">documents</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Documents splited"</span><span class="p">)</span>
+
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="n">embedding_name</span><span class="p">,</span> <span class="n">show_progress</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Embeddings loaded"</span><span class="p">)</span>
+
+<span class="n">vectorstore</span> <span class="o">=</span> <span class="n">Qdrant</span><span class="p">.</span><span class="n">from_existing_collection</span><span class="p">(</span>
+    <span class="n">embedding</span><span class="o">=</span><span class="n">embeddings</span><span class="p">,</span>
+    <span class="n">path</span><span class="o">=</span><span class="n">cache_path</span><span class="p">,</span>
+    <span class="n">collection_name</span><span class="o">=</span><span class="n">collection_name</span><span class="p">)</span>
+
+<span class="n">vectorstore</span><span class="p">.</span><span class="n">add_documents</span><span class="p">(</span><span class="n">chunked_documents</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Documents added"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Install python dependencies:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3.11 <span class="nt">-m</span> pip <span class="nb">install </span>langchain langchain-huggingface transformers bitsandbytes langchain-community langchain-qdrant accelerate
+</code></pre></div></div>
+
+<p>If everything goes right, we can use <code class="language-plaintext highlighter-rouge">qdrant_load.py</code> to load documents, and then we can use <code class="language-plaintext highlighter-rouge">llm.py</code> to load the RAG LLM Model to answer questions.</p>
+
+<p>To create simple ChatUI, we can use <code class="language-plaintext highlighter-rouge">gradio</code>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3.11 <span class="nt">-m</span> pip <span class="nb">install </span>gradio
+</code></pre></div></div>
+
+<p>Change <code class="language-plaintext highlighter-rouge">llm.py</code> to use gradio to serve QA at <code class="language-plaintext highlighter-rouge">0.0.0.0:80</code>:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="n">gr</span>
+
+<span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">history</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">message</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="s">"Say something?"</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">chain</span><span class="p">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="n">result</span>
+
+<span class="n">gr</span><span class="p">.</span><span class="n">ChatInterface</span><span class="p">(</span><span class="n">predict</span><span class="p">).</span><span class="n">queue</span><span class="p">().</span><span class="n">launch</span><span class="p">(</span><span class="n">share</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">server_name</span><span class="o">=</span><span class="s">"0.0.0.0"</span><span class="p">,</span> <span class="n">server_port</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="potential-issues">Potential Issues</h3>
+
+<h4 id="1-pytorch---importerror-libcuptiso12-cannot-open-shared-object-file-no-such-file-or-directory">1. PyTorch - <code class="language-plaintext highlighter-rouge">ImportError: libcupti.so.12: cannot open shared object file: No such file or directory</code></h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"/usr/local/lib/python3.11/site-packages/langchain_huggingface/embeddings/huggingface.py"</span>, line 53, <span class="k">in </span>__init__
+    import sentence_transformers  <span class="c"># type: ignore[import]</span>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File <span class="s2">"/usr/local/lib/python3.11/site-packages/sentence_transformers/__init__.py"</span>, line 7, <span class="k">in</span> &lt;module&gt;
+    from sentence_transformers.cross_encoder.CrossEncoder import CrossEncoder
+  File <span class="s2">"/usr/local/lib/python3.11/site-packages/sentence_transformers/cross_encoder/__init__.py"</span>, line 1, <span class="k">in</span> &lt;module&gt;
+    from .CrossEncoder import CrossEncoder
+  File <span class="s2">"/usr/local/lib/python3.11/site-packages/sentence_transformers/cross_encoder/CrossEncoder.py"</span>, line 7, <span class="k">in</span> &lt;module&gt;
+    import torch
+  File <span class="s2">"/usr/local/lib64/python3.11/site-packages/torch/__init__.py"</span>, line 239, <span class="k">in</span> &lt;module&gt;
+    from torch._C import <span class="k">*</span>  <span class="c"># noqa: F403</span>
+    ^^^^^^^^^^^^^^^^^^^^^^
+ImportError: libcupti.so.12: cannot open shared object file: No such file or directory
+</code></pre></div></div>
+
+<p>This issue is actually caused by PyTorch. Notice that almost everything is built on top of PyTorch, and PyTorch internally communicates with Nvidia GPU using CUDA.
+<code class="language-plaintext highlighter-rouge">libcupti.so.12</code> is a lib file provided by CUDA.</p>
+
+<p>The file may exist in your OS, but PyTorch somehow couldn’t find it. Use <code class="language-plaintext highlighter-rouge">find</code> to locate the lib file first:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>find / <span class="nt">-name</span> <span class="s2">"libcupti.so.12"</span>
+<span class="c"># /usr/local/cuda-12.1/extras/CUPTI/lib64/libcupti.so.12</span>
+</code></pre></div></div>
+
+<p>Create symbolic link to python3.11 package path so that PyTorch can correctly open the lib files:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> /usr/local/lib64/python3.11/site-packages/nvidia/nccl/lib
+<span class="nb">ln</span> <span class="nt">-s</span> /usr/local/cuda-12.1/extras/CUPTI/lib64 /usr/local/lib64/python3.11/site-packages/nvidia/nccl/lib
+
+<span class="c"># just in case you want to remove the symlink:</span>
+<span class="c"># unlink  /usr/local/lib64/python3.11/site-packages/nvidia/nccl/lib</span>
+</code></pre></div></div>
+
+<p>Before I tried the symlink approch, I did some research; some recommend setting <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code> env variable like below, but unfortunately, this doesn’t work for me.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/cuda-12.1/extras/CUPTI/lib64/:<span class="nv">$LD_LIBRARY_PATH</span>
+</code></pre></div></div>
+
+<h4 id="2-pytorch---importerror-libncclso2-cannot-open-shared-object-file-no-such-file-or-directory">2. PyTorch - <code class="language-plaintext highlighter-rouge">ImportError: libnccl.so.2: cannot open shared object file: No such file or directory</code></h4>
+
+<p>This is still a PyTorch problem, the output tracktrace is almost the same. This is due to incompatible PyTorch version.</p>
+
+<p>Some recommend to simply downgrade the PyTorch version, or build the PyTorch on your own.</p>
+
+<ul>
+  <li>https://github.com/pytorch/pytorch/issues/88802</li>
+  <li>https://discuss.pytorch.org/t/pytorch-for-cuda-12/169447/20?page=2</li>
+</ul>
+
+<p>So what I did was simply downgrading my PyTorch from <code class="language-plaintext highlighter-rouge">2.3.1</code> to <code class="language-plaintext highlighter-rouge">2.1.1</code>:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3.11 <span class="nt">-m</span> pip <span class="nb">install </span>torch-<span class="o">=</span>2.1.1
+</code></pre></div></div>
+
+<h4 id="3-pytorch---importerror-site-packagestorchliblibtorch_cudaso-undefined-symbol-ncclcommregister">3. PyTorch - <code class="language-plaintext highlighter-rouge">ImportError: .../site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommRegister</code></h4>
+
+<p>This issue arrived when I tried to downgrade PyTorch from <code class="language-plaintext highlighter-rouge">2.3.1</code> to <code class="language-plaintext highlighter-rouge">2.3.0</code>. This is due to incompatible PyTorch version.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"/usr/local/lib/python3.11/site-packages/langchain_huggingface/embeddings/huggingface.py"</span>, line 53, <span class="k">in </span>__init__
+    import sentence_transformers  <span class="c"># type: ignore[import]</span>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File <span class="s2">"/usr/local/lib/python3.11/site-packages/sentence_transformers/__init__.py"</span>, line 7, <span class="k">in</span> &lt;module&gt;
+    from sentence_transformers.cross_encoder.CrossEncoder import CrossEncoder
+  File <span class="s2">"/usr/local/lib/python3.11/site-packages/sentence_transformers/cross_encoder/__init__.py"</span>, line 1, <span class="k">in</span> &lt;module&gt;
+    from .CrossEncoder import CrossEncoder
+  File <span class="s2">"/usr/local/lib/python3.11/site-packages/sentence_transformers/cross_encoder/CrossEncoder.py"</span>, line 7, <span class="k">in</span> &lt;module&gt;
+    import torch
+  File <span class="s2">"/usr/local/lib64/python3.11/site-packages/torch/__init__.py"</span>, line 237, <span class="k">in</span> &lt;module&gt;
+    from torch._C import <span class="k">*</span>  <span class="c"># noqa: F403</span>
+    ^^^^^^^^^^^^^^^^^^^^^^
+ImportError: /usr/local/lib64/python3.11/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommRegister
+</code></pre></div></div>
+
+<p>The way you fix the problem is the same as the issue 2: downgrading your PyTorch to an older version like <code class="language-plaintext highlighter-rouge">2.1.1</code>.</p>
+
+<h4 id="4-huggingface-connectivity-issue">4. HuggingFace Connectivity Issue.</h4>
+
+<p>If you are from countries where HuggingFace is not really accesible. You can set <code class="language-plaintext highlighter-rouge">HF_ENDPOINT</code> environment variable to a mirror repo that is accessible from your country.</p>
+
+<p>E.g.,</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">HF_ENDPOINT</span><span class="o">=</span>https://hf-mirror.com
+</code></pre></div></div>
+
+<h2 id="conceptual-guide">Conceptual Guide</h2>
+
+<ul>
+  <li><a href="https://python.langchain.com/v0.2/docs/concepts">LangChain - Conceptual Guide</a></li>
+</ul>
+
+<p>TODO:</p>
+
+<h2 id="conversational-rag">Conversational RAG</h2>
+
+<p>Conversational RAG maintains history of conversation.</p>
+
+<ul>
+  <li><a href="https://python.langchain.com/v0.2/docs/tutorials/qa_chat_history/">LangChain - Conversational RAG</a></li>
+</ul>
+
+<p>TODO: How to remmeber the chat history</p>
+
+<h2 id="terminology">Terminology</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">HF Format</code>: Hugging Face Format</li>
+</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Relevant Sites]]></summary></entry><entry><title type="html">moon - the private cloud</title><link href="https://curtisnewbie.github.io/projects/2024/06/03/moon-the-private-cloud.html" rel="alternate" type="text/html" title="moon - the private cloud" /><published>2024-06-03T18:00:00+08:00</published><updated>2024-06-03T18:00:00+08:00</updated><id>https://curtisnewbie.github.io/projects/2024/06/03/moon-the-private-cloud</id><content type="html" xml:base="https://curtisnewbie.github.io/projects/2024/06/03/moon-the-private-cloud.html"><![CDATA[<p>The moon project is self-hosted private cloud that consists of a set of backend and frontend services that I maintain in my spare time.</p>
+
+<p>Monorepo: https://github.com/CurtisNewbie/moon-monorepo</p>
+
+<!-- TODO talk about the monorepo -->]]></content><author><name>Yongjie Zhuang</name></author><category term="Projects" /><summary type="html"><![CDATA[The moon project is self-hosted private cloud that consists of a set of backend and frontend services that I maintain in my spare time.]]></summary></entry><entry><title type="html">Interesting Resources</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html" rel="alternate" type="text/html" title="Interesting Resources" /><published>2024-04-15T20:00:00+08:00</published><updated>2024-04-15T20:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html"><![CDATA[<p>Interesting papers, books and websites are listed here.</p>
+
+<h3 id="papers">Papers</h3>
 
 <ul>
   <li><a href="https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf">Dynamo: Amazon’s Highly Available Key-value Store</a></li>
 </ul>
 
-<p>Some interesting websites:</p>
+<h3 id="blogs-presentations-and-docs">Blogs, Presentations and Docs</h3>
 
 <ul>
+  <li><a href="https://ebpf-go.dev/">eBPF Library for Go</a></li>
+  <li><a href="https://ebpf.io/what-is-ebpf">What is eBPF</a></li>
   <li><a href="https://www.infoq.com/presentations/shopify-architecture-flash-sale/">Shopify’s Architecture to Handle the World’s Biggest Flash Sales</a></li>
-  <li><a href="https://dev.mysql.com/blog-archive/hash-join-in-mysql-8/">Hash join in MySQL 8</a></li>
-  <li><a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html">The Computer Language Benchmark Game</a></li>
   <li><a href="https://martinfowler.com/articles/lmax.html">Martin Fowler - The LMAX Architecture</a></li>
   <li><a href="https://lmax-exchange.github.io/disruptor/">Github Page - LMAX Disruptor</a></li>
   <li><a href="https://dave.cheney.net/2013/06/02/why-is-a-goroutines-stack-infinite">Dave Cheney - Why is a Goroutine’s stack infinite?</a></li>
   <li><a href="https://docs.google.com/document/u/0/d/1yIAYmbvL3JxOKOjuCyon7JhW4cSv1wy5hC0ApeGMV9s/pub?pli=1">Go channels on steroids</a></li>
+  <li><a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html">The Computer Language Benchmark Game</a></li>
   <li><a href="https://docs.oracle.com/en/java/javase/20/gctuning/index.html#GUID-0394E76A-1A8F-425E-A0D0-B48A3DC82B42">jdk20 - HotSpot Virtual Machine Garbage Collection Tuning Guide</a></li>
   <li><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/toc.html">jdk8 - Java Platform, Standard Edition Troubleshooting Guide</a></li>
   <li><a href="https://tschatzl.github.io/2022/08/04/concurrent-marking.html">Concurrent Marking in G1</a></li>
@@ -27,10 +1008,6 @@
   <li><a href="https://gist.github.com/JBlond/2fea43a3049b38287e5e9cefc87b2124">JBlond Gist - Bash Colors</a></li>
   <li><a href="https://k3s.io/">k3s</a></li>
   <li><a href="https://blog.ragozin.info/2011/06/understanding-gc-pauses-in-jvm-hotspots.html">Understanding GC pauses in JVM, HotSpot’s minor GC (2011)</a></li>
-  <li><a href="https://oceanbase.github.io/miniob/miniob-introduction.html">MiniOB Github Page - zh-cn</a></li>
-  <li><a href="https://github.com/oceanbase/miniob?tab=readme-ov-file">MiniOB Github - zh-cn</a></li>
-  <li><a href="https://github.com/oceanbase/oceanbase">Oceanbase Github</a></li>
-  <li><a href="https://en.oceanbase.com/docs/oceanbase-database">Oceanbase Doc</a></li>
   <li><a href="https://netflix.github.io/dgs/">Netflix DGS Framework</a></li>
   <li><a href="https://github.com/Netflix/conductor">Netflix Conductor</a></li>
   <li><a href="https://github.com/conductor-sdk/conductor-examples/tree/main">Conductor-sdk</a></li>
@@ -58,18 +1035,150 @@
   <li><a href="https://research.swtch.com/interfaces">Go Data Structures: Interfaces</a></li>
   <li><a href="https://morsmachine.dk/go-scheduler">The Go Scheduler</a></li>
   <li><a href="https://www.kernel.org/doc/html/latest/index.html">Linux Kernel Documentation</a></li>
-  <li><a href="https://use-the-index-luke.com/sql/preface">Use the index, Luke - A Guide to Database Performance for Developers</a></li>
-</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Interesting papers, books and websites are listed here.]]></summary></entry><entry><title type="html">Random Ideas</title><link href="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html" rel="alternate" type="text/html" title="Random Ideas" /><published>2024-04-15T19:00:00+08:00</published><updated>2024-04-15T19:00:00+08:00</updated><id>https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas</id><content type="html" xml:base="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html"><![CDATA[<p>List of random ideas:</p>
+  <li><a href="https://thesecretlivesofdata.com/raft/">The Secret Lives of Data - Raft</a></li>
+  <li>Posts, Blogs
+    <ul>
+      <li><a href="https://techurls.com/">techurls</a></li>
+      <li><a href="https://news.ycombinator.com/">hacker news</a></li>
+      <li><a href="https://bearblog.dev/discover/?page=1">bearblog</a></li>
+    </ul>
+  </li>
+  <li><a href="https://bitfieldconsulting.com/posts/constraints">Constraints in Go</a></li>
+  <li><a href="https://mightyohm.com/files/soldercomic/FullSolderComic_EN.pdf">Soldering is Easy: Here’s How to Do it (Extended Version)</a></li>
+  <li><a href="https://htmx.org/essays/codin-dirty/">htmx - Codin’ Dirty</a></li>
+  <li><a href="https://grugbrain.dev">The Grug Brained Developer A layman’s guide to thinking like the self-aware smol brained</a></li>
+  <li><a href="https://assets.bitbashing.io/papers/concurrency-primer.pdf">Matt Kline - What every systems programmer should know about concurrency</a></li>
+  <li><a href="https://redmonk.com/kholterhoff/2024/12/12/why-message-queues-endure-a-history/">Kate holterhoff - Why Message Queues Endure: A History</a></li>
+  <li><a href="https://http3-explained.haxx.se/en">HTTP/3 Explained</a></li>
+  <li><a href="https://daniel.haxx.se/http2/">HTTP/2 Explained</a></li>
+</ul>
+
+<h3 id="database-related">Database Related</h3>
 
 <ul>
-  <li>Implement a mini version of Git to understand how it works.</li>
-  <li>Implement a simple B+ tree based database.</li>
-  <li>Implement a mini-redis using java like the <a href="https://github.com/curtisnewbie/mini-redis">curtisnewbie/mini-redis</a> one in golang.
+  <li><a href="https://stackoverflow.com/questions/68443220/how-mvcc-works-with-lock-in-mysql">stackoverflow - how mvcc works with lock in mysql</a></li>
+  <li><a href="https://jahfer.com/posts/innodb-locks/">jahfer.com - innodb-locks</a></li>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html">mysql_upgrade tool for MySQL &lt; 8.0.16</a></li>
+  <li><a href="https://dev.mysql.com/blog-archive/inplace-upgrade-from-mysql-5-7-to-mysql-8-0/">Inplace Upgrade MySQL 5.7 to 8.0</a></li>
+  <li><a href="https://dev.mysql.com/doc/mysql-shell/8.0/en/mysql-shell-utilities-upgrade.html">MySQL Shell Upgrade Checker</a></li>
+  <li><a href="https://github.com/dolthub/dolt">github dolthub/dolt</a></li>
+  <li><a href="https://github.com/dolthub/go-mysql-server">github dolthub/go-mysql-server</a></li>
+  <li><a href="https://github.blog/2018-06-20-mysql-high-availability-at-github/#:~:text=GitHub%20uses%20MySQL%20as%20its,is%20critical%20to%20GitHub's%20operation.">Github Blog - MySQL High Availability at Github</a></li>
+  <li><a href="https://dev.mysql.com/doc/index-archive.html">MySQL Server Index Archive</a></li>
+  <li><a href="https://dev.mysql.com/doc/dev/mysql-server/latest/">MySQL Server Source Code Documentation</a></li>
+  <li><a href="https://dev.mysql.com/blog-archive/hash-join-in-mysql-8/">Hash join in MySQL 8</a></li>
+  <li><a href="https://oceanbase.github.io/miniob/miniob-introduction.html">MiniOB Github Page - zh-cn</a></li>
+  <li><a href="https://github.com/oceanbase/miniob?tab=readme-ov-file">MiniOB Github - zh-cn</a></li>
+  <li><a href="https://github.com/oceanbase/oceanbase">Oceanbase Github</a></li>
+  <li><a href="https://en.oceanbase.com/docs/oceanbase-database">Oceanbase Doc</a></li>
+  <li><a href="https://use-the-index-luke.com/sql/preface">Use the index, Luke - A Guide to Database Performance for Developers</a></li>
+  <li><a href="https://notes.eatonphil.com/2024-07-01-a-write-ahead-log-is-not-a-universal-part-of-durability.html">Eaton Phil, A write-ahead log is not a universal part of durability</a></li>
+  <li><a href="https://stackoverflow.com/questions/4307464/how-are-internal-nodes-in-a-innodb-b-tree-physically-stored">StackOverflow - How are internal nodes in a innodb b-tree physically stored?</a></li>
+  <li><a href="https://www.uber.com/en-JO/blog/upgrading-ubers-mysql-fleet/">Uber - Upgrading Ubers MySQL Fleet</a></li>
+  <li><a href="https://briandouglas.ie/sqlite-defaults/">Brian Douglas - SQLite Defaults</a></li>
+  <li><a href="https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html">Visualizing B+ Tree</a></li>
+</ul>
+
+<h3 id="other-github-repos">Other Github Repos</h3>
+
+<ul>
+  <li><a href="https://github.com/elastic/otel-profiling-agent">elastic/otel-profiling-agent</a></li>
+  <li><a href="https://github.com/vadv/gopher-lua-libs">vadv/gopher-lua-libs</a></li>
+  <li><a href="https://github.com/yuin/gopher-lua">yuin/gopher-lua</a></li>
+  <li><a href="https://github.com/jamiebuilds/the-super-tiny-compiler">jamiebuilds/the-super-tiny-compiler</a></li>
+  <li><a href="https://github.com/kjpgit/smallestcsvparser">kjpgit/SmallestCSVParser</a></li>
+</ul>
+
+<h3 id="perf">Perf</h3>
+
+<ul>
+  <li><a href="https://www.brendangregg.com/flamegraphs.html">Bred Angregg Flame Grphs</a></li>
+  <li><a href="https://queue.acm.org/detail.cfm?id=2927301">Acm Queue - The Flame Graph</a></li>
+  <li><a href="https://peteris.rocks/blog/htop/#htop-on-ubuntu-server-16-04-x64">peteris.rocks - htop explained</a></li>
+</ul>
+
+<h3 id="git">Git</h3>
+
+<ul>
+  <li><a href="https://jvns.ca/blog/2023/11/06/rebasing-what-can-go-wrong-/">Julia Evans - git rebase: what can go wrong?</a></li>
+  <li><a href="https://stackoverflow.com/questions/5189560/how-do-i-squash-my-last-n-commits-together">StackOverflow - How do I squash my last N commits together?</a></li>
+</ul>
+
+<h3 id="golang">Golang</h3>
+
+<ul>
+  <li><a href="https://go.dev/blog/v2-go-modules">go.dev - Go Modules: v2 and Beyond</a></li>
+  <li><a href="https://go.dev/doc/modules/developing">go.dev - Developing and publishing modules</a></li>
+  <li><a href="https://100go.co/">100 Go Mistakes and How to Avoid Them</a></li>
+  <li><a href="https://victoriametrics.com/blog/go-sync-mutex/">Phuong Le, Golang Sync Mutex: Normal and Starvation Mode</a></li>
+  <li><a href="https://victoriametrics.com/blog/vendoring-go-mod-vendor/index.html">Phuong Le, Vendoring, or go mod vendor: What Is It?</a></li>
+</ul>
+
+<h3 id="gc">GC</h3>
+
+<ul>
+  <li><a href="https://www.callibrity.com/articles/a-basic-overview-of-jvm-garbage-collection">Yan Yu - A Basic Overview of JVM Garbage Collection - Part 1</a></li>
+  <li><a href="https://www.callibrity.com/articles/further-look-at-jvm-garbage-collection#:~:text=ParNew%20is%20the%20multi%2Dthreaded,%2C%20stop%20the%20world%2C%20etc.">Yan Yu - A Basic Overview of JVM Garbage Collection - Part 2</a></li>
+  <li><a href="https://opensource.com/article/22/6/garbage-collection-java-virtual-machine">How Garbage Collection works inside a Java Virtual Machine</a></li>
+  <li><a href="https://www.uber.com/blog/jvm-tuning-garbage-collection/">Uber - Tricks of the Trade: Tuning JVM Memory for Large-scale Services</a></li>
+  <li><a href="https://www.uber.com/blog/scaling-hdfs/?uclick_id=b993a76e-eb97-4f64-b884-21e30bd60959">Uber - Scaling Uber’s Apache Hadoop Distributed File System for Growth</a></li>
+  <li><a href="https://docs.oracle.com/en/java/javase/11/gctuning/introduction-garbage-collection-tuning.html#GUID-8A443184-7E07-4B71-9777-4F12947C8184">Java 11 - HotSpot Virtual Machine Garbage Collection Tuning Guide</a></li>
+  <li><a href="https://www.infoq.com/articles/G1-One-Garbage-Collector-To-Rule-Them-All/">InfoQ - G1: One Garbage Collector To Rule Them All</a></li>
+  <li><a href="https://www.infoq.com/articles/tuning-tips-G1-GC/">InfoQ - Tips for Tuning the Garbage First Garbage Collector</a></li>
+  <li><a href="https://www.oracle.com/java/technologies/whitepaper.html#garbage">The Java HotSpot Performance Engine Architecture</a></li>
+  <li><a href="https://www.oracle.com/technical-resources/articles/java/g1gc.html#:~:text=Initial%20mark%20phase%3A%20The%20G1,and%20marks%20the%20referenced%20objects.">Monica Beckwith (2013) Oracle - Garbage First Garbage Collector Tuning</a></li>
+  <li><a href="https://www.oracle.com/technetwork/java/javase/memorymanagement-whitepaper-150215.pdf">Description of HotSpot GCs: Memory Management in the Java HotSpot Virtual Machine White Paper: link (PDF)</a></li>
+  <li><a href="https://dl.acm.org/citation.cfm?id=362422.362480">The original CMS paper: Printezis, T. and Detlefs, D. 2000. A generational mostly-concurrent garbage collector. In Proceedings of the 2nd international Symposium on Memory Management (Minneapolis, Minnesota, United States, October 15 - 16, 2000).</a></li>
+  <li><a href="https://dl.acm.org/citation.cfm?id=1029879">The original G1 paper: Detlefs, D., Flood, C., Heller, S., and Printezis, T. 2004. Garbage-first garbage collection. In Proceedings of the 4th international Symposium on Memory Management (Vancouver, BC, Canada, October 24 - 25, 2004).</a></li>
+  <li><a href="https://www.researchgate.net/publication/221032945_Garbage-First_garbage_collection">ResearchGate - The original G1 paper: Detlefs, D., Flood, C., Heller, S., and Printezis, T. 2004. Garbage-first garbage collection. In Proceedings of the 4th international Symposium on Memory Management (Vancouver, BC, Canada, October 24 - 25, 2004).</a></li>
+  <li><a href="https://www.redhat.com/en/blog/part-1-introduction-g1-garbage-collector">RedHat, Matt Robson - Part 1: Introduction to the G1 Garbage Collector</a></li>
+  <li><a href="https://www.redhat.com/en/blog/collecting-and-reading-g1-garbage-collector-logs-part-2">RedHat, Matt Robson - Part 2: Collecting and reading G1 garbage collector logs</a></li>
+  <li><a href="https://tech.meituan.com/2016/09/23/g1.html">美团技术团队 - Java Hotspot G1 GC 的一些关键技术</a></li>
+  <li><a href="https://wiki.openjdk.org/display/shenandoah/Main">wiki.openjdk.org - shenandoah</a></li>
+  <li><a href="https://go.dev/blog/ismmkeynote">The Go Blog - Getting to Go: The Journey of Go’s Garbage Collector</a></li>
+</ul>
+
+<h3 id="tools">Tools</h3>
+
+<ul>
+  <li><a href="https://mitmproxy.org/">mitproxy</a></li>
+  <li><a href="https://github.com/gojue/ecapture">ecapture</a></li>
+  <li><a href="https://www.tampermonkey.net/">Tampermonkey</a></li>
+  <li><a href="https://www.tampermonkey.net/documentation.php">Tampermonkey API</a></li>
+  <li><a href="https://javaparser.org/">javaparser.org</a>
+    <ul>
+      <li><a href="https://javaparser.org/setting-up-for-analysing-a-whole-project/">javaparser - Analysing an entire project in one go</a></li>
+      <li><a href="https://github.com/javaparser/javaparser?tab=readme-ov-file">github.com/javaparser</a></li>
+    </ul>
+  </li>
+  <li><a href="https://www.jdoodle.com/online-java-compiler">Online Java Compiler</a></li>
+  <li><a href="https://www.peterbe.com/plog/set-ex">set -ex - The most useful bash trick of the year</a></li>
+</ul>
+
+<h3 id="typing">Typing</h3>
+
+<ul>
+  <li><a href="https://www.typelit.io/">typelit.io</a></li>
+  <li><a href="https://keymash.io/">keymash.io</a></li>
+  <li><a href="https://play.typeracer.com/">typeracer</a></li>
+  <li><a href="https://zty.pe/">zty.pe</a></li>
+</ul>
+
+<h3 id="java-lambda--serialization">Java Lambda &amp; Serialization</h3>
+
+<ul>
+  <li><a href="https://blogs.oracle.com/javamagazine/post/behind-the-scenes-how-do-lambda-expressions-really-work-in-java">https://blogs.oracle.com/javamagazine/post/behind-the-scenes-how-do-lambda-expressions-really-work-in-java</a></li>
+</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Interesting papers, books and websites are listed here.]]></summary></entry><entry><title type="html">Random Ideas</title><link href="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html" rel="alternate" type="text/html" title="Random Ideas" /><published>2024-04-15T19:00:00+08:00</published><updated>2024-04-15T19:00:00+08:00</updated><id>https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas</id><content type="html" xml:base="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html"><![CDATA[<p>List of random ideas:</p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Implement a mini version of Git to understand how it works.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Implement a simple B+ tree based database.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Implement a mini-redis using java like the <a href="https://github.com/curtisnewbie/mini-redis">curtisnewbie/mini-redis</a> one in golang.
     <ul>
       <li>Call it mini-jredis maybe, just try to be more familiar with socket programming in java.</li>
     </ul>
   </li>
-  <li>Have a look at netflix/conductor, understand roughly how it works and implement a mini workflow engine.
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Have a look at netflix/conductor, understand roughly how it works and implement a mini workflow engine.
     <ul>
       <li>It does seem like a workflow engine is roughly a distributed queue + an orchestrator service + some definitions of worker.</li>
       <li>https://github.com/Netflix/conductor</li>
@@ -77,10 +1186,18 @@
       <li>https://orkes.io/content/</li>
     </ul>
   </li>
-  <li>Document how to use pprof in golang.</li>
-  <li>Write something about jvm performance evaluation. Document all the means to identify performance issue, e.g., CPU/IO/GC and so on.</li>
-  <li>Implement a simple CI/CD application.</li>
-  <li>Implement a rule engine.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Document how to use pprof in golang.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Write something about jvm performance evaluation. Document all the means to identify performance issue, e.g., CPU/IO/GC and so on.</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Implement a simple CI/CD application.
+    <ul>
+      <li><a href="https://github.com/curtisnewbie/chill">https://github.com/curtisnewbie/chill</a></li>
+    </ul>
+  </li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Implement a rule engine.
+    <ul>
+      <li><a href="https://github.com/curtisnewbie/octopus">https://github.com/curtisnewbie/octopus</a></li>
+    </ul>
+  </li>
 </ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Ideas" /><summary type="html"><![CDATA[List of random ideas:]]></summary></entry><entry><title type="html">Learning Jekyll</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/learning-jekyll.html" rel="alternate" type="text/html" title="Learning Jekyll" /><published>2024-04-15T13:00:00+08:00</published><updated>2024-04-15T13:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/learning-jekyll</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/learning-jekyll.html"><![CDATA[<p><strong><em>This is my first blog. We are learning Jekyll today, documenting jekyll stuff inside a static site generated by jekyll!</em></strong></p>
 
 <p>The following are useful websites for learning jekyll:</p>
