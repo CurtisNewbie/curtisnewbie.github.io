@@ -36,20 +36,20 @@ We can follow it's recommendation, we export the path in our `~/.profile` file o
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 ```
 
-Til this point, ruby@3 is successfully installed. You may setup a mirror registry like the following to speed things up a bit. Usually you don't need to change the sources, unless you are from certain countries like me :D
+Til this point, ruby@3 is successfully installed. You may setup a mirror registry like the following to speed things up a bit. Usually you don't need to change the sources, unless you are from certain countries like me.
 
 ```sh
 # setup mirror source for gem
 gem sources --add https://mirrors.tuna.tsinghua.edu.cn/rubygems/ --remove https://rubygems.org/
 ```
 
-Then, we will also need to install `bundle`, which is a dependency manager for ruby (kinda), as well as `jekyll`, the package that we need!
+Then, we will also need to install `bundle`, which is a dependency manager for ruby (kinda). Then we install `jekyll`, the package that we need.
 
 ```sh
 gem install bundler jekyll
 ```
 
-We can also setup the source address for bundle! And yes, it's completely optional.
+We can also setup the source address for bundle, it's completely optional.
 
 ```sh
 bundle config mirror.https://rubygems.org https://mirrors.tuna.tsinghua.edu.cn/rubygems
@@ -84,7 +84,7 @@ More info and automated migrator: https://sass-lang.com/d/slash-div
     minima.scss 48:3                                        @import
 ```
 
-Lukily, I did find a way to fix it (by muting the warning messages, lol).
+Lukily, I did find a way to fix it (by muting the warning messages).
 
 Inside _config.yml, we add the following properties:
 
@@ -93,7 +93,7 @@ sass:
   quiet_deps: true
 ```
 
-Run `jekyll serve` again, we will see our beautiful website on `http://localhost:4000`.
+Run `jekyll serve` again, we will see our website on `http://localhost:4000`.
 
 ## The Basic
 
@@ -105,7 +105,7 @@ File `_config.yml` includes the basic configuration for your jekyll website. The
 
 Once you have done writing the content, you can run `jekyll serve` to see the latest changes. All the changes are rendered and written to `_site` directory.
 
-Most of the cases, you will be modifing files inside `_posts` directory. The filename must follow the following convension: `YEAR-MONTH-DAY-title.MARKUP`, or else the posts are not displayed on webpage.
+In most of the cases, you will be modifing files inside `_posts` directory. The filename must follow the following convension: `YEAR-MONTH-DAY-title.MARKUP`, or else the posts are not displayed on webpage.
 
 e.g.,
 
@@ -147,7 +147,7 @@ published: true
 I am the first blog!
 ```
 
-That's it. This should be enough to get started :D
+That's it. This should be enough to get started.
 
 ## Host Jekyll Project Using Github Page
 
