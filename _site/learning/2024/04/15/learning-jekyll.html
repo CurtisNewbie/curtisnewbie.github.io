@@ -33,7 +33,7 @@
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/about/">about</a></div>
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -78,18 +78,18 @@ If you need to have ruby first <span class="k">in </span>your PATH, run:
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/usr/local/opt/ruby/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
 </code></pre></div></div>
 
-<p>Til this point, ruby@3 is successfully installed. You may setup a mirror registry like the following to speed things up a bit. Usually you don’t need to change the sources, unless you are from certain countries like me :D</p>
+<p>Til this point, ruby@3 is successfully installed. You may setup a mirror registry like the following to speed things up a bit. Usually you don’t need to change the sources, unless you are from certain countries like me.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># setup mirror source for gem</span>
 gem sources <span class="nt">--add</span> https://mirrors.tuna.tsinghua.edu.cn/rubygems/ <span class="nt">--remove</span> https://rubygems.org/
 </code></pre></div></div>
 
-<p>Then, we will also need to install <code class="language-plaintext highlighter-rouge">bundle</code>, which is a dependency manager for ruby (kinda), as well as <code class="language-plaintext highlighter-rouge">jekyll</code>, the package that we need!</p>
+<p>Then, we will also need to install <code class="language-plaintext highlighter-rouge">bundle</code>, which is a dependency manager for ruby (kinda). Then we install <code class="language-plaintext highlighter-rouge">jekyll</code>, the package that we need.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>bundler jekyll
 </code></pre></div></div>
 
-<p>We can also setup the source address for bundle! And yes, it’s completely optional.</p>
+<p>We can also setup the source address for bundle, it’s completely optional.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle config mirror.https://rubygems.org https://mirrors.tuna.tsinghua.edu.cn/rubygems
 </code></pre></div></div>
@@ -120,7 +120,7 @@ More info and automated migrator: https://sass-lang.com/d/slash-div
     minima.scss 48:3                                        @import
 </code></pre></div></div>
 
-<p>Lukily, I did find a way to fix it (by muting the warning messages, lol).</p>
+<p>Lukily, I did find a way to fix it (by muting the warning messages).</p>
 
 <p>Inside _config.yml, we add the following properties:</p>
 
@@ -128,7 +128,7 @@ More info and automated migrator: https://sass-lang.com/d/slash-div
   <span class="na">quiet_deps</span><span class="pi">:</span> <span class="no">true</span>
 </code></pre></div></div>
 
-<p>Run <code class="language-plaintext highlighter-rouge">jekyll serve</code> again, we will see our beautiful website on <code class="language-plaintext highlighter-rouge">http://localhost:4000</code>.</p>
+<p>Run <code class="language-plaintext highlighter-rouge">jekyll serve</code> again, we will see our website on <code class="language-plaintext highlighter-rouge">http://localhost:4000</code>.</p>
 
 <h2 id="the-basic">The Basic</h2>
 
@@ -140,7 +140,7 @@ More info and automated migrator: https://sass-lang.com/d/slash-div
 
 <p>Once you have done writing the content, you can run <code class="language-plaintext highlighter-rouge">jekyll serve</code> to see the latest changes. All the changes are rendered and written to <code class="language-plaintext highlighter-rouge">_site</code> directory.</p>
 
-<p>Most of the cases, you will be modifing files inside <code class="language-plaintext highlighter-rouge">_posts</code> directory. The filename must follow the following convension: <code class="language-plaintext highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code>, or else the posts are not displayed on webpage.</p>
+<p>In most of the cases, you will be modifing files inside <code class="language-plaintext highlighter-rouge">_posts</code> directory. The filename must follow the following convension: <code class="language-plaintext highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code>, or else the posts are not displayed on webpage.</p>
 
 <p>e.g.,</p>
 
@@ -179,7 +179,7 @@ More info and automated migrator: https://sass-lang.com/d/slash-div
 I am the first blog!
 </code></pre></div></div>
 
-<p>That’s it. This should be enough to get started :D</p>
+<p>That’s it. This should be enough to get started.</p>
 
 <h2 id="host-jekyll-project-using-github-page">Host Jekyll Project Using Github Page</h2>
 

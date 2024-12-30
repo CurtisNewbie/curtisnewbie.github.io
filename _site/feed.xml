@@ -1,4 +1,68 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-12-17T13:56:54+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">How to patch node_module source code</title><link href="https://curtisnewbie.github.io/learning/2024/09/10/how-to-patch-node-module.html" rel="alternate" type="text/html" title="How to patch node_module source code" /><published>2024-09-10T15:39:00+08:00</published><updated>2024-09-10T15:39:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/09/10/how-to-patch-node-module</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/09/10/how-to-patch-node-module.html"><![CDATA[<p><strong>Credits:</strong></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2024-12-30T08:43:05+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">A Python Beginner Guide for My Friend</title><link href="https://curtisnewbie.github.io/learning/2024/12/29/python-beginner-guide.html" rel="alternate" type="text/html" title="A Python Beginner Guide for My Friend" /><published>2024-12-29T23:00:00+08:00</published><updated>2024-12-29T23:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/12/29/python-beginner-guide</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/12/29/python-beginner-guide.html"><![CDATA[<p><strong>A python beginner guide for my close friends who know literally nothing about programming. Guide is written in an opinionated way. For complete tutorial of the language, just Google one.</strong></p>
+
+<h2 id="1-基础知识">1. 基础知识</h2>
+
+<h3 id="编程语言">编程语言</h3>
+
+<p>编程语言是你编写程序的方式, 编程语言本身没有什么特别的魔法, 只是一种媒介, 让你可以描述你希望程序如何进行工作. 编程语言有一套固定的编写规则,
+在我们写完我们的代码 (Python) 以后, 我们用对应的工具执行我们的代码, 我们的电脑会明白我们需要他做些什么, 执行我们的编写的逻辑, 输出我们要的结果.
+你可以理解编程语言是专门设计来和机器/系统沟通的语言.</p>
+
+<p>你可以想象成下面图片中的样子, 我们要写 Python, 我们就需要将 Python 安装到我们的电脑中.</p>
+
+<p><img src="/assets/images/python-beginner-guide/1.png" style="height: 400px" /></p>
+
+<p>至于在你编写 Python 的时候, 为什么要这样写, 为什么要写这些符号, 你不用太在意这样的疑问. 因为 Python 要求你这样写, 我们就按它要求的方式编写,
+Python 程序也就能理解我们在写什么, 理解了我们写什么它就能按我们要求的运行. 这背后更深的设计原因暂时先忘记, 先动手再深入.</p>
+
+<h3 id="操作系统">操作系统</h3>
+
+<p>操作系统本质上就是个软件, 操作系统负责和硬件交互, 我们的电脑可以选择安装不同的操作系统, 但是本质上都是软件. 我们的 Python 代码在编写完后可以在不同的系统上运行,
+这是因为不同的系统上安装的 Python 是不一样的, Python 官方自己会适配不同的操作系统. mac 上安装的是 Python mac 版, windows 上安装的是 Python windows 版,
+所以绝大部分场景我们不在乎我们的脚本在什么系统上执行.</p>
+
+<p>当我们希望写 Python 代码让我们的操作系统做些什么, 我们只需要按照 Python 要求我们的方式写对应的代码, 我们电脑上安装的 Python 会跟我们电脑的操作系统交互,
+操作系统就会去做对应的事情. 例如, 我们希望读硬盘上的一份文件, 操作系统就会去操作硬盘, 加载这份文件的内容.</p>
+
+<h3 id="命令行">命令行</h3>
+
+<p>命令行 (windows 上叫做 Command Prompt) 本质上也就是个软件而已, 只是命令行是一种相对更专业的工具, 专门用于执行命令. 技术人员使用命令行很多时候只是因为以下几个原因：</p>
+
+<ol>
+  <li>命令行更适合自动化, 例如, 写个脚本跑一大串命令 (页面不好自动点一堆按钮)</li>
+  <li>缺少页面给技术人员点, 没得选, 只能跑命令</li>
+  <li>喜欢命令行 (个人偏好)</li>
+</ol>
+
+<h2 id="2-准备环境">2. 准备环境</h2>
+
+<h3 id="安装-python">安装 Python</h3>
+
+<p>一般来说我们不讲究 Python 的版本, 只要不是太旧就可以, 我们挑个新的版本玩也可以, 例如, 目前最新的稳定版本是 3.12.8.</p>
+
+<p>如下图, 点开官方网站: <a href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/</a>, 找到 <code class="language-plaintext highlighter-rouge">Python 3.12.8</code>, 点击下载 <code class="language-plaintext highlighter-rouge">Download Windows installer (64-bit)</code>。</p>
+
+<p><img src="/assets/images/python-beginner-guide/2.png" style="height: 400px" /></p>
+
+<p>下载后, 打开安装包, 进行安装. 安装的过程中如果有显示 <code class="language-plaintext highlighter-rouge">Add Python 3.12.8 to PATH</code> 这样的内容, 记得将勾选框钩上.
+安装完成后, 我们可以打开命令行, 验证我们的安装是否有效: 点击 Windows 的图标, 搜索并且打开 Command Prompt (命令行):</p>
+
+<p>TODO: screenshot</p>
+
+<p>输入 <code class="language-plaintext highlighter-rouge">Python</code>, 如果你看到显示关于 Python 版本等信息的英文, 你可以看下版本是不是我们现在装的版本 (3.12.7), 如果是, 那么恭喜你, 你成功了.
+如果不是, 那么代表安装过程有点问题, 你可以重新安装, 并且确保把 <code class="language-plaintext highlighter-rouge">Add Python 3.12.8 to PATH</code> 勾选框选上.</p>
+
+<p>如果你成功了, 要退出这个 Python 控制台, 输入 <code class="language-plaintext highlighter-rouge">exit()</code> 就可以退出, 效果大致如下:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~<span class="nv">$ </span>python3
+Python 3.11.9 <span class="o">(</span>main, Apr  2 2024, 08:25:04<span class="o">)</span> <span class="o">[</span>Clang 15.0.0 <span class="o">(</span>clang-1500.3.9.4<span class="o">)]</span> on darwin
+Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span class="s2">"credits"</span> or <span class="s2">"license"</span> <span class="k">for </span>more information.
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">exit</span><span class="o">()</span>
+</code></pre></div></div>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[A python beginner guide for my close friends who know literally nothing about programming. Guide is written in an opinionated way. For complete tutorial of the language, just Google one.]]></summary></entry><entry><title type="html">How to patch node_module source code</title><link href="https://curtisnewbie.github.io/learning/2024/09/10/how-to-patch-node-module.html" rel="alternate" type="text/html" title="How to patch node_module source code" /><published>2024-09-10T15:39:00+08:00</published><updated>2024-09-10T15:39:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/09/10/how-to-patch-node-module</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/09/10/how-to-patch-node-module.html"><![CDATA[<p><strong>Credits:</strong></p>
 
 <ul>
   <li>https://stackoverflow.com/questions/72820625/what-is-the-proper-way-to-patch-a-node-modules-module</li>
@@ -1228,18 +1292,18 @@ If you need to have ruby first <span class="k">in </span>your PATH, run:
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/usr/local/opt/ruby/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
 </code></pre></div></div>
 
-<p>Til this point, ruby@3 is successfully installed. You may setup a mirror registry like the following to speed things up a bit. Usually you don’t need to change the sources, unless you are from certain countries like me :D</p>
+<p>Til this point, ruby@3 is successfully installed. You may setup a mirror registry like the following to speed things up a bit. Usually you don’t need to change the sources, unless you are from certain countries like me.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># setup mirror source for gem</span>
 gem sources <span class="nt">--add</span> https://mirrors.tuna.tsinghua.edu.cn/rubygems/ <span class="nt">--remove</span> https://rubygems.org/
 </code></pre></div></div>
 
-<p>Then, we will also need to install <code class="language-plaintext highlighter-rouge">bundle</code>, which is a dependency manager for ruby (kinda), as well as <code class="language-plaintext highlighter-rouge">jekyll</code>, the package that we need!</p>
+<p>Then, we will also need to install <code class="language-plaintext highlighter-rouge">bundle</code>, which is a dependency manager for ruby (kinda). Then we install <code class="language-plaintext highlighter-rouge">jekyll</code>, the package that we need.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>bundler jekyll
 </code></pre></div></div>
 
-<p>We can also setup the source address for bundle! And yes, it’s completely optional.</p>
+<p>We can also setup the source address for bundle, it’s completely optional.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle config mirror.https://rubygems.org https://mirrors.tuna.tsinghua.edu.cn/rubygems
 </code></pre></div></div>
@@ -1270,7 +1334,7 @@ More info and automated migrator: https://sass-lang.com/d/slash-div
     minima.scss 48:3                                        @import
 </code></pre></div></div>
 
-<p>Lukily, I did find a way to fix it (by muting the warning messages, lol).</p>
+<p>Lukily, I did find a way to fix it (by muting the warning messages).</p>
 
 <p>Inside _config.yml, we add the following properties:</p>
 
@@ -1278,7 +1342,7 @@ More info and automated migrator: https://sass-lang.com/d/slash-div
   <span class="na">quiet_deps</span><span class="pi">:</span> <span class="no">true</span>
 </code></pre></div></div>
 
-<p>Run <code class="language-plaintext highlighter-rouge">jekyll serve</code> again, we will see our beautiful website on <code class="language-plaintext highlighter-rouge">http://localhost:4000</code>.</p>
+<p>Run <code class="language-plaintext highlighter-rouge">jekyll serve</code> again, we will see our website on <code class="language-plaintext highlighter-rouge">http://localhost:4000</code>.</p>
 
 <h2 id="the-basic">The Basic</h2>
 
@@ -1290,7 +1354,7 @@ More info and automated migrator: https://sass-lang.com/d/slash-div
 
 <p>Once you have done writing the content, you can run <code class="language-plaintext highlighter-rouge">jekyll serve</code> to see the latest changes. All the changes are rendered and written to <code class="language-plaintext highlighter-rouge">_site</code> directory.</p>
 
-<p>Most of the cases, you will be modifing files inside <code class="language-plaintext highlighter-rouge">_posts</code> directory. The filename must follow the following convension: <code class="language-plaintext highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code>, or else the posts are not displayed on webpage.</p>
+<p>In most of the cases, you will be modifing files inside <code class="language-plaintext highlighter-rouge">_posts</code> directory. The filename must follow the following convension: <code class="language-plaintext highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code>, or else the posts are not displayed on webpage.</p>
 
 <p>e.g.,</p>
 
@@ -1329,7 +1393,7 @@ More info and automated migrator: https://sass-lang.com/d/slash-div
 I am the first blog!
 </code></pre></div></div>
 
-<p>That’s it. This should be enough to get started :D</p>
+<p>That’s it. This should be enough to get started.</p>
 
 <h2 id="host-jekyll-project-using-github-page">Host Jekyll Project Using Github Page</h2>
 
