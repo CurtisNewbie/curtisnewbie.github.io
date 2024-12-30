@@ -135,33 +135,177 @@ Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span 
 
 <p>安装后, 如果 vscode 提醒的话, 重启 vscode, 至此你已经可以开始写 Python 了.</p>
 
-<h3 id="3-第一个-python-脚本">3. 第一个 Python 脚本</h3>
+<h2 id="3-编写-python">3. 编写 Python</h2>
 
-<p>打开 vscode, 选择新建一个文本文件, 保存到你喜欢的地方, 确保命名带 <code class="language-plaintext highlighter-rouge">.py</code> 后缀, 例如: <code class="language-plaintext highlighter-rouge">myscript.py</code>:</p>
+<h3 id="31-第一个-python-脚本">3.1 第一个 Python 脚本</h3>
 
-<p>TODO</p>
+<p>打开 vscode, 选择新建一个文本文件, 保存到你喜欢的地方, 确保命名带 <code class="language-plaintext highlighter-rouge">.py</code> 后缀, 例如: <code class="language-plaintext highlighter-rouge">myscript.py</code>.</p>
 
-<!--
-### 3.1. 数据结构 TODO
+<p>输入以下内容, 然后保存:</p>
 
-数据结构是个专业名词, 英文是 Data Structure, 也就是设计用来装数据的结构, 因为你不是专业程序员, 不用特别专研有哪些数据结构. 不同类型的数据在取/存的时候, 使用不同的数据结构会有不同的效率, 熟练的程序员选择合适的那个数据结构最大化程序的效率.
-但是就算效率低有的时候也能完成工作, 不用太在意.
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">msg</span> <span class="o">=</span> <span class="s">"Hello world"</span>
+<span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</code></pre></div></div>
 
-数据结构本身有很多种, 有的设计特别复杂, 但基本上我们平时用得多的也就两种:
+<p>保持在 vscode 页面中, 按下键盘中的 <code class="language-plaintext highlighter-rouge">Ctrl+`</code> 键, 这个时候 vscode 会在底部展示出一个控制台, 同时这个控制台所处位置与你的文件的位置一致.
+这个时候你可以输入以下命令来运行我们的第一个脚本:</p>
 
-1. 数组 (本质就是一个紧凑的列表)
-2. 字典 (一个 key 对应一个 value)
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python myscript.py
+</code></pre></div></div>
 
-数组就类似于, 你把一个个空的桶放成了一排, 每个桶可以装一个东西, 数组就是这一整排的桶. 当你要往数组放东西的时候, 你可以从头开始或者从尾开始, 一个个检查看桶是不是空的, 如果不是空的就看下一个, 如果是空的, 你就可以把东西放进去.
-这种一个个桶看的动作, 编程里叫做 _“遍历"_, 英文叫做 _"iterate"_. 如果这一排的桶都满了, 那么你会在这排最后一个桶后面放更多的空桶, 让这个数组变得更长, 这种操作一般称为 _"扩容“_, 因为数组的容量变大了.
+<p>这个时候控制台应该会运行我们的代码, 同时打印出 <code class="language-plaintext highlighter-rouge">"Hello world"</code>, 这就算运行成功了.</p>
 
-字典就类似于, 在数组的基础上额外增加了份目录. 这份目录中我们给桶标了记号, 例如, 桶-A, 桶-B, 桶-C 等等等等. 通过编号你可以一下子找到桶是哪个, 你不需要一个个看. 在我们要放东西到字典前, 我们先通过固定的规则, 算出这个东西应该放哪个桶, 我们记录下来,
-然后我们把这个东西放到对应的桶里. 而这个计算放在哪里的值, 我们统称为 key, 一个 key 会有对应的一个桶, 如果我们下次要找这个 key 的内容是什么, 我们可以快速基于字典的目录定位到桶, 直接拿出来.
+<p>现在我们来理解第一个 Python 脚本, 脚本本身很简单, 但是大部分复杂的脚本本身也是基于这些基础的东西写出来的, 所以不用觉得没有意义:</p>
 
-基于这样的特征, 你也能尝试理解为什么这个数据结构被叫为字典, 因为字典就只是这样工作的: 单词有排序规则, 目录页记录单词在字典里的页码.
+<p>脚本的第一行:</p>
 
-后面教代码的时候会有更多说明.
--->
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">msg</span> <span class="o">=</span> <span class="s">"Hello world"</span>
+</code></pre></div></div>
+
+<p>我们可以看出这是个等式, 在大部分编程语言中, 等号就是赋值的意思, 也就是说 = 的左侧被赋予了右边的值 “Hello world”.</p>
+
+<p>在等号的左侧是一个变量, <code class="language-plaintext highlighter-rouge">msg</code> 是这个变量的名称, 我们在编写代码的时候会使用多个变量, 给变量赋值, 用来存储我们计算的结果. 这里, 我们就创建了一个变量 <code class="language-plaintext highlighter-rouge">msg</code>,
+同时让它的值为 “Hello world”.</p>
+
+<p>然后在脚本的第二行中:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>我们使用了函数 <code class="language-plaintext highlighter-rouge">print()</code>, 我们将我们上面创建的变量 <code class="language-plaintext highlighter-rouge">msg</code> 传入到这个函数中, 而这个函数 <code class="language-plaintext highlighter-rouge">print()</code> 正如它的英文名称 print 一样, 它负责将我们提供的内容打印出来,
+也就是输出到我们的控制台中.</p>
+
+<p>如果你不理解什么是变量, 什么是函数, 不用担心, 下面会尽可能描述清楚. 或许你可以感觉出来, 代码本身不是难点, 而代码要实现的事情才是难点.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<p><strong><em>从现在开始你可能会接受较多信息, 假设你一下子接收不了, 没关系, 完全不需要硬背, 只要理解就接着往下读, 等你需要用到的某些知识的时候再往回看或者上网搜.</em></strong></p>
+
+<p><br /></p>
+
+<h3 id="32-变量">3.2 变量</h3>
+
+<p>变量 (Variable) 这个概念源于数学, 在编程中, 变量就是一个有名称的, 可以存储值的抽象概念. 例如,</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</code></pre></div></div>
+
+<p>上面有三个变量, 分别命名为 <code class="language-plaintext highlighter-rouge">a</code>, <code class="language-plaintext highlighter-rouge">b</code>, <code class="language-plaintext highlighter-rouge">c</code>. 代码执行的时候一般是从上往下, 从右往左执行的, 也就是说, 这个脚本运行的过程如下:</p>
+
+<ol>
+  <li>创建变量 a, 给 a 赋值 1</li>
+  <li>创建变量 b, 给 b 赋值 2</li>
+  <li>创建变量 c, 给 c 赋值 a + b 也就是 3</li>
+</ol>
+
+<p>基于变量的概念, 我们可以往变量里存数据, 也可以从变量取数据. 你可以理解成, 等号左边的是存数据, 是赋值, 其他情况是从变量读数据.</p>
+
+<p>Python 的变量名一般是: 单词 + 下划线</p>
+
+<p>例如: <code class="language-plaintext highlighter-rouge">user_info</code></p>
+
+<p>核心就是用下划线分隔开单词的缩写, 读起来更清晰, 像 user_info 基本不用想就是个装了各种用户信息的变量.</p>
+
+<h3 id="33-数据类型">3.3 数据类型</h3>
+
+<p>不同的数据会有不同的数据类型, Python 本身支持的有:</p>
+
+<ol>
+  <li>整数</li>
+  <li>浮点数 (就是带小数点的)</li>
+  <li>字符串 (一串字符, 所以称为字符串, 例如: “HELLO” 本质上是 “H”, “E”, “L”, “L”, “O”, 5个字符的集合表达形式)</li>
+  <li>布尔值, 也就是 <code class="language-plaintext highlighter-rouge">True</code> 和 <code class="language-plaintext highlighter-rouge">False</code></li>
+  <li>空值, 代表没有值, 代码中以 <code class="language-plaintext highlighter-rouge">None</code> 表示.</li>
+</ol>
+
+<p>我们编写 Python 代码给变量赋值的时候, Python 会推断变量的数据类型, Python 不要求变量总是只使用一种数据类型, 也就是说你赋值啥, 变量就是啥.</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">msg</span> <span class="o">=</span> <span class="s">"Hello world"</span> <span class="c1"># 这是字符串
+</span><span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+<span class="n">msg</span> <span class="o">=</span> <span class="mi">1</span>             <span class="c1"># 这是整数
+</span><span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+<span class="n">msg</span> <span class="o">=</span> <span class="mf">1.1</span>           <span class="c1"># 这是浮点数
+</span><span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>当然, 一般来说不推荐, 因为你会把自己弄懵.</p>
+
+<h3 id="33-运算符">3.3 运算符</h3>
+
+<p>我们可以对代码写的值进行运算, 也可以基于变量进行运算, 这些我们统称为运算符. 常见的运算符有 (实际有更多, 但我们先不陷进去):</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">+</code> : 加法, 或者拼接字符串</li>
+  <li><code class="language-plaintext highlighter-rouge">-</code> : 减法</li>
+  <li><code class="language-plaintext highlighter-rouge">*</code> : 乘法</li>
+  <li><code class="language-plaintext highlighter-rouge">/</code> : 除法</li>
+  <li><code class="language-plaintext highlighter-rouge">%</code> : 求余</li>
+  <li><code class="language-plaintext highlighter-rouge">&gt;</code> : 比较数值, 或者字符串排序, 大于</li>
+  <li><code class="language-plaintext highlighter-rouge">&gt;=</code> : 比较数值, 或者字符串排序, 大于等于</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;</code> : 比较数值, 或者字符串排序, 小于</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;=</code> : 比较数值, 或者字符串排序, 小于等于</li>
+  <li><code class="language-plaintext highlighter-rouge">==</code> : 比较值是否相等, 例如, 比较整数, 字符串, 布尔值</li>
+  <li><code class="language-plaintext highlighter-rouge">!=</code> : 比较值是否不相等, 例如, 比较整数, 字符串, 布尔值</li>
+  <li><code class="language-plaintext highlighter-rouge">is</code> : 比较两个值是否相等, 例如, 检查 msg 是否为空: <code class="language-plaintext highlighter-rouge">msg is None</code></li>
+  <li><code class="language-plaintext highlighter-rouge">is not</code> : 比较两个值是否不相等, 例如, 检查 msg 是否不为空: <code class="language-plaintext highlighter-rouge">msg is not None</code></li>
+</ol>
+
+<p>TODO: More examples</p>
+
+<h3 id="34-条件判断--逻辑分支">3.4 条件判断 / 逻辑分支</h3>
+
+<h3 id="36-函数">3.6 函数</h3>
+
+<p>函数 (Function) 同样是源于数学的概念。函数由以下几个部分组成:</p>
+
+<ol>
+  <li>函数的输入 (外部提供给函数的内容), 也常叫入参 (输入参数)</li>
+  <li>函数的名称</li>
+  <li>函数内部的逻辑, 我们通常会写函数, 基于入参做一些运算</li>
+  <li>函数的输出, 函数进行运算完以后, 返回给外部的内容</li>
+</ol>
+
+<p>Python 有大量的内置函数, 也就是 Python 这门语言写好的功能, 如果我们想要使用, 我们直接基于这些函数的名称, 将函数定义的入参传给它们即可.</p>
+
+<p>回顾下上面我们第一个脚本:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">msg</span> <span class="o">=</span> <span class="s">"Hello world"</span>
+<span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">print(..)</code> 就是我们见到的第一个内置函数, 这个函数负责将入参输出到控制台中, 而我们提供的入参正式定义好的变量 <code class="language-plaintext highlighter-rouge">msg</code>, 所以函数最终的行为是打印 “Hello world”.</p>
+
+<p>除了内置函数, 我们还可以引入别人写的代码 (的函数), 也可以自己写函数自己用.</p>
+
+<h3 id="36-对象">3.6 对象</h3>
+
+<h3 id="37-数据结构">3.7. 数据结构</h3>
+
+<p>数据结构是个专业名词, 英文是 Data Structure, 也就是设计用来装数据的结构, 因为你不是专业程序员, 不用特别专研有哪些数据结构. 不同类型的数据在取/存的时候, 使用不同的数据结构会有不同的效率, 熟练的程序员选择合适的那个数据结构最大化程序的效率.
+但是就算效率低有的时候也能完成工作, 不用太在意.</p>
+
+<p>数据结构本身有很多种, 有的设计特别复杂, 但基本上我们平时用得多的也就两种:</p>
+
+<ol>
+  <li>数组 (本质就是一个紧凑的列表)</li>
+  <li>字典 (一个 key 对应一个 value)</li>
+</ol>
+
+<p>数组就类似于, 你把一个个空的桶放成了一排, 每个桶可以装一个东西, 数组就是这一整排的桶. 当你要往数组放东西的时候, 你可以从头开始或者从尾开始, 一个个检查看桶是不是空的, 如果不是空的就看下一个, 如果是空的, 你就可以把东西放进去.
+这种一个个桶看的动作, 编程里叫做 <em>“遍历”</em>, 英文叫做 <em>“iterate”</em>. 如果这一排的桶都满了, 那么你会在这排最后一个桶后面放更多的空桶, 让这个数组变得更长, 这种操作一般称为 <em>“扩容“</em>, 因为数组的容量变大了.</p>
+
+<p>字典就类似于, 在数组的基础上额外增加了份目录. 这份目录中我们给桶标了记号, 例如, 桶-A, 桶-B, 桶-C 等等等等. 通过编号你可以一下子找到桶是哪个, 你不需要一个个看. 在我们要放东西到字典前, 我们先通过固定的规则, 算出这个东西应该放哪个桶, 我们记录下来,
+然后我们把这个东西放到对应的桶里. 而这个计算放在哪里的值, 我们统称为 key, 一个 key 会有对应的一个桶, 如果我们下次要找这个 key 的内容是什么, 我们可以快速基于字典的目录定位到桶, 直接拿出来.</p>
+
+<p>基于这样的特征, 你也能尝试理解为什么这个数据结构被叫为字典, 因为字典就只是这样工作的: 单词有排序规则, 目录页记录单词在字典里的页码.</p>
 
   </div><a class="u-url" href="/learning/2024/12/29/python-beginner-guide.html" hidden></a>
 </article>
