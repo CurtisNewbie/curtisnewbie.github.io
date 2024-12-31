@@ -97,6 +97,7 @@ Interesting papers, books and websites are listed here.
 - [Uber - Upgrading Ubers MySQL Fleet](https://www.uber.com/en-JO/blog/upgrading-ubers-mysql-fleet/)
 - [Brian Douglas - SQLite Defaults](https://briandouglas.ie/sqlite-defaults/)
 - [Visualizing B+ Tree](https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html)
+- [Collection of insane and fun facts about SQLite](https://avi.im/blag/2024/sqlite-facts/)
 
 ### Other Github Repos
 
