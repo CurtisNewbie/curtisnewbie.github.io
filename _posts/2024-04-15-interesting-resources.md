@@ -72,6 +72,7 @@ Interesting papers, books and websites are listed here.
 - [Kate holterhoff - Why Message Queues Endure: A History](https://redmonk.com/kholterhoff/2024/12/12/why-message-queues-endure-a-history/)
 - [HTTP/3 Explained](https://http3-explained.haxx.se/en)
 - [HTTP/2 Explained](https://daniel.haxx.se/http2/)
+- [Software Design Is Knowledge Building](https://olano.dev/blog/software-design-is-knowledge-building/)
 
 
 ### Database Related
