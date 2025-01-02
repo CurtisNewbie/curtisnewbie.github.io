@@ -8,8 +8,8 @@
 <meta property="og:title" content="A Python Beginner Guide for My Friend" />
 <meta name="author" content="Yongjie Zhuang" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="A python beginner guide for my close friends who know literally nothing about programming. Guide is written in an opinionated way. For complete tutorial of the language, just Google one." />
-<meta property="og:description" content="A python beginner guide for my close friends who know literally nothing about programming. Guide is written in an opinionated way. For complete tutorial of the language, just Google one." />
+<meta name="description" content="A python beginner guide for my close friends who know almost nothing about programming. Guide is written in an opinionated way. For complete tutorial of the language, just Google one." />
+<meta property="og:description" content="A python beginner guide for my close friends who know almost nothing about programming. Guide is written in an opinionated way. For complete tutorial of the language, just Google one." />
 <link rel="canonical" href="https://curtisnewbie.github.io/learning/2024/12/29/python-beginner-guide.html" />
 <meta property="og:url" content="https://curtisnewbie.github.io/learning/2024/12/29/python-beginner-guide.html" />
 <meta property="og:site_name" content="kekw" />
@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="A Python Beginner Guide for My Friend" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Yongjie Zhuang"},"dateModified":"2024-12-29T23:00:00+08:00","datePublished":"2024-12-29T23:00:00+08:00","description":"A python beginner guide for my close friends who know literally nothing about programming. Guide is written in an opinionated way. For complete tutorial of the language, just Google one.","headline":"A Python Beginner Guide for My Friend","mainEntityOfPage":{"@type":"WebPage","@id":"https://curtisnewbie.github.io/learning/2024/12/29/python-beginner-guide.html"},"url":"https://curtisnewbie.github.io/learning/2024/12/29/python-beginner-guide.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Yongjie Zhuang"},"dateModified":"2024-12-29T23:00:00+08:00","datePublished":"2024-12-29T23:00:00+08:00","description":"A python beginner guide for my close friends who know almost nothing about programming. Guide is written in an opinionated way. For complete tutorial of the language, just Google one.","headline":"A Python Beginner Guide for My Friend","mainEntityOfPage":{"@type":"WebPage","@id":"https://curtisnewbie.github.io/learning/2024/12/29/python-beginner-guide.html"},"url":"https://curtisnewbie.github.io/learning/2024/12/29/python-beginner-guide.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://curtisnewbie.github.io/feed.xml" title="kekw" /></head>
 <body><header class="site-header" role="banner">
@@ -48,7 +48,7 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p><strong>A python beginner guide for my close friends who know literally nothing about programming. Guide is written in an opinionated way. For complete tutorial of the language, just Google one.</strong></p>
+    <p><strong>A python beginner guide for my close friends who know almost nothing about programming. Guide is written in an opinionated way. For complete tutorial of the language, just Google one.</strong></p>
 
 <h2 id="1-基础知识">1. 基础知识</h2>
 
@@ -76,7 +76,7 @@ Python 程序也就能理解我们在写什么, 理解了我们写什么它就�
 
 <h3 id="13-命令行">1.3 命令行</h3>
 
-<p>命令行 (windows 上叫做 Command Prompt) 本质上也就是个软件而已, 只是命令行是一种相对更专业的工具, 专门用于执行命令. 技术人员使用命令行很多时候只是因为以下几个原因：</p>
+<p>命令行 (windows 上叫做 Command Prompt / 命令提示符) 本质上也就是个软件而已, 只是命令行是一种相对更专业的工具, 专门用于执行命令. 技术人员使用命令行很多时候只是因为以下几个原因：</p>
 
 <ol>
   <li>命令行更适合自动化, 例如, 写个脚本跑一大串命令 (页面不好自动点一堆按钮)</li>
@@ -94,23 +94,20 @@ Python 程序也就能理解我们在写什么, 理解了我们写什么它就�
 
 <p><img src="/assets/images/python-beginner-guide/2.png" style="height: 400px" /></p>
 
-<p>下载后, 打开安装包, 进行安装. 安装的过程中如果有显示 <code class="language-plaintext highlighter-rouge">Add Python 3.12.8 to PATH</code> 这样的内容, 记得将勾选框钩上.
-安装完成后, 我们可以打开命令行, 验证我们的安装是否有效: 点击 Windows 的图标, 搜索并且打开 Command Prompt (命令行):</p>
+<p>下载后, 打开安装包, 进行安装. 安装的过程中如果有显示 <code class="language-plaintext highlighter-rouge">Add python.exe to PATH</code> 这样的内容, 记得将勾选框钩上 (看图片最下方).</p>
 
-<p>TODO: screenshot</p>
+<p><img src="/assets/images/python-beginner-guide/6.png" style="height: 300px" /></p>
 
-<p>输入 <code class="language-plaintext highlighter-rouge">Python</code>, 如果你看到显示关于 Python 版本等信息的英文, 你可以看下版本是不是我们现在装的版本 (3.12.7), 如果是, 那么恭喜你, 你成功了.
-如果不是, 那么代表安装过程有点问题, 你可以重新安装, 并且确保把 <code class="language-plaintext highlighter-rouge">Add Python 3.12.8 to PATH</code> 勾选框选上.</p>
+<p>安装完成后, 我们可以打开命令行, 验证我们的安装是否有效: 点击 Windows 的图标, 搜索并且打开 Command Prompt (命令行):</p>
+
+<p>输入 <code class="language-plaintext highlighter-rouge">Python</code>, 如果你看到显示关于 Python 版本等信息的英文, 你可以看下版本是不是我们现在装的版本 (3.12.8), 如果是, 那么恭喜你, 你成功了.
+如果不是, 那么代表安装过程有点问题, 你可以重新安装, 并且确保把 <code class="language-plaintext highlighter-rouge">Add python.exe to PATH</code> 勾选框选上.</p>
 
 <p>如果你成功了, 要退出这个 Python 控制台, 输入 <code class="language-plaintext highlighter-rouge">exit()</code> 就可以退出, 效果大致如下:</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~<span class="nv">$ </span>python3
-Python 3.11.9 <span class="o">(</span>main, Apr  2 2024, 08:25:04<span class="o">)</span> <span class="o">[</span>Clang 15.0.0 <span class="o">(</span>clang-1500.3.9.4<span class="o">)]</span> on darwin
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span>python
+Python 3.12.8 <span class="o">(</span>tags/v3.12.8:2dc476b, Dec  3 2024, 19:30:04<span class="o">)</span> <span class="o">[</span>MSC v.1942 64 bit <span class="o">(</span>AMD64<span class="o">)]</span> on win32
 Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span class="s2">"credits"</span> or <span class="s2">"license"</span> <span class="k">for </span>more information.
-<span class="o">&gt;&gt;&gt;</span>
-<span class="o">&gt;&gt;&gt;</span>
-<span class="o">&gt;&gt;&gt;</span>
-<span class="o">&gt;&gt;&gt;</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="nb">exit</span><span class="o">()</span>
 </code></pre></div></div>
 
@@ -139,15 +136,24 @@ Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span 
 
 <h3 id="31-第一个-python-脚本">3.1 第一个 Python 脚本</h3>
 
-<p>打开 vscode, 选择新建一个文本文件, 保存到你喜欢的地方, 确保命名带 <code class="language-plaintext highlighter-rouge">.py</code> 后缀, 例如: <code class="language-plaintext highlighter-rouge">myscript.py</code>.</p>
+<p>打开 vscode, 选择新建一个文本文件, 按下 <code class="language-plaintext highlighter-rouge">ctrl+s</code> 保存到你喜欢的地方, 确保命名带 <code class="language-plaintext highlighter-rouge">.py</code> 后缀, 例如: <code class="language-plaintext highlighter-rouge">myscript.py</code>. 一般来说一个工程的文件都是放在同一个文件夹层级下.</p>
 
-<p>输入以下内容, 然后保存:</p>
+<p>输入以下内容, 然后 <code class="language-plaintext highlighter-rouge">ctrl+s</code> 保存:</p>
 
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">msg</span> <span class="o">=</span> <span class="s">"Hello world"</span>
 <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>保持在 vscode 页面中, 按下键盘中的 <code class="language-plaintext highlighter-rouge">Ctrl+`</code> 键, 这个时候 vscode 会在底部展示出一个控制台, 同时这个控制台所处位置与你的文件的位置一致.
+<p>保持在 vscode 页面中, 按下键盘中的 <code class="language-plaintext highlighter-rouge">Ctrl+`</code> 键, 这个时候 vscode 会在底部展示出一个控制台.</p>
+
+<p>一般来说你在 vscode 打开一个文件夹，这个控制台所处位置与你的文件夹所在位置是一致的:</p>
+
+<p>例如, 大概长下面这个样子:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PS C:\Users\.....&gt;
+</code></pre></div></div>
+
+<p>如果不在同一个位置, 你可以点击页面最上方 <code class="language-plaintext highlighter-rouge">File</code> 下拉框, 选择 <code class="language-plaintext highlighter-rouge">Open Folder...</code>, 然后再打开你的文件夹 (你的脚本的位置).
 这个时候你可以输入以下命令来运行我们的第一个脚本:</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python myscript.py
@@ -175,17 +181,20 @@ Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span 
 <p>我们使用了函数 <code class="language-plaintext highlighter-rouge">print()</code>, 我们将我们上面创建的变量 <code class="language-plaintext highlighter-rouge">msg</code> 传入到这个函数中, 而这个函数 <code class="language-plaintext highlighter-rouge">print()</code> 正如它的英文名称 print 一样, 它负责将我们提供的内容打印出来,
 也就是输出到我们的控制台中.</p>
 
-<p>如果你不理解什么是变量, 什么是函数, 不用担心, 下面会尽可能描述清楚. 或许你可以感觉出来, 代码本身不是难点, 而代码要实现的事情才是难点.</p>
+<p>如果你不理解什么是变量, 什么是函数, 不用担心, 下面会尽可能描述清楚. 代码本身不是难点, 而代码要实现的事情才是难点.</p>
 
-<p><br /></p>
+<h3 id="32-代码注释">3.2 代码注释</h3>
 
-<hr />
+<p>代码注释的意思就是, 给代码写说明. 注释是有固定格式的, 也就是以 <code class="language-plaintext highlighter-rouge">#</code> 开头后面的内容都是注释的内容.</p>
 
-<p><br /></p>
+<p>代码注释是不会被运行的, 也就是说不管你注释内容里写什么, 都不影响程序本身, 只是程序员写给自己看或给别人看的说明.</p>
 
-<p><strong><em>从现在开始你可能会接受较多信息, 假设你一下子接收不了, 没关系, 完全不需要硬背, 只要理解就接着往下读, 等你需要用到的某些知识的时候再往回看或者上网搜.</em></strong></p>
+<p>例如:</p>
 
-<p><br /></p>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># a 是 1, 这段灰色的字是解释, 没有实际意义
+</span></code></pre></div></div>
+
+<p>你会在后续的例子中看到不少注释的使用.</p>
 
 <h3 id="32-变量">3.2 变量</h3>
 
@@ -219,12 +228,12 @@ Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span 
 <ol>
   <li>整数</li>
   <li>浮点数 (就是带小数点的)</li>
-  <li>字符串 (一串字符, 所以称为字符串, 例如: “HELLO” 本质上是 “H”, “E”, “L”, “L”, “O”, 5个字符的集合表达形式)</li>
+  <li>字符串 (一串字符, 所以称为字符串, 例如: “HELLO” 本质上是 “H”, “E”, “L”, “L”, “O”, 5 个字符的集合表达形式), 一般用双引号来表示</li>
   <li>布尔值, 也就是 <code class="language-plaintext highlighter-rouge">True</code> 和 <code class="language-plaintext highlighter-rouge">False</code></li>
-  <li>空值, 代表没有值, 代码中以 <code class="language-plaintext highlighter-rouge">None</code> 表示.</li>
+  <li>空值, 代表没有值, 代码中以 <code class="language-plaintext highlighter-rouge">None</code> 表示</li>
 </ol>
 
-<p>我们编写 Python 代码给变量赋值的时候, Python 会推断变量的数据类型, Python 不要求变量总是只使用一种数据类型, 也就是说你赋值啥, 变量就是啥.</p>
+<p>我们编写 Python 代码给变量赋值的时候, Python 会推断变量的数据类型.</p>
 
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">msg</span> <span class="o">=</span> <span class="s">"Hello world"</span> <span class="c1"># 这是字符串
 </span><span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
@@ -236,9 +245,9 @@ Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span 
 </span><span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>当然, 一般来说不推荐, 因为你会把自己弄懵.</p>
+<p>Python 不要求变量总是只使用一种数据类型, 也就是说你赋值啥, 变量就是啥. 当然, 一般来说不推荐, 因为你会把自己弄懵.</p>
 
-<h3 id="33-运算符">3.3 运算符</h3>
+<h3 id="34-运算符">3.4 运算符</h3>
 
 <p>我们可以对代码写的值进行运算, 也可以基于变量进行运算, 这些我们统称为运算符. 常见的运算符有 (实际有更多, 但我们先不陷进去):</p>
 
@@ -254,15 +263,148 @@ Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span 
   <li><code class="language-plaintext highlighter-rouge">&lt;=</code> : 比较数值, 或者字符串排序, 小于等于</li>
   <li><code class="language-plaintext highlighter-rouge">==</code> : 比较值是否相等, 例如, 比较整数, 字符串, 布尔值</li>
   <li><code class="language-plaintext highlighter-rouge">!=</code> : 比较值是否不相等, 例如, 比较整数, 字符串, 布尔值</li>
-  <li><code class="language-plaintext highlighter-rouge">is</code> : 比较两个值是否相等, 例如, 检查 msg 是否为空: <code class="language-plaintext highlighter-rouge">msg is None</code></li>
-  <li><code class="language-plaintext highlighter-rouge">is not</code> : 比较两个值是否不相等, 例如, 检查 msg 是否不为空: <code class="language-plaintext highlighter-rouge">msg is not None</code></li>
+  <li><code class="language-plaintext highlighter-rouge">is</code> : 比较两个变量是否为同一个, 例如, 检查 msg 是否为空: <code class="language-plaintext highlighter-rouge">msg is None</code></li>
+  <li><code class="language-plaintext highlighter-rouge">is not</code> : 比较两个变量是否为同一个, 例如, 检查 msg 是否不为空: <code class="language-plaintext highlighter-rouge">msg is not None</code></li>
   <li><code class="language-plaintext highlighter-rouge">in</code> : 检查值是否在数据结构中 (看不懂没关系, 知道是个检查就可以了)</li>
   <li><code class="language-plaintext highlighter-rouge">not in</code> : 检查值是否不在数据结构中 (看不懂没关系, 知道是个检查就可以了)</li>
 </ol>
 
-<p>TODO: More examples</p>
+<p>基本上也就上面这些运算符, 除去数学的, 基本也没剩几个了. 下面是个对这些运算符使用的例子:</p>
 
-<h3 id="34-条件判断--逻辑分支">3.4 条件判断 / 逻辑分支</h3>
+<p>例如, 加减乘除:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span>  <span class="c1"># a 是 3
+</span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span>  <span class="c1"># a 是 -1
+</span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">*</span> <span class="mi">2</span>  <span class="c1"># a 是 2
+</span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># a 是 0.5
+</span><span class="n">a</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">%</span> <span class="mi">2</span>  <span class="c1"># a 是 1
+</span></code></pre></div></div>
+
+<p>例如, 比较, 比较的结果实际上是布尔值 (True / False):</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">2</span>   <span class="c1"># a 是 False (1 是否大于 2)
+</span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">2</span>   <span class="c1"># a 是 True  (1 是否小于 2)
+</span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">&gt;=</span> <span class="mi">1</span>  <span class="c1"># a 是 True  (2 是否大于等于 1)
+</span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="mi">1</span>  <span class="c1"># a 是 False (2 是否小于等于 1)
+</span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span>  <span class="c1"># a 是 False (2 是否等于 1)
+</span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">1</span>  <span class="c1"># a 是 True  (2 是否不等于 1)
+</span></code></pre></div></div>
+
+<p>例如, 检查两个变量是否为同一个, 使用 <code class="language-plaintext highlighter-rouge">is</code> 和 <code class="language-plaintext highlighter-rouge">is not</code> (注意, 同一个不是代表值相等), 一般我们只用 <code class="language-plaintext highlighter-rouge">is</code>/ <code class="language-plaintext highlighter-rouge">is not</code> 判断变量是否为空:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="ow">is</span> <span class="bp">None</span>     <span class="c1"># b 是 False, 因为 a 有值, a 不是 none, 值为 1
+</span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="c1"># b 是 True, 因为 a 有值, a 不是 none, 值为 1
+</span></code></pre></div></div>
+
+<p>例如, 检查值是否在数据结构中, 使用 <code class="language-plaintext highlighter-rouge">in</code> 和 <code class="language-plaintext highlighter-rouge">not in</code> (不懂什么是数据结构没关系, 就是拿来装数据的):</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>   <span class="c1"># 我们有个列表, 里面有 1, 2, 3
+</span><span class="k">if</span> <span class="mi">1</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">:</span>      <span class="c1"># 检查数字 1 在不在 my_list 里面
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">"my_list 里面有 1"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="mi">4</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">:</span>  <span class="c1"># 检查数字 4 在不在 my_list 里面
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">"my_list 里面没有 4"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>后续你会基于这些判断写条件:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"a 居然大于 0"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">a</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"a 不是 None"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="35-条件判断--逻辑分支">3.5 条件判断 / 逻辑分支</h3>
+
+<p>当我们开始准备学条件判断, 开始写函数的时候, 我们要开始学习下 Python 的代码格式. Python 代码是以 Tab 来进行行缩进, 用于区分当前代码的位置 (归属于哪个逻辑分支).</p>
+
+<p>我们先简单介绍 <code class="language-plaintext highlighter-rouge">if ... else ...</code> 来方便你理解什么时候要加 Tab, (<code class="language-plaintext highlighter-rouge">if ... else ...</code> 中文来说就是 <code class="language-plaintext highlighter-rouge">如果满足 a 做 b 否则做 c</code>)</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="o">|</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="mi">2</span><span class="o">|</span> <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="mi">3</span><span class="o">|</span>    <span class="k">print</span><span class="p">(</span><span class="s">"a 是 1"</span><span class="p">)</span>
+<span class="mi">4</span><span class="o">|</span> <span class="k">else</span><span class="p">:</span>
+<span class="mi">5</span><span class="o">|</span>    <span class="k">print</span><span class="p">(</span><span class="s">"a 不是 1"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>在上面例子中:</p>
+
+<ol>
+  <li>第一行我们创建了变量 a</li>
+  <li>第二行我们比较 a 是不是等于 1</li>
+  <li>第三行我们增加了 Tab 缩进, 也就是说 <code class="language-plaintext highlighter-rouge">print("a 是 1")</code> 是在 <code class="language-plaintext highlighter-rouge">if a == 1:</code> 层级下, 只有当 a 等于 1 时才会执行</li>
+  <li>第四行是 <code class="language-plaintext highlighter-rouge">else:</code> 说明, <code class="language-plaintext highlighter-rouge">else:</code> 层级下的代码, 只有当 a 不等于 1 时才会执行</li>
+  <li>第五行我们增加了 Tab 缩进, 说明第五行只有在第四行满足的时候才会执行</li>
+</ol>
+
+<p>如果我们想, 我们可以在通过 Tab 缩进, 在一个逻辑分支下写很多行代码, 例如:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"a 是 1"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"a 真的是 1"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"a 真的真的是 1"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>条件判断 / 逻辑分支主要有以下几种:</p>
+
+<ol>
+  <li>
+    <p>如果 a 做 b (if …)</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">if</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"a 大于等于 1"</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>如果 a 做 b 否则做 c (if … else …)</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">if</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"a 大于等于 1"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"a 小于 1"</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>如果 a 做 b 但如果 c 做 d 否则做 e (if … elif … else …)</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">if</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"a 大于等于 3"</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">a</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"a 大于等于 2"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"a 是其他"</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>只要 a 一直重复做 b (while …)</p>
+
+    <p>例如, 只要 a 小于 4, 下面代码就会打印一次 a 的内容, 同时给 a 加 1, 直到 a 小于 4.</p>
+
+    <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"a 现在是"</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>条件判断还可以嵌套, 只要你需要, 不要太考虑美观问题, 只要合理就可以:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"a 大于 0"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"a 还等于 1 呢"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"a 小于等于 0"</span><span class="p">)</span>
+</code></pre></div></div>
 
 <h3 id="36-函数">3.6 函数</h3>
 
@@ -283,13 +425,28 @@ Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span 
 <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p><code class="language-plaintext highlighter-rouge">print(..)</code> 就是我们见到的第一个内置函数, 这个函数负责将入参输出到控制台中, 而我们提供的入参正式定义好的变量 <code class="language-plaintext highlighter-rouge">msg</code>, 所以函数最终的行为是打印 “Hello world”.</p>
+<p><code class="language-plaintext highlighter-rouge">print(..)</code> 就是我们见到的第一个内置函数, 这个函数负责将入参输出到控制台中, 而我们提供的入参正是定义好的变量 <code class="language-plaintext highlighter-rouge">msg</code>, 所以函数最终的行为是打印 “Hello world”.</p>
 
 <p>除了内置函数, 我们还可以引入别人写的代码 (的函数), 也可以自己写函数自己用.</p>
 
-<h3 id="36-对象">3.6 对象</h3>
+<p>函数的写法是: <code class="language-plaintext highlighter-rouge">def 函数名(参数名)</code>, 例如, 我们写了个函数, 将函数中的第一个参数和第二个参数相加:</p>
 
-<h3 id="37-数据结构">3.7. 数据结构</h3>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">add_num</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</code></pre></div></div>
+
+<p>我们使用函数是为了做些什么事, 执行一段的代码, 有的时候我们需要拿到函数返回的内容, 我们会使用 <code class="language-plaintext highlighter-rouge">return</code> 关键词, <code class="language-plaintext highlighter-rouge">return</code> 会将结果返回出去.</p>
+
+<p>写好该函数后, 我们可以用这个函数的名称进行使用, 这里 c 被赋值, 而 c 的值正是来源于 add_num 函数中的 return 值.</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">add_num</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="c1"># c 是 3
+</span></code></pre></div></div>
+
+<p>但是 <code class="language-plaintext highlighter-rouge">return</code> 并不是必要的, 如果你不需要函数返回值, 你不需要在函数里写 <code class="language-plaintext highlighter-rouge">return</code>.</p>
+
+<h3 id="37-数据结构">3.7 数据结构</h3>
 
 <p>数据结构是个专业名词, 英文是 Data Structure, 也就是设计用来装数据的结构, 因为你不是专业程序员, 不用特别专研有哪些数据结构. 不同类型的数据在取/存的时候, 使用不同的数据结构会有不同的效率, 熟练的程序员选择合适的那个数据结构最大化程序的效率.
 但是就算效率低有的时候也能完成工作, 不用太在意.</p>
@@ -308,6 +465,182 @@ Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span 
 然后我们把这个东西放到对应的桶里. 而这个计算放在哪里的值, 我们统称为 key, 一个 key 会有对应的一个桶, 如果我们下次要找这个 key 的内容是什么, 我们可以快速基于字典的目录定位到桶, 直接拿出来.</p>
 
 <p>基于这样的特征, 你也能尝试理解为什么这个数据结构被叫为字典, 因为字典就只是这样工作的: 单词有排序规则, 目录页记录单词在字典里的页码.</p>
+
+<h2 id="38-数组">3.8 数组</h2>
+
+<p>数组很简单, 本质就是紧凑的一排桶, 这一排桶是有顺序的. 我们使用 <code class="language-plaintext highlighter-rouge">[]</code> 创建空数组, 我们也可以像 <code class="language-plaintext highlighter-rouge">[ 1, 2, 3, 4 ]</code> 这样创建带有值的数组.</p>
+
+<p>因为数组中这一排桶是有顺序的, 我们可以基于桶的位置进行读取. 数组中的第一个桶的位置是 0 (所有语言都是这样设计的, 不纠结).</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># 读第一个桶, a 现在等于 1
+</span><span class="n">a</span> <span class="o">=</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># 读第二个桶, a 现在等于 2
+</span><span class="n">a</span> <span class="o">=</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># 读第三个桶, a 现在等于 3
+</span><span class="n">a</span> <span class="o">=</span> <span class="n">buckets</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># 读第四个桶, a 现在等于 3
+</span></code></pre></div></div>
+
+<p>如果我要遍历数组的所有内容怎么办, 有三种方法, 第一种是从 0 数到最后一个桶:</p>
+
+<p>要知道最后一个桶的位置, 首先要知道数组的大小, 我们使用 Python 内置的函数: <code class="language-plaintext highlighter-rouge">len()</code>:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">a</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">buckets</span><span class="p">)</span> <span class="c1"># a = 4
+</span></code></pre></div></div>
+
+<p>因为第一个桶的位置是 0, 最后一个桶就一定是数组的大小 - 1, 所以我们知道最后一个桶就是: <code class="language-plaintext highlighter-rouge">len(buckets) - 1</code>.
+所以我们可以写以下代码遍历所有的桶:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">buckets</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">buckets</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<p>第二种方法是 <code class="language-plaintext highlighter-rouge">for ... in</code>, 也就是让 Python 自己帮你遍历数组, 这种是最简单的, 就像写英语一样, 不用在意桶的位置:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">buckets</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">buckets</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="39-字典">3.9 字典</h3>
+
+<p>我们基本上绝大部分情况使用字典, 字典的 key 都是字符串或者数字, value 则是随便我们觉得顺手的值:</p>
+
+<p>要创建一个字典, 我们使用 <code class="language-plaintext highlighter-rouge">{}</code>:</p>
+
+<p>例如:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">names</span> <span class="o">=</span> <span class="p">{}</span>
+</code></pre></div></div>
+
+<p>我们也可以创建一个带有 key-value 的字典, 例如:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">goods_count</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"apple"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s">"orange"</span><span class="p">:</span> <span class="mi">30</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>我们用 <code class="language-plaintext highlighter-rouge">in</code> / <code class="language-plaintext highlighter-rouge">not in</code> 检查一个 key 是否在字典里. 同时我们使用 <code class="language-plaintext highlighter-rouge">字典名[KEY名称]</code> 来读写字典的值.</p>
+
+<p>例如:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">names</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># 检查 yongjie 是否在 names 里
+</span><span class="k">if</span> <span class="s">"yongjie"</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"在"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"不在"</span><span class="p">)</span>
+
+<span class="c1"># 把 yongjie 作为 key 放进 names 里, value 随便写点什么, 这里就写 1
+</span><span class="n">names</span><span class="p">[</span><span class="s">"yongjie"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">if</span> <span class="s">"yongjie"</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"现在在了"</span><span class="p">)</span>
+
+    <span class="c1"># 读这个 "yongjie" 对应的值是什么
+</span>    <span class="n">a</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="s">"yongjie"</span><span class="p">]</span>   <span class="c1"># a 是 1
+</span>    <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>那字典有什么实际的用途呢? 想象你有一份商品列表, 商品有名称, 种类, 有数量, 我们可以用字典做统计.</p>
+
+<p>假设这个列表长下面这样, 一个表格, 本质上就是一个数组里面装了更多的数组:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+    <span class="p">[</span><span class="s">"红苹果"</span><span class="p">,</span> <span class="s">"苹果"</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="s">"青苹果"</span><span class="p">,</span> <span class="s">"苹果"</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="s">"黄香蕉"</span><span class="p">,</span> <span class="s">"香蕉"</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="s">"水梨子"</span><span class="p">,</span> <span class="s">"梨子"</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>你可以想像成以下这个样子:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>种类</th>
+      <th>个数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>红苹果</td>
+      <td>苹果</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>青苹果</td>
+      <td>苹果</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>黄香蕉</td>
+      <td>香蕉</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>水梨子</td>
+      <td>梨子</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>那么我想计算, 各种类一共卖了多少, 我可以用字典进行分类汇总:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 假设表格长这样
+</span><span class="n">table</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s">"红苹果"</span><span class="p">,</span> <span class="s">"苹果"</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="s">"青苹果"</span><span class="p">,</span> <span class="s">"苹果"</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="s">"黄香蕉"</span><span class="p">,</span> <span class="s">"香蕉"</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="s">"水梨子"</span><span class="p">,</span> <span class="s">"梨子"</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="p">]</span>
+
+<span class="c1"># 汇总字典
+</span><span class="n">summary</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># 遍历数组
+</span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">table</span><span class="p">:</span>      <span class="c1"># 每一行同时也是个数组
+</span>    <span class="n">name</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>      <span class="c1"># 每一行的第一个, 名称
+</span>    <span class="n">category</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 每一行的第二个, 种类
+</span>    <span class="n">count</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>     <span class="c1"># 每一行的第三个, 个数
+</span>
+    <span class="c1"># 开始汇总
+</span>
+    <span class="k">if</span> <span class="n">category</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">summary</span><span class="p">:</span>     <span class="c1"># 如果之前没有这个种类, 字典的这个种类的值就是 count
+</span>        <span class="n">summary</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span>
+    <span class="k">else</span><span class="p">:</span>                           <span class="c1"># 如果之前有这个种类, 字典的这个种类的值就是: 之前的数量加上现在的种类的 count
+</span>        <span class="n">summary</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">=</span> <span class="n">summary</span><span class="p">[</span><span class="n">category</span><span class="p">]</span> <span class="o">+</span> <span class="n">count</span>
+
+
+<span class="c1"># 你可以把字典打印出来看长什么样
+</span><span class="k">print</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+
+<span class="c1"># 长这样
+#
+# {'苹果': 3, '香蕉': 2, '梨子': 2}
+</span></code></pre></div></div>
+
+<p>既然数组可以遍历, 字典肯定也是可以遍历的, 但是字典中的桶没有顺序, 所以我们不能直接用数字去指定读哪个桶.
+不过我们同样可以用 <code class="language-plaintext highlighter-rouge">for ... in </code> 来遍历, 只不过我们遍历的是字典的 key, 然后我们那 key 去读字典的值.</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">summary</span> <span class="o">=</span> <span class="p">{</span><span class="s">"苹果"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s">"香蕉"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s">"梨子"</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">summary</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"key:"</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="s">"value:"</span><span class="p">,</span> <span class="n">summary</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+
+<span class="c1"># 输出的结果如下:
+# key: 苹果 value: 3
+# key: 香蕉 value: 2
+# key: 梨子 value: 2
+</span></code></pre></div></div>
 
   </div><a class="u-url" href="/learning/2024/12/29/python-beginner-guide.html" hidden></a>
 </article>
