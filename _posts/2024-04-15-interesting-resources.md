@@ -73,6 +73,7 @@ Interesting papers, books and websites are listed here.
 - [HTTP/3 Explained](https://http3-explained.haxx.se/en)
 - [HTTP/2 Explained](https://daniel.haxx.se/http2/)
 - [Software Design Is Knowledge Building](https://olano.dev/blog/software-design-is-knowledge-building/)
+- [Andreas Andreakis, Ioannis Papapanagiotou - DBLog: A Watermark Based Change-Data-Capture Framework](https://arxiv.org/abs/2010.12597?ref=blog.sequinstream.com)
 
 
 ### Database Related
