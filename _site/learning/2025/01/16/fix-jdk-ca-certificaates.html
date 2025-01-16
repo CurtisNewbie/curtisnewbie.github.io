@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Fix JDK CA Certificates | kekw</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="Fix JDK CA Certificates" />
+<meta name="author" content="Yongjie Zhuang" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Java internally maintain a list of CA certificates. These CA certificates are shipped with the JDK installed." />
+<meta property="og:description" content="Java internally maintain a list of CA certificates. These CA certificates are shipped with the JDK installed." />
+<link rel="canonical" href="https://curtisnewbie.github.io/learning/2025/01/16/fix-jdk-ca-certificaates.html" />
+<meta property="og:url" content="https://curtisnewbie.github.io/learning/2025/01/16/fix-jdk-ca-certificaates.html" />
+<meta property="og:site_name" content="kekw" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-16T19:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Fix JDK CA Certificates" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Yongjie Zhuang"},"dateModified":"2025-01-16T19:00:00+08:00","datePublished":"2025-01-16T19:00:00+08:00","description":"Java internally maintain a list of CA certificates. These CA certificates are shipped with the JDK installed.","headline":"Fix JDK CA Certificates","mainEntityOfPage":{"@type":"WebPage","@id":"https://curtisnewbie.github.io/learning/2025/01/16/fix-jdk-ca-certificaates.html"},"url":"https://curtisnewbie.github.io/learning/2025/01/16/fix-jdk-ca-certificaates.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://curtisnewbie.github.io/feed.xml" title="kekw" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">kekw</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Fix JDK CA Certificates</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2025-01-16T19:00:00+08:00" itemprop="datePublished">Jan 16, 2025
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Java internally maintain a list of CA certificates. These CA certificates are shipped with the JDK installed.</p>
+
+<p>These CA certificates are usually stored at following locations:</p>
+
+<ul>
+  <li>Recent JDK Versions: <code class="language-plaintext highlighter-rouge">$JAVA_HOME/lib/security/cacerts</code></li>
+  <li>Older JDK Versions:<code class="language-plaintext highlighter-rouge">$JAVA_HOME/jre/lib/security/cacerts</code></li>
+</ul>
+
+<p>For example, on MacOS:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash<span class="nv">$ </span>file <span class="nv">$JAVA_HOME</span>/jre/lib/security/cacerts
+
+/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home//jre/lib/security/cacerts: Java KeyStore
+</code></pre></div></div>
+
+<p>This file is in binary format, you cannot edit the file directly.</p>
+
+<p>When your JDK version is outdated, the CA certificates that come with the JDK are also outdated. Your HTTP client code may fail to request a website with valid SSL certificate.</p>
+
+<p>You may see exception stacktrace like the following:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">javax</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">SSLHandshakeException</span><span class="o">:</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">validator</span><span class="o">.</span><span class="na">ValidatorException</span><span class="o">:</span> <span class="no">PKIX</span> <span class="n">path</span> <span class="n">building</span> <span class="nl">failed:</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">provider</span><span class="o">.</span><span class="na">certpath</span><span class="o">.</span><span class="na">SunCertPathBuilderException</span><span class="o">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">find</span> <span class="n">valid</span> <span class="n">certification</span> <span class="n">path</span> <span class="n">to</span> <span class="n">requested</span> <span class="n">target</span>
+	<span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">Alert</span><span class="o">.</span><span class="na">createSSLException</span><span class="o">(</span><span class="nc">Alert</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">131</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">TransportContext</span><span class="o">.</span><span class="na">fatal</span><span class="o">(</span><span class="nc">TransportContext</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">377</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">TransportContext</span><span class="o">.</span><span class="na">fatal</span><span class="o">(</span><span class="nc">TransportContext</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">320</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">TransportContext</span><span class="o">.</span><span class="na">fatal</span><span class="o">(</span><span class="nc">TransportContext</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">315</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">CertificateMessage</span><span class="n">$T13CertificateConsumer</span><span class="o">.</span><span class="na">checkServerCerts</span><span class="o">(</span><span class="nc">CertificateMessage</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">1355</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">CertificateMessage</span><span class="n">$T13CertificateConsumer</span><span class="o">.</span><span class="na">onConsumeCertificate</span><span class="o">(</span><span class="nc">CertificateMessage</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">1230</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">CertificateMessage</span><span class="n">$T13CertificateConsumer</span><span class="o">.</span><span class="na">consume</span><span class="o">(</span><span class="nc">CertificateMessage</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">1173</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">SSLHandshake</span><span class="o">.</span><span class="na">consume</span><span class="o">(</span><span class="nc">SSLHandshake</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">376</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">HandshakeContext</span><span class="o">.</span><span class="na">dispatch</span><span class="o">(</span><span class="nc">HandshakeContext</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">479</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">HandshakeContext</span><span class="o">.</span><span class="na">dispatch</span><span class="o">(</span><span class="nc">HandshakeContext</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">457</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">TransportContext</span><span class="o">.</span><span class="na">dispatch</span><span class="o">(</span><span class="nc">TransportContext</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">200</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">SSLTransport</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="nc">SSLTransport</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">155</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">SSLSocketImpl</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="nc">SSLSocketImpl</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">1320</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">SSLSocketImpl</span><span class="o">.</span><span class="na">readHandshakeRecord</span><span class="o">(</span><span class="nc">SSLSocketImpl</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">1233</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">SSLSocketImpl</span><span class="o">.</span><span class="na">startHandshake</span><span class="o">(</span><span class="nc">SSLSocketImpl</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">417</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">SSLSocketImpl</span><span class="o">.</span><span class="na">startHandshake</span><span class="o">(</span><span class="nc">SSLSocketImpl</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">389</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">connection</span><span class="o">.</span><span class="na">RealConnection</span><span class="o">.</span><span class="na">connectTls</span><span class="o">(</span><span class="nc">RealConnection</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">336</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">connection</span><span class="o">.</span><span class="na">RealConnection</span><span class="o">.</span><span class="na">establishProtocol</span><span class="o">(</span><span class="nc">RealConnection</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">300</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">connection</span><span class="o">.</span><span class="na">RealConnection</span><span class="o">.</span><span class="na">connect</span><span class="o">(</span><span class="nc">RealConnection</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">185</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">connection</span><span class="o">.</span><span class="na">ExchangeFinder</span><span class="o">.</span><span class="na">findConnection</span><span class="o">(</span><span class="nc">ExchangeFinder</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">224</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">connection</span><span class="o">.</span><span class="na">ExchangeFinder</span><span class="o">.</span><span class="na">findHealthyConnection</span><span class="o">(</span><span class="nc">ExchangeFinder</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">108</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">connection</span><span class="o">.</span><span class="na">ExchangeFinder</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">ExchangeFinder</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">88</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">connection</span><span class="o">.</span><span class="na">Transmitter</span><span class="o">.</span><span class="na">newExchange</span><span class="o">(</span><span class="nc">Transmitter</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">169</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">connection</span><span class="o">.</span><span class="na">ConnectInterceptor</span><span class="o">.</span><span class="na">intercept</span><span class="o">(</span><span class="nc">ConnectInterceptor</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">41</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">http</span><span class="o">.</span><span class="na">RealInterceptorChain</span><span class="o">.</span><span class="na">proceed</span><span class="o">(</span><span class="nc">RealInterceptorChain</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">142</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">http</span><span class="o">.</span><span class="na">RealInterceptorChain</span><span class="o">.</span><span class="na">proceed</span><span class="o">(</span><span class="nc">RealInterceptorChain</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">117</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">cache</span><span class="o">.</span><span class="na">CacheInterceptor</span><span class="o">.</span><span class="na">intercept</span><span class="o">(</span><span class="nc">CacheInterceptor</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">94</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">http</span><span class="o">.</span><span class="na">RealInterceptorChain</span><span class="o">.</span><span class="na">proceed</span><span class="o">(</span><span class="nc">RealInterceptorChain</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">142</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">http</span><span class="o">.</span><span class="na">RealInterceptorChain</span><span class="o">.</span><span class="na">proceed</span><span class="o">(</span><span class="nc">RealInterceptorChain</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">117</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">http</span><span class="o">.</span><span class="na">BridgeInterceptor</span><span class="o">.</span><span class="na">intercept</span><span class="o">(</span><span class="nc">BridgeInterceptor</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">93</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">http</span><span class="o">.</span><span class="na">RealInterceptorChain</span><span class="o">.</span><span class="na">proceed</span><span class="o">(</span><span class="nc">RealInterceptorChain</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">142</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">http</span><span class="o">.</span><span class="na">RetryAndFollowUpInterceptor</span><span class="o">.</span><span class="na">intercept</span><span class="o">(</span><span class="nc">RetryAndFollowUpInterceptor</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">88</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">http</span><span class="o">.</span><span class="na">RealInterceptorChain</span><span class="o">.</span><span class="na">proceed</span><span class="o">(</span><span class="nc">RealInterceptorChain</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">142</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">http</span><span class="o">.</span><span class="na">RealInterceptorChain</span><span class="o">.</span><span class="na">proceed</span><span class="o">(</span><span class="nc">RealInterceptorChain</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">117</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">RealCall</span><span class="o">.</span><span class="na">getResponseWithInterceptorChain</span><span class="o">(</span><span class="nc">RealCall</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">229</span><span class="o">)</span>
+	<span class="n">at</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">RealCall</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="nc">RealCall</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="mi">81</span><span class="o">)</span>
+    <span class="o">...</span>
+</code></pre></div></div>
+
+<p>You can also verify the SSL issue if the OS’s CA certificates are also outdated, e.g., using cURL:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash# curl https://<span class="k">****</span> <span class="nt">-v</span>
+
+<span class="k">*</span> Rebuilt URL to: https://<span class="k">***</span>/
+<span class="k">*</span>   Trying <span class="k">***</span>.<span class="k">***</span>.<span class="k">***</span>.<span class="k">***</span>...
+<span class="k">*</span> TCP_NODELAY <span class="nb">set</span>
+<span class="k">*</span> Connected to <span class="k">***</span>.<span class="k">***</span>.<span class="k">***</span> <span class="o">(</span><span class="k">***</span>.<span class="k">***</span>.<span class="k">***</span><span class="o">)</span> port 443 <span class="o">(</span><span class="c">#0)</span>
+<span class="k">*</span> ALPN, offering h2
+<span class="k">*</span> ALPN, offering http/1.1
+<span class="k">*</span> successfully <span class="nb">set </span>certificate verify locations:
+<span class="k">*</span>   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+<span class="k">*</span> TLSv1.3 <span class="o">(</span>OUT<span class="o">)</span>, TLS handshake, Client hello <span class="o">(</span>1<span class="o">)</span>:
+<span class="k">*</span> TLSv1.3 <span class="o">(</span>IN<span class="o">)</span>, TLS handshake, Server hello <span class="o">(</span>2<span class="o">)</span>:
+<span class="k">*</span> TLSv1.3 <span class="o">(</span>IN<span class="o">)</span>, TLS handshake, <span class="o">[</span>no content] <span class="o">(</span>0<span class="o">)</span>:
+<span class="k">*</span> TLSv1.3 <span class="o">(</span>IN<span class="o">)</span>, TLS handshake, Encrypted Extensions <span class="o">(</span>8<span class="o">)</span>:
+<span class="k">*</span> TLSv1.3 <span class="o">(</span>IN<span class="o">)</span>, TLS handshake, <span class="o">[</span>no content] <span class="o">(</span>0<span class="o">)</span>:
+<span class="k">*</span> TLSv1.3 <span class="o">(</span>IN<span class="o">)</span>, TLS handshake, Certificate <span class="o">(</span>11<span class="o">)</span>:
+<span class="k">*</span> TLSv1.3 <span class="o">(</span>OUT<span class="o">)</span>, TLS alert, unknown CA <span class="o">(</span>560<span class="o">)</span>:
+<span class="k">*</span> SSL certificate problem: unable to get <span class="nb">local </span>issuer certificate
+<span class="k">*</span> Closing connection 0
+curl: <span class="o">(</span>60<span class="o">)</span> SSL certificate problem: unable to get <span class="nb">local </span>issuer certificate
+More details here: https://curl.haxx.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the web page mentioned above.
+</code></pre></div></div>
+
+<p>You have three options to fix the CA certificates issue:</p>
+
+<ol>
+  <li>Fix CA Certificates of JDK (and OS)</li>
+  <li>Configure Java HTTP Client to trust all certificates</li>
+  <li>Upgrade JDK (only the minor version)</li>
+</ol>
+
+<p>Second option is not recommended, and third option is preferable but sometimes not possible (in your company).</p>
+
+<p>In my case, I (have to) choose to first option; fixing the CA certificates by importing certificate PEM to JDK’s cacerts.</p>
+
+<blockquote>
+  <p>Assume that we trust the website’s existing certificates.</p>
+</blockquote>
+
+<p>First, we open the website using Chrome, open the website’s certificate details, and export the certificates. Notice that sometimes you not only need the top layer certificate, you also need the middle one, so you may end up exporting more than one <code class="language-plaintext highlighter-rouge">*.pem</code> certificate files.</p>
+
+<p>We then fix OS’s CA certificates by copying the content of these exported certificate files to OS’s <code class="language-plaintext highlighter-rouge">*.crt</code> file. The location of the <code class="language-plaintext highlighter-rouge">*.crt</code> file really depends on which OS your are using.</p>
+
+<p>E.g., in REHL, the OS’s certificates may be located at: <code class="language-plaintext highlighter-rouge">/etc/pki/tls/certs/ca-bundle.crt</code>, if you are using Ubuntu or something else, it will be different, just google it.</p>
+
+<p>Once we have copied the exported certificates content to this <code class="language-plaintext highlighter-rouge">*.crt</code> file, the cURL should work normally. It at least proves that the certificates that we just exported are correct.</p>
+
+<p>For JDK (or say JRE), we use the built-in JDK tools <code class="language-plaintext highlighter-rouge">keytool</code> to import the certificates, the command looks like the following:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>keytool <span class="nt">-import</span> <span class="nt">-storepass</span> changeit <span class="nt">-noprompt</span> <span class="nt">-trustcacerts</span> <span class="nt">-alias</span> my_exported_certificate_1 <span class="nt">-file</span> my_exported_1.crt <span class="nt">-keystore</span> <span class="nv">$JAVA_HOME</span>/jre/lib/security/cacerts
+
+keytool <span class="nt">-import</span> <span class="nt">-storepass</span> changeit <span class="nt">-noprompt</span> <span class="nt">-trustcacerts</span> <span class="nt">-alias</span> my_exported_certificate_2 <span class="nt">-file</span> my_exported_2.crt <span class="nt">-keystore</span> <span class="nv">$JAVA_HOME</span>/jre/lib/security/cacerts
+</code></pre></div></div>
+
+<p>Notice that JDK’s cacerts by default use password <code class="language-plaintext highlighter-rouge">changeit</code>, so we just pass in the password using CLI arg <code class="language-plaintext highlighter-rouge">-storepass</code> without the prompt.</p>
+
+<p>Since we may need to import mulitple certificates, you will need to run the <code class="language-plaintext highlighter-rouge">keytool</code> commands multiple times for each of these certificates, because <code class="language-plaintext highlighter-rouge">keytool</code> only supports importing one certificate at a time.</p>
+
+<p>Restart the Java application to apply the changes, then you are good to go.</p>
+
+<p>If it doesn’t work, you may have a look at the content of the cacert file. Again, you can just use the <code class="language-plaintext highlighter-rouge">keytool</code> command as follows:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>keytool <span class="nt">-list</span> <span class="nt">-v</span> <span class="nt">-keystore</span> <span class="nv">$JAVA_HOME</span>/jre/lib/security/cacerts <span class="nt">-storepass</span> changeit | less
+</code></pre></div></div>
+
+<p>Have a look at the total number of entries to check if the certificates are indeeded imported. You can also check the expiry time and make sure the certificates are still valid (e.g., <code class="language-plaintext highlighter-rouge">valid from *** until ***</code>).</p>
+
+  </div><a class="u-url" href="/learning/2025/01/16/fix-jdk-ca-certificaates.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">kekw</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Yongjie Zhuang</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/CurtisNewbie"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">CurtisNewbie</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Til the end</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
