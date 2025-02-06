@@ -75,6 +75,7 @@ Interesting papers, books and websites are listed here.
 - [Software Design Is Knowledge Building](https://olano.dev/blog/software-design-is-knowledge-building/)
 - [Andreas Andreakis, Ioannis Papapanagiotou - DBLog: A Watermark Based Change-Data-Capture Framework](https://arxiv.org/abs/2010.12597?ref=blog.sequinstream.com)
 - [FFmpeg by example](https://ffmpegbyexample.com/)
+- [Martin Fowler - Conways Law](https://martinfowler.com/bliki/ConwaysLaw.html)
 
 
 ### Database Related
