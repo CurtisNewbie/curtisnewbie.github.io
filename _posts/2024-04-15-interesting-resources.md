@@ -102,6 +102,7 @@ Interesting papers, books and websites are listed here.
 - [Brian Douglas - SQLite Defaults](https://briandouglas.ie/sqlite-defaults/)
 - [Visualizing B+ Tree](https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html)
 - [Collection of insane and fun facts about SQLite](https://avi.im/blag/2024/sqlite-facts/)
+- [Implementing MVCC and major SQL transaction isolation levels](https://notes.eatonphil.com/2024-05-16-mvcc.html)
 
 ### Other Github Repos
 
