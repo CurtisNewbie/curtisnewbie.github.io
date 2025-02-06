@@ -128,6 +128,7 @@ Interesting papers, books and websites are listed here.
 - [100 Go Mistakes and How to Avoid Them](https://100go.co/)
 - [Phuong Le, Golang Sync Mutex: Normal and Starvation Mode](https://victoriametrics.com/blog/go-sync-mutex/)
 - [Phuong Le, Vendoring, or go mod vendor: What Is It?](https://victoriametrics.com/blog/vendoring-go-mod-vendor/index.html)
+- [Go Data Structures](https://research.swtch.com/godata)
 
 ### GC
 
