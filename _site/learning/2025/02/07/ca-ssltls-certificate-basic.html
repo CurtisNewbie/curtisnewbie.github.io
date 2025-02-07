@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>CA, SSL/TLS Certificate Basic | kekw</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="CA, SSL/TLS Certificate Basic" />
+<meta name="author" content="Yongjie Zhuang" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="1. CA and SSL/TLS Certificates" />
+<meta property="og:description" content="1. CA and SSL/TLS Certificates" />
+<link rel="canonical" href="https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic.html" />
+<meta property="og:url" content="https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic.html" />
+<meta property="og:site_name" content="kekw" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-02-07T09:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="CA, SSL/TLS Certificate Basic" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Yongjie Zhuang"},"dateModified":"2025-02-07T09:00:00+08:00","datePublished":"2025-02-07T09:00:00+08:00","description":"1. CA and SSL/TLS Certificates","headline":"CA, SSL/TLS Certificate Basic","mainEntityOfPage":{"@type":"WebPage","@id":"https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic.html"},"url":"https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://curtisnewbie.github.io/feed.xml" title="kekw" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">kekw</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">CA, SSL/TLS Certificate Basic</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2025-02-07T09:00:00+08:00" itemprop="datePublished">Feb 7, 2025
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="1-ca-and-ssltls-certificates">1. CA and SSL/TLS Certificates</h2>
+
+<p>CA stands for Certificate Authority. CA certificates usually refer to the digital certificates issued by CAs, the trusted entities, sometime we call these certificates “the root certificates”.</p>
+
+<p>The SSL/TLS certificates are mainly used to help us verify the identities of the servers that we are connecting to, but the certificates do not contain any IP addresses, only the domain name and other related information (e.g., about the organization and so on).</p>
+
+<p>DNS server resolves the IPs for the provided domain name, and the resolution happens before SSL/TLS connection. If the DNS server is hijacked, then SSL/TLS doesn’t protect the clients, since the hijacked DNS servers may have already redirected the client to a fake server before the SSL/TLS handshake.</p>
+
+<p>Given that DNS server is not hijacked, then SSL/TLS certificates installed on the servers (the website) can be used to verify the identity of the domain name. Since the DNS server provides valid IPs for the domain name, we can be sure that we are connecting to the trusted servers for the website. In other words, SSL/TLS certificates protect the domain name(s).</p>
+
+<h2 id="2-how-ca-certificates-help">2. How CA Certificates Help?</h2>
+
+<p>Recall that CAs are the trusted entities, and CA certificates are signed and issued by CAs using private key. With RSA, private key is used to generate digital signature (i.e., signing stuff) and public key is used to verify the digital signature.</p>
+
+<p>Almost all OSs or some programming language runtimes (e.g., Java bundles the root CAs certificates in its runtime) maintain a list of trusted, root CAs certificates.</p>
+
+<p>When clients connect to servers, during the SSL/TLS handshake, the servers send the installed SSL/TLS certificates to the clients. Clients then examine the certificate and identify the CA that issued it.</p>
+
+<p>Since clients have a list of trusted CA certificates (e.g., from the OS), clients can use the public key in CA certificates to verify the certificates provided by the server, which is essentially using the public key to verify the digital signature on it. If the digital signature is valid and the certificate has not yet expired, then the certificate is trustworthy.</p>
+
+<p>So, you may have wondered, if the OS or the programming language runtime are really outdated, they may not contain all the CA certificates. In which case, they may fail to verify the SSL/TLS certificates provided by the server even though they are valid.</p>
+
+<h2 id="3-chain-of-certificates">3. Chain of Certificates</h2>
+
+<p>Chain of certificates is used to reduce the number of root CAs, it just simply means that there are multiple certificates in the chain, and each certificate is issued by the one before it, thus it’s called a chain, not a list.</p>
+
+<p>The ones in the middle of the chain is called intermediate certificate. These certificates are usually issued by entities that also issue SSL/TLS certificates. Intermediate certificates are just like normal SSL/TLS certificates, they are also verified by another certificate that issued them. The entities that issue intermediate certificates are called Intermediate CAs or Sub CAs.</p>
+
+<p>When a website’s certificate is issued by a intermediate CA not directly from a root CA, the website should install the chain of certificates on its servers such that when a client undertake SSL/TLS handshake with the server, the server replies the whole chain to the client (not just the one its domain name), and then the client can verify each certificate on the chain until the root CAs that the client alreay knew.</p>
+
+<p>Below is a simple visualization for the logic behind.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Root CA Certificates]
+            ^
+            |
+            | verified using root CA certificate's public key
+            |
+            |
+[Intermediate Certificates]
+            ^
+            |
+            | verified using intermediate CA certificate's public key
+            |
+            |
+[Domain Certificate - The Website]
+</code></pre></div></div>
+
+<p>So, what might go wrong when using chain of certificates? If the server’s domain certificate is not signed by any known root CA certificate, and the intermediate certificates on the chain are not provided to the client, then the client will simply not be able to verify the domain certificate, it doesn’t even know which root CA certificate this chain roots from.</p>
+
+<p>A classic issue with intermediate certificates is that the web server misconfigures the chain of certificate, wherein the intermediate certificates are not provided to the clients, the client is unable to valid the domain certificate. The solution to this problem is either letting the client install the intermediate certificates or fix the certificate chain configuration.</p>
+
+<p>The post <a href="/learning/2025/01/16/fix-jdk-ca-certificates">“2025-01-16 Fix JDK CA Certificates”</a> is an example on installing the certificates on the client side, which is the last resort for fixing the SSL/TLS certificate problems.</p>
+
+<h2 id="4-commands-for-certificates">4. Commands for Certificates</h2>
+
+<h3 id="view-certificate-details">View Certificate Details</h3>
+
+<p>Use following command to read the certificate file’s content.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl x509 <span class="nt">-text</span> <span class="nt">-in</span> <span class="s2">"***.crt"</span>
+</code></pre></div></div>
+
+<h3 id="view-certificate-signature">View Certificate Signature</h3>
+
+<p>Use following command to read certificate signature in sha256 / sha1 format, the command above also displays the signature, though they look slightly different.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl x509 <span class="nt">-noout</span> <span class="nt">-fingerprint</span> <span class="nt">-sha256</span> <span class="nt">-in</span> <span class="s2">"***.crt"</span><span class="p">;</span>
+openssl x509 <span class="nt">-noout</span> <span class="nt">-fingerprint</span> <span class="nt">-sha1</span> <span class="nt">-in</span> <span class="s2">"***.crt"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="fetch-chain-of-certificates">Fetch Chain of Certificates</h3>
+
+<p>Credit: https://unix.stackexchange.com/questions/368123/how-to-extract-the-root-ca-and-subordinate-ca-from-a-certificate-chain-in-linux</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function </span>root_cert<span class="o">()</span> <span class="o">{</span>
+    openssl s_client <span class="nt">-showcerts</span> <span class="nt">-verify</span> 10 <span class="nt">-connect</span> <span class="nv">$1</span>:443 <span class="o">&gt;</span> /dev/null
+<span class="o">}</span>
+
+<span class="k">function </span>scrape_all_cert<span class="o">()</span> <span class="o">{</span>
+    openssl s_client <span class="nt">-showcerts</span> <span class="nt">-verify</span> 10 <span class="nt">-connect</span> <span class="nv">$1</span>:443 &lt; /dev/null |
+    <span class="nb">awk</span> <span class="s1">'/BEGIN CERTIFICATE/,/END CERTIFICATE/{ if(/BEGIN CERTIFICATE/){a++}; out="cert"a".pem"; print &gt;out}'</span>
+    <span class="nv">i</span><span class="o">=</span>0
+    <span class="nb">echo</span> <span class="s2">""</span>
+    <span class="k">for </span>cert <span class="k">in</span> <span class="k">*</span>.pem<span class="p">;</span> <span class="k">do
+            </span><span class="nv">newname</span><span class="o">=</span><span class="si">$(</span>openssl x509 <span class="nt">-noout</span> <span class="nt">-subject</span> <span class="nt">-in</span> <span class="nv">$cert</span> | <span class="nb">sed</span> <span class="nt">-nE</span> <span class="s1">'s/.*CN ?= ?(.*)/\1/; s/[ ,.*]/_/g; s/__/_/g; s/_-_/-/; s/^_//g;p'</span> | <span class="nb">tr</span> <span class="s1">'[:upper:]'</span> <span class="s1">'[:lower:]'</span><span class="si">)</span>.pem
+            <span class="nb">echo</span> <span class="s2">"- </span><span class="k">${</span><span class="nv">i</span><span class="k">}</span><span class="s2"> /tmp/</span><span class="k">${</span><span class="nv">newname</span><span class="k">}</span><span class="s2">"</span>
+            <span class="nb">mv</span> <span class="s2">"</span><span class="nv">$cert</span><span class="s2">"</span> <span class="s2">"/tmp/</span><span class="k">${</span><span class="nv">newname</span><span class="k">}</span><span class="s2">"</span>
+            <span class="nv">i</span><span class="o">=</span><span class="k">$((</span>i+1<span class="k">))</span>
+    <span class="k">done</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="5-more">5. More</h2>
+
+<ul>
+  <li>https://stackoverflow.com/questions/40061263/what-is-ca-certificate-and-why-do-we-need-it</li>
+  <li>https://www.cloudflare.com/learning/ssl/how-does-ssl-work/</li>
+  <li>https://www.keyfactor.com/blog/what-is-a-certificate-signing-request-csr/</li>
+</ul>
+
+  </div><a class="u-url" href="/learning/2025/02/07/ca-ssltls-certificate-basic.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">kekw</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Yongjie Zhuang</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/CurtisNewbie"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">CurtisNewbie</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Til the end</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

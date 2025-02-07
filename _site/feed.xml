@@ -1,4 +1,102 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-02-06T18:24:12+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Fix JDK CA Certificates</title><link href="https://curtisnewbie.github.io/learning/2025/01/16/fix-jdk-ca-certificaates.html" rel="alternate" type="text/html" title="Fix JDK CA Certificates" /><published>2025-01-16T19:00:00+08:00</published><updated>2025-01-16T19:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/01/16/fix-jdk-ca-certificaates</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/01/16/fix-jdk-ca-certificaates.html"><![CDATA[<p>Java internally maintain a list of CA certificates. These CA certificates are shipped with the JDK installed.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-02-07T20:54:03+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">CA, SSL/TLS Certificate Basic</title><link href="https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic.html" rel="alternate" type="text/html" title="CA, SSL/TLS Certificate Basic" /><published>2025-02-07T09:00:00+08:00</published><updated>2025-02-07T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic.html"><![CDATA[<h2 id="1-ca-and-ssltls-certificates">1. CA and SSL/TLS Certificates</h2>
+
+<p>CA stands for Certificate Authority. CA certificates usually refer to the digital certificates issued by CAs, the trusted entities, sometime we call these certificates “the root certificates”.</p>
+
+<p>The SSL/TLS certificates are mainly used to help us verify the identities of the servers that we are connecting to, but the certificates do not contain any IP addresses, only the domain name and other related information (e.g., about the organization and so on).</p>
+
+<p>DNS server resolves the IPs for the provided domain name, and the resolution happens before SSL/TLS connection. If the DNS server is hijacked, then SSL/TLS doesn’t protect the clients, since the hijacked DNS servers may have already redirected the client to a fake server before the SSL/TLS handshake.</p>
+
+<p>Given that DNS server is not hijacked, then SSL/TLS certificates installed on the servers (the website) can be used to verify the identity of the domain name. Since the DNS server provides valid IPs for the domain name, we can be sure that we are connecting to the trusted servers for the website. In other words, SSL/TLS certificates protect the domain name(s).</p>
+
+<h2 id="2-how-ca-certificates-help">2. How CA Certificates Help?</h2>
+
+<p>Recall that CAs are the trusted entities, and CA certificates are signed and issued by CAs using private key. With RSA, private key is used to generate digital signature (i.e., signing stuff) and public key is used to verify the digital signature.</p>
+
+<p>Almost all OSs or some programming language runtimes (e.g., Java bundles the root CAs certificates in its runtime) maintain a list of trusted, root CAs certificates.</p>
+
+<p>When clients connect to servers, during the SSL/TLS handshake, the servers send the installed SSL/TLS certificates to the clients. Clients then examine the certificate and identify the CA that issued it.</p>
+
+<p>Since clients have a list of trusted CA certificates (e.g., from the OS), clients can use the public key in CA certificates to verify the certificates provided by the server, which is essentially using the public key to verify the digital signature on it. If the digital signature is valid and the certificate has not yet expired, then the certificate is trustworthy.</p>
+
+<p>So, you may have wondered, if the OS or the programming language runtime are really outdated, they may not contain all the CA certificates. In which case, they may fail to verify the SSL/TLS certificates provided by the server even though they are valid.</p>
+
+<h2 id="3-chain-of-certificates">3. Chain of Certificates</h2>
+
+<p>Chain of certificates is used to reduce the number of root CAs, it just simply means that there are multiple certificates in the chain, and each certificate is issued by the one before it, thus it’s called a chain, not a list.</p>
+
+<p>The ones in the middle of the chain is called intermediate certificate. These certificates are usually issued by entities that also issue SSL/TLS certificates. Intermediate certificates are just like normal SSL/TLS certificates, they are also verified by another certificate that issued them. The entities that issue intermediate certificates are called Intermediate CAs or Sub CAs.</p>
+
+<p>When a website’s certificate is issued by a intermediate CA not directly from a root CA, the website should install the chain of certificates on its servers such that when a client undertake SSL/TLS handshake with the server, the server replies the whole chain to the client (not just the one its domain name), and then the client can verify each certificate on the chain until the root CAs that the client alreay knew.</p>
+
+<p>Below is a simple visualization for the logic behind.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Root CA Certificates]
+            ^
+            |
+            | verified using root CA certificate's public key
+            |
+            |
+[Intermediate Certificates]
+            ^
+            |
+            | verified using intermediate CA certificate's public key
+            |
+            |
+[Domain Certificate - The Website]
+</code></pre></div></div>
+
+<p>So, what might go wrong when using chain of certificates? If the server’s domain certificate is not signed by any known root CA certificate, and the intermediate certificates on the chain are not provided to the client, then the client will simply not be able to verify the domain certificate, it doesn’t even know which root CA certificate this chain roots from.</p>
+
+<p>A classic issue with intermediate certificates is that the web server misconfigures the chain of certificate, wherein the intermediate certificates are not provided to the clients, the client is unable to valid the domain certificate. The solution to this problem is either letting the client install the intermediate certificates or fix the certificate chain configuration.</p>
+
+<p>The post <a href="/learning/2025/01/16/fix-jdk-ca-certificates">“2025-01-16 Fix JDK CA Certificates”</a> is an example on installing the certificates on the client side, which is the last resort for fixing the SSL/TLS certificate problems.</p>
+
+<h2 id="4-commands-for-certificates">4. Commands for Certificates</h2>
+
+<h3 id="view-certificate-details">View Certificate Details</h3>
+
+<p>Use following command to read the certificate file’s content.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl x509 <span class="nt">-text</span> <span class="nt">-in</span> <span class="s2">"***.crt"</span>
+</code></pre></div></div>
+
+<h3 id="view-certificate-signature">View Certificate Signature</h3>
+
+<p>Use following command to read certificate signature in sha256 / sha1 format, the command above also displays the signature, though they look slightly different.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl x509 <span class="nt">-noout</span> <span class="nt">-fingerprint</span> <span class="nt">-sha256</span> <span class="nt">-in</span> <span class="s2">"***.crt"</span><span class="p">;</span>
+openssl x509 <span class="nt">-noout</span> <span class="nt">-fingerprint</span> <span class="nt">-sha1</span> <span class="nt">-in</span> <span class="s2">"***.crt"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="fetch-chain-of-certificates">Fetch Chain of Certificates</h3>
+
+<p>Credit: https://unix.stackexchange.com/questions/368123/how-to-extract-the-root-ca-and-subordinate-ca-from-a-certificate-chain-in-linux</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function </span>root_cert<span class="o">()</span> <span class="o">{</span>
+    openssl s_client <span class="nt">-showcerts</span> <span class="nt">-verify</span> 10 <span class="nt">-connect</span> <span class="nv">$1</span>:443 <span class="o">&gt;</span> /dev/null
+<span class="o">}</span>
+
+<span class="k">function </span>scrape_all_cert<span class="o">()</span> <span class="o">{</span>
+    openssl s_client <span class="nt">-showcerts</span> <span class="nt">-verify</span> 10 <span class="nt">-connect</span> <span class="nv">$1</span>:443 &lt; /dev/null |
+    <span class="nb">awk</span> <span class="s1">'/BEGIN CERTIFICATE/,/END CERTIFICATE/{ if(/BEGIN CERTIFICATE/){a++}; out="cert"a".pem"; print &gt;out}'</span>
+    <span class="nv">i</span><span class="o">=</span>0
+    <span class="nb">echo</span> <span class="s2">""</span>
+    <span class="k">for </span>cert <span class="k">in</span> <span class="k">*</span>.pem<span class="p">;</span> <span class="k">do
+            </span><span class="nv">newname</span><span class="o">=</span><span class="si">$(</span>openssl x509 <span class="nt">-noout</span> <span class="nt">-subject</span> <span class="nt">-in</span> <span class="nv">$cert</span> | <span class="nb">sed</span> <span class="nt">-nE</span> <span class="s1">'s/.*CN ?= ?(.*)/\1/; s/[ ,.*]/_/g; s/__/_/g; s/_-_/-/; s/^_//g;p'</span> | <span class="nb">tr</span> <span class="s1">'[:upper:]'</span> <span class="s1">'[:lower:]'</span><span class="si">)</span>.pem
+            <span class="nb">echo</span> <span class="s2">"- </span><span class="k">${</span><span class="nv">i</span><span class="k">}</span><span class="s2"> /tmp/</span><span class="k">${</span><span class="nv">newname</span><span class="k">}</span><span class="s2">"</span>
+            <span class="nb">mv</span> <span class="s2">"</span><span class="nv">$cert</span><span class="s2">"</span> <span class="s2">"/tmp/</span><span class="k">${</span><span class="nv">newname</span><span class="k">}</span><span class="s2">"</span>
+            <span class="nv">i</span><span class="o">=</span><span class="k">$((</span>i+1<span class="k">))</span>
+    <span class="k">done</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="5-more">5. More</h2>
+
+<ul>
+  <li>https://stackoverflow.com/questions/40061263/what-is-ca-certificate-and-why-do-we-need-it</li>
+  <li>https://www.cloudflare.com/learning/ssl/how-does-ssl-work/</li>
+  <li>https://www.keyfactor.com/blog/what-is-a-certificate-signing-request-csr/</li>
+</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[1. CA and SSL/TLS Certificates]]></summary></entry><entry><title type="html">Fix JDK CA Certificates</title><link href="https://curtisnewbie.github.io/learning/2025/01/16/fix-jdk-ca-certificates.html" rel="alternate" type="text/html" title="Fix JDK CA Certificates" /><published>2025-01-16T19:00:00+08:00</published><updated>2025-01-16T19:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/01/16/fix-jdk-ca-certificates</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/01/16/fix-jdk-ca-certificates.html"><![CDATA[<p>Java internally maintain a list of CA certificates. These CA certificates are shipped with the JDK installed.</p>
 
 <p>These CA certificates are usually stored at following locations:</p>
 
@@ -1931,144 +2029,4 @@ ImportError: /usr/local/lib64/python3.11/site-packages/torch/lib/libtorch_cuda.s
       <li><a href="https://github.com/curtisnewbie/octopus">https://github.com/curtisnewbie/octopus</a></li>
     </ul>
   </li>
-</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Ideas" /><summary type="html"><![CDATA[List of random ideas:]]></summary></entry><entry><title type="html">Learning Jekyll</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/learning-jekyll.html" rel="alternate" type="text/html" title="Learning Jekyll" /><published>2024-04-15T13:00:00+08:00</published><updated>2024-04-15T13:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/learning-jekyll</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/learning-jekyll.html"><![CDATA[<p>The following are useful websites for learning jekyll:</p>
-
-<ul>
-  <li>Jekyllrb Official: https://jekyllrb.com/</li>
-  <li>Github Page: https://docs.github.com/en/pages/quickstart</li>
-</ul>
-
-<h2 id="install-jekyll">Install Jekyll</h2>
-
-<p>To install jekyll on Macos, we will first use brew to install a separate ruby, e.g., ruby@3. Macos has a built-in ruby installed, but we will need root priviliege to install packages, i.e., running ruby commands with sudo, it’s not safe so we won’t do that.</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>ruby@3
-</code></pre></div></div>
-
-<p>After the installation, we export the path to ruby@3. Of course we can run <code class="language-plaintext highlighter-rouge">brew link</code>, but it won’t work because there is already one pre-installed. If you run <code class="language-plaintext highlighter-rouge">brew link</code>, you will see the warning messages.</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warning: Refusing to <span class="nb">link </span>macOS provided/shadowed software: ruby
-If you need to have ruby first <span class="k">in </span>your PATH, run:
-  <span class="nb">echo</span> <span class="s1">'export PATH="/usr/local/opt/ruby/bin:$PATH"'</span> <span class="o">&gt;&gt;</span> ~/.profile
-
-<span class="c"># ...</span>
-</code></pre></div></div>
-
-<p>We can follow it’s recommendation, we export the path in our <code class="language-plaintext highlighter-rouge">~/.profile</code> file or <code class="language-plaintext highlighter-rouge">~/.bashrc</code> file.</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/usr/local/opt/ruby/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
-</code></pre></div></div>
-
-<p>Til this point, ruby@3 is successfully installed. You may setup a mirror registry like the following to speed things up a bit. Usually you don’t need to change the sources, unless you are from certain countries like me.</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># setup mirror source for gem</span>
-gem sources <span class="nt">--add</span> https://mirrors.tuna.tsinghua.edu.cn/rubygems/ <span class="nt">--remove</span> https://rubygems.org/
-</code></pre></div></div>
-
-<p>Then, we will also need to install <code class="language-plaintext highlighter-rouge">bundle</code>, which is a dependency manager for ruby (kinda). Then we install <code class="language-plaintext highlighter-rouge">jekyll</code>, the package that we need.</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>bundler jekyll
-</code></pre></div></div>
-
-<p>We can also setup the source address for bundle, it’s completely optional.</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle config mirror.https://rubygems.org https://mirrors.tuna.tsinghua.edu.cn/rubygems
-</code></pre></div></div>
-
-<p>Then we can start following the tutorial and create our first jekyll project.</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jekyll new my-awesome-site
-</code></pre></div></div>
-
-<p>We can <code class="language-plaintext highlighter-rouge">cd</code> into it, and serve the website in dev mode.</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>jekyll serve
-</code></pre></div></div>
-
-<p>In the meantime, if you are using ruby@3 like me, for whatever reason, you may see a warning message as follows. I don’t really know what causes it, but it seems like jekyll is actually working fine. I personally believes that it’s related to the version of our dependencies, some stuff may be deprecated.</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Deprecation Warning: Using / <span class="k">for </span>division outside of calc<span class="o">()</span> is deprecated and will be removed <span class="k">in </span>Dart Sass 2.0.0.
-
-Recommendation: math.div<span class="o">(</span><span class="nv">$spacing</span><span class="nt">-unit</span>, 2<span class="o">)</span> or calc<span class="o">(</span><span class="nv">$spacing</span><span class="nt">-unit</span> / 2<span class="o">)</span>
-
-More info and automated migrator: https://sass-lang.com/d/slash-div
-
-   ╷
-40 │   margin-bottom: <span class="nv">$spacing</span><span class="nt">-unit</span> / 2<span class="p">;</span>
-   │                  ^^^^^^^^^^^^^^^^^
-   ╵
-    ../../../../minima-2.5.1/_sass/minima/_base.scss 40:18  @import
-    minima.scss 48:3                                        @import
-</code></pre></div></div>
-
-<p>Lukily, I did find a way to fix it (by muting the warning messages).</p>
-
-<p>Inside _config.yml, we add the following properties:</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">sass</span><span class="pi">:</span>
-  <span class="na">quiet_deps</span><span class="pi">:</span> <span class="no">true</span>
-</code></pre></div></div>
-
-<p>Run <code class="language-plaintext highlighter-rouge">jekyll serve</code> again, we will see our website on <code class="language-plaintext highlighter-rouge">http://localhost:4000</code>.</p>
-
-<h2 id="the-basic">The Basic</h2>
-
-<p>By default jekyll uses theme <code class="language-plaintext highlighter-rouge">minima</code>, you are free to change it.</p>
-
-<p>A jekyll project contains multiple <code class="language-plaintext highlighter-rouge">_***</code> directories. The <code class="language-plaintext highlighter-rouge">_posts</code> directory store the posts you write. The <code class="language-plaintext highlighter-rouge">_site</code> directory stores the static files generated by jekyll, so you will not modify files in this directory.</p>
-
-<p>File <code class="language-plaintext highlighter-rouge">_config.yml</code> includes the basic configuration for your jekyll website. There are also the <code class="language-plaintext highlighter-rouge">about.markdown</code> and <code class="language-plaintext highlighter-rouge">index.markdown</code> files in root directory, you can modify the content of these two files as well as the markdown files in <code class="language-plaintext highlighter-rouge">_posts</code>.</p>
-
-<p>Once you have done writing the content, you can run <code class="language-plaintext highlighter-rouge">jekyll serve</code> to see the latest changes. All the changes are rendered and written to <code class="language-plaintext highlighter-rouge">_site</code> directory.</p>
-
-<p>In most of the cases, you will be modifing files inside <code class="language-plaintext highlighter-rouge">_posts</code> directory. The filename must follow the following convension: <code class="language-plaintext highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code>, or else the posts are not displayed on webpage.</p>
-
-<p>e.g.,</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2024-04-01-learning-go.markdown
-2024-04-02-learning-js.markdown
-2024-04-03-learning-java.markdown
-</code></pre></div></div>
-
-<p>To better understand the file hierarchy, the following is the file tree of a demo project.</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">.</span>
-├── 404.html
-├── Gemfile
-├── Gemfile.lock
-├── _config.yml
-├── _posts
-│   ├── 2024-04-15-learning-jekyll.markdown
-├── _site
-│   ├── ...
-├── about.markdown
-└── index.markdown
-</code></pre></div></div>
-
-<p>If we want to create a new post, we can just simply copy the existing post file in <code class="language-plaintext highlighter-rouge">_posts</code>, modify the content and that’s it.</p>
-
-<p>E.g., a new file named <code class="language-plaintext highlighter-rouge">2024-04-15-my-first-blog.markdown</code>.</p>
-
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
-<span class="na">layout</span><span class="pi">:</span> <span class="s">post</span>
-<span class="na">title</span><span class="pi">:</span>  <span class="s2">"</span><span class="s">My</span><span class="nv"> </span><span class="s">First</span><span class="nv"> </span><span class="s">Blog"</span>
-<span class="na">date</span><span class="pi">:</span>   <span class="s">2024-04-15 13:00:00 +0800</span>
-<span class="na">categories</span><span class="pi">:</span> <span class="s">random stuff</span>
-<span class="na">published</span><span class="pi">:</span> <span class="no">true</span>
-<span class="nn">---</span>
-
-I am the first blog!
-</code></pre></div></div>
-
-<p>That’s it. This should be enough to get started.</p>
-
-<h2 id="host-jekyll-project-using-github-page">Host Jekyll Project Using Github Page</h2>
-
-<p>Follow guidelines in https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll.</p>
-
-<p>Before you push all the changes to upstream, build the jekyll project as follows:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle exec jekyll build
-</code></pre></div></div>
-
-<p>Go to github page, in repo’s Settings &gt; Pages, select your branch and root directory, and then save. The github page for your jekyll project will be deployed automatically using github action.</p>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[The following are useful websites for learning jekyll:]]></summary></entry></feed>
+</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Ideas" /><summary type="html"><![CDATA[List of random ideas:]]></summary></entry></feed>
