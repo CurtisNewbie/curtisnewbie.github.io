@@ -13,7 +13,7 @@ The SSL/TLS certificates are mainly used to help us verify the identities of the
 
 DNS server resolves the IPs for the provided domain name, and the resolution happens before SSL/TLS connection. If the DNS server is hijacked, then SSL/TLS doesn't protect the clients, since the hijacked DNS servers may have already redirected the client to a fake server before the SSL/TLS handshake.
 
-Given that DNS server is not hijacked, then SSL/TLS certificates installed on the servers (the website) can be used to verify the identity of the domain name. Since the DNS server provides valid IPs for the domain name, we can be sure that we are connecting to the trusted servers for the website. In other words, SSL/TLS certificates protect the domain name(s).
+Given that DNS server is not hijacked, the SSL/TLS certificates installed on the servers (the website) can be used to verify the identity of the domain name. Since the DNS server provides valid IPs for the domain name, we can be sure that we are connecting to the trusted servers for the website. In other words, SSL/TLS certificates protect the domain name(s).
 
 ## 2. How CA Certificates Help?
 
