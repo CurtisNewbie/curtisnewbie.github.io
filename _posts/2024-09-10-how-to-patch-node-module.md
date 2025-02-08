@@ -15,9 +15,27 @@ Install all your dependencies, make sure `/node_modules` is properly installed:
 npm ci
 ```
 
-Modify code in `/node_modules`, e.g.,:
+Install patche-packages and postinstall dependencies:
 
-Changing `highlight.js` source code as follow
+```sh
+npm install patch-package postinstall-postinstall
+```
+
+Modify `package.json` to automatically apply patches after install:
+
+```json
+{
+  // ...
+  "scripts": {
+    // ...
+    "postinstall": "patch-package"
+  }
+
+  // ...
+}
+```
+
+Modify code in `/node_modules`, e.g., Changing `highlight.js` source code as below:
 
 ```ts
 // before the change
@@ -65,24 +83,4 @@ index 1941e61..8b4d959 100644
              optional: (re: RegExp | string) => string,
              anyNumberOfTimes: (re: RegExp | string) => string
          }
-```
-
-Install patche-packages and postinstall dependencies:
-
-```sh
-npm install patch-package postinstall-postinstall
-```
-
-Modify `package.json` to apply patches after install:
-
-```json
-{
-  // ...
-  "scripts": {
-	// ...
-    "postinstall": "patch-package"
-  },
-
-  // ...
-}
 ```

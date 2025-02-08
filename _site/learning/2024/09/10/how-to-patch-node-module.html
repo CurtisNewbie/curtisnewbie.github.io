@@ -59,9 +59,25 @@
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm ci
 </code></pre></div></div>
 
-<p>Modify code in <code class="language-plaintext highlighter-rouge">/node_modules</code>, e.g.,:</p>
+<p>Install patche-packages and postinstall dependencies:</p>
 
-<p>Changing <code class="language-plaintext highlighter-rouge">highlight.js</code> source code as follow</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>patch-package postinstall-postinstall
+</code></pre></div></div>
+
+<p>Modify <code class="language-plaintext highlighter-rouge">package.json</code> to automatically apply patches after install:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
+  </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
+    </span><span class="nl">"postinstall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"patch-package"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
+  </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Modify code in <code class="language-plaintext highlighter-rouge">/node_modules</code>, e.g., Changing <code class="language-plaintext highlighter-rouge">highlight.js</code> source code as below:</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// before the change</span>
 <span class="nx">regex</span><span class="p">:</span> <span class="p">{</span>
@@ -107,24 +123,6 @@ index 1941e61..8b4d959 100644
              anyNumberOfTimes: (re: RegExp | string) =&gt; string
          }
 </code></pre></div></div>
-
-<p>Install patche-packages and postinstall dependencies:</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>patch-package postinstall-postinstall
-</code></pre></div></div>
-
-<p>Modify <code class="language-plaintext highlighter-rouge">package.json</code> to apply patches after install:</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
-  </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-	</span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
-    </span><span class="nl">"postinstall"</span><span class="p">:</span><span class="w"> </span><span class="s2">"patch-package"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-
-  </span><span class="err">//</span><span class="w"> </span><span class="err">...</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
 
   </div><a class="u-url" href="/learning/2024/09/10/how-to-patch-node-module.html" hidden></a>
 </article>
