@@ -57,7 +57,7 @@ So, what might go wrong when using chain of certificates? If the server's domain
 
 A classic issue with intermediate certificates is that the web server misconfigures the chain of certificate, wherein the intermediate certificates are not provided to the clients, the client is unable to valid the domain certificate. The solution to this problem is either letting the client install the intermediate certificates or fix the certificate chain configuration.
 
-The post ["2025-01-16 Fix JDK CA Certificates"](/learning/2025/01/16/fix-jdk-ca-certificates) is an example on installing the certificates on the client side, which is the last resort for fixing the SSL/TLS certificate problems.
+The post ["2025-01-16 Fix JDK CA Certificates"](/learning/2025/01/16/fix-jdk-ca-certificates) is an example of installing the certificates on the client side, which is the last resort for fixing the SSL/TLS certificate problems.
 
 ## 4. Commands for Certificates
 
