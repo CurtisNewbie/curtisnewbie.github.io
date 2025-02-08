@@ -165,6 +165,8 @@ Interesting papers, books and websites are listed here.
     - [github.com/javaparser](https://github.com/javaparser/javaparser?tab=readme-ov-file)
 - [Online Java Compiler](https://www.jdoodle.com/online-java-compiler)
 - [set -ex - The most useful bash trick of the year](https://www.peterbe.com/plog/set-ex)
+- [ArthurSonzogni/Diagon WebApp - Generate ASCII Graph](https://diagon.arthursonzogni.com)
+- [ArthurSonzogni/Diagon Github - Generate ASCII Graph](https://github.com/ArthurSonzogni/Diagon?tab=readme-ov-file)
 
 ### Typing
 

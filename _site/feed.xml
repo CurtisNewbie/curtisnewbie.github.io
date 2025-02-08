@@ -1,4 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-02-08T10:09:12+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">CA, SSL/TLS Certificate Basic</title><link href="https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic.html" rel="alternate" type="text/html" title="CA, SSL/TLS Certificate Basic" /><published>2025-02-07T09:00:00+08:00</published><updated>2025-02-07T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic.html"><![CDATA[<h2 id="1-ca-and-ssltls-certificates">1. CA and SSL/TLS Certificates</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-02-08T18:28:35+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Innodb Internals</title><link href="https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals.html" rel="alternate" type="text/html" title="Innodb Internals" /><published>2025-02-08T09:00:00+08:00</published><updated>2025-02-08T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals.html"><![CDATA[<blockquote>
+  <p>This post documents stuff about InnoDB, it’s meant for me to recall all the details that I may forget over the years. It’s not a complete guide to MySQL or InnoDB.</p>
+</blockquote>
+
+<h2 id="sources">Sources</h2>
+
+<ul>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-introduction.html">MySQL 8.0 - InnoDB Introduction</a></li>
+</ul>
+
+<h2 id="features--benefits">Features / Benefits</h2>
+
+<ul>
+  <li>Durability and Recovery, based on WAL (Binlog, Redo Log) and the Doublewrite Buffer.</li>
+  <li>Large Buffer Pool for caching, improve processing speed (linked list of data pages using LRU algorithm).</li>
+  <li>Change Buffer (also called Insert Buffer, part of the Buffer Pool) for optimizing write operations, cache changes to secondary indexes.</li>
+  <li>Adaptive Hash Index (in Buffer Pool) for fast table lookup.</li>
+  <li>Clustered Index and Secondary Index.</li>
+  <li>Support Data Page Checksum.</li>
+  <li>Online DDL (since 8.0).</li>
+  <li>Monitor internals and performance through <code class="language-plaintext highlighter-rouge">INFORMATION_SCHEMA</code> and <code class="language-plaintext highlighter-rouge">PERFORMANCE_SCHEMA</code>.</li>
+</ul>
+
+<h2 id="basics">Basics</h2>
+
+<p>Check engines available, check if InnoDB is the default engine.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SHOW</span> <span class="n">ENGINES</span><span class="p">;</span>
+
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">INFORMATION_SCHEMA</span><span class="p">.</span><span class="n">ENGINES</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="acid">ACID</h2>
+
+<p>InnoDB complies with ACID model (not 100%, but almost, there can be Phantom Read in certain corner cases):</p>
+
+<ul>
+  <li>A: Atomicity
+    <ul>
+      <li>Transaction / Grouped Transaction, e.g., BEGIN, COMMIT, ROLLBACK</li>
+    </ul>
+  </li>
+  <li>C: Consistency
+    <ul>
+      <li>WAL, Doublewrite Buffer</li>
+    </ul>
+  </li>
+  <li>I: Isolation
+    <ul>
+      <li>Transaction Isolation
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">READ UNCOMMITED</code></li>
+          <li><code class="language-plaintext highlighter-rouge">READ COMMITED</code></li>
+          <li><code class="language-plaintext highlighter-rouge">REPEATABLE READ</code></li>
+          <li><code class="language-plaintext highlighter-rouge">SERIALIZABLE</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>D: Durability
+    <ul>
+      <li>WAL (logs and the <code class="language-plaintext highlighter-rouge">innodb_flush_log_at_trx_commit</code> config), Doublewrite Buffer</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="mvcc-multi-versioning">MVCC Multi-Versioning</h2>
+
+<p>InnoDB supports concurrent transactions using various locks and MVCC. MVCC stands for Multi-Version Concurrency Control, it’s mainly used for Read operations, supporting Transaction Isolation and Read Consistency without using extra locks.</p>
+
+<p>The core concept that MVCC introduces is the version / snapshot of data (rows). With MVCC, InnoDB keeps multiple snapshot (versions) of the same row. As rows are created, modified or deleted, all these relevent snapshots are kept in place to support the Consistent View.</p>
+
+<p>Each transaction is associated with a version, and each transaction can <em>“only”</em> see the snapshots that were created during or before the transaction (not including <code class="language-plaintext highlighter-rouge">READ UNCOMMITED</code> of course). In certain Isolation Level, e.g., <code class="language-plaintext highlighter-rouge">REPEATABLE READ</code>, transactions always see the same snapshot of data since the begining of the transaction as if the rows are never modified.</p>
+
+<h2 id="innodb-mvcc-implementation">InnoDB MVCC Implementation</h2>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[This post documents stuff about InnoDB, it’s meant for me to recall all the details that I may forget over the years. It’s not a complete guide to MySQL or InnoDB.]]></summary></entry><entry><title type="html">CA, SSL/TLS Certificate Basic</title><link href="https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic.html" rel="alternate" type="text/html" title="CA, SSL/TLS Certificate Basic" /><published>2025-02-07T09:00:00+08:00</published><updated>2025-02-07T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic.html"><![CDATA[<h2 id="1-ca-and-ssltls-certificates">1. CA and SSL/TLS Certificates</h2>
 
 <p>CA stands for Certificate Authority. CA certificates usually refer to the digital certificates issued by CAs, the trusted entities, sometime we call these certificates “the root certificates”.</p>
 
@@ -230,7 +304,7 @@ keytool <span class="nt">-import</span> <span class="nt">-storepass</span> chang
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>keytool <span class="nt">-list</span> <span class="nt">-v</span> <span class="nt">-keystore</span> <span class="nv">$JAVA_HOME</span>/jre/lib/security/cacerts <span class="nt">-storepass</span> changeit | less
 </code></pre></div></div>
 
-<p>Have a look at the total number of entries to check if the certificates are indeeded imported. You can also check the expiry time and make sure the certificates are still valid (e.g., <code class="language-plaintext highlighter-rouge">valid from *** until ***</code>).</p>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Java internally maintain a list of CA certificates. These CA certificates are shipped with the JDK installed.]]></summary></entry><entry><title type="html">A Python Beginner Guide for My Friend</title><link href="https://curtisnewbie.github.io/tutorial/2024/12/29/python-beginner-guide.html" rel="alternate" type="text/html" title="A Python Beginner Guide for My Friend" /><published>2024-12-29T23:00:00+08:00</published><updated>2024-12-29T23:00:00+08:00</updated><id>https://curtisnewbie.github.io/tutorial/2024/12/29/python-beginner-guide</id><content type="html" xml:base="https://curtisnewbie.github.io/tutorial/2024/12/29/python-beginner-guide.html"><![CDATA[<p><strong>A python beginner guide for my close friends who know almost nothing about programming. Guide is written in an opinionated way. For complete tutorial of the language, just Google one.</strong></p>
+<p>Have a look at the total number of entries to check if the certificates are indeeded imported. You can also check the expiry time and make sure the certificates are still valid (e.g., <code class="language-plaintext highlighter-rouge">valid from *** until ***</code>).</p>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Java internally maintain a list of CA certificates. These CA certificates are shipped with the JDK installed.]]></summary></entry><entry><title type="html">A Python Beginner Guide for My Friend</title><link href="https://curtisnewbie.github.io/tutorial/2024/12/29/python-beginner-guide.html" rel="alternate" type="text/html" title="A Python Beginner Guide for My Friend" /><published>2024-12-29T23:00:00+08:00</published><updated>2024-12-29T23:00:00+08:00</updated><id>https://curtisnewbie.github.io/tutorial/2024/12/29/python-beginner-guide</id><content type="html" xml:base="https://curtisnewbie.github.io/tutorial/2024/12/29/python-beginner-guide.html"><![CDATA[<!-- https://curtisnewbie.github.io/tutorial/2024/12/29/python-beginner-guide.html -->
 
 <h2 id="1-基础知识">1. 基础知识</h2>
 
@@ -822,7 +896,7 @@ Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span 
 # key: 苹果 value: 3
 # key: 香蕉 value: 2
 # key: 梨子 value: 2
-</span></code></pre></div></div>]]></content><author><name>Yongjie Zhuang</name></author><category term="Tutorial" /><summary type="html"><![CDATA[A python beginner guide for my close friends who know almost nothing about programming. Guide is written in an opinionated way. For complete tutorial of the language, just Google one.]]></summary></entry><entry><title type="html">How to patch node_module source code</title><link href="https://curtisnewbie.github.io/learning/2024/09/10/how-to-patch-node-module.html" rel="alternate" type="text/html" title="How to patch node_module source code" /><published>2024-09-10T15:39:00+08:00</published><updated>2024-09-10T15:39:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/09/10/how-to-patch-node-module</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/09/10/how-to-patch-node-module.html"><![CDATA[<p><strong>Credits:</strong></p>
+</span></code></pre></div></div>]]></content><author><name>Yongjie Zhuang</name></author><category term="Tutorial" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">How to patch node_module source code</title><link href="https://curtisnewbie.github.io/learning/2024/09/10/how-to-patch-node-module.html" rel="alternate" type="text/html" title="How to patch node_module source code" /><published>2024-09-10T15:39:00+08:00</published><updated>2024-09-10T15:39:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/09/10/how-to-patch-node-module</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/09/10/how-to-patch-node-module.html"><![CDATA[<p><strong>Credits:</strong></p>
 
 <ul>
   <li>https://stackoverflow.com/questions/72820625/what-is-the-proper-way-to-patch-a-node-modules-module</li>
@@ -1982,6 +2056,8 @@ ImportError: /usr/local/lib64/python3.11/site-packages/torch/lib/libtorch_cuda.s
   </li>
   <li><a href="https://www.jdoodle.com/online-java-compiler">Online Java Compiler</a></li>
   <li><a href="https://www.peterbe.com/plog/set-ex">set -ex - The most useful bash trick of the year</a></li>
+  <li><a href="https://diagon.arthursonzogni.com">ArthurSonzogni/Diagon WebApp - Generate ASCII Graph</a></li>
+  <li><a href="https://github.com/ArthurSonzogni/Diagon?tab=readme-ov-file">ArthurSonzogni/Diagon Github - Generate ASCII Graph</a></li>
 </ul>
 
 <h3 id="typing">Typing</h3>
@@ -1997,34 +2073,4 @@ ImportError: /usr/local/lib64/python3.11/site-packages/torch/lib/libtorch_cuda.s
 
 <ul>
   <li><a href="https://blogs.oracle.com/javamagazine/post/behind-the-scenes-how-do-lambda-expressions-really-work-in-java">https://blogs.oracle.com/javamagazine/post/behind-the-scenes-how-do-lambda-expressions-really-work-in-java</a></li>
-</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Interesting papers, books and websites are listed here.]]></summary></entry><entry><title type="html">Random Ideas</title><link href="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html" rel="alternate" type="text/html" title="Random Ideas" /><published>2024-04-15T19:00:00+08:00</published><updated>2024-04-15T19:00:00+08:00</updated><id>https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas</id><content type="html" xml:base="https://curtisnewbie.github.io/ideas/2024/04/15/random-ideas.html"><![CDATA[<p>List of random ideas:</p>
-
-<ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Implement a mini version of Git to understand how it works.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Implement a simple B+ tree based database.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Implement a mini-redis using java like the <a href="https://github.com/curtisnewbie/mini-redis">curtisnewbie/mini-redis</a> one in golang.
-    <ul>
-      <li>Call it mini-jredis maybe, just try to be more familiar with socket programming in java.</li>
-    </ul>
-  </li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Have a look at netflix/conductor, understand roughly how it works and implement a mini workflow engine.
-    <ul>
-      <li>It does seem like a workflow engine is roughly a distributed queue + an orchestrator service + some definitions of worker.</li>
-      <li>https://github.com/Netflix/conductor</li>
-      <li>https://github.com/conductor-sdk/conductor-examples/tree/main</li>
-      <li>https://orkes.io/content/</li>
-    </ul>
-  </li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Document how to use pprof in golang.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Write something about jvm performance evaluation. Document all the means to identify performance issue, e.g., CPU/IO/GC and so on.</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Implement a simple CI/CD application.
-    <ul>
-      <li><a href="https://github.com/curtisnewbie/chill">https://github.com/curtisnewbie/chill</a></li>
-    </ul>
-  </li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Implement a rule engine.
-    <ul>
-      <li><a href="https://github.com/curtisnewbie/octopus">https://github.com/curtisnewbie/octopus</a></li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Ideas" /><summary type="html"><![CDATA[List of random ideas:]]></summary></entry></feed>
+</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Interesting papers, books and websites are listed here.]]></summary></entry></feed>

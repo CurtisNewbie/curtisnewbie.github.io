@@ -6,7 +6,7 @@ categories: Tutorial
 hidden: 1
 ---
 
-**A python beginner guide for my close friends who know almost nothing about programming. Guide is written in an opinionated way. For complete tutorial of the language, just Google one.**
+<!-- https://curtisnewbie.github.io/tutorial/2024/12/29/python-beginner-guide.html -->
 
 ## 1. 基础知识
 

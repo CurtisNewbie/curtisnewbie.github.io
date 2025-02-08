@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Innodb Internals | kekw</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="Innodb Internals" />
+<meta name="author" content="Yongjie Zhuang" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This post documents stuff about InnoDB, it’s meant for me to recall all the details that I may forget over the years. It’s not a complete guide to MySQL or InnoDB." />
+<meta property="og:description" content="This post documents stuff about InnoDB, it’s meant for me to recall all the details that I may forget over the years. It’s not a complete guide to MySQL or InnoDB." />
+<link rel="canonical" href="https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals.html" />
+<meta property="og:url" content="https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals.html" />
+<meta property="og:site_name" content="kekw" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-02-08T09:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Innodb Internals" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Yongjie Zhuang"},"dateModified":"2025-02-08T09:00:00+08:00","datePublished":"2025-02-08T09:00:00+08:00","description":"This post documents stuff about InnoDB, it’s meant for me to recall all the details that I may forget over the years. It’s not a complete guide to MySQL or InnoDB.","headline":"Innodb Internals","mainEntityOfPage":{"@type":"WebPage","@id":"https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals.html"},"url":"https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://curtisnewbie.github.io/feed.xml" title="kekw" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">kekw</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Innodb Internals</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2025-02-08T09:00:00+08:00" itemprop="datePublished">Feb 8, 2025
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <blockquote>
+  <p>This post documents stuff about InnoDB, it’s meant for me to recall all the details that I may forget over the years. It’s not a complete guide to MySQL or InnoDB.</p>
+</blockquote>
+
+<h2 id="sources">Sources</h2>
+
+<ul>
+  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-introduction.html">MySQL 8.0 - InnoDB Introduction</a></li>
+</ul>
+
+<h2 id="features--benefits">Features / Benefits</h2>
+
+<ul>
+  <li>Durability and Recovery, based on WAL (Binlog, Redo Log) and the Doublewrite Buffer.</li>
+  <li>Large Buffer Pool for caching, improve processing speed (linked list of data pages using LRU algorithm).</li>
+  <li>Change Buffer (also called Insert Buffer, part of the Buffer Pool) for optimizing write operations, cache changes to secondary indexes.</li>
+  <li>Adaptive Hash Index (in Buffer Pool) for fast table lookup.</li>
+  <li>Clustered Index and Secondary Index.</li>
+  <li>Support Data Page Checksum.</li>
+  <li>Online DDL (since 8.0).</li>
+  <li>Monitor internals and performance through <code class="language-plaintext highlighter-rouge">INFORMATION_SCHEMA</code> and <code class="language-plaintext highlighter-rouge">PERFORMANCE_SCHEMA</code>.</li>
+</ul>
+
+<h2 id="basics">Basics</h2>
+
+<p>Check engines available, check if InnoDB is the default engine.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SHOW</span> <span class="n">ENGINES</span><span class="p">;</span>
+
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">INFORMATION_SCHEMA</span><span class="p">.</span><span class="n">ENGINES</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="acid">ACID</h2>
+
+<p>InnoDB complies with ACID model (not 100%, but almost, there can be Phantom Read in certain corner cases):</p>
+
+<ul>
+  <li>A: Atomicity
+    <ul>
+      <li>Transaction / Grouped Transaction, e.g., BEGIN, COMMIT, ROLLBACK</li>
+    </ul>
+  </li>
+  <li>C: Consistency
+    <ul>
+      <li>WAL, Doublewrite Buffer</li>
+    </ul>
+  </li>
+  <li>I: Isolation
+    <ul>
+      <li>Transaction Isolation
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">READ UNCOMMITED</code></li>
+          <li><code class="language-plaintext highlighter-rouge">READ COMMITED</code></li>
+          <li><code class="language-plaintext highlighter-rouge">REPEATABLE READ</code></li>
+          <li><code class="language-plaintext highlighter-rouge">SERIALIZABLE</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>D: Durability
+    <ul>
+      <li>WAL (logs and the <code class="language-plaintext highlighter-rouge">innodb_flush_log_at_trx_commit</code> config), Doublewrite Buffer</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="mvcc-multi-versioning">MVCC Multi-Versioning</h2>
+
+<p>InnoDB supports concurrent transactions using various locks and MVCC. MVCC stands for Multi-Version Concurrency Control, it’s mainly used for Read operations, supporting Transaction Isolation and Read Consistency without using extra locks.</p>
+
+<p>The core concept that MVCC introduces is the version / snapshot of data (rows). With MVCC, InnoDB keeps multiple snapshot (versions) of the same row. As rows are created, modified or deleted, all these relevent snapshots are kept in place to support the Consistent View.</p>
+
+<p>Each transaction is associated with a version, and each transaction can <em>“only”</em> see the snapshots that were created during or before the transaction (not including <code class="language-plaintext highlighter-rouge">READ UNCOMMITED</code> of course). In certain Isolation Level, e.g., <code class="language-plaintext highlighter-rouge">REPEATABLE READ</code>, transactions always see the same snapshot of data since the begining of the transaction as if the rows are never modified.</p>
+
+<h2 id="innodb-mvcc-implementation">InnoDB MVCC Implementation</h2>
+
+
+  </div><a class="u-url" href="/learning/2025/02/08/innodb-internals.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">kekw</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Yongjie Zhuang</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/CurtisNewbie"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">CurtisNewbie</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Til the end</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
