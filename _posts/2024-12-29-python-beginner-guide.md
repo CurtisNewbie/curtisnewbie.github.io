@@ -2,7 +2,8 @@
 layout: post
 title: "A Python Beginner Guide for My Friend"
 date: 2024-12-29 23:00:00 +0800
-categories: Learning
+categories: Tutorial
+hidden: 1
 ---
 
 **A python beginner guide for my close friends who know almost nothing about programming. Guide is written in an opinionated way. For complete tutorial of the language, just Google one.**
