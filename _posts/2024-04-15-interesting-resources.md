@@ -76,6 +76,7 @@ Interesting papers, books and websites are listed here.
 - [Andreas Andreakis, Ioannis Papapanagiotou - DBLog: A Watermark Based Change-Data-Capture Framework](https://arxiv.org/abs/2010.12597?ref=blog.sequinstream.com)
 - [FFmpeg by example](https://ffmpegbyexample.com/)
 - [Martin Fowler - Conways Law](https://martinfowler.com/bliki/ConwaysLaw.html)
+- [Andy's Blog - Why Blog If Nobody Reads It?](https://andysblog.uk/why-blog-if-nobody-reads-it/)
 
 
 ### Database Related

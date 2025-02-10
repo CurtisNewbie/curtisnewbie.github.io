@@ -162,7 +162,7 @@ Since it's very likely that transactions need to read Clustered Index and Undo L
     - Redo Logs
     - Undo Logs
 
-#### Buffer Pool
+#### In-Memory Buffer Pool
 
 Buffer Pool caches frequently accessed table and index data (including both the index pages, data pages and Secondary Index pages), up to 80% of the physically memory is often assigned to this memory area. In Buffer Pool, data are divided into pages (just like the tables on disk), these pages are maintained using a linked list and LRU (Least Recently Used) algorithm.
 
@@ -214,7 +214,7 @@ SHOW ENGINE INNODB STATUS
 SHOW VARIABLES LIKE 'innodb_buffer_pool_size';
 ```
 
-#### Change Buffer
+#### In-Memory Change Buffer
 
 Change Buffer caches changes to (Non-Unique) Secondary Index Pages if the page is not cached in Buffer Pool. If the index page is already cached in Buffer Pool, the changes can be applied directly to that cached page.
 
@@ -255,3 +255,62 @@ SHOW ENGINE INNODB STATUS
 # Hash table size 103, node heap has 0 buffer(s)
 # 0.00 hash searches/s, 1076.91 non-hash searches/s
 ```
+
+#### In-Memory Adaptive Hash Index
+
+Adaptive Hash Index is for speeding up index lookup (both Clustered Index and Secondary Index). It's adaptive in that it monitors index searches, if it believes that building a hash structure for indexes can greatly improve query performance, it will create such data structure in memory (as part of Buffer Pool), trying to turn B+ Tree traversal to hash-based key-value lookup.
+
+AHI is built using a prefix of the index key. AHI is built on demand only for the pages are frequently accessed.
+
+For example, in a typical JOIN operation: `table_a JOIN table_b ON col_j`
+
+We have the following Nested Loop Join:
+
+<pre>
+<b>FOR</b> ptr_a <b>IN</b> table_a:
+    <b>WALK</b> table_b <b>FIND</b> ptr_a.col_j <b>AS</b> ptr_b:       <i style="color: green"># Traverse table_b's index tree</i>
+        <b>YIELD</b> ptr_b
+<b>END</b>
+</pre>
+
+Which can be optimized with Adaptive Hash Index like the following:
+
+<pre>
+<b>FOR</b> ptr_a <b>IN</b> table_a:
+    ptr_B, ok = <span style="color: blue">HASH_FIND(</span> table_b, ptr_a.col_j <span style="color: blue">)</span> <i style="color: green"># Adaptive Hash Index Lookup</i>
+    <b>IF</b> ok:                                        <i style="color: green"># Cache Hit</i>
+        <b>YIELD</b> ptr_b
+    <b>ELSE</b>:                                         <i style="color: green"># Cache Miss</i>
+        <b>WALK</b> table_b <b>FIND</b> ptr_a.col_j <b>AS</b> ptr_b:   <i style="color: green"># Traverse table_b's index tree</i>
+            <b>YIELD</b> ptr_b
+<b>END</b>
+</pre>
+
+Adaptive Hash Index can also be a source of contention under heavy workloads, e.g., concurrent joins. In certain cases, AHI isn't very useful, e.g., range scans.
+
+#### In-Memory Log Buffer (Redo Log)
+
+Log Buffer contains Redo Log file data that has not yet been written to disk. By default, Log Buffer's size is 16 MB. The contents of the Log Buffer is periodically flushed to disk (based on configuration).
+
+Variable `innodb_flush_log_at_trx_commit` controls when logs are written and flushed to disk, and `innodb_flush_log_at_timeout` controls log flushing frequency.
+
+```sh
+show variables like 'innodb_flush_log%';
+
+# +--------------------------------+-------+
+# | Variable_name                  | Value |
+# +--------------------------------+-------+
+# | innodb_flush_log_at_timeout    | 1     |
+# | innodb_flush_log_at_trx_commit | 1     |
+# +--------------------------------+-------+
+```
+
+Options available for variable `innodb_flush_log_at_trx_commit` :
+
+- 0: written and flushed once per second
+- 1: wriiten and flushed at transaction commit (**default**)
+- 2: written at transaction commit and flushed once per second
+
+Variable `innodb_flush_log_at_timeout`, defaults to 1, controls how frequent the Log Buffer is written and flushed: *"write and flush logs every N seconds"*.
+
+
