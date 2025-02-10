@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-02-10T18:12:23+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Innodb Internals</title><link href="https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals.html" rel="alternate" type="text/html" title="Innodb Internals" /><published>2025-02-08T09:00:00+08:00</published><updated>2025-02-08T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals.html"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-02-10T18:15:14+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Innodb Internals</title><link href="https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals.html" rel="alternate" type="text/html" title="Innodb Internals" /><published>2025-02-08T09:00:00+08:00</published><updated>2025-02-08T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals.html"><![CDATA[<blockquote>
   <p>This post documents stuff about InnoDB, it’s meant for me to recall all the details that I may have forgetten over the years. It’s not a complete guide to MySQL or InnoDB.</p>
 </blockquote>
 
@@ -116,38 +116,38 @@
 <!--
 
 Tx -> InnoDB: query rows
-InnoDB -> Storage: locate rows, check deletion mark, compare tx_id
+InnoDB -> Storage: locate rows, check deletion mark, compare trx_id
 Storage -> InnoDB: Undo Log ROLL_PTR
-InnoDB -> Undo Log (Buffer Pool): compare tx_id, build snapshot
+InnoDB -> Undo Log (Buffer Pool): compare trx_id, build snapshot
 Undo Log (Buffer Pool) -> Undo Log (Disk): cache miss
 InnoDB -> Tx: rows (visible snapshots)
 
 -->
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ┌──┐                   ┌──────┐                                       ┌───────┐┌──────────────────────┐┌───────────────┐
- │Tx│                   │InnoDB│                                       │Storage││Undo Log (Buffer Pool)││Undo Log (Disk)│
- └┬─┘                   └──┬───┘                                       └───┬───┘└──────────┬───────────┘└───────┬───────┘
-  │                        │                                               │               │                    │
-  │       query rows       │                                               │               │                    │
-  │───────────────────────&gt;│                                               │               │                    │
-  │                        │                                               │               │                    │
-  │                        │locate rows, check deletion mark, compare tx_id│               │                    │
-  │                        │──────────────────────────────────────────────&gt;│               │                    │
-  │                        │                                               │               │                    │
-  │                        │               Undo Log ROLL_PTR               │               │                    │
-  │                        │&lt;──────────────────────────────────────────────│               │                    │
-  │                        │                                               │               │                    │
-  │                        │                 compare tx_id, build snapshot │               │                    │
-  │                        │──────────────────────────────────────────────────────────────&gt;│                    │
-  │                        │                                               │               │                    │
-  │                        │                                               │               │     cache miss     │
-  │                        │                                               │               │───────────────────&gt;│
-  │                        │                                               │               │                    │
-  │rows (visible snapshots)│                                               │               │                    │
-  │&lt;───────────────────────│                                               │               │                    │
- ┌┴─┐                   ┌──┴───┐                                       ┌───┴───┐┌──────────┴───────────┐┌───────┴───────┐
- │Tx│                   │InnoDB│                                       │Storage││Undo Log (Buffer Pool)││Undo Log (Disk)│
- └──┘                   └──────┘                                       └───────┘└──────────────────────┘└───────────────┘
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ┌──┐                   ┌──────┐                                        ┌───────┐┌──────────────────────┐┌───────────────┐
+ │Tx│                   │InnoDB│                                        │Storage││Undo Log (Buffer Pool)││Undo Log (Disk)│
+ └┬─┘                   └──┬───┘                                        └───┬───┘└──────────┬───────────┘└───────┬───────┘
+  │                        │                                                │               │                    │
+  │       query rows       │                                                │               │                    │
+  │───────────────────────&gt;│                                                │               │                    │
+  │                        │                                                │               │                    │
+  │                        │locate rows, check deletion mark, compare trx_id│               │                    │
+  │                        │───────────────────────────────────────────────&gt;│               │                    │
+  │                        │                                                │               │                    │
+  │                        │               Undo Log ROLL_PTR                │               │                    │
+  │                        │&lt;───────────────────────────────────────────────│               │                    │
+  │                        │                                                │               │                    │
+  │                        │                 compare trx_id, build snapshot │               │                    │
+  │                        │───────────────────────────────────────────────────────────────&gt;│                    │
+  │                        │                                                │               │                    │
+  │                        │                                                │               │     cache miss     │
+  │                        │                                                │               │───────────────────&gt;│
+  │                        │                                                │               │                    │
+  │rows (visible snapshots)│                                                │               │                    │
+  │&lt;───────────────────────│                                                │               │                    │
+ ┌┴─┐                   ┌──┴───┐                                        ┌───┴───┐┌──────────┴───────────┐┌───────┴───────┐
+ │Tx│                   │InnoDB│                                        │Storage││Undo Log (Buffer Pool)││Undo Log (Disk)│
+ └──┘                   └──────┘                                        └───────┘└──────────────────────┘└───────────────┘
 
 </code></pre></div></div>
 

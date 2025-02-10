@@ -93,39 +93,39 @@ E.g.,
 <!--
 
 Tx -> InnoDB: query rows
-InnoDB -> Storage: locate rows, check deletion mark, compare tx_id
+InnoDB -> Storage: locate rows, check deletion mark, compare trx_id
 Storage -> InnoDB: Undo Log ROLL_PTR
-InnoDB -> Undo Log (Buffer Pool): compare tx_id, build snapshot
+InnoDB -> Undo Log (Buffer Pool): compare trx_id, build snapshot
 Undo Log (Buffer Pool) -> Undo Log (Disk): cache miss
 InnoDB -> Tx: rows (visible snapshots)
 
 -->
 
 ```
- ┌──┐                   ┌──────┐                                       ┌───────┐┌──────────────────────┐┌───────────────┐
- │Tx│                   │InnoDB│                                       │Storage││Undo Log (Buffer Pool)││Undo Log (Disk)│
- └┬─┘                   └──┬───┘                                       └───┬───┘└──────────┬───────────┘└───────┬───────┘
-  │                        │                                               │               │                    │
-  │       query rows       │                                               │               │                    │
-  │───────────────────────>│                                               │               │                    │
-  │                        │                                               │               │                    │
-  │                        │locate rows, check deletion mark, compare tx_id│               │                    │
-  │                        │──────────────────────────────────────────────>│               │                    │
-  │                        │                                               │               │                    │
-  │                        │               Undo Log ROLL_PTR               │               │                    │
-  │                        │<──────────────────────────────────────────────│               │                    │
-  │                        │                                               │               │                    │
-  │                        │                 compare tx_id, build snapshot │               │                    │
-  │                        │──────────────────────────────────────────────────────────────>│                    │
-  │                        │                                               │               │                    │
-  │                        │                                               │               │     cache miss     │
-  │                        │                                               │               │───────────────────>│
-  │                        │                                               │               │                    │
-  │rows (visible snapshots)│                                               │               │                    │
-  │<───────────────────────│                                               │               │                    │
- ┌┴─┐                   ┌──┴───┐                                       ┌───┴───┐┌──────────┴───────────┐┌───────┴───────┐
- │Tx│                   │InnoDB│                                       │Storage││Undo Log (Buffer Pool)││Undo Log (Disk)│
- └──┘                   └──────┘                                       └───────┘└──────────────────────┘└───────────────┘
+ ┌──┐                   ┌──────┐                                        ┌───────┐┌──────────────────────┐┌───────────────┐
+ │Tx│                   │InnoDB│                                        │Storage││Undo Log (Buffer Pool)││Undo Log (Disk)│
+ └┬─┘                   └──┬───┘                                        └───┬───┘└──────────┬───────────┘└───────┬───────┘
+  │                        │                                                │               │                    │
+  │       query rows       │                                                │               │                    │
+  │───────────────────────>│                                                │               │                    │
+  │                        │                                                │               │                    │
+  │                        │locate rows, check deletion mark, compare trx_id│               │                    │
+  │                        │───────────────────────────────────────────────>│               │                    │
+  │                        │                                                │               │                    │
+  │                        │               Undo Log ROLL_PTR                │               │                    │
+  │                        │<───────────────────────────────────────────────│               │                    │
+  │                        │                                                │               │                    │
+  │                        │                 compare trx_id, build snapshot │               │                    │
+  │                        │───────────────────────────────────────────────────────────────>│                    │
+  │                        │                                                │               │                    │
+  │                        │                                                │               │     cache miss     │
+  │                        │                                                │               │───────────────────>│
+  │                        │                                                │               │                    │
+  │rows (visible snapshots)│                                                │               │                    │
+  │<───────────────────────│                                                │               │                    │
+ ┌┴─┐                   ┌──┴───┐                                        ┌───┴───┐┌──────────┴───────────┐┌───────┴───────┐
+ │Tx│                   │InnoDB│                                        │Storage││Undo Log (Buffer Pool)││Undo Log (Disk)│
+ └──┘                   └──────┘                                        └───────┘└──────────────────────┘└───────────────┘
 
 ```
 
