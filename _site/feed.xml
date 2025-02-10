@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-02-08T18:28:35+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Innodb Internals</title><link href="https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals.html" rel="alternate" type="text/html" title="Innodb Internals" /><published>2025-02-08T09:00:00+08:00</published><updated>2025-02-08T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals.html"><![CDATA[<blockquote>
-  <p>This post documents stuff about InnoDB, it’s meant for me to recall all the details that I may forget over the years. It’s not a complete guide to MySQL or InnoDB.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-02-10T16:57:13+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Innodb Internals</title><link href="https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals.html" rel="alternate" type="text/html" title="Innodb Internals" /><published>2025-02-08T09:00:00+08:00</published><updated>2025-02-08T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals.html"><![CDATA[<blockquote>
+  <p>This post documents stuff about InnoDB, it’s meant for me to recall all the details that I may have forgetten over the years. It’s not a complete guide to MySQL or InnoDB.</p>
 </blockquote>
 
-<h2 id="sources">Sources</h2>
+<h2 id="1-sources">1. Sources</h2>
 
 <ul>
   <li><a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-introduction.html">MySQL 8.0 - InnoDB Introduction</a></li>
 </ul>
 
-<h2 id="features--benefits">Features / Benefits</h2>
+<h2 id="2-basics">2. Basics</h2>
 
 <ul>
   <li>Durability and Recovery, based on WAL (Binlog, Redo Log) and the Doublewrite Buffer.</li>
@@ -21,7 +21,7 @@
   <li>Monitor internals and performance through <code class="language-plaintext highlighter-rouge">INFORMATION_SCHEMA</code> and <code class="language-plaintext highlighter-rouge">PERFORMANCE_SCHEMA</code>.</li>
 </ul>
 
-<h2 id="basics">Basics</h2>
+<h4 id="commands">Commands</h4>
 
 <p>Check engines available, check if InnoDB is the default engine.</p>
 
@@ -30,7 +30,12 @@
 <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">INFORMATION_SCHEMA</span><span class="p">.</span><span class="n">ENGINES</span><span class="p">;</span>
 </code></pre></div></div>
 
-<h2 id="acid">ACID</h2>
+<p>Check InnoDB Status:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SHOW ENGINE INNODB STATUS
+</code></pre></div></div>
+
+<h4 id="acid">ACID</h4>
 
 <p>InnoDB complies with ACID model (not 100%, but almost, there can be Phantom Read in certain corner cases):</p>
 
@@ -64,15 +69,225 @@
   </li>
 </ul>
 
-<h2 id="mvcc-multi-versioning">MVCC Multi-Versioning</h2>
+<h2 id="3-mvcc-multi-versioning-concurrency-control">3. MVCC Multi-Versioning Concurrency Control</h2>
 
-<p>InnoDB supports concurrent transactions using various locks and MVCC. MVCC stands for Multi-Version Concurrency Control, it’s mainly used for Read operations, supporting Transaction Isolation and Read Consistency without using extra locks.</p>
+<p>InnoDB supports concurrent transactions using various locks and MVCC. MVCC stands for Multi-Version Concurrency Control, it’s mainly used to optimize Read operations, supporting Transaction Isolation and Read Consistency without using extra locks, though certain features in MVCC also help Transaction Rollback.</p>
 
-<p>The core concept that MVCC introduces is the version / snapshot of data (rows). With MVCC, InnoDB keeps multiple snapshot (versions) of the same row. As rows are created, modified or deleted, all these relevent snapshots are kept in place to support the Consistent View.</p>
+<p>The core concept that MVCC introduces is the versioning / snapshoting data (rows). With MVCC, InnoDB keeps multiple snapshot of the same row. As rows are created, modified or deleted, all these relevent snapshots are kept in place to support the Consistent View.</p>
 
 <p>Each transaction is associated with a version, and each transaction can <em>“only”</em> see the snapshots that were created during or before the transaction (not including <code class="language-plaintext highlighter-rouge">READ UNCOMMITED</code> of course). In certain Isolation Level, e.g., <code class="language-plaintext highlighter-rouge">REPEATABLE READ</code>, transactions always see the same snapshot of data since the begining of the transaction as if the rows are never modified.</p>
 
-<h2 id="innodb-mvcc-implementation">InnoDB MVCC Implementation</h2>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[This post documents stuff about InnoDB, it’s meant for me to recall all the details that I may forget over the years. It’s not a complete guide to MySQL or InnoDB.]]></summary></entry><entry><title type="html">CA, SSL/TLS Certificate Basic</title><link href="https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic.html" rel="alternate" type="text/html" title="CA, SSL/TLS Certificate Basic" /><published>2025-02-07T09:00:00+08:00</published><updated>2025-02-07T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic.html"><![CDATA[<h2 id="1-ca-and-ssltls-certificates">1. CA and SSL/TLS Certificates</h2>
+<h4 id="innodb-mvcc-implementation">InnoDB MVCC Implementation</h4>
+
+<p>InnoDB add three fields to each row:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">DB_TRX_ID</code>: 6 byte field to indicate the last transaction_id that inserted or updated the row. Deletion is also treated as an update to a special bit in row that is marked as deleted.</li>
+  <li><code class="language-plaintext highlighter-rouge">DB_ROLL_PTR</code>: 7 byte field that points to a undo log record written to the rollback segment. Undo log record contains information about the row before it was updated.</li>
+  <li><code class="language-plaintext highlighter-rouge">DB_ROW_ID</code>: 6 byte field that contains a row id, if the table DDL doesn’t specify the primary key for clustered index, then this field is not used.</li>
+</ul>
+
+<p>Undo logs are divided into insert and update undo logs:</p>
+
+<ul>
+  <li>Insert Undo Logs:
+    <ul>
+      <li>records inserted</li>
+    </ul>
+  </li>
+  <li>Update Undo Logs:
+    <ul>
+      <li>records updated</li>
+      <li>records deleted</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Insert Undo Logs are only used to rollback transaction for the newly inserted rows, as soon as the transaction is commited, engine is freee to delete the Insert Undo Logs.</p>
+
+<p>Update Undo Logs are used to build a snapshot of data for earlier versions. Rows deletion is implemented through fliping a special bit on each row, so row deletion is essentially the same as row updation. Update Undo Logs are kept until no transaction can build a consistent view for the associated snapshots of rows.</p>
+
+<p>Each transaction is assigned to a transaction_id since the beginning of the transaction, and the transaction_id increases monotonically. At any moment, InnoDB knows what the minimum transaction_id is and thus can purge undo logs built by transactions prior to the minimum transaction_id. In InnoDB, rows are modified in place, so transaction either reads rows directly (e.g., if the rows are not modified or modified within the transaction) or builds snapshot based on the row data and the undo logs.</p>
+
+<p>If transactions do not commit, the associated Undo Logs cannot be purged. Recall that Rows Deletion is implemented by fliping a special bit on the row, which means that the rows deleted are not immediately, physically removed from the database, they are still visible to transactions that have certain transaction_ids. These deleted rows are only physically purged (including indexes) when the associated Undo Logs are purged, which simply means that they are nolonger visible to any transcation. Rows are physically purged by a background thread called <code class="language-plaintext highlighter-rouge">Purge Thread</code>.</p>
+
+<p>E.g.,</p>
+
+<!--
+
+Tx -> InnoDB: query rows
+InnoDB -> Storage: locate rows, check deletion mark, compare tx_id
+Storage -> InnoDB: Undo Log ROLL_PTR
+InnoDB -> Undo Log (Buffer Pool): compare tx_id, build snapshot
+Undo Log (Buffer Pool) -> Undo Log (Disk): cache miss
+InnoDB -> Tx: rows (visible snapshots)
+
+-->
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ┌──┐                   ┌──────┐                                       ┌───────┐┌──────────────────────┐┌───────────────┐
+ │Tx│                   │InnoDB│                                       │Storage││Undo Log (Buffer Pool)││Undo Log (Disk)│
+ └┬─┘                   └──┬───┘                                       └───┬───┘└──────────┬───────────┘└───────┬───────┘
+  │                        │                                               │               │                    │
+  │       query rows       │                                               │               │                    │
+  │───────────────────────&gt;│                                               │               │                    │
+  │                        │                                               │               │                    │
+  │                        │locate rows, check deletion mark, compare tx_id│               │                    │
+  │                        │──────────────────────────────────────────────&gt;│               │                    │
+  │                        │                                               │               │                    │
+  │                        │               Undo Log ROLL_PTR               │               │                    │
+  │                        │&lt;──────────────────────────────────────────────│               │                    │
+  │                        │                                               │               │                    │
+  │                        │                 compare tx_id, build snapshot │               │                    │
+  │                        │──────────────────────────────────────────────────────────────&gt;│                    │
+  │                        │                                               │               │                    │
+  │                        │                                               │               │     cache miss     │
+  │                        │                                               │               │───────────────────&gt;│
+  │                        │                                               │               │                    │
+  │rows (visible snapshots)│                                               │               │                    │
+  │&lt;───────────────────────│                                               │               │                    │
+ ┌┴─┐                   ┌──┴───┐                                       ┌───┴───┐┌──────────┴───────────┐┌───────┴───────┐
+ │Tx│                   │InnoDB│                                       │Storage││Undo Log (Buffer Pool)││Undo Log (Disk)│
+ └──┘                   └──────┘                                       └───────┘└──────────────────────┘└───────────────┘
+
+</code></pre></div></div>
+
+<h4 id="secondary-index">Secondary Index</h4>
+
+<p>In Clustered Index, rows are updated in-place, historical snapshots are built by reading undo logs that the <code class="language-plaintext highlighter-rouge">DB_ROLL_PTR</code> points to. However, in Secondary Index, modified index records are always marked deleted, and new index records (the updated ones) are always inserted. So, physically, a Secondary Index Tree can contain duplicate index key values (for MVCC), even though the Secondary Index has Unique Constraint.</p>
+
+<p>When InnoDB reads Secondary Index, in following circumstances, Convering Index Technique is not used:</p>
+
+<ul>
+  <li>Secondary Index Record is marked deleted.</li>
+  <li>Secondary Index Page is updated by a newer transaction.</li>
+</ul>
+
+<p>In these cases, InnoDB performs normal table lookup on Clustered Index and Undo Logs, even though all columns are convered by the Secondary Index.</p>
+
+<p>Since it’s very likely that transactions need to read Clustered Index and Undo Logs to build snapshots, InnoDB optimize these operations by caching the Data Pages and Undo Log Pages using LRU algorithm. Then, for frequently accessed data (including the Undo Logs), the data look up might be performed completely in momery.</p>
+
+<h2 id="4-innodb-architecture">4. InnoDB Architecture</h2>
+
+<p><img height="500px" src="https://dev.mysql.com/doc/refman/8.0/en/images/innodb-architecture-8-0.png" /></p>
+
+<blockquote>
+  <p>image source: https://dev.mysql.com/doc/refman/8.0/en/innodb-architecture.html</p>
+</blockquote>
+
+<ul>
+  <li>In-Memory
+    <ul>
+      <li>Buffer Pool</li>
+      <li>Change Buffer</li>
+      <li>Adaptive Hash Index</li>
+      <li>Log Buffer</li>
+    </ul>
+  </li>
+  <li>On-Disk
+    <ul>
+      <li>Tables</li>
+      <li>Indexes</li>
+      <li>Tablespaces</li>
+      <li>Doublewrite Buffer</li>
+      <li>Redo Logs</li>
+      <li>Undo Logs</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="buffer-pool">Buffer Pool</h4>
+
+<p>Buffer Pool caches frequently accessed table and index data (including both the index pages, data pages and Secondary Index pages), up to 80% of the physically memory is often assigned to this memory area. In Buffer Pool, data are divided into pages (just like the tables on disk), these pages are maintained using a linked list and LRU (Least Recently Used) algorithm.</p>
+
+<p><img height="400px" src="https://dev.mysql.com/doc/refman/8.0/en/images/innodb-buffer-pool-list.png" /></p>
+
+<blockquote>
+  <p>image source: https://dev.mysql.com/doc/refman/8.0/en/innodb-buffer-pool.html</p>
+</blockquote>
+
+<p>The linked list is divided into two sublist, one named <code class="language-plaintext highlighter-rouge">New Sublist</code> that stores pages recently accessed, and another named <code class="language-plaintext highlighter-rouge">Old Sublist</code> that stores pages that were accessed less recently.</p>
+
+<p>The head is the <code class="language-plaintext highlighter-rouge">New Sublist</code> with the most recently access pages, and the tail is the <code class="language-plaintext highlighter-rouge">Old Sublist</code> with the least recently access pages. By dault, 3/8 of the pool is assigned to the <code class="language-plaintext highlighter-rouge">Old Sublist</code> and the remaining 5/8 is assigned to <code class="language-plaintext highlighter-rouge">New Sublist</code>.</p>
+
+<p>New Pages are inserted at the midpoint of the list (the head of the <code class="language-plaintext highlighter-rouge">Old Sublist</code>). As pages on the list are accessed, they are moved to the head of the list (also the head of the <code class="language-plaintext highlighter-rouge">New Sublist</code>), making them <em>“young”</em>. Then, naturally, the pages that are less recently accessed are moved towards the end the list as other pages are moved to the head of the list. This process is called aging.</p>
+
+<p>If a page is never accessed, eventually, it will be moved to the tail of the linked list and then get evicted.</p>
+
+<p>So, in essence, the Buffer Pool should be made as large as possible. Though a full table scan for a large table may easily break the Buffer Pool Cache.</p>
+
+<p>Use <code class="language-plaintext highlighter-rouge">'SHOW ENGINE INNODB STATUS'</code> to check InnoDB Engine Status, About the Buffer Pool metrics: <a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-buffer-pool.html">https://dev.mysql.com/doc/refman/8.0/en/innodb-buffer-pool.html</a>.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SHOW ENGINE INNODB STATUS
+
+<span class="c"># ----------------------</span>
+<span class="c"># BUFFER POOL AND MEMORY</span>
+<span class="c"># ----------------------</span>
+<span class="c"># Total large memory allocated 0</span>
+<span class="c"># Dictionary memory allocated 24475827</span>
+<span class="c"># Buffer pool size   196539</span>
+<span class="c"># Free buffers       4096</span>
+<span class="c"># Database pages     192443</span>
+<span class="c"># Old database pages 70873</span>
+<span class="c"># Modified db pages  1559</span>
+<span class="c"># Pending reads      0</span>
+<span class="c"># Pending writes: LRU 0, flush list 0, single page 0, flush chunk 0</span>
+<span class="c"># Pages made young 316623327, not young 477690611</span>
+<span class="c"># 23.70 youngs/s, 64.04 non-youngs/s</span>
+<span class="c"># Pages read 9309080, created 7809533, written 125995449</span>
+<span class="c"># 3.89 reads/s, 0.71 creates/s, 7.84 writes/s</span>
+<span class="c"># Buffer pool hit rate 1000 / 1000, young-making rate 0 / 1000 not 2 / 1000</span>
+<span class="c"># Pages read ahead 0.00/s, evicted without access 0.00/s, Random read ahead 0.00/s</span>
+<span class="c"># LRU len: 192443, unzip_LRU len: 0</span>
+<span class="c"># I/O sum[4248]:cur[64], unzip sum[0]:cur[0]</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Total large memory allocated</code> can be 0 if Buffer Pool Size is very large:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">'innodb_buffer_pool_size'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h4 id="change-buffer">Change Buffer</h4>
+
+<p>Change Buffer caches changes to (Non-Unique) Secondary Index Pages if the page is not cached in Buffer Pool. If the index page is already cached in Buffer Pool, the changes can be applied directly to that cached page.</p>
+
+<p>It’s for the Secondary Index, thus doesn’t contain actual rows and columns that are modified by transactions. Think of it as a cache created exclusively for Secondary Index Pages, while the Buffer Pool is a cache for both data and index pages (including Secondary Index).</p>
+
+<p><img height="300px" src="https://dev.mysql.com/doc/refman/8.0/en/images/innodb-change-buffer.png" /></p>
+
+<blockquote>
+  <p>image source: https://dev.mysql.com/doc/refman/8.0/en/innodb-change-buffer.html</p>
+</blockquote>
+
+<p>Change Buffer is periodically merged into Buffer Pool, since Buffer Pool caches all kinds of table and index data. This is primary to prevent substantial random access I/O while updating the Secondary Index on disk.</p>
+
+<p>When a query needs to access data from Secondary Index Pages, InnoDB traverses the Secondary Index Tree, read the Buffer Pool cache (Read-Through Stragtegy) and load index pages from disk if necessary. While InnoDB reading the Secondary Index, it merges the pending changes in Change Buffer into the loaded Secondary Index Pages such that the not yet persisted changes to the Secondary Index are still visible.</p>
+
+<p>In fact, same optimization strategy is also used for updating rows, where the newly updated rows are cached in Buffer Pool, and are periodically merged to disk by background threads. This way, write operations are less frequently performed, and some of content are written sequentially if the modified data resides in the same page. InnoDB can choose to merge Buffer Pool and Change Buffer when the server is nearly idle.</p>
+
+<p>Incrase size of Change Buffer if there are lots of Secondary Indexses, but Change Buffer is part of the Buffer Pool thus may occupy some of the space, we may well just incrase size of both of them. By dault, Change Buffer at most occupies 25% of the space of Buffer Pool.</p>
+
+<p>To check the status of Change Buffer:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SHOW ENGINE INNODB STATUS
+
+<span class="c"># -------------------------------------</span>
+<span class="c"># INSERT BUFFER AND ADAPTIVE HASH INDEX</span>
+<span class="c"># -------------------------------------</span>
+<span class="c"># Ibuf: size 1, free list len 695, seg size 697, 43022 merges</span>
+<span class="c"># merged operations:</span>
+<span class="c">#  insert 62803, delete mark 4411134, delete 45335</span>
+<span class="c"># discarded operations:</span>
+<span class="c">#  insert 0, delete mark 0, delete 0</span>
+<span class="c"># Hash table size 103, node heap has 0 buffer(s)</span>
+<span class="c"># Hash table size 103, node heap has 0 buffer(s)</span>
+<span class="c"># Hash table size 103, node heap has 0 buffer(s)</span>
+<span class="c"># Hash table size 103, node heap has 0 buffer(s)</span>
+<span class="c"># Hash table size 103, node heap has 0 buffer(s)</span>
+<span class="c"># Hash table size 103, node heap has 0 buffer(s)</span>
+<span class="c"># Hash table size 103, node heap has 0 buffer(s)</span>
+<span class="c"># Hash table size 103, node heap has 0 buffer(s)</span>
+<span class="c"># 0.00 hash searches/s, 1076.91 non-hash searches/s</span>
+</code></pre></div></div>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[This post documents stuff about InnoDB, it’s meant for me to recall all the details that I may have forgetten over the years. It’s not a complete guide to MySQL or InnoDB.]]></summary></entry><entry><title type="html">CA, SSL/TLS Certificate Basic</title><link href="https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic.html" rel="alternate" type="text/html" title="CA, SSL/TLS Certificate Basic" /><published>2025-02-07T09:00:00+08:00</published><updated>2025-02-07T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic.html"><![CDATA[<h2 id="1-ca-and-ssltls-certificates">1. CA and SSL/TLS Certificates</h2>
 
 <p>CA stands for Certificate Authority. CA certificates usually refer to the digital certificates issued by CAs, the trusted entities, sometime we call these certificates “the root certificates”.</p>
 
