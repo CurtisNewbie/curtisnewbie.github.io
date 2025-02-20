@@ -45,6 +45,7 @@ The most useful fields are `name` and `value`, we can iterate the cookies and us
 ```py
 import browser_cookie3
 
+joined = []
 for c in browser_cookie3.chrome(domain_name='google.com'):
     joined.append(f"{c.name}={c.value}")
 cookie = "; ".join(joined)
