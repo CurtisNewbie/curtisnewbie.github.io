@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-02-11T11:07:23+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Innodb Internals</title><link href="https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals.html" rel="alternate" type="text/html" title="Innodb Internals" /><published>2025-02-08T09:00:00+08:00</published><updated>2025-02-08T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals.html"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-02-20T16:37:21+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Extract Chrome Cookies</title><link href="https://curtisnewbie.github.io/learning/2025/02/20/extract-chrome-cookies.html" rel="alternate" type="text/html" title="Extract Chrome Cookies" /><published>2025-02-20T09:00:00+08:00</published><updated>2025-02-20T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/02/20/extract-chrome-cookies</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/02/20/extract-chrome-cookies.html"><![CDATA[<!-- ## Why
+
+Some websites store secrets and tokens in cookies that are not easily retrieved with a few simple http requests.
+
+We as the developer, sometimes, need to write simple automation scripts to scrape the data from the website to make life a bit easier, and this post documents how to do it using Python.
+
+## How -->
+
+<h1 id="how">How</h1>
+
+<p>Install Python3 dependency <code class="language-plaintext highlighter-rouge">browser-cookie3</code>:</p>
+
+<p>e.g.,</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3.11 <span class="nt">-m</span> pip <span class="nb">install </span>browser-cookie3
+</code></pre></div></div>
+
+<p>Import <code class="language-plaintext highlighter-rouge">browser_cookies3</code> dependency, and read cookies for a domain:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">browser_cookie3</span>
+
+<span class="n">cookies</span> <span class="o">=</span> <span class="n">browser_cookie3</span><span class="p">.</span><span class="n">chrome</span><span class="p">(</span><span class="n">domain_name</span><span class="o">=</span><span class="s">'google.com'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Notice that cookies are sometimes associated with different paths, you may need cookies for the sub-domains as well, in which case, you may will just call <code class="language-plaintext highlighter-rouge">browser_cookie3.chrome(...)</code> multiple times.</p>
+
+<p>e.g.,</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cookies</span> <span class="o">=</span> <span class="n">browser_cookie3</span><span class="p">.</span><span class="n">chrome</span><span class="p">(</span><span class="n">domain_name</span><span class="o">=</span><span class="s">'xxx.google.com'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The most useful fields are <code class="language-plaintext highlighter-rouge">name</code> and <code class="language-plaintext highlighter-rouge">value</code>, we can iterate the cookies and use them in requests:</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">browser_cookie3</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">browser_cookie3</span><span class="p">.</span><span class="n">chrome</span><span class="p">(</span><span class="n">domain_name</span><span class="o">=</span><span class="s">'google.com'</span><span class="p">):</span>
+    <span class="n">joined</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">c</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">=</span><span class="si">{</span><span class="n">c</span><span class="p">.</span><span class="n">value</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="n">cookie</span> <span class="o">=</span> <span class="s">"; "</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">joined</span><span class="p">)</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"https://www.google.com"</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span> <span class="s">'cookie'</span><span class="p">:</span> <span class="n">cookie</span> <span class="p">})</span>
+<span class="k">print</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">code</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>If you run the Python script, and the OS asks for password, it’s okay, becuase cookies are sensitive data stored in place protected by the OS.</p>
+
+<h1 id="links">Links</h1>
+
+<ul>
+  <li><a href="https://github.com/borisbabic/browser_cookie3">github.com/borisbabic/browser_cookie3</a></li>
+</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[&lt;!– ## Why]]></summary></entry><entry><title type="html">Innodb Internals</title><link href="https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals.html" rel="alternate" type="text/html" title="Innodb Internals" /><published>2025-02-08T09:00:00+08:00</published><updated>2025-02-08T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/02/08/innodb-internals.html"><![CDATA[<blockquote>
   <p>This post documents stuff about InnoDB, it’s meant for me to recall all the details that I may have forgetten over the years. It’s not a complete guide to MySQL or InnoDB.</p>
 </blockquote>
 
@@ -341,11 +391,26 @@ InnoDB -> Tx: rows (visible snapshots)
 
 <ul>
   <li>0: written and flushed once per second</li>
-  <li>1: wriiten and flushed at transaction commit (<strong>default</strong>)</li>
+  <li>1: written and flushed at transaction commit (<strong>default</strong>)</li>
   <li>2: written at transaction commit and flushed once per second</li>
 </ul>
 
-<p>Variable <code class="language-plaintext highlighter-rouge">innodb_flush_log_at_timeout</code>, defaults to 1, controls how frequent the Log Buffer is written and flushed: <em>“write and flush logs every N seconds”</em>.</p>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[This post documents stuff about InnoDB, it’s meant for me to recall all the details that I may have forgetten over the years. It’s not a complete guide to MySQL or InnoDB.]]></summary></entry><entry><title type="html">CA, SSL/TLS Certificate Basic</title><link href="https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic.html" rel="alternate" type="text/html" title="CA, SSL/TLS Certificate Basic" /><published>2025-02-07T09:00:00+08:00</published><updated>2025-02-07T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic.html"><![CDATA[<h2 id="1-ca-and-ssltls-certificates">1. CA and SSL/TLS Certificates</h2>
+<p>Variable <code class="language-plaintext highlighter-rouge">innodb_flush_log_at_timeout</code>, defaults to 1, controls how frequent the Log Buffer is written and flushed: <em>“write and flush logs every N seconds”</em>.</p>
+
+<h4 id="on-disk-tables">On-Disk Tables</h4>
+
+<p>By default, InnoDB creates table in file-per-table tablespaces.</p>
+
+<p>To view status of a table:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SHOW</span> <span class="k">TABLE</span> <span class="n">STATUS</span> <span class="k">FROM</span> <span class="p">...</span> <span class="k">LIKE</span> <span class="s1">'...'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Tablespace:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">innodb_file_per_table</code>, File Per Table Tablespace <strong>(default)</strong></li>
+</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[This post documents stuff about InnoDB, it’s meant for me to recall all the details that I may have forgetten over the years. It’s not a complete guide to MySQL or InnoDB.]]></summary></entry><entry><title type="html">CA, SSL/TLS Certificate Basic</title><link href="https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic.html" rel="alternate" type="text/html" title="CA, SSL/TLS Certificate Basic" /><published>2025-02-07T09:00:00+08:00</published><updated>2025-02-07T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/02/07/ca-ssltls-certificate-basic.html"><![CDATA[<h2 id="1-ca-and-ssltls-certificates">1. CA and SSL/TLS Certificates</h2>
 
 <p>CA stands for Certificate Authority. CA certificates usually refer to the digital certificates issued by CAs, the trusted entities, sometime we call these certificates “the root certificates”.</p>
 
@@ -2147,205 +2212,4 @@ ImportError: /usr/local/lib64/python3.11/site-packages/torch/lib/libtorch_cuda.s
 
 <p>Monorepo: https://github.com/CurtisNewbie/moon-monorepo</p>
 
-<!-- TODO talk about the monorepo -->]]></content><author><name>Yongjie Zhuang</name></author><category term="Projects" /><summary type="html"><![CDATA[The moon project is self-hosted private cloud that consists of a set of backend and frontend services that I maintain in my spare time.]]></summary></entry><entry><title type="html">Interesting Resources</title><link href="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html" rel="alternate" type="text/html" title="Interesting Resources" /><published>2024-04-15T20:00:00+08:00</published><updated>2024-04-15T20:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2024/04/15/interesting-resources.html"><![CDATA[<p>Interesting papers, books and websites are listed here.</p>
-
-<h3 id="papers">Papers</h3>
-
-<ul>
-  <li><a href="https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf">Dynamo: Amazon’s Highly Available Key-value Store</a></li>
-</ul>
-
-<h3 id="blogs-presentations-and-docs">Blogs, Presentations and Docs</h3>
-
-<ul>
-  <li><a href="https://ebpf-go.dev/">eBPF Library for Go</a></li>
-  <li><a href="https://ebpf.io/what-is-ebpf">What is eBPF</a></li>
-  <li><a href="https://www.infoq.com/presentations/shopify-architecture-flash-sale/">Shopify’s Architecture to Handle the World’s Biggest Flash Sales</a></li>
-  <li><a href="https://martinfowler.com/articles/lmax.html">Martin Fowler - The LMAX Architecture</a></li>
-  <li><a href="https://lmax-exchange.github.io/disruptor/">Github Page - LMAX Disruptor</a></li>
-  <li><a href="https://dave.cheney.net/2013/06/02/why-is-a-goroutines-stack-infinite">Dave Cheney - Why is a Goroutine’s stack infinite?</a></li>
-  <li><a href="https://docs.google.com/document/u/0/d/1yIAYmbvL3JxOKOjuCyon7JhW4cSv1wy5hC0ApeGMV9s/pub?pli=1">Go channels on steroids</a></li>
-  <li><a href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html">The Computer Language Benchmark Game</a></li>
-  <li><a href="https://docs.oracle.com/en/java/javase/20/gctuning/index.html#GUID-0394E76A-1A8F-425E-A0D0-B48A3DC82B42">jdk20 - HotSpot Virtual Machine Garbage Collection Tuning Guide</a></li>
-  <li><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/toc.html">jdk8 - Java Platform, Standard Edition Troubleshooting Guide</a></li>
-  <li><a href="https://tschatzl.github.io/2022/08/04/concurrent-marking.html">Concurrent Marking in G1</a></li>
-  <li><a href="https://landontclipp.github.io/blog/2023/07/15/analyzing-go-heap-escapes/#use-of-reflection">Analyzing Go Heap Escapes</a></li>
-  <li><a href="https://chris124567.github.io/2021-06-21-go-performance/">Reducing Memory Allocations in Golang</a></li>
-  <li><a href="https://github.com/redis/redis-specifications/blob/master/protocol/RESP2.md">Github - RESP2 Protocol Specification</a></li>
-  <li><a href="https://medium.com/@chenymj23/diving-into-golang-how-does-it-effectively-wrap-the-functionality-of-epoll-26065f0654ba">Diving into Golang: How does it effectively wrap the functionality of epoll?</a></li>
-  <li><a href="https://blog.mike.norgate.xyz/unlocking-go-slice-performance-navigating-sync-pool-for-enhanced-efficiency-7cb63b0b453e">Unlocking Go Slice Performance: Navigating sync.Pool for Enhanced Efficiency</a></li>
-  <li><a href="https://gist.github.com/JBlond/2fea43a3049b38287e5e9cefc87b2124">JBlond Gist - Bash Colors</a></li>
-  <li><a href="https://k3s.io/">k3s</a></li>
-  <li><a href="https://blog.ragozin.info/2011/06/understanding-gc-pauses-in-jvm-hotspots.html">Understanding GC pauses in JVM, HotSpot’s minor GC (2011)</a></li>
-  <li><a href="https://netflix.github.io/dgs/">Netflix DGS Framework</a></li>
-  <li><a href="https://github.com/Netflix/conductor">Netflix Conductor</a></li>
-  <li><a href="https://github.com/conductor-sdk/conductor-examples/tree/main">Conductor-sdk</a></li>
-  <li><a href="https://orkes.io/content/">Orkes - Conductor</a></li>
-  <li><a href="https://shipilev.net/jvm/anatomy-quarks/">JVM Anatomy Quarks</a></li>
-  <li><a href="https://netflixtechblog.com/bending-pause-times-to-your-will-with-generational-zgc-256629c9386b">Netflix Technology Blog - Bending pause times to your will with Generational ZGC</a></li>
-  <li><a href="https://www.infoq.com/presentations/netflix-java/">InfoQ - How Netflix Really Uses Java</a></li>
-  <li><a href="https://go.dev/ref/spec">The Go Programming Language Specification</a></li>
-  <li><a href="https://go.dev/doc/effective_go">Effective Go</a></li>
-  <li><a href="https://go.dev/ref/mem">Go Memory Model</a></li>
-  <li><a href="https://netflixtechblog.com/linux-performance-analysis-in-60-000-milliseconds-accc10403c55">Netflix Technology Blog - Linux Performance Analysis in 60,000 milliseconds</a></li>
-  <li><a href="https://www.redhat.com/sysadmin/cgroups-part-one">A Linux sysadmin’s introduction to cgroups</a></li>
-  <li><a href="https://www.cs.unh.edu/cnrg/people/gherrin/linux-net.html">Glenn Herrin (2000) Linux IP Networking</a></li>
-  <li><a href="https://www.cloudcentric.dev/implementing-a-skip-list-in-go/">Implementing a skip list in go</a></li>
-  <li><a href="https://github.com/redis/redis/blob/unstable/src/ziplist.c">ziplist.c source code in github.com/redis</a></li>
-  <li><a href="https://eclipsesource.com/blogs/2013/01/21/10-tips-for-using-the-eclipse-memory-analyzer/">10 Tips for using the Eclipse Memory Analyzer</a></li>
-  <li><a href="https://tikv.org/deep-dive/key-value-engine/b-tree-vs-lsm/">tikv - B-Tree vs LSM-Tree</a></li>
-  <li><a href="https://medium.com/eureka-engineering/understanding-allocations-in-go-stack-heap-memory-9a2631b5035d">Understanding Allocations in Go</a></li>
-  <li><a href="https://pkg.go.dev/cmd/trace">golang - cmd/trace</a></li>
-  <li><a href="https://medium.com/@ankur_anand/a-visual-guide-to-golang-memory-allocator-from-ground-up-e132258453ed">A visual guide to Go Memory Allocator from scratch</a></li>
-  <li><a href="https://java-decompiler.github.io/">Java Decompiler</a></li>
-  <li><a href="https://catonmat.net/bash-one-liners-explained-part-one">Bash One-Liners Explained</a></li>
-  <li><a href="https://tldp.org/HOWTO/IP-Masquerade-HOWTO/index.html">Linux IP Masquerade HOWTO, David A. Ranch</a></li>
-  <li><a href="https://mysql.rjweb.org/doc.php/deletebig">MySQL Big DELETEs</a></li>
-  <li><a href="https://research.swtch.com/interfaces">Go Data Structures: Interfaces</a></li>
-  <li><a href="https://morsmachine.dk/go-scheduler">The Go Scheduler</a></li>
-  <li><a href="https://www.kernel.org/doc/html/latest/index.html">Linux Kernel Documentation</a></li>
-  <li><a href="https://thesecretlivesofdata.com/raft/">The Secret Lives of Data - Raft</a></li>
-  <li>Posts, Blogs
-    <ul>
-      <li><a href="https://techurls.com/">techurls</a></li>
-      <li><a href="https://news.ycombinator.com/">hacker news</a></li>
-      <li><a href="https://bearblog.dev/discover/?page=1">bearblog</a></li>
-    </ul>
-  </li>
-  <li><a href="https://bitfieldconsulting.com/posts/constraints">Constraints in Go</a></li>
-  <li><a href="https://mightyohm.com/files/soldercomic/FullSolderComic_EN.pdf">Soldering is Easy: Here’s How to Do it (Extended Version)</a></li>
-  <li><a href="https://htmx.org/essays/codin-dirty/">htmx - Codin’ Dirty</a></li>
-  <li><a href="https://grugbrain.dev">The Grug Brained Developer A layman’s guide to thinking like the self-aware smol brained</a></li>
-  <li><a href="https://assets.bitbashing.io/papers/concurrency-primer.pdf">Matt Kline - What every systems programmer should know about concurrency</a></li>
-  <li><a href="https://redmonk.com/kholterhoff/2024/12/12/why-message-queues-endure-a-history/">Kate holterhoff - Why Message Queues Endure: A History</a></li>
-  <li><a href="https://http3-explained.haxx.se/en">HTTP/3 Explained</a></li>
-  <li><a href="https://daniel.haxx.se/http2/">HTTP/2 Explained</a></li>
-  <li><a href="https://olano.dev/blog/software-design-is-knowledge-building/">Software Design Is Knowledge Building</a></li>
-  <li><a href="https://arxiv.org/abs/2010.12597?ref=blog.sequinstream.com">Andreas Andreakis, Ioannis Papapanagiotou - DBLog: A Watermark Based Change-Data-Capture Framework</a></li>
-  <li><a href="https://ffmpegbyexample.com/">FFmpeg by example</a></li>
-  <li><a href="https://martinfowler.com/bliki/ConwaysLaw.html">Martin Fowler - Conways Law</a></li>
-  <li><a href="https://andysblog.uk/why-blog-if-nobody-reads-it/">Andy’s Blog - Why Blog If Nobody Reads It?</a></li>
-</ul>
-
-<h3 id="database-related">Database Related</h3>
-
-<ul>
-  <li><a href="https://stackoverflow.com/questions/68443220/how-mvcc-works-with-lock-in-mysql">stackoverflow - how mvcc works with lock in mysql</a></li>
-  <li><a href="https://jahfer.com/posts/innodb-locks/">jahfer.com - innodb-locks</a></li>
-  <li><a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-upgrade.html">mysql_upgrade tool for MySQL &lt; 8.0.16</a></li>
-  <li><a href="https://dev.mysql.com/blog-archive/inplace-upgrade-from-mysql-5-7-to-mysql-8-0/">Inplace Upgrade MySQL 5.7 to 8.0</a></li>
-  <li><a href="https://dev.mysql.com/doc/mysql-shell/8.0/en/mysql-shell-utilities-upgrade.html">MySQL Shell Upgrade Checker</a></li>
-  <li><a href="https://github.com/dolthub/dolt">github dolthub/dolt</a></li>
-  <li><a href="https://github.com/dolthub/go-mysql-server">github dolthub/go-mysql-server</a></li>
-  <li><a href="https://github.blog/2018-06-20-mysql-high-availability-at-github/#:~:text=GitHub%20uses%20MySQL%20as%20its,is%20critical%20to%20GitHub's%20operation.">Github Blog - MySQL High Availability at Github</a></li>
-  <li><a href="https://dev.mysql.com/doc/index-archive.html">MySQL Server Index Archive</a></li>
-  <li><a href="https://dev.mysql.com/doc/dev/mysql-server/latest/">MySQL Server Source Code Documentation</a></li>
-  <li><a href="https://dev.mysql.com/blog-archive/hash-join-in-mysql-8/">Hash join in MySQL 8</a></li>
-  <li><a href="https://oceanbase.github.io/miniob/miniob-introduction.html">MiniOB Github Page - zh-cn</a></li>
-  <li><a href="https://github.com/oceanbase/miniob?tab=readme-ov-file">MiniOB Github - zh-cn</a></li>
-  <li><a href="https://github.com/oceanbase/oceanbase">Oceanbase Github</a></li>
-  <li><a href="https://en.oceanbase.com/docs/oceanbase-database">Oceanbase Doc</a></li>
-  <li><a href="https://use-the-index-luke.com/sql/preface">Use the index, Luke - A Guide to Database Performance for Developers</a></li>
-  <li><a href="https://notes.eatonphil.com/2024-07-01-a-write-ahead-log-is-not-a-universal-part-of-durability.html">Eaton Phil, A write-ahead log is not a universal part of durability</a></li>
-  <li><a href="https://stackoverflow.com/questions/4307464/how-are-internal-nodes-in-a-innodb-b-tree-physically-stored">StackOverflow - How are internal nodes in a innodb b-tree physically stored?</a></li>
-  <li><a href="https://www.uber.com/en-JO/blog/upgrading-ubers-mysql-fleet/">Uber - Upgrading Ubers MySQL Fleet</a></li>
-  <li><a href="https://briandouglas.ie/sqlite-defaults/">Brian Douglas - SQLite Defaults</a></li>
-  <li><a href="https://www.cs.usfca.edu/~galles/visualization/BPlusTree.html">Visualizing B+ Tree</a></li>
-  <li><a href="https://avi.im/blag/2024/sqlite-facts/">Collection of insane and fun facts about SQLite</a></li>
-  <li><a href="https://notes.eatonphil.com/2024-05-16-mvcc.html">Implementing MVCC and major SQL transaction isolation levels</a></li>
-</ul>
-
-<h3 id="other-github-repos">Other Github Repos</h3>
-
-<ul>
-  <li><a href="https://github.com/elastic/otel-profiling-agent">elastic/otel-profiling-agent</a></li>
-  <li><a href="https://github.com/vadv/gopher-lua-libs">vadv/gopher-lua-libs</a></li>
-  <li><a href="https://github.com/yuin/gopher-lua">yuin/gopher-lua</a></li>
-  <li><a href="https://github.com/jamiebuilds/the-super-tiny-compiler">jamiebuilds/the-super-tiny-compiler</a></li>
-  <li><a href="https://github.com/kjpgit/smallestcsvparser">kjpgit/SmallestCSVParser</a></li>
-</ul>
-
-<h3 id="perf">Perf</h3>
-
-<ul>
-  <li><a href="https://www.brendangregg.com/flamegraphs.html">Bred Angregg Flame Grphs</a></li>
-  <li><a href="https://queue.acm.org/detail.cfm?id=2927301">Acm Queue - The Flame Graph</a></li>
-  <li><a href="https://peteris.rocks/blog/htop/#htop-on-ubuntu-server-16-04-x64">peteris.rocks - htop explained</a></li>
-</ul>
-
-<h3 id="git">Git</h3>
-
-<ul>
-  <li><a href="https://jvns.ca/blog/2023/11/06/rebasing-what-can-go-wrong-/">Julia Evans - git rebase: what can go wrong?</a></li>
-  <li><a href="https://stackoverflow.com/questions/5189560/how-do-i-squash-my-last-n-commits-together">StackOverflow - How do I squash my last N commits together?</a></li>
-</ul>
-
-<h3 id="golang">Golang</h3>
-
-<ul>
-  <li><a href="https://go.dev/blog/v2-go-modules">go.dev - Go Modules: v2 and Beyond</a></li>
-  <li><a href="https://go.dev/doc/modules/developing">go.dev - Developing and publishing modules</a></li>
-  <li><a href="https://100go.co/">100 Go Mistakes and How to Avoid Them</a></li>
-  <li><a href="https://victoriametrics.com/blog/go-sync-mutex/">Phuong Le, Golang Sync Mutex: Normal and Starvation Mode</a></li>
-  <li><a href="https://victoriametrics.com/blog/vendoring-go-mod-vendor/index.html">Phuong Le, Vendoring, or go mod vendor: What Is It?</a></li>
-  <li><a href="https://research.swtch.com/godata">Go Data Structures</a></li>
-</ul>
-
-<h3 id="gc">GC</h3>
-
-<ul>
-  <li><a href="https://www.callibrity.com/articles/a-basic-overview-of-jvm-garbage-collection">Yan Yu - A Basic Overview of JVM Garbage Collection - Part 1</a></li>
-  <li><a href="https://www.callibrity.com/articles/further-look-at-jvm-garbage-collection#:~:text=ParNew%20is%20the%20multi%2Dthreaded,%2C%20stop%20the%20world%2C%20etc.">Yan Yu - A Basic Overview of JVM Garbage Collection - Part 2</a></li>
-  <li><a href="https://opensource.com/article/22/6/garbage-collection-java-virtual-machine">How Garbage Collection works inside a Java Virtual Machine</a></li>
-  <li><a href="https://www.uber.com/blog/jvm-tuning-garbage-collection/">Uber - Tricks of the Trade: Tuning JVM Memory for Large-scale Services</a></li>
-  <li><a href="https://www.uber.com/blog/scaling-hdfs/?uclick_id=b993a76e-eb97-4f64-b884-21e30bd60959">Uber - Scaling Uber’s Apache Hadoop Distributed File System for Growth</a></li>
-  <li><a href="https://docs.oracle.com/en/java/javase/11/gctuning/introduction-garbage-collection-tuning.html#GUID-8A443184-7E07-4B71-9777-4F12947C8184">Java 11 - HotSpot Virtual Machine Garbage Collection Tuning Guide</a></li>
-  <li><a href="https://www.infoq.com/articles/G1-One-Garbage-Collector-To-Rule-Them-All/">InfoQ - G1: One Garbage Collector To Rule Them All</a></li>
-  <li><a href="https://www.infoq.com/articles/tuning-tips-G1-GC/">InfoQ - Tips for Tuning the Garbage First Garbage Collector</a></li>
-  <li><a href="https://www.oracle.com/java/technologies/whitepaper.html#garbage">The Java HotSpot Performance Engine Architecture</a></li>
-  <li><a href="https://www.oracle.com/technical-resources/articles/java/g1gc.html#:~:text=Initial%20mark%20phase%3A%20The%20G1,and%20marks%20the%20referenced%20objects.">Monica Beckwith (2013) Oracle - Garbage First Garbage Collector Tuning</a></li>
-  <li><a href="https://www.oracle.com/technetwork/java/javase/memorymanagement-whitepaper-150215.pdf">Description of HotSpot GCs: Memory Management in the Java HotSpot Virtual Machine White Paper: link (PDF)</a></li>
-  <li><a href="https://dl.acm.org/citation.cfm?id=362422.362480">The original CMS paper: Printezis, T. and Detlefs, D. 2000. A generational mostly-concurrent garbage collector. In Proceedings of the 2nd international Symposium on Memory Management (Minneapolis, Minnesota, United States, October 15 - 16, 2000).</a></li>
-  <li><a href="https://dl.acm.org/citation.cfm?id=1029879">The original G1 paper: Detlefs, D., Flood, C., Heller, S., and Printezis, T. 2004. Garbage-first garbage collection. In Proceedings of the 4th international Symposium on Memory Management (Vancouver, BC, Canada, October 24 - 25, 2004).</a></li>
-  <li><a href="https://www.researchgate.net/publication/221032945_Garbage-First_garbage_collection">ResearchGate - The original G1 paper: Detlefs, D., Flood, C., Heller, S., and Printezis, T. 2004. Garbage-first garbage collection. In Proceedings of the 4th international Symposium on Memory Management (Vancouver, BC, Canada, October 24 - 25, 2004).</a></li>
-  <li><a href="https://www.redhat.com/en/blog/part-1-introduction-g1-garbage-collector">RedHat, Matt Robson - Part 1: Introduction to the G1 Garbage Collector</a></li>
-  <li><a href="https://www.redhat.com/en/blog/collecting-and-reading-g1-garbage-collector-logs-part-2">RedHat, Matt Robson - Part 2: Collecting and reading G1 garbage collector logs</a></li>
-  <li><a href="https://tech.meituan.com/2016/09/23/g1.html">美团技术团队 - Java Hotspot G1 GC 的一些关键技术</a></li>
-  <li><a href="https://wiki.openjdk.org/display/shenandoah/Main">wiki.openjdk.org - shenandoah</a></li>
-  <li><a href="https://go.dev/blog/ismmkeynote">The Go Blog - Getting to Go: The Journey of Go’s Garbage Collector</a></li>
-</ul>
-
-<h3 id="tools">Tools</h3>
-
-<ul>
-  <li><a href="https://mitmproxy.org/">mitproxy</a></li>
-  <li><a href="https://github.com/gojue/ecapture">ecapture</a></li>
-  <li><a href="https://www.tampermonkey.net/">Tampermonkey</a></li>
-  <li><a href="https://www.tampermonkey.net/documentation.php">Tampermonkey API</a></li>
-  <li><a href="https://javaparser.org/">javaparser.org</a>
-    <ul>
-      <li><a href="https://javaparser.org/setting-up-for-analysing-a-whole-project/">javaparser - Analysing an entire project in one go</a></li>
-      <li><a href="https://github.com/javaparser/javaparser?tab=readme-ov-file">github.com/javaparser</a></li>
-    </ul>
-  </li>
-  <li><a href="https://www.jdoodle.com/online-java-compiler">Online Java Compiler</a></li>
-  <li><a href="https://www.peterbe.com/plog/set-ex">set -ex - The most useful bash trick of the year</a></li>
-  <li><a href="https://diagon.arthursonzogni.com">ArthurSonzogni/Diagon WebApp - Generate ASCII Graph</a></li>
-  <li><a href="https://github.com/ArthurSonzogni/Diagon?tab=readme-ov-file">ArthurSonzogni/Diagon Github - Generate ASCII Graph</a></li>
-  <li><a href="https://byteman.jboss.org/">JBoss - Byteman</a></li>
-</ul>
-
-<h3 id="typing">Typing</h3>
-
-<ul>
-  <li><a href="https://www.typelit.io/">typelit.io</a></li>
-  <li><a href="https://keymash.io/">keymash.io</a></li>
-  <li><a href="https://play.typeracer.com/">typeracer</a></li>
-  <li><a href="https://zty.pe/">zty.pe</a></li>
-</ul>
-
-<h3 id="java-lambda--serialization">Java Lambda &amp; Serialization</h3>
-
-<ul>
-  <li><a href="https://blogs.oracle.com/javamagazine/post/behind-the-scenes-how-do-lambda-expressions-really-work-in-java">https://blogs.oracle.com/javamagazine/post/behind-the-scenes-how-do-lambda-expressions-really-work-in-java</a></li>
-</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Interesting papers, books and websites are listed here.]]></summary></entry></feed>
+<!-- TODO talk about the monorepo -->]]></content><author><name>Yongjie Zhuang</name></author><category term="Projects" /><summary type="html"><![CDATA[The moon project is self-hosted private cloud that consists of a set of backend and frontend services that I maintain in my spare time.]]></summary></entry></feed>

@@ -308,9 +308,23 @@ show variables like 'innodb_flush_log%';
 Options available for variable `innodb_flush_log_at_trx_commit` :
 
 - 0: written and flushed once per second
-- 1: wriiten and flushed at transaction commit (**default**)
+- 1: written and flushed at transaction commit (**default**)
 - 2: written at transaction commit and flushed once per second
 
 Variable `innodb_flush_log_at_timeout`, defaults to 1, controls how frequent the Log Buffer is written and flushed: *"write and flush logs every N seconds"*.
+
+#### On-Disk Tables
+
+By default, InnoDB creates table in file-per-table tablespaces.
+
+To view status of a table:
+
+```sql
+SHOW TABLE STATUS FROM ... LIKE '...';
+```
+
+Tablespace:
+
+- `innodb_file_per_table`, File Per Table Tablespace **(default)**
 
 

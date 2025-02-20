@@ -45,7 +45,7 @@
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Innodb Internals</h1>
     <p class="post-meta"><time class="dt-published" datetime="2025-02-08T09:00:00+08:00" itemprop="datePublished">
-        Feb 8, 2025 &nbsp&nbsp&nbsp&nbsp2577 Words
+        Feb 8, 2025 &nbsp&nbsp&nbsp&nbsp2625 Words
       </time></p>
   </header>
 
@@ -393,11 +393,26 @@ InnoDB -> Tx: rows (visible snapshots)
 
 <ul>
   <li>0: written and flushed once per second</li>
-  <li>1: wriiten and flushed at transaction commit (<strong>default</strong>)</li>
+  <li>1: written and flushed at transaction commit (<strong>default</strong>)</li>
   <li>2: written at transaction commit and flushed once per second</li>
 </ul>
 
 <p>Variable <code class="language-plaintext highlighter-rouge">innodb_flush_log_at_timeout</code>, defaults to 1, controls how frequent the Log Buffer is written and flushed: <em>“write and flush logs every N seconds”</em>.</p>
+
+<h4 id="on-disk-tables">On-Disk Tables</h4>
+
+<p>By default, InnoDB creates table in file-per-table tablespaces.</p>
+
+<p>To view status of a table:</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SHOW</span> <span class="k">TABLE</span> <span class="n">STATUS</span> <span class="k">FROM</span> <span class="p">...</span> <span class="k">LIKE</span> <span class="s1">'...'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Tablespace:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">innodb_file_per_table</code>, File Per Table Tablespace <strong>(default)</strong></li>
+</ul>
 
 
   </div><a class="u-url" href="/learning/2025/02/08/innodb-internals.html" hidden></a>
