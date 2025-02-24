@@ -180,3 +180,24 @@ Interesting papers, books and websites are listed here.
 ### Java Lambda & Serialization
 
 - [https://blogs.oracle.com/javamagazine/post/behind-the-scenes-how-do-lambda-expressions-really-work-in-java](https://blogs.oracle.com/javamagazine/post/behind-the-scenes-how-do-lambda-expressions-really-work-in-java)
+
+### LLM
+
+- [GitHub - mlrun/demo-llm-tuning: Demo MLRun project for LLM Tuning and serving pipelines](https://github.com/mlrun/demo-llm-tuning)
+- [模型列表_大模型服务平台百炼(Model Studio)-阿里云帮助中心](https://help.aliyun.com/zh/model-studio/getting-started/models?spm=a2c4g.11186623.help-menu-2400256.d_0_2.4d7220efgSTxpX&scm=20140722.H_2840914._.OR_help-T_cn~zh-V_1#ced16cb6cdfsy)
+- [在控制台使用模型调优_大模型服务平台百炼(Model Studio)-阿里云帮助中心](https://help.aliyun.com/zh/model-studio/user-guide/using-fine-tuning-on-console?spm=a2c4g.11186623.help-menu-2400256.d_1_3_0.42a635254ifadK&scm=20140722.H_2587462._.OR_help-T_cn~zh-V_1#f161782782o0n)
+- [模型推理、模型训练、模型部署费用说明_大模型服务平台百炼(Model Studio)-阿里云帮助中心](https://help.aliyun.com/zh/model-studio/billing-for-model-studio?spm=a2c4g.11186623.0.0.3cba5991yReIGZ#7a3514acc706i)
+- [Code completion | IntelliJ IDEA Documentation](https://www.jetbrains.com/help/idea/auto-completing-code.html#basic_completion)
+- [GitHub - JetBrains/intellij-sdk-docs: IntelliJ SDK Platform Documentation](https://github.com/JetBrains/intellij-sdk-docs)
+- [GitHub - continuedev/continue: Continue is the leading open-source AI code assistant. You can connect any models and any context to build custom autocomplete and chat experiences inside VS Code and JetBrains](https://github.com/continuedev/continue)
+- [copilot-explorer | Hacky repo to see what the Copilot extension sends to the server](https://thakkarparth007.github.io/copilot-explorer/posts/copilot-internals.html)
+- [How it works | Continue](https://docs.continue.dev/autocomplete/how-it-works)
+- [GitHub - JetBrains/intellij-community: IntelliJ IDEA Community Edition & IntelliJ Platform](https://github.com/jetbrains/intellij-community)
+- [mlrun - Using LLMs to process unstructured data](https://docs.mlrun.org/en/v1.6.4/genai/data-mgmt/unstructured-data.html#turning-unstructured-data-into-structured-data)
+- [aliyun - RAG效果优化_大模型服务平台百炼(Model Studio)-阿里云帮助中心](https://help.aliyun.com/zh/model-studio/use-cases/rag-optimization?spm=a2c4g.11186623.help-menu-2400256.d_2_12.4f01716edKjj8o&scm=20140722.H_2859102._.OR_help-T_cn~zh-V_1)
+- [GitHub - jlonge4/local_llama: This repo is to showcase how you can run a model locally and offline, free of OpenAI dependencies.](https://github.com/jlonge4/local_llama)
+- [Ollama](https://ollama.com/)
+- [GitHub - ollama/ollama: Get up and running with Llama 3.3, DeepSeek-R1, Phi-4, Gemma 2, and other large language models.](https://github.com/ollama/ollama)
+- [GitHub - Mintplex-Labs/anything-llm: The all-in-one Desktop & Docker AI application with built-in RAG, AI agents, No-code agent builder, and more.](https://github.com/Mintplex-Labs/anything-llm)
+- [localai.io - Overview | LocalAI documentation](https://localai.io/)
+- [ollama - deepseek-r1](https://ollama.com/library/deepseek-r1)
