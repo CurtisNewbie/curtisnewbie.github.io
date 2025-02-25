@@ -201,3 +201,4 @@ Interesting papers, books and websites are listed here.
 - [GitHub - Mintplex-Labs/anything-llm: The all-in-one Desktop & Docker AI application with built-in RAG, AI agents, No-code agent builder, and more.](https://github.com/Mintplex-Labs/anything-llm)
 - [localai.io - Overview | LocalAI documentation](https://localai.io/)
 - [ollama - deepseek-r1](https://ollama.com/library/deepseek-r1)
+- [阿里云 - RAG 知识库](https://help.aliyun.com/zh/model-studio/user-guide/rag-knowledge-base?spm=a2c4g.11186623.help-menu-2400256.d_1_8_2_0_0.4d666373lBKTyJ)
