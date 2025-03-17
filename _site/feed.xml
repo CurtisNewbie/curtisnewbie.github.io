@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-03-17T10:01:24+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">Extract Chrome Cookies</title><link href="https://curtisnewbie.github.io/learning/2025/02/20/extract-chrome-cookies.html" rel="alternate" type="text/html" title="Extract Chrome Cookies" /><published>2025-02-20T09:00:00+08:00</published><updated>2025-02-20T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/02/20/extract-chrome-cookies</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/02/20/extract-chrome-cookies.html"><![CDATA[<!-- ## Why
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-03-17T10:10:39+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">python vertualenv</title><link href="https://curtisnewbie.github.io/learning/2025/03/17/python-vertualenv.html" rel="alternate" type="text/html" title="python vertualenv" /><published>2025-03-17T09:00:00+08:00</published><updated>2025-03-17T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/03/17/python-vertualenv</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/03/17/python-vertualenv.html"><![CDATA[<h1 id="how">How</h1>
+
+<ol>
+  <li>install pip</li>
+  <li>install virtualenv</li>
+</ol>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3.11 <span class="nt">-m</span> pip <span class="nb">install </span>virtualenv
+</code></pre></div></div>
+
+<ol>
+  <li>mkdir for new project (e.g.,, ‘myproject’)</li>
+</ol>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>myproject
+<span class="nb">cd </span>myproject
+</code></pre></div></div>
+
+<ol>
+  <li>create virtualenv (named ‘myproject’)</li>
+</ol>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>virtualenv myproject
+</code></pre></div></div>
+
+<ol>
+  <li>activate virtualenv (‘myproject’)</li>
+</ol>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> ./bin/activate
+</code></pre></div></div>
+
+<ol>
+  <li>install stuff using pip, e.t.c.,</li>
+</ol>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3.11 <span class="nt">-m</span> pip <span class="nb">install</span> ...
+</code></pre></div></div>
+
+<ol>
+  <li>deactivate virtualenv</li>
+</ol>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deactivate
+</code></pre></div></div>
+
+<h1 id="source">Source</h1>
+
+<ul>
+  <li>https://stackoverflow.com/questions/35017160/how-to-use-virtualenv-with-python</li>
+</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[How]]></summary></entry><entry><title type="html">Extract Chrome Cookies</title><link href="https://curtisnewbie.github.io/learning/2025/02/20/extract-chrome-cookies.html" rel="alternate" type="text/html" title="Extract Chrome Cookies" /><published>2025-02-20T09:00:00+08:00</published><updated>2025-02-20T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/02/20/extract-chrome-cookies</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/02/20/extract-chrome-cookies.html"><![CDATA[<!-- ## Why
 
 Some websites store secrets and tokens in cookies that are not easily retrieved with a few simple http requests.
 
@@ -2209,8 +2259,4 @@ ImportError: /usr/local/lib64/python3.11/site-packages/torch/lib/libtorch_cuda.s
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">HF Format</code>: Hugging Face Format</li>
-</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Relevant Sites]]></summary></entry><entry><title type="html">moon - the private cloud</title><link href="https://curtisnewbie.github.io/projects/2024/06/03/moon-the-private-cloud.html" rel="alternate" type="text/html" title="moon - the private cloud" /><published>2024-06-03T18:00:00+08:00</published><updated>2024-06-03T18:00:00+08:00</updated><id>https://curtisnewbie.github.io/projects/2024/06/03/moon-the-private-cloud</id><content type="html" xml:base="https://curtisnewbie.github.io/projects/2024/06/03/moon-the-private-cloud.html"><![CDATA[<p>The moon project is self-hosted private cloud that consists of a set of backend and frontend services that I maintain in my spare time.</p>
-
-<p>Monorepo: https://github.com/CurtisNewbie/moon-monorepo</p>
-
-<!-- TODO talk about the monorepo -->]]></content><author><name>Yongjie Zhuang</name></author><category term="Projects" /><summary type="html"><![CDATA[The moon project is self-hosted private cloud that consists of a set of backend and frontend services that I maintain in my spare time.]]></summary></entry></feed>
+</ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Relevant Sites]]></summary></entry></feed>
