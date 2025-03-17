@@ -11,48 +11,48 @@ hidden: 0
 1. install pip
 2. install virtualenv
 
-```sh
-python3.11 -m pip install virtualenv
-```
+    ```sh
+    python3.11 -m pip install virtualenv
+    ```
 
 3. mkdir for new project (e.g.,, 'myproject')
 
-```sh
-mkdir myproject
-cd myproject
-```
+    ```sh
+    mkdir myproject
+    cd myproject
+    ```
 
 4. create virtualenv (named 'myproject')
 
-```sh
-virtualenv myproject
-```
+    ```sh
+    virtualenv myproject
+    ```
 
 5. activate virtualenv ('myproject')
 
-```sh
-source ./bin/activate
-```
+    ```sh
+    source ./bin/activate
+    ```
 
 6. install stuff using pip, e.t.c.,
 
-```sh
-python3.11 -m pip install ...
-```
+    ```sh
+    python3.11 -m pip install ...
+    ```
 
 7. All installed libraries are located at: ./lib/python***/site-packages
 
 8. deactivate virtualenv
 
-```sh
-deactivate
-```
+    ```sh
+    deactivate
+    ```
 
 9. if you to delete the entire virtual environment
 
-```sh
-sudo rm -rf myproject
-```
+    ```sh
+    sudo rm -rf myproject
+    ```
 
 # Source
 

@@ -1,60 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-03-17T14:12:49+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">python virtualenv</title><link href="https://curtisnewbie.github.io/learning/2025/03/17/python-vertualenv.html" rel="alternate" type="text/html" title="python virtualenv" /><published>2025-03-17T09:00:00+08:00</published><updated>2025-03-17T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/03/17/python-vertualenv</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/03/17/python-vertualenv.html"><![CDATA[<h1 id="how">How</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-03-17T14:13:35+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">python virtualenv</title><link href="https://curtisnewbie.github.io/learning/2025/03/17/python-vertualenv.html" rel="alternate" type="text/html" title="python virtualenv" /><published>2025-03-17T09:00:00+08:00</published><updated>2025-03-17T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/03/17/python-vertualenv</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/03/17/python-vertualenv.html"><![CDATA[<h1 id="how">How</h1>
 
 <ol>
   <li>install pip</li>
-  <li>install virtualenv</li>
-</ol>
+  <li>
+    <p>install virtualenv</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3.11 <span class="nt">-m</span> pip <span class="nb">install </span>virtualenv
-</code></pre></div></div>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> python3.11 <span class="nt">-m</span> pip <span class="nb">install </span>virtualenv
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>mkdir for new project (e.g.,, ‘myproject’)</p>
 
-<ol>
-  <li>mkdir for new project (e.g.,, ‘myproject’)</li>
-</ol>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">mkdir </span>myproject
+ <span class="nb">cd </span>myproject
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>create virtualenv (named ‘myproject’)</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>myproject
-<span class="nb">cd </span>myproject
-</code></pre></div></div>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> virtualenv myproject
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>activate virtualenv (‘myproject’)</p>
 
-<ol>
-  <li>create virtualenv (named ‘myproject’)</li>
-</ol>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">source</span> ./bin/activate
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>install stuff using pip, e.t.c.,</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>virtualenv myproject
-</code></pre></div></div>
-
-<ol>
-  <li>activate virtualenv (‘myproject’)</li>
-</ol>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> ./bin/activate
-</code></pre></div></div>
-
-<ol>
-  <li>install stuff using pip, e.t.c.,</li>
-</ol>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3.11 <span class="nt">-m</span> pip <span class="nb">install</span> ...
-</code></pre></div></div>
-
-<ol>
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> python3.11 <span class="nt">-m</span> pip <span class="nb">install</span> ...
+</code></pre></div>    </div>
+  </li>
   <li>
     <p>All installed libraries are located at: ./lib/python***/site-packages</p>
   </li>
   <li>
     <p>deactivate virtualenv</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> deactivate
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>if you to delete the entire virtual environment</p>
+
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo rm</span> <span class="nt">-rf</span> myproject
+</code></pre></div>    </div>
   </li>
 </ol>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deactivate
-</code></pre></div></div>
-
-<ol>
-  <li>if you to delete the entire virtual environment</li>
-</ol>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo rm</span> <span class="nt">-rf</span> myproject
-</code></pre></div></div>
 
 <h1 id="source">Source</h1>
 
