@@ -40,10 +40,18 @@ source ./bin/activate
 python3.11 -m pip install ...
 ```
 
-7. deactivate virtualenv
+7. All installed libraries are located at: ./lib/python***/site-packages
+
+8. deactivate virtualenv
 
 ```sh
 deactivate
+```
+
+9. if you to delete the entire virtual environment
+
+```sh
+sudo rm -rf myproject
 ```
 
 # Source
