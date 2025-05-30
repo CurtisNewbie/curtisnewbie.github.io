@@ -154,6 +154,7 @@ Interesting papers, books and websites are listed here.
 - [美团技术团队 - Java Hotspot G1 GC 的一些关键技术](https://tech.meituan.com/2016/09/23/g1.html)
 - [wiki.openjdk.org - shenandoah](https://wiki.openjdk.org/display/shenandoah/Main)
 - [The Go Blog - Getting to Go: The Journey of Go's Garbage Collector](https://go.dev/blog/ismmkeynote)
+- [Java - Pulling Ahead With Object Pooling](https://dataintellect.com/blog/pulling-ahead-with-object-pooling/)
 
 ### Tools
 
