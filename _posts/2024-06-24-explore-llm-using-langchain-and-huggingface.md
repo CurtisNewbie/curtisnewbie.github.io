@@ -590,7 +590,7 @@ gr.ChatInterface(predict).queue().launch(share=False, server_name="0.0.0.0", ser
 
 #### Updates in 2025 about libcupti.so.* files not found
 
-**LD_LIBRARY_PATH actually works, with env LD_LIBRARY_PATH properly set, you don't need to install nccl.**
+**LD_LIBRARY_PATH actually works, with env LD_LIBRARY_PATH properly set, you don't need to manually install nccl.**
 
 E.g.,
 
