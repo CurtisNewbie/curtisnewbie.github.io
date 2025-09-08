@@ -586,6 +586,29 @@ gr.ChatInterface(predict).queue().launch(share=False, server_name="0.0.0.0", ser
 
 ### Potential Issues
 
+#### Updates in 2025 about libcupti.so.* files not found
+
+**LD_LIBRARY_PATH actually works, with env LD_LIBRARY_PATH properly set, you don't need to install nccl.**
+
+E.g.,
+
+```sh
+[*** src]# find /usr/ -name "libnccl.so.2"
+/usr/local/lib/python3.11/site-packages/nvidia/nccl/lib/libnccl.so.2
+
+[*** src]# find /usr/ -name "libcupti.so.12"
+/usr/local/cuda-12.4/extras/CUPTI/lib64/libcupti.so.12
+/usr/local/lib/python3.11/site-packages/nvidia/cuda_cupti/lib/libcupti.so.12
+
+export LD_LIBRARY_PATH="/usr/local/lib/python3.11/site-packages/nvidia/cuda_cupti/lib:/usr/local/lib/python3.11/site-packages/nvidia/nccl/lib:/usr/local/cuda-12.4:$LD_LIBRARY_PATH"
+
+# check if pytorch works
+[*** src]# python3.11 -c "import torch; print(torch.cuda.nccl.version())"
+(2, 21, 5)
+[*** src]# python3.11 -c "import torch; print(torch.cuda.is_available())"
+True
+```
+
 #### 1. PyTorch - `ImportError: libcupti.so.12: cannot open shared object file: No such file or directory`
 
 ```sh
@@ -627,7 +650,7 @@ ln -s /usr/local/cuda-12.1/extras/CUPTI/lib64 /usr/local/lib64/python3.11/site-p
 # unlink  /usr/local/lib64/python3.11/site-packages/nvidia/nccl/lib
 ```
 
-Before I tried the symlink approch, I did some research; some recommend setting `LD_LIBRARY_PATH` env variable like below, but unfortunately, this doesn't work for me.
+Before I tried the symlink approch, I did some research; some recommend setting `LD_LIBRARY_PATH` env variable like below, but unfortunately, this did not work for me.
 
 ```sh
 export LD_LIBRARY_PATH=/usr/local/cuda-12.1/extras/CUPTI/lib64/:$LD_LIBRARY_PATH

@@ -45,7 +45,7 @@
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Explore LLM using LangChain and HuggingFace</h1>
     <p class="post-meta"><time class="dt-published" datetime="2024-06-24T09:00:00+08:00" itemprop="datePublished">
-        Jun 24, 2024 &nbsp&nbsp&nbsp&nbsp4037 Words
+        Jun 24, 2024 &nbsp&nbsp&nbsp&nbsp4132 Words
       </time></p>
   </header>
 
@@ -622,6 +622,28 @@ python3.11 <span class="nt">-m</span> ensurepip
 
 <h3 id="potential-issues">Potential Issues</h3>
 
+<h4 id="updates-in-2025-about-libcuptiso-files-not-found">Updates in 2025 about libcupti.so.* files not found</h4>
+
+<p><strong>LD_LIBRARY_PATH actually works, with env LD_LIBRARY_PATH properly set, you don’t need to install nccl.</strong></p>
+
+<p>E.g.,</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span><span class="k">***</span> src]# find /usr/ <span class="nt">-name</span> <span class="s2">"libnccl.so.2"</span>
+/usr/local/lib/python3.11/site-packages/nvidia/nccl/lib/libnccl.so.2
+
+<span class="o">[</span><span class="k">***</span> src]# find /usr/ <span class="nt">-name</span> <span class="s2">"libcupti.so.12"</span>
+/usr/local/cuda-12.4/extras/CUPTI/lib64/libcupti.so.12
+/usr/local/lib/python3.11/site-packages/nvidia/cuda_cupti/lib/libcupti.so.12
+
+<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="s2">"/usr/local/lib/python3.11/site-packages/nvidia/cuda_cupti/lib:/usr/local/lib/python3.11/site-packages/nvidia/nccl/lib:/usr/local/cuda-12.4:</span><span class="nv">$LD_LIBRARY_PATH</span><span class="s2">"</span>
+
+<span class="c"># check if pytorch works</span>
+<span class="o">[</span><span class="k">***</span> src]# python3.11 <span class="nt">-c</span> <span class="s2">"import torch; print(torch.cuda.nccl.version())"</span>
+<span class="o">(</span>2, 21, 5<span class="o">)</span>
+<span class="o">[</span><span class="k">***</span> src]# python3.11 <span class="nt">-c</span> <span class="s2">"import torch; print(torch.cuda.is_available())"</span>
+True
+</code></pre></div></div>
+
 <h4 id="1-pytorch---importerror-libcuptiso12-cannot-open-shared-object-file-no-such-file-or-directory">1. PyTorch - <code class="language-plaintext highlighter-rouge">ImportError: libcupti.so.12: cannot open shared object file: No such file or directory</code></h4>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
@@ -660,7 +682,7 @@ ImportError: libcupti.so.12: cannot open shared object file: No such file or dir
 <span class="c"># unlink  /usr/local/lib64/python3.11/site-packages/nvidia/nccl/lib</span>
 </code></pre></div></div>
 
-<p>Before I tried the symlink approch, I did some research; some recommend setting <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code> env variable like below, but unfortunately, this doesn’t work for me.</p>
+<p>Before I tried the symlink approch, I did some research; some recommend setting <code class="language-plaintext highlighter-rouge">LD_LIBRARY_PATH</code> env variable like below, but unfortunately, this did not work for me.</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/cuda-12.1/extras/CUPTI/lib64/:<span class="nv">$LD_LIBRARY_PATH</span>
 </code></pre></div></div>
