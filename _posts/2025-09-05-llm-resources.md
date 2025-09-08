@@ -42,6 +42,7 @@ hidden: 0
 - [Jina AI, Deep Research](https://github.com/jina-ai/node-DeepResearch)
 - [guy-hartstein, Agentic Company Researcher](https://github.com/guy-hartstein/company-research-agent)
     - Internally used Tavily AI.
+- [GPT Researcher](https://github.com/assafelovic/gpt-researcher)
 
 ## LLM Papers
 
