@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "python virtualenv"
+title: "Python virtualenv"
 date: 2025-03-17 09:00:00 +0800
 categories: Learning
 hidden: 0
