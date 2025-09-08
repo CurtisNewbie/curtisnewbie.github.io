@@ -442,6 +442,8 @@ nvcc --version
 
 Install `nccl` library. `nccl` is NVIDIA Collective Communications Library. PyTorch will attempt to open these `*.so.*` lib files provided by nccl.
 
+***Update in 2025: you don't need to manually install libnccl, just setup $LD_LIBRARY_PATH (See Potential Issues Section).***
+
 - [Nvidia Overview of NCCL](https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/overview.html#:~:text=The%20NVIDIA%20Collective%20Communications%20Library,be%20easily%20integrated%20into%20applications.)
 - [Nvidia NCCL Installation Guide](https://docs.nvidia.com/deeplearning/nccl/install-guide/index.html)
 - [Nvidia NCCL](https://developer.nvidia.com/nccl)
@@ -450,7 +452,7 @@ Install `nccl` library. `nccl` is NVIDIA Collective Communications Library. PyTo
 # Add cuda repo config (same repo)
 sudo yum-config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-rhel7.repo
 
-# Install libnccl for cuda12.1
+# Install libnccl for cuda12.1 (NOT NEEDED)
 yum install libnccl-2.18.3-1+cuda12.1
 
 yum list installed | grep nccl

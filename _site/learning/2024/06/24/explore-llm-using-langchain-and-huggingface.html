@@ -45,7 +45,7 @@
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">Explore LLM using LangChain and HuggingFace</h1>
     <p class="post-meta"><time class="dt-published" datetime="2024-06-24T09:00:00+08:00" itemprop="datePublished">
-        Jun 24, 2024 &nbsp&nbsp&nbsp&nbsp4132 Words
+        Jun 24, 2024 &nbsp&nbsp&nbsp&nbsp4151 Words
       </time></p>
   </header>
 
@@ -484,6 +484,8 @@ Answer:"""</span>
 
 <p>Install <code class="language-plaintext highlighter-rouge">nccl</code> library. <code class="language-plaintext highlighter-rouge">nccl</code> is NVIDIA Collective Communications Library. PyTorch will attempt to open these <code class="language-plaintext highlighter-rouge">*.so.*</code> lib files provided by nccl.</p>
 
+<p><strong><em>Update in 2025: you don’t need to manually install libnccl, just setup $LD_LIBRARY_PATH (See Potential Issues Section).</em></strong></p>
+
 <ul>
   <li><a href="https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/overview.html#:~:text=The%20NVIDIA%20Collective%20Communications%20Library,be%20easily%20integrated%20into%20applications.">Nvidia Overview of NCCL</a></li>
   <li><a href="https://docs.nvidia.com/deeplearning/nccl/install-guide/index.html">Nvidia NCCL Installation Guide</a></li>
@@ -493,7 +495,7 @@ Answer:"""</span>
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Add cuda repo config (same repo)</span>
 <span class="nb">sudo </span>yum-config-manager <span class="nt">--add-repo</span> https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-rhel7.repo
 
-<span class="c"># Install libnccl for cuda12.1</span>
+<span class="c"># Install libnccl for cuda12.1 (NOT NEEDED)</span>
 yum <span class="nb">install </span>libnccl-2.18.3-1+cuda12.1
 
 yum list installed | <span class="nb">grep </span>nccl
