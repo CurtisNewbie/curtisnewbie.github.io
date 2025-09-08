@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-09-08T16:58:39+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">LLM-Resources</title><link href="https://curtisnewbie.github.io/learning/2025/09/05/llm-resources.html" rel="alternate" type="text/html" title="LLM-Resources" /><published>2025-09-05T09:00:00+08:00</published><updated>2025-09-05T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/09/05/llm-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/09/05/llm-resources.html"><![CDATA[<h2 id="websites">Websites</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-09-08T17:15:52+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">LLM-Resources</title><link href="https://curtisnewbie.github.io/learning/2025/09/05/llm-resources.html" rel="alternate" type="text/html" title="LLM-Resources" /><published>2025-09-05T09:00:00+08:00</published><updated>2025-09-05T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/09/05/llm-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/09/05/llm-resources.html"><![CDATA[<h2 id="websites">Websites</h2>
 
 <ul>
   <li><a href="https://www.pinecone.io/learn/chunking-strategies/">Pinecone, Chunking Strategies for LLM Applications</a></li>
@@ -11,6 +11,52 @@
     </ul>
   </li>
   <li><a href="https://blog.langchain.com/adding-long-term-memory-to-opengpts/">Langchain, Adding Long Term Memory to OpenGPTs</a></li>
+  <li><a href="https://thakkarparth007.github.io/copilot-explorer/posts/copilot-internals">thakkarparth007.github.io, Copilot Internals</a>
+    <ul>
+      <li>https://github.com/thakkarparth007/copilot-explorer</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/mengjian-github/copilot-analysis">Github, Copilot Analysis</a></li>
+</ul>
+
+<h2 id="tools--frameworks">Tools / Frameworks</h2>
+
+<h3 id="document-processing">Document Processing</h3>
+
+<ul>
+  <li><a href="https://github.com/PaddlePaddle/PaddleOCR">PaddleOCR</a></li>
+  <li><a href="https://github.com/docling-project/docling">Docling</a></li>
+  <li><a href="https://github.com/opendatalab/MinerU">MinerU</a></li>
+  <li><a href="https://github.com/pymupdf/PyMuPDF">PyMuPDF</a></li>
+  <li><a href="https://github.com/pypdfium2-team/pypdfium2">pypdfium2</a>
+    <ul>
+      <li>Python binding for <a href="https://pdfium.googlesource.com/pdfium/">Pdfium</a></li>
+      <li>Used by Dify as default extractor for PDF content.</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/JaidedAI/EasyOCR">EasyOCR</a>
+    <ul>
+      <li>Used by Docling as the default OCR Engine.</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/google/langextract">LangExtract</a>
+    <ul>
+      <li>Data Extraction</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="research">Research</h3>
+
+<ul>
+  <li><a href="https://github.com/langchain-ai/open_deep_research">LangChain, Open Deep Research</a></li>
+  <li><a href="https://github.com/dzhng/deep-research">dzhng, Deep Research</a></li>
+  <li><a href="https://github.com/jina-ai/node-DeepResearch">Jina AI, Deep Research</a></li>
+  <li><a href="https://github.com/guy-hartstein/company-research-agent">guy-hartstein, Agentic Company Researcher</a>
+    <ul>
+      <li>Internally used Tavily AI.</li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="llm-papers">LLM Papers</h2>
@@ -26,6 +72,16 @@
     <ul>
       <li>About LLM Plan and Solve</li>
       <li>https://github.com/AGI-Edgerunners/Plan-and-Solve-Prompting</li>
+    </ul>
+  </li>
+  <li><a href="https://ofir.io/self-ask.pdf">Measuring and Narrowing the Compositionality Gap in Language Models</a>
+    <ul>
+      <li>About LLM Self-Ask</li>
+    </ul>
+  </li>
+  <li><a href="https://arxiv.org/abs/2210.03629">ReAct: Synergizing Reasoning and Acting in Language Models</a>
+    <ul>
+      <li>LLM ReAct</li>
     </ul>
   </li>
 </ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Websites]]></summary></entry><entry><title type="html">Python virtualenv</title><link href="https://curtisnewbie.github.io/learning/2025/03/17/python-vertualenv.html" rel="alternate" type="text/html" title="Python virtualenv" /><published>2025-03-17T09:00:00+08:00</published><updated>2025-03-17T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/03/17/python-vertualenv</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/03/17/python-vertualenv.html"><![CDATA[<h1 id="how">How</h1>

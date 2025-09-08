@@ -15,6 +15,33 @@ hidden: 0
 - [Reddit, Summarize this conversation in a way that can be...](https://www.reddit.com/r/LocalLLaMA/comments/1d9wdp6/summarize_this_conversation_in_a_way_that_can_be/)
     - About Memory Compression
 - [Langchain, Adding Long Term Memory to OpenGPTs](https://blog.langchain.com/adding-long-term-memory-to-opengpts/)
+- [thakkarparth007.github.io, Copilot Internals](https://thakkarparth007.github.io/copilot-explorer/posts/copilot-internals)
+    - https://github.com/thakkarparth007/copilot-explorer
+- [Github, Copilot Analysis](https://github.com/mengjian-github/copilot-analysis)
+
+## Tools / Frameworks
+
+### Document Processing
+
+- [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)
+- [Docling](https://github.com/docling-project/docling)
+- [MinerU](https://github.com/opendatalab/MinerU)
+- [PyMuPDF](https://github.com/pymupdf/PyMuPDF)
+- [pypdfium2](https://github.com/pypdfium2-team/pypdfium2)
+    - Python binding for [Pdfium](https://pdfium.googlesource.com/pdfium/)
+    - Used by Dify as default extractor for PDF content.
+- [EasyOCR](https://github.com/JaidedAI/EasyOCR)
+    - Used by Docling as the default OCR Engine.
+- [LangExtract](https://github.com/google/langextract)
+    - Data Extraction
+
+### Research
+
+- [LangChain, Open Deep Research](https://github.com/langchain-ai/open_deep_research)
+- [dzhng, Deep Research](https://github.com/dzhng/deep-research)
+- [Jina AI, Deep Research](https://github.com/jina-ai/node-DeepResearch)
+- [guy-hartstein, Agentic Company Researcher](https://github.com/guy-hartstein/company-research-agent)
+    - Internally used Tavily AI.
 
 ## LLM Papers
 
@@ -25,3 +52,9 @@ hidden: 0
 - [Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models](https://arxiv.org/pdf/2305.04091)
     - About LLM Plan and Solve
     - https://github.com/AGI-Edgerunners/Plan-and-Solve-Prompting
+
+- [Measuring and Narrowing the Compositionality Gap in Language Models](https://ofir.io/self-ask.pdf)
+    - About LLM Self-Ask
+
+- [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)
+    - LLM ReAct
