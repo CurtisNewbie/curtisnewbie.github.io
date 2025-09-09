@@ -56,6 +56,7 @@ hidden: 0
     - [https://github.com/AGI-Edgerunners/Plan-and-Solve-Prompting](https://github.com/AGI-Edgerunners/Plan-and-Solve-Prompting)
 
 - [Measuring and Narrowing the Compositionality Gap in Language Models](https://ofir.io/self-ask.pdf)
+    - [https://github.com/ofirpress/self-ask](https://github.com/ofirpress/self-ask)
     - About LLM Self-Ask
 
 - [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)
