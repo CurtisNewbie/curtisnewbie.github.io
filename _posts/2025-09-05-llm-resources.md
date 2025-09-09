@@ -15,6 +15,7 @@ hidden: 0
 - [Reddit, Summarize this conversation in a way that can be...](https://www.reddit.com/r/LocalLLaMA/comments/1d9wdp6/summarize_this_conversation_in_a_way_that_can_be/)
     - About Memory Compression
 - [Langchain, Adding Long Term Memory to OpenGPTs](https://blog.langchain.com/adding-long-term-memory-to-opengpts/)
+    - (https://github.com/langchain-ai/opengpts)[https://github.com/langchain-ai/opengpts]
 - [thakkarparth007.github.io, Copilot Internals](https://thakkarparth007.github.io/copilot-explorer/posts/copilot-internals)
     - [https://github.com/thakkarparth007/copilot-explorer](https://github.com/thakkarparth007/copilot-explorer)
 - [Github, Copilot Analysis](https://github.com/mengjian-github/copilot-analysis)
@@ -35,7 +36,7 @@ hidden: 0
 - [LangExtract](https://github.com/google/langextract)
     - Data Extraction
 
-### Research
+### Deep Research
 
 - [LangChain, Open Deep Research](https://github.com/langchain-ai/open_deep_research)
 - [dzhng, Deep Research](https://github.com/dzhng/deep-research)
@@ -59,3 +60,6 @@ hidden: 0
 
 - [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)
     - LLM ReAct
+
+- [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442)
+    - About Long Term Memory, Generative Agent (Memory)
