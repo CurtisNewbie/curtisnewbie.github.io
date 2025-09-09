@@ -16,7 +16,7 @@ hidden: 0
     - About Memory Compression
 - [Langchain, Adding Long Term Memory to OpenGPTs](https://blog.langchain.com/adding-long-term-memory-to-opengpts/)
 - [thakkarparth007.github.io, Copilot Internals](https://thakkarparth007.github.io/copilot-explorer/posts/copilot-internals)
-    - https://github.com/thakkarparth007/copilot-explorer
+    - [https://github.com/thakkarparth007/copilot-explorer](https://github.com/thakkarparth007/copilot-explorer)
 - [Github, Copilot Analysis](https://github.com/mengjian-github/copilot-analysis)
 
 ## Tools / Frameworks
@@ -52,7 +52,7 @@ hidden: 0
 
 - [Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models](https://arxiv.org/pdf/2305.04091)
     - About LLM Plan and Solve
-    - https://github.com/AGI-Edgerunners/Plan-and-Solve-Prompting
+    - [https://github.com/AGI-Edgerunners/Plan-and-Solve-Prompting](https://github.com/AGI-Edgerunners/Plan-and-Solve-Prompting)
 
 - [Measuring and Narrowing the Compositionality Gap in Language Models](https://ofir.io/self-ask.pdf)
     - About LLM Self-Ask
