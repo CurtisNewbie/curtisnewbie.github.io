@@ -16,6 +16,13 @@ hidden: 0
     - About Memory Compression
 - [Langchain, Adding Long Term Memory to OpenGPTs](https://blog.langchain.com/adding-long-term-memory-to-opengpts/)
     - (https://github.com/langchain-ai/opengpts)[https://github.com/langchain-ai/opengpts]
+    - Memory
+        - Semantic Memory
+        - Generative Agents
+    - Questions That Determine How We Implement Memory.
+        - What is the state that's tracked?
+        - How is the state updated?
+        - How is the state used?
 - [thakkarparth007.github.io, Copilot Internals](https://thakkarparth007.github.io/copilot-explorer/posts/copilot-internals)
     - [https://github.com/thakkarparth007/copilot-explorer](https://github.com/thakkarparth007/copilot-explorer)
 - [Github, Copilot Analysis](https://github.com/mengjian-github/copilot-analysis)
