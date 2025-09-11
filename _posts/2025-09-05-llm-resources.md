@@ -54,13 +54,18 @@ hidden: 0
 - [Plan-and-Solve Prompting: Improving Zero-Shot Chain-of-Thought Reasoning by Large Language Models](https://arxiv.org/pdf/2305.04091)
     - About LLM Plan and Solve
     - [https://github.com/AGI-Edgerunners/Plan-and-Solve-Prompting](https://github.com/AGI-Edgerunners/Plan-and-Solve-Prompting)
+    - Better CoT, especially in Math.
 
 - [Measuring and Narrowing the Compositionality Gap in Language Models](https://ofir.io/self-ask.pdf)
     - [https://github.com/ofirpress/self-ask](https://github.com/ofirpress/self-ask)
     - About LLM Self-Ask
+    - Solve Multi-Hop Questions
 
 - [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)
     - LLM ReAct
 
 - [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442)
     - About Long Term Memory, Generative Agent (Memory)
+
+- [Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection](https://arxiv.org/abs/2310.11511)
+    - Self-RAG
