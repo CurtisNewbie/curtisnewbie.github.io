@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-09-11T18:00:44+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">LLM-Resources</title><link href="https://curtisnewbie.github.io/learning/2025/09/05/llm-resources.html" rel="alternate" type="text/html" title="LLM-Resources" /><published>2025-09-05T09:00:00+08:00</published><updated>2025-09-05T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/09/05/llm-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/09/05/llm-resources.html"><![CDATA[<h2 id="websites">Websites</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-09-11T18:04:55+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">LLM-Resources</title><link href="https://curtisnewbie.github.io/learning/2025/09/05/llm-resources.html" rel="alternate" type="text/html" title="LLM-Resources" /><published>2025-09-05T09:00:00+08:00</published><updated>2025-09-05T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/09/05/llm-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/09/05/llm-resources.html"><![CDATA[<h2 id="websites">Websites</h2>
 
 <ul>
   <li><a href="https://www.pinecone.io/learn/chunking-strategies/">Pinecone, Chunking Strategies for LLM Applications</a></li>
@@ -113,6 +113,11 @@
   <li><a href="https://arxiv.org/abs/2310.11511">Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection</a>
     <ul>
       <li>Self-RAG</li>
+    </ul>
+  </li>
+  <li><a href="https://arxiv.org/pdf/2406.06608">The Prompt Report: A Systematic Survey of Prompt Engineering Techniques</a>
+    <ul>
+      <li>Over 58 different types of Prompting Technique?</li>
     </ul>
   </li>
 </ul>]]></content><author><name>Yongjie Zhuang</name></author><category term="Learning" /><summary type="html"><![CDATA[Websites]]></summary></entry><entry><title type="html">Python virtualenv</title><link href="https://curtisnewbie.github.io/learning/2025/03/17/python-vertualenv.html" rel="alternate" type="text/html" title="Python virtualenv" /><published>2025-03-17T09:00:00+08:00</published><updated>2025-03-17T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/03/17/python-vertualenv</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/03/17/python-vertualenv.html"><![CDATA[<h1 id="how">How</h1>

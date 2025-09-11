@@ -76,3 +76,6 @@ hidden: 0
 
 - [Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection](https://arxiv.org/abs/2310.11511)
     - Self-RAG
+
+- [The Prompt Report: A Systematic Survey of Prompt Engineering Techniques](https://arxiv.org/pdf/2406.06608)
+    - Over 58 different types of Prompting Technique?
