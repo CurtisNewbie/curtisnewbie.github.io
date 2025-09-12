@@ -132,6 +132,8 @@ Interesting papers, books and websites are listed here.
 - [Phuong Le, Golang Sync Mutex: Normal and Starvation Mode](https://victoriametrics.com/blog/go-sync-mutex/)
 - [Phuong Le, Vendoring, or go mod vendor: What Is It?](https://victoriametrics.com/blog/vendoring-go-mod-vendor/index.html)
 - [Go Data Structures](https://research.swtch.com/godata)
+- [Learning To Use Go Reflection Part 1](https://medium.com/capital-one-tech/learning-to-use-go-reflection-822a0aed74b7)
+- [Learning To Use Go Reflection Part 2](https://medium.com/capital-one-tech/learning-to-use-go-reflection-part-2-c91657395066)
 
 ### GC
 
