@@ -68,13 +68,13 @@ hidden: 0
     - About LLM Self-Ask
     - Solve Multi-Hop Questions
 
-- [ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)
+- [2022, ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)
     - LLM ReAct
 
-- [Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442)
+- [2023, Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442)
     - About Long Term Memory, Generative Agent (Memory)
 
-- [Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection](https://arxiv.org/abs/2310.11511)
+- [2023, Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection](https://arxiv.org/abs/2310.11511)
     - Self-RAG
     - Reflection Tokens
         - Retrieve (need for retrieval)
@@ -85,6 +85,15 @@ hidden: 0
             - IsUSE (useful): X is useful response to Y
     - https://selfrag.github.io/
     - https://github.com/SauravP97/AI-Engineering-101/tree/main/self-rag
+    - https://github.com/AkariAsai/self-rag
 
-- [The Prompt Report: A Systematic Survey of Prompt Engineering Techniques](https://arxiv.org/pdf/2406.06608)
+- [2024, The Prompt Report: A Systematic Survey of Prompt Engineering Techniques](https://arxiv.org/abs/2406.06608)
     - Over 58 different types of Prompting Technique?
+
+- [2024, Corrective Retrieval Augmented Generation](https://arxiv.org/abs/2401.15884)
+    - CRAG
+        - Correct
+        - Incorrect
+        - Ambiguous
+    - Langchain example: https://github.com/langchain-ai/langgraph/blob/main/examples/rag/langgraph_crag.ipynb?ref=blog.langchain.com
+    - SauravP97 on Corrective RAG: https://github.com/SauravP97/AI-Engineering-101/tree/main/corrective-rag
