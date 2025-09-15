@@ -76,6 +76,15 @@ hidden: 0
 
 - [Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection](https://arxiv.org/abs/2310.11511)
     - Self-RAG
+    - Reflection Tokens
+        - Retrieve (need for retrieval)
+            - Retrieve: when to retrieve X
+        - Critique (generation quality)
+            - IsREL (relevant): X provides useful info to solve Y
+            - IsSUP (supported): all verification-worth statement in X is supported by Y
+            - IsUSE (useful): X is useful response to Y
+    - https://selfrag.github.io/
+    - https://github.com/SauravP97/AI-Engineering-101/tree/main/self-rag
 
 - [The Prompt Report: A Systematic Survey of Prompt Engineering Techniques](https://arxiv.org/pdf/2406.06608)
     - Over 58 different types of Prompting Technique?
