@@ -97,3 +97,6 @@ hidden: 0
         - Ambiguous
     - Langchain example: https://github.com/langchain-ai/langgraph/blob/main/examples/rag/langgraph_crag.ipynb?ref=blog.langchain.com
     - SauravP97 on Corrective RAG: https://github.com/SauravP97/AI-Engineering-101/tree/main/corrective-rag
+
+- [2025, Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory](https://arxiv.org/abs/2504.19413)
+    - Mem0
