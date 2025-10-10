@@ -134,6 +134,7 @@ Interesting papers, books and websites are listed here.
 - [Go Data Structures](https://research.swtch.com/godata)
 - [Learning To Use Go Reflection Part 1](https://medium.com/capital-one-tech/learning-to-use-go-reflection-822a0aed74b7)
 - [Learning To Use Go Reflection Part 2](https://medium.com/capital-one-tech/learning-to-use-go-reflection-part-2-c91657395066)
+- [CPU Cache-Friendly Data Structures in Go: 10x Speed with Same Algorithm](https://skoredin.pro/blog/golang/cpu-cache-friendly-go)
 
 ### GC
 
