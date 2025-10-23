@@ -185,4 +185,9 @@ Interesting papers, books and websites are listed here.
 
 - [https://blogs.oracle.com/javamagazine/post/behind-the-scenes-how-do-lambda-expressions-really-work-in-java](https://blogs.oracle.com/javamagazine/post/behind-the-scenes-how-do-lambda-expressions-really-work-in-java)
 
+### W3
 
+- [Gate Learn](https://www.gate.com/zh-tw/learn)
+- [Ethereum dev-mode](https://geth.ethereum.org/docs/developers/dapp-developer/dev-mode)
+- [Ethereum Intro](https://ethereum.org/developers/docs/intro-to-ethereum/)
+- [github go-ethereum](https://github.com/ethereum/go-ethereum)
