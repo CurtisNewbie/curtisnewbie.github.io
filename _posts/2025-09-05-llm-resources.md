@@ -26,6 +26,7 @@ hidden: 0
 - [thakkarparth007.github.io, Copilot Internals](https://thakkarparth007.github.io/copilot-explorer/posts/copilot-internals)
     - [https://github.com/thakkarparth007/copilot-explorer](https://github.com/thakkarparth007/copilot-explorer)
 - [Github, Copilot Analysis](https://github.com/mengjian-github/copilot-analysis)
+- [Anthropic, The "think" tool: Enabling Claude to stop and think in complex tool use situations](https://www.anthropic.com/engineering/claude-think-tool)
 
 ## Tools / Frameworks
 
@@ -69,6 +70,7 @@ hidden: 0
     - Solve Multi-Hop Questions
 
 - [2022, ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)
+    - https://react-lm.github.io/
     - LLM ReAct
 
 - [2023, Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442)
