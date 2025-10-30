@@ -70,8 +70,10 @@ hidden: 0
     - Solve Multi-Hop Questions
 
 - [2022, ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)
-    - https://react-lm.github.io/
     - LLM ReAct
+    - https://react-lm.github.io/
+    - https://docs.langchain.com/oss/python/langchain/agents
+    - https://github.com/langgenius/dify-official-plugins/tree/main/agent-strategies/cot_agent
 
 - [2023, Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442)
     - About Long Term Memory, Generative Agent (Memory)
