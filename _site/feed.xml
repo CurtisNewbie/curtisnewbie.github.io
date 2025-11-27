@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-10-30T18:30:07+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">LLM-Resources</title><link href="https://curtisnewbie.github.io/learning/2025/09/05/llm-resources.html" rel="alternate" type="text/html" title="LLM-Resources" /><published>2025-09-05T09:00:00+08:00</published><updated>2025-09-05T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/09/05/llm-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/09/05/llm-resources.html"><![CDATA[<h2 id="websites">Websites</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.5">Jekyll</generator><link href="https://curtisnewbie.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://curtisnewbie.github.io/" rel="alternate" type="text/html" /><updated>2025-11-27T15:30:51+08:00</updated><id>https://curtisnewbie.github.io/feed.xml</id><title type="html">kekw</title><subtitle>Til the end</subtitle><author><name>Yongjie Zhuang</name></author><entry><title type="html">LLM-Resources</title><link href="https://curtisnewbie.github.io/learning/2025/09/05/llm-resources.html" rel="alternate" type="text/html" title="LLM-Resources" /><published>2025-09-05T09:00:00+08:00</published><updated>2025-09-05T09:00:00+08:00</updated><id>https://curtisnewbie.github.io/learning/2025/09/05/llm-resources</id><content type="html" xml:base="https://curtisnewbie.github.io/learning/2025/09/05/llm-resources.html"><![CDATA[<h2 id="websites">Websites</h2>
 
 <ul>
   <li><a href="https://www.pinecone.io/learn/chunking-strategies/">Pinecone, Chunking Strategies for LLM Applications</a></li>
@@ -35,6 +35,7 @@
   </li>
   <li><a href="https://github.com/mengjian-github/copilot-analysis">Github, Copilot Analysis</a></li>
   <li><a href="https://www.anthropic.com/engineering/claude-think-tool">Anthropic, The “think” tool: Enabling Claude to stop and think in complex tool use situations</a></li>
+  <li><a href="https://weaxsey.org/en/articles/2025-10-12">Weaxs - A Brief Analysis of Claude Code’s Execution and Prompts</a></li>
 </ul>
 
 <h2 id="tools--frameworks">Tools / Frameworks</h2>

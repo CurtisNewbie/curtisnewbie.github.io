@@ -27,6 +27,7 @@ hidden: 0
     - [https://github.com/thakkarparth007/copilot-explorer](https://github.com/thakkarparth007/copilot-explorer)
 - [Github, Copilot Analysis](https://github.com/mengjian-github/copilot-analysis)
 - [Anthropic, The "think" tool: Enabling Claude to stop and think in complex tool use situations](https://www.anthropic.com/engineering/claude-think-tool)
+- [Weaxs - A Brief Analysis of Claude Code's Execution and Prompts](https://weaxsey.org/en/articles/2025-10-12)
 
 ## Tools / Frameworks
 
